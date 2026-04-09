@@ -78,12 +78,35 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		
+		<!-- spring security -->		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<!-- JWT for spring security -->		
+
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-api</artifactId>
+    <version>0.11.5</version>
+</dependency>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-impl</artifactId>
+    <scope>runtime</scope>
+    <version>0.11.5</version>
+</dependency>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-jackson</artifactId>
+    <scope>runtime</scope>
+    <version>0.11.5</version>
+</dependency>
+
 		<!-- comment -->		
+
 
 	</dependencies>
 
