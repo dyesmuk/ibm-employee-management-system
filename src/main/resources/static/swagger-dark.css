@@ -1,0 +1,40 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.topbar {
+    background-color: #1f1f1f !important;
+}
+
+.swagger-ui .scheme-container {
+    background: #1f1f1f !important;
+}
+
+.swagger-ui .opblock {
+    background: #1e1e1e;
+    border-color: #333;
+}
+
+.swagger-ui .opblock-summary-method {
+    color: #fff;
+}
+
+.swagger-ui .opblock-summary-path {
+    color: #ddd;
+}
+
+.swagger-ui .responses-inner {
+    background-color: #1e1e1e;
+}
+
+.swagger-ui input,
+.swagger-ui textarea {
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+.swagger-ui .btn {
+    background-color: #333;
+    color: #fff;
+}
