@@ -6,29 +6,40 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Department data returned by the API")
 public class DepartmentResponse {
 
-    @Schema(example = "1")
-    private Long id;
+	@Schema(example = "oid_01001")
+	private String id; // ✅ FIXED
 
-    @Schema(example = "Engineering")
-    private String name;
+	@Schema(example = "Engineering")
+	private String name;
 
-    @Schema(example = "Bangalore")
-    private String location;
+	@Schema(example = "Bangalore")
+	private String location;
 
-    @Schema(description = "Number of employees in this department", example = "5")
-    private int employeeCount;
+	@Schema(description = "Number of employees in this department", example = "5")
+	private int employeeCount;
 
-    public static DepartmentResponse from(Department d) {
-        DepartmentResponse r = new DepartmentResponse();
-        r.id            = d.getId();
-        r.name          = d.getName();
-        r.location      = d.getLocation();
-        r.employeeCount = d.getEmployees() != null ? d.getEmployees().size() : 0;
-        return r;
-    }
+	public static DepartmentResponse from(Department d, long count) {
+		DepartmentResponse r = new DepartmentResponse();
+		r.id = d.getId(); // ✅ now matches
+		r.name = d.getName();
+		r.location = d.getLocation();
+		r.employeeCount = (int) count;
+		return r;
+	}
 
-    public Long getId()            { return id; }
-    public String getName()        { return name; }
-    public String getLocation()    { return location; }
-    public int getEmployeeCount()  { return employeeCount; }
+	public String getId() {
+		return id;
+	} // ✅ FIXED
+
+	public String getName() {
+		return name;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public int getEmployeeCount() {
+		return employeeCount;
+	}
 }
