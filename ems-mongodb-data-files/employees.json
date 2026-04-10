@@ -1,0 +1,3671 @@
+[
+  {
+    "_id": "oid_03001",
+    "firstName": "Chetan",
+    "lastName": "Sinha",
+    "email": "chetan.sinha17@company.com",
+    "phone": "+91-9518848328",
+    "age": 38,
+    "departmentId": "oid_01072",
+    "roleId": "oid_02043",
+    "projectIds": [],
+    "salary": 2481000,
+    "joiningDate": "2018-07-30T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Azure",
+      "PostgreSQL",
+      "React",
+      "CI/CD",
+      "TypeScript",
+      "Docker",
+      "Python"
+    ],
+    "performanceScore": 8.3,
+    "address": {
+      "street": "58 Park Street",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Azure Fundamentals",
+      "Kubernetes CKA"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03002",
+    "firstName": "Naveen",
+    "lastName": "Sethi",
+    "email": "naveen.sethi79@company.com",
+    "phone": "+91-9615613239",
+    "age": 42,
+    "departmentId": "oid_01089",
+    "roleId": "oid_02035",
+    "projectIds": [],
+    "salary": 1439000,
+    "joiningDate": "2021-10-23T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Node.js",
+      "Ansible",
+      "Python"
+    ],
+    "performanceScore": 7.8,
+    "address": {
+      "street": "103 Park Street",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03003",
+    "firstName": "Preeti",
+    "lastName": "Mukherjee",
+    "email": "preeti.mukherjee44@company.com",
+    "phone": "+91-8338472296",
+    "age": 44,
+    "departmentId": "oid_01042",
+    "roleId": "oid_02100",
+    "projectIds": [
+      "oid_04073"
+    ],
+    "salary": 3372000,
+    "joiningDate": "2018-07-23T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "AWS",
+      "Kafka",
+      "Hibernate"
+    ],
+    "performanceScore": 7.1,
+    "address": {
+      "street": "156 Banjara Hills",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "MongoDB Associate",
+      "TOGAF"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03004",
+    "firstName": "Rajesh",
+    "lastName": "Murthy",
+    "email": "rajesh.murthy76@company.com",
+    "phone": "+91-9865312534",
+    "age": 30,
+    "departmentId": "oid_01006",
+    "roleId": "oid_02029",
+    "projectIds": [
+      "oid_04051",
+      "oid_04077"
+    ],
+    "salary": 903000,
+    "joiningDate": "2019-07-17T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "GCP",
+      "React",
+      "Java",
+      "GraphQL",
+      "JUnit"
+    ],
+    "performanceScore": 7.2,
+    "address": {
+      "street": "34 Anna Salai",
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "302001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03005",
+    "firstName": "Amit",
+    "lastName": "Chauhan",
+    "email": "amit.chauhan3@company.com",
+    "phone": "+91-8344585158",
+    "age": 39,
+    "departmentId": "oid_01055",
+    "roleId": "oid_02074",
+    "projectIds": [],
+    "salary": 807000,
+    "joiningDate": "2022-07-18T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Node.js",
+      "Gradle",
+      "REST APIs",
+      "Kafka",
+      "Terraform"
+    ],
+    "performanceScore": 8.4,
+    "address": {
+      "street": "93 Park Street",
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "302001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03006",
+    "firstName": "Kavitha",
+    "lastName": "Dubey",
+    "email": "kavitha.dubey40@company.com",
+    "phone": "+91-8430518844",
+    "age": 45,
+    "departmentId": "oid_01022",
+    "roleId": "oid_02010",
+    "projectIds": [
+      "oid_04066"
+    ],
+    "salary": 1561000,
+    "joiningDate": "2021-12-09T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "Terraform",
+      "Python",
+      "Kubernetes",
+      "React",
+      "Linux",
+      "AWS",
+      "Docker",
+      "Node.js"
+    ],
+    "performanceScore": 8.0,
+    "address": {
+      "street": "195 Park Street",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "pincode": "600001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "CISSP",
+      "Six Sigma Green Belt",
+      "Oracle Java SE"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03007",
+    "firstName": "Vivek",
+    "lastName": "Naidu",
+    "email": "vivek.naidu80@company.com",
+    "phone": "+91-8357806226",
+    "age": 25,
+    "departmentId": "oid_01057",
+    "roleId": "oid_02009",
+    "projectIds": [
+      "oid_04061",
+      "oid_04057",
+      "oid_04081"
+    ],
+    "salary": 2960000,
+    "joiningDate": "2018-10-31T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Kafka",
+      "Spring Boot",
+      "Linux",
+      "PostgreSQL",
+      "Azure",
+      "MongoDB"
+    ],
+    "performanceScore": 8.2,
+    "address": {
+      "street": "24 Anna Salai",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "pincode": "600001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03008",
+    "firstName": "Ananya",
+    "lastName": "Saxena",
+    "email": "ananya.saxena78@company.com",
+    "phone": "+91-7647943369",
+    "age": 22,
+    "departmentId": "oid_01058",
+    "roleId": "oid_02014",
+    "projectIds": [
+      "oid_04044",
+      "oid_04092"
+    ],
+    "salary": 1158000,
+    "joiningDate": "2022-11-29T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "TypeScript",
+      "REST APIs",
+      "Node.js",
+      "PostgreSQL",
+      "Terraform",
+      "Azure",
+      "MySQL"
+    ],
+    "performanceScore": 7.0,
+    "address": {
+      "street": "87 MG Road",
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "302001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Azure Fundamentals",
+      "PMP"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03009",
+    "firstName": "Meera",
+    "lastName": "Pawar",
+    "email": "meera.pawar85@company.com",
+    "phone": "+91-8431779064",
+    "age": 23,
+    "departmentId": "oid_01075",
+    "roleId": "oid_02085",
+    "projectIds": [
+      "oid_04019"
+    ],
+    "salary": 2471000,
+    "joiningDate": "2019-06-13T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "MongoDB",
+      "Azure",
+      "Git",
+      "MySQL",
+      "Microservices",
+      "GCP",
+      "Python",
+      "Hibernate"
+    ],
+    "performanceScore": 8.5,
+    "address": {
+      "street": "190 Park Street",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "TOGAF",
+      "PMP",
+      "AWS Certified"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03010",
+    "firstName": "Manish",
+    "lastName": "Kulkarni",
+    "email": "manish.kulkarni63@company.com",
+    "phone": "+91-7590838716",
+    "age": 25,
+    "departmentId": "oid_01010",
+    "roleId": "oid_02038",
+    "projectIds": [
+      "oid_04013"
+    ],
+    "salary": 3504000,
+    "joiningDate": "2018-06-04T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "Linux",
+      "Maven",
+      "REST APIs",
+      "Python",
+      "MySQL"
+    ],
+    "performanceScore": 5.8,
+    "address": {
+      "street": "47 Brigade Road",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "pincode": "411001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "AWS Certified",
+      "Certified Scrum Master",
+      "PMP"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03011",
+    "firstName": "Smita",
+    "lastName": "Bhosale",
+    "email": "smita.bhosale58@company.com",
+    "phone": "+91-8027220866",
+    "age": 30,
+    "departmentId": "oid_01061",
+    "roleId": "oid_02025",
+    "projectIds": [
+      "oid_04048",
+      "oid_04087"
+    ],
+    "salary": 2587000,
+    "joiningDate": "2023-08-22T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "Node.js",
+      "Terraform",
+      "Docker",
+      "Gradle",
+      "REST APIs",
+      "Python"
+    ],
+    "performanceScore": 9.4,
+    "address": {
+      "street": "14 Banjara Hills",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "pincode": "411001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03012",
+    "firstName": "Sanjay",
+    "lastName": "Rajput",
+    "email": "sanjay.rajput66@company.com",
+    "phone": "+91-7393906783",
+    "age": 28,
+    "departmentId": "oid_01058",
+    "roleId": "oid_02045",
+    "projectIds": [
+      "oid_04004",
+      "oid_04054"
+    ],
+    "salary": 2182000,
+    "joiningDate": "2018-12-01T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Java",
+      "GCP",
+      "Shell Scripting",
+      "React"
+    ],
+    "performanceScore": 9.2,
+    "address": {
+      "street": "167 Linking Road",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "AWS Certified"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03013",
+    "firstName": "Seema",
+    "lastName": "Rao",
+    "email": "seema.rao98@company.com",
+    "phone": "+91-9642900640",
+    "age": 21,
+    "departmentId": "oid_01011",
+    "roleId": "oid_02003",
+    "projectIds": [
+      "oid_04033",
+      "oid_04028"
+    ],
+    "salary": 3223000,
+    "joiningDate": "2022-09-30T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Kubernetes",
+      "Azure",
+      "React",
+      "Spring Boot",
+      "Redis"
+    ],
+    "address": {
+      "street": "160 Banjara Hills",
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "302001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03014",
+    "firstName": "Pallavi",
+    "lastName": "Arora",
+    "email": "pallavi.arora31@company.com",
+    "phone": "+91-8843567009",
+    "age": 21,
+    "departmentId": "oid_01079",
+    "roleId": "oid_02046",
+    "projectIds": [
+      "oid_04031"
+    ],
+    "salary": 892000,
+    "joiningDate": "2023-11-15T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "TypeScript",
+      "Git",
+      "Gradle"
+    ],
+    "address": {
+      "street": "142 MG Road",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "AWS Certified",
+      "Oracle Java SE",
+      "Certified Scrum Master"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03015",
+    "firstName": "Vikram",
+    "lastName": "Reddy",
+    "email": "vikram.reddy45@company.com",
+    "phone": "+91-9822241896",
+    "age": 41,
+    "departmentId": "oid_01014",
+    "roleId": "oid_02099",
+    "projectIds": [
+      "oid_04075",
+      "oid_04095",
+      "oid_04097"
+    ],
+    "salary": 1322000,
+    "joiningDate": "2019-12-19T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "JPA",
+      "GraphQL",
+      "Microservices",
+      "Node.js",
+      "Gradle",
+      "Python"
+    ],
+    "performanceScore": 5.3,
+    "address": {
+      "street": "199 Banjara Hills",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "pincode": "411001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "MongoDB Associate",
+      "AWS Certified"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03016",
+    "firstName": "Arun",
+    "lastName": "Ghosh",
+    "email": "arun.ghosh51@company.com",
+    "phone": "+91-8087974350",
+    "age": 22,
+    "departmentId": "oid_01097",
+    "roleId": "oid_02083",
+    "projectIds": [
+      "oid_04025",
+      "oid_04037"
+    ],
+    "salary": 1324000,
+    "joiningDate": "2019-05-25T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Linux",
+      "MySQL",
+      "JUnit",
+      "Kafka",
+      "Shell Scripting",
+      "GCP"
+    ],
+    "performanceScore": 9.9,
+    "address": {
+      "street": "128 Banjara Hills",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Azure Fundamentals",
+      "Certified Scrum Master"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03017",
+    "firstName": "Deepak",
+    "lastName": "Malhotra",
+    "email": "deepak.malhotra38@company.com",
+    "phone": "+91-7343893360",
+    "age": 31,
+    "departmentId": "oid_01085",
+    "roleId": "oid_02038",
+    "projectIds": [],
+    "salary": 1128000,
+    "joiningDate": "2022-12-24T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Spring Boot",
+      "JUnit",
+      "Ansible",
+      "PostgreSQL",
+      "REST APIs",
+      "Redis"
+    ],
+    "performanceScore": 6.4,
+    "address": {
+      "street": "15 Park Street",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "pincode": "600001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03018",
+    "firstName": "Vikram",
+    "lastName": "Rajput",
+    "email": "vikram.rajput5@company.com",
+    "phone": "+91-8013592436",
+    "age": 45,
+    "departmentId": "oid_01083",
+    "roleId": "oid_02047",
+    "projectIds": [],
+    "salary": 2633000,
+    "joiningDate": "2019-09-21T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "PostgreSQL",
+      "Shell Scripting",
+      "Kafka",
+      "Maven",
+      "MongoDB",
+      "CI/CD"
+    ],
+    "performanceScore": 5.7,
+    "address": {
+      "street": "94 Anna Salai",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "MongoDB Associate",
+      "Azure Fundamentals"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03019",
+    "firstName": "Isha",
+    "lastName": "Khanna",
+    "email": "isha.khanna16@company.com",
+    "phone": "+91-8916728422",
+    "age": 27,
+    "departmentId": "oid_01079",
+    "roleId": "oid_02037",
+    "projectIds": [
+      "oid_04089"
+    ],
+    "salary": 851000,
+    "joiningDate": "2023-01-26T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Kafka",
+      "MongoDB",
+      "Gradle",
+      "Hibernate",
+      "GCP",
+      "Terraform",
+      "PostgreSQL",
+      "JPA"
+    ],
+    "performanceScore": 5.3,
+    "address": {
+      "street": "139 Gandhi Marg",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Spring Professional"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03020",
+    "firstName": "Sneha",
+    "lastName": "Desai",
+    "email": "sneha.desai18@company.com",
+    "phone": "+91-7112889043",
+    "age": 32,
+    "departmentId": "oid_01071",
+    "roleId": "oid_02074",
+    "projectIds": [
+      "oid_04048",
+      "oid_04060"
+    ],
+    "salary": 1613000,
+    "joiningDate": "2022-06-19T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "GraphQL",
+      "TypeScript",
+      "Redis",
+      "Maven",
+      "Ansible",
+      "CI/CD",
+      "MongoDB",
+      "Python"
+    ],
+    "performanceScore": 9.9,
+    "address": {
+      "street": "165 Park Street",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "pincode": "411001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Oracle Java SE",
+      "TOGAF",
+      "PMP"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03021",
+    "firstName": "Sonal",
+    "lastName": "Bhatia",
+    "email": "sonal.bhatia24@company.com",
+    "phone": "+91-9159783506",
+    "age": 22,
+    "departmentId": "oid_01016",
+    "roleId": "oid_02067",
+    "projectIds": [
+      "oid_04020",
+      "oid_04039"
+    ],
+    "salary": 1465000,
+    "joiningDate": "2023-10-27T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "AWS",
+      "Docker",
+      "Microservices"
+    ],
+    "performanceScore": 9.8,
+    "address": {
+      "street": "71 Brigade Road",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Six Sigma Green Belt",
+      "TOGAF"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03022",
+    "firstName": "Harish",
+    "lastName": "Gupta",
+    "email": "harish.gupta22@company.com",
+    "phone": "+91-9599051823",
+    "age": 31,
+    "departmentId": "oid_01073",
+    "roleId": "oid_02006",
+    "projectIds": [
+      "oid_04004",
+      "oid_04011",
+      "oid_04006"
+    ],
+    "salary": 3385000,
+    "joiningDate": "2022-09-03T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "Java",
+      "GraphQL",
+      "Microservices",
+      "Git",
+      "Azure",
+      "Ansible",
+      "Gradle",
+      "Linux"
+    ],
+    "performanceScore": 6.2,
+    "address": {
+      "street": "176 Anna Salai",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Azure Fundamentals",
+      "AWS Certified",
+      "Google Cloud ACE"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03023",
+    "firstName": "Manish",
+    "lastName": "Chopra",
+    "email": "manish.chopra19@company.com",
+    "phone": "+91-8371453454",
+    "age": 44,
+    "departmentId": "oid_01045",
+    "roleId": "oid_02052",
+    "projectIds": [
+      "oid_04017",
+      "oid_04098",
+      "oid_04048"
+    ],
+    "salary": 2126000,
+    "joiningDate": "2019-05-17T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Kubernetes",
+      "Python",
+      "React",
+      "Spring Boot",
+      "Azure",
+      "MySQL"
+    ],
+    "performanceScore": 9.3,
+    "address": {
+      "street": "108 Nehru Nagar",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "pincode": "600001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "Six Sigma Green Belt",
+      "PMP"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03024",
+    "firstName": "Pallavi",
+    "lastName": "Mukherjee",
+    "email": "pallavi.mukherjee64@company.com",
+    "phone": "+91-7099541460",
+    "age": 23,
+    "departmentId": "oid_01051",
+    "roleId": "oid_02065",
+    "projectIds": [
+      "oid_04059",
+      "oid_04031"
+    ],
+    "salary": 1480000,
+    "joiningDate": "2023-07-21T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "Hibernate",
+      "GraphQL",
+      "Azure",
+      "Git",
+      "Java",
+      "React",
+      "Redis",
+      "Python"
+    ],
+    "performanceScore": 9.4,
+    "address": {
+      "street": "187 Linking Road",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "AWS Certified",
+      "Certified Scrum Master"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03025",
+    "firstName": "Pranav",
+    "lastName": "Mehta",
+    "email": "pranav.mehta10@company.com",
+    "phone": "+91-8934257315",
+    "age": 45,
+    "departmentId": "oid_01071",
+    "roleId": "oid_02036",
+    "projectIds": [
+      "oid_04080",
+      "oid_04088"
+    ],
+    "salary": 1799000,
+    "joiningDate": "2021-10-20T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "Maven",
+      "Python",
+      "Docker",
+      "REST APIs",
+      "TypeScript"
+    ],
+    "performanceScore": 7.0,
+    "address": {
+      "street": "11 MG Road",
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "pincode": "700001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "Spring Professional"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03026",
+    "firstName": "Pooja",
+    "lastName": "Chopra",
+    "email": "pooja.chopra66@company.com",
+    "phone": "+91-9633107545",
+    "age": 31,
+    "departmentId": "oid_01021",
+    "roleId": "oid_02051",
+    "projectIds": [
+      "oid_04079"
+    ],
+    "salary": 3448000,
+    "joiningDate": "2023-12-21T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "CI/CD",
+      "Azure",
+      "GraphQL",
+      "Terraform",
+      "Java",
+      "PostgreSQL",
+      "GCP",
+      "Hibernate"
+    ],
+    "performanceScore": 5.5,
+    "address": {
+      "street": "107 Gandhi Marg",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03027",
+    "firstName": "Naveen",
+    "lastName": "Bhatia",
+    "email": "naveen.bhatia74@company.com",
+    "phone": "+91-7220568746",
+    "age": 39,
+    "departmentId": "oid_01062",
+    "roleId": "oid_02022",
+    "projectIds": [
+      "oid_04068",
+      "oid_04081",
+      "oid_04093"
+    ],
+    "salary": 794000,
+    "joiningDate": "2024-06-03T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "Docker",
+      "Java",
+      "Kafka"
+    ],
+    "performanceScore": 6.6,
+    "address": {
+      "street": "39 Anna Salai",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "pincode": "411001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Certified Scrum Master"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03028",
+    "firstName": "Neha",
+    "lastName": "Kale",
+    "email": "neha.kale18@company.com",
+    "phone": "+91-9408990341",
+    "age": 31,
+    "departmentId": "oid_01085",
+    "roleId": "oid_02062",
+    "projectIds": [
+      "oid_04068"
+    ],
+    "salary": 3070000,
+    "joiningDate": "2021-11-03T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "Hibernate",
+      "Maven",
+      "Ansible",
+      "JUnit",
+      "Microservices"
+    ],
+    "performanceScore": 9.0,
+    "address": {
+      "street": "68 Banjara Hills",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "Kubernetes CKA"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03029",
+    "firstName": "Arun",
+    "lastName": "Kulkarni",
+    "email": "arun.kulkarni37@company.com",
+    "phone": "+91-9100252248",
+    "age": 31,
+    "departmentId": "oid_01062",
+    "roleId": "oid_02045",
+    "projectIds": [
+      "oid_04072",
+      "oid_04093",
+      "oid_04036"
+    ],
+    "salary": 2492000,
+    "joiningDate": "2022-06-05T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Azure",
+      "Spring Boot",
+      "JPA",
+      "MongoDB"
+    ],
+    "performanceScore": 6.7,
+    "address": {
+      "street": "114 Gandhi Marg",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "pincode": "411001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "MongoDB Associate",
+      "Spring Professional",
+      "TOGAF"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03030",
+    "firstName": "Arjun",
+    "lastName": "Verma",
+    "email": "arjun.verma79@company.com",
+    "phone": "+91-8041349374",
+    "age": 22,
+    "departmentId": "oid_01086",
+    "roleId": "oid_02068",
+    "projectIds": [
+      "oid_04029"
+    ],
+    "salary": 2223000,
+    "joiningDate": "2019-02-16T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "Java",
+      "Git",
+      "Shell Scripting",
+      "Node.js"
+    ],
+    "address": {
+      "street": "122 Banjara Hills",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Kubernetes CKA"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03031",
+    "firstName": "Naveen",
+    "lastName": "Nair",
+    "email": "naveen.nair84@company.com",
+    "phone": "+91-9298461504",
+    "age": 44,
+    "departmentId": "oid_01093",
+    "roleId": "oid_02005",
+    "projectIds": [
+      "oid_04023"
+    ],
+    "salary": 1837000,
+    "joiningDate": "2023-07-23T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Ansible",
+      "Azure",
+      "Spring Boot",
+      "Java",
+      "Linux",
+      "CI/CD",
+      "REST APIs",
+      "React"
+    ],
+    "performanceScore": 9.6,
+    "address": {
+      "street": "86 Gandhi Marg",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Google Cloud ACE",
+      "TOGAF",
+      "CISSP"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03032",
+    "firstName": "Kiran",
+    "lastName": "Pawar",
+    "email": "kiran.pawar59@company.com",
+    "phone": "+91-7799718923",
+    "age": 21,
+    "departmentId": "oid_01095",
+    "roleId": "oid_02044",
+    "projectIds": [
+      "oid_04038",
+      "oid_04073",
+      "oid_04087"
+    ],
+    "salary": 2454000,
+    "joiningDate": "2022-10-18T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "MongoDB",
+      "MySQL",
+      "Hibernate",
+      "React",
+      "Node.js"
+    ],
+    "performanceScore": 9.9,
+    "address": {
+      "street": "123 Linking Road",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03033",
+    "firstName": "Sanjay",
+    "lastName": "Pandey",
+    "email": "sanjay.pandey39@company.com",
+    "phone": "+91-9460489491",
+    "age": 21,
+    "departmentId": "oid_01034",
+    "roleId": "oid_02084",
+    "projectIds": [
+      "oid_04047",
+      "oid_04089",
+      "oid_04031"
+    ],
+    "salary": 1241000,
+    "joiningDate": "2022-07-19T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "Shell Scripting",
+      "Linux",
+      "JPA",
+      "Maven",
+      "Azure",
+      "Ansible",
+      "React"
+    ],
+    "performanceScore": 8.2,
+    "address": {
+      "street": "76 Linking Road",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "MongoDB Associate"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03034",
+    "firstName": "Anjali",
+    "lastName": "Sinha",
+    "email": "anjali.sinha54@company.com",
+    "phone": "+91-9308620882",
+    "age": 42,
+    "departmentId": "oid_01028",
+    "roleId": "oid_02098",
+    "projectIds": [
+      "oid_04032",
+      "oid_04088"
+    ],
+    "salary": 1528000,
+    "joiningDate": "2018-11-16T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "Spring Boot",
+      "Terraform",
+      "Git"
+    ],
+    "performanceScore": 9.5,
+    "address": {
+      "street": "52 Brigade Road",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "TOGAF",
+      "CISSP"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03035",
+    "firstName": "Akash",
+    "lastName": "Nair",
+    "email": "akash.nair66@company.com",
+    "phone": "+91-8947476917",
+    "age": 25,
+    "departmentId": "oid_01066",
+    "roleId": "oid_02054",
+    "projectIds": [],
+    "salary": 1329000,
+    "joiningDate": "2018-03-31T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Terraform",
+      "Java",
+      "JUnit",
+      "Docker",
+      "CI/CD"
+    ],
+    "address": {
+      "street": "109 Linking Road",
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "302001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03036",
+    "firstName": "Nalini",
+    "lastName": "Banerjee",
+    "email": "nalini.banerjee5@company.com",
+    "phone": "+91-7773013901",
+    "age": 45,
+    "departmentId": "oid_01018",
+    "roleId": "oid_02099",
+    "projectIds": [
+      "oid_04083",
+      "oid_04094"
+    ],
+    "salary": 2191000,
+    "joiningDate": "2022-03-19T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Hibernate",
+      "Ansible",
+      "Git",
+      "Python",
+      "Microservices",
+      "PostgreSQL",
+      "React",
+      "Node.js"
+    ],
+    "performanceScore": 10.0,
+    "address": {
+      "street": "101 Brigade Road",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "AWS Certified"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03037",
+    "firstName": "Usha",
+    "lastName": "Malhotra",
+    "email": "usha.malhotra55@company.com",
+    "phone": "+91-7986399651",
+    "age": 28,
+    "departmentId": "oid_01059",
+    "roleId": "oid_02045",
+    "projectIds": [
+      "oid_04020",
+      "oid_04036"
+    ],
+    "salary": 1915000,
+    "joiningDate": "2018-03-06T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "MongoDB",
+      "React",
+      "REST APIs",
+      "Spring Boot"
+    ],
+    "performanceScore": 7.2,
+    "address": {
+      "street": "173 MG Road",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03038",
+    "firstName": "Smita",
+    "lastName": "Kulkarni",
+    "email": "smita.kulkarni8@company.com",
+    "phone": "+91-8242377075",
+    "age": 28,
+    "departmentId": "oid_01094",
+    "roleId": "oid_02074",
+    "projectIds": [
+      "oid_04041",
+      "oid_04074"
+    ],
+    "salary": 3276000,
+    "joiningDate": "2020-06-24T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "AWS",
+      "Spring Boot",
+      "Git",
+      "CI/CD",
+      "Linux"
+    ],
+    "performanceScore": 8.7,
+    "address": {
+      "street": "45 Anna Salai",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "AWS Certified",
+      "PMP",
+      "Certified Scrum Master"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03039",
+    "firstName": "Arun",
+    "lastName": "Tiwari",
+    "email": "arun.tiwari24@company.com",
+    "phone": "+91-8034950478",
+    "age": 28,
+    "departmentId": "oid_01039",
+    "roleId": "oid_02091",
+    "projectIds": [
+      "oid_04019",
+      "oid_04060"
+    ],
+    "salary": 3170000,
+    "joiningDate": "2019-07-04T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "AWS",
+      "Docker",
+      "GCP",
+      "Microservices"
+    ],
+    "performanceScore": 5.4,
+    "address": {
+      "street": "116 Linking Road",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "AWS Certified"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03040",
+    "firstName": "Amit",
+    "lastName": "Reddy",
+    "email": "amit.reddy25@company.com",
+    "phone": "+91-9883858045",
+    "age": 38,
+    "departmentId": "oid_01028",
+    "roleId": "oid_02062",
+    "projectIds": [
+      "oid_04027",
+      "oid_04043",
+      "oid_04039"
+    ],
+    "salary": 607000,
+    "joiningDate": "2023-05-16T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "REST APIs",
+      "JPA",
+      "Docker",
+      "MySQL",
+      "Kubernetes",
+      "Git",
+      "GCP",
+      "Azure"
+    ],
+    "performanceScore": 6.9,
+    "address": {
+      "street": "137 Linking Road",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "PMP",
+      "TOGAF"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03041",
+    "firstName": "Usha",
+    "lastName": "Banerjee",
+    "email": "usha.banerjee98@company.com",
+    "phone": "+91-8592165525",
+    "age": 31,
+    "departmentId": "oid_01053",
+    "roleId": "oid_02006",
+    "projectIds": [
+      "oid_04073"
+    ],
+    "salary": 2867000,
+    "joiningDate": "2024-06-30T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "Azure",
+      "Python",
+      "Docker",
+      "GCP",
+      "Kubernetes",
+      "MySQL"
+    ],
+    "performanceScore": 7.8,
+    "address": {
+      "street": "63 Banjara Hills",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "pincode": "600001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Kubernetes CKA",
+      "CISSP"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03042",
+    "firstName": "Swati",
+    "lastName": "Mishra",
+    "email": "swati.mishra18@company.com",
+    "phone": "+91-7790479137",
+    "age": 38,
+    "departmentId": "oid_01083",
+    "roleId": "oid_02008",
+    "projectIds": [
+      "oid_04068",
+      "oid_04005"
+    ],
+    "salary": 2582000,
+    "joiningDate": "2019-07-18T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "MongoDB",
+      "JPA",
+      "Python",
+      "Java"
+    ],
+    "performanceScore": 6.1,
+    "address": {
+      "street": "117 Linking Road",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "Oracle Java SE",
+      "CISSP",
+      "AWS Certified"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03043",
+    "firstName": "Priya",
+    "lastName": "Bose",
+    "email": "priya.bose93@company.com",
+    "phone": "+91-8231317910",
+    "age": 21,
+    "departmentId": "oid_01065",
+    "roleId": "oid_02090",
+    "projectIds": [
+      "oid_04087",
+      "oid_04056"
+    ],
+    "salary": 954000,
+    "joiningDate": "2020-09-14T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "TypeScript",
+      "AWS",
+      "Terraform",
+      "PostgreSQL",
+      "Linux",
+      "MySQL",
+      "MongoDB"
+    ],
+    "performanceScore": 6.9,
+    "address": {
+      "street": "104 Banjara Hills",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Spring Professional"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03044",
+    "firstName": "Kavitha",
+    "lastName": "Krishnan",
+    "email": "kavitha.krishnan84@company.com",
+    "phone": "+91-8740657035",
+    "age": 33,
+    "departmentId": "oid_01049",
+    "roleId": "oid_02071",
+    "projectIds": [],
+    "salary": 928000,
+    "joiningDate": "2018-12-05T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Microservices",
+      "Gradle",
+      "GCP",
+      "CI/CD",
+      "React",
+      "TypeScript"
+    ],
+    "performanceScore": 9.6,
+    "address": {
+      "street": "59 Nehru Nagar",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Kubernetes CKA",
+      "AWS Certified",
+      "Azure Fundamentals"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03045",
+    "firstName": "Amit",
+    "lastName": "Iyer",
+    "email": "amit.iyer41@company.com",
+    "phone": "+91-9521300895",
+    "age": 25,
+    "departmentId": "oid_01097",
+    "roleId": "oid_02092",
+    "projectIds": [
+      "oid_04051"
+    ],
+    "salary": 2846000,
+    "joiningDate": "2022-05-13T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "GCP",
+      "MySQL",
+      "Maven",
+      "JUnit",
+      "Python",
+      "JPA",
+      "Terraform"
+    ],
+    "address": {
+      "street": "191 Linking Road",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03046",
+    "firstName": "Anjali",
+    "lastName": "Kulkarni",
+    "email": "anjali.kulkarni79@company.com",
+    "phone": "+91-8401777036",
+    "age": 21,
+    "departmentId": "oid_01082",
+    "roleId": "oid_02035",
+    "projectIds": [
+      "oid_04058",
+      "oid_04063"
+    ],
+    "salary": 1082000,
+    "joiningDate": "2022-04-06T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Azure",
+      "Gradle",
+      "Kubernetes",
+      "JPA",
+      "MongoDB",
+      "Linux",
+      "AWS"
+    ],
+    "performanceScore": 5.8,
+    "address": {
+      "street": "183 Brigade Road",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03047",
+    "firstName": "Kartik",
+    "lastName": "Salve",
+    "email": "kartik.salve35@company.com",
+    "phone": "+91-7374938761",
+    "age": 26,
+    "departmentId": "oid_01056",
+    "roleId": "oid_02058",
+    "projectIds": [
+      "oid_04072"
+    ],
+    "salary": 884000,
+    "joiningDate": "2021-12-20T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "REST APIs",
+      "Gradle",
+      "GCP"
+    ],
+    "performanceScore": 9.3,
+    "address": {
+      "street": "4 Gandhi Marg",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Azure Fundamentals",
+      "TOGAF",
+      "MongoDB Associate"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03048",
+    "firstName": "Sanjay",
+    "lastName": "Kapoor",
+    "email": "sanjay.kapoor35@company.com",
+    "phone": "+91-7271730355",
+    "age": 26,
+    "departmentId": "oid_01056",
+    "roleId": "oid_02036",
+    "projectIds": [
+      "oid_04054"
+    ],
+    "salary": 1700000,
+    "joiningDate": "2020-10-07T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "GraphQL",
+      "REST APIs",
+      "Linux",
+      "Docker",
+      "Kafka",
+      "React",
+      "Python",
+      "Azure"
+    ],
+    "performanceScore": 5.0,
+    "address": {
+      "street": "102 Linking Road",
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "302001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "PMP",
+      "CISSP",
+      "Spring Professional"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03049",
+    "firstName": "Anjali",
+    "lastName": "Rao",
+    "email": "anjali.rao39@company.com",
+    "phone": "+91-9986257683",
+    "age": 27,
+    "departmentId": "oid_01062",
+    "roleId": "oid_02041",
+    "projectIds": [
+      "oid_04023",
+      "oid_04051"
+    ],
+    "salary": 2511000,
+    "joiningDate": "2024-06-16T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "MySQL",
+      "AWS",
+      "Terraform",
+      "Gradle",
+      "PostgreSQL"
+    ],
+    "performanceScore": 5.6,
+    "address": {
+      "street": "145 Nehru Nagar",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "pincode": "600001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Oracle Java SE"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03050",
+    "firstName": "Sandeep",
+    "lastName": "Bhat",
+    "email": "sandeep.bhat57@company.com",
+    "phone": "+91-7297034217",
+    "age": 34,
+    "departmentId": "oid_01087",
+    "roleId": "oid_02064",
+    "projectIds": [
+      "oid_04018",
+      "oid_04082",
+      "oid_04039"
+    ],
+    "salary": 1957000,
+    "joiningDate": "2022-03-25T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "REST APIs",
+      "GraphQL",
+      "CI/CD",
+      "MySQL",
+      "Git",
+      "TypeScript"
+    ],
+    "performanceScore": 9.6,
+    "address": {
+      "street": "178 Anna Salai",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03051",
+    "firstName": "Anjali",
+    "lastName": "Naidu",
+    "email": "anjali.naidu11@company.com",
+    "phone": "+91-9824377567",
+    "age": 42,
+    "departmentId": "oid_01046",
+    "roleId": "oid_02022",
+    "projectIds": [
+      "oid_04083"
+    ],
+    "salary": 2493000,
+    "joiningDate": "2021-09-20T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Java",
+      "React",
+      "AWS"
+    ],
+    "address": {
+      "street": "192 Nehru Nagar",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Certified Scrum Master",
+      "CISSP"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03052",
+    "firstName": "Rahul",
+    "lastName": "Mehta",
+    "email": "rahul.mehta54@company.com",
+    "phone": "+91-7608490241",
+    "age": 32,
+    "departmentId": "oid_01040",
+    "roleId": "oid_02044",
+    "projectIds": [],
+    "salary": 2294000,
+    "joiningDate": "2019-02-04T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "JPA",
+      "Kafka",
+      "GCP",
+      "MongoDB",
+      "Azure",
+      "Spring Boot",
+      "Shell Scripting",
+      "React"
+    ],
+    "performanceScore": 5.1,
+    "address": {
+      "street": "88 Park Street",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Spring Professional"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03053",
+    "firstName": "Manish",
+    "lastName": "Khanna",
+    "email": "manish.khanna55@company.com",
+    "phone": "+91-8739665472",
+    "age": 41,
+    "departmentId": "oid_01024",
+    "roleId": "oid_02024",
+    "projectIds": [
+      "oid_04082"
+    ],
+    "salary": 1102000,
+    "joiningDate": "2023-01-16T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "MySQL",
+      "Java",
+      "JPA",
+      "Docker",
+      "Terraform",
+      "AWS"
+    ],
+    "performanceScore": 8.8,
+    "address": {
+      "street": "17 Park Street",
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "302001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "PMP"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03054",
+    "firstName": "Jyoti",
+    "lastName": "Das",
+    "email": "jyoti.das68@company.com",
+    "phone": "+91-8669192918",
+    "age": 40,
+    "departmentId": "oid_01051",
+    "roleId": "oid_02076",
+    "projectIds": [
+      "oid_04015",
+      "oid_04045"
+    ],
+    "salary": 1616000,
+    "joiningDate": "2018-12-14T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "GCP",
+      "React",
+      "Kubernetes",
+      "Azure"
+    ],
+    "performanceScore": 5.6,
+    "address": {
+      "street": "96 Brigade Road",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "pincode": "600001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Certified Scrum Master",
+      "Six Sigma Green Belt",
+      "Google Cloud ACE"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03055",
+    "firstName": "Sunita",
+    "lastName": "Hegde",
+    "email": "sunita.hegde83@company.com",
+    "phone": "+91-7716681967",
+    "age": 36,
+    "departmentId": "oid_01037",
+    "roleId": "oid_02018",
+    "projectIds": [
+      "oid_04024",
+      "oid_04041"
+    ],
+    "salary": 830000,
+    "joiningDate": "2023-06-08T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Terraform",
+      "MySQL",
+      "Git",
+      "TypeScript"
+    ],
+    "performanceScore": 8.3,
+    "address": {
+      "street": "105 Banjara Hills",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "CISSP",
+      "Google Cloud ACE",
+      "Azure Fundamentals"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03056",
+    "firstName": "Amit",
+    "lastName": "Shah",
+    "email": "amit.shah29@company.com",
+    "phone": "+91-7722452036",
+    "age": 45,
+    "departmentId": "oid_01059",
+    "roleId": "oid_02073",
+    "projectIds": [
+      "oid_04096"
+    ],
+    "salary": 853000,
+    "joiningDate": "2021-01-02T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "Git",
+      "Terraform",
+      "Maven",
+      "Spring Boot",
+      "JUnit"
+    ],
+    "performanceScore": 7.2,
+    "address": {
+      "street": "56 Anna Salai",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "Kubernetes CKA"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03057",
+    "firstName": "Mohan",
+    "lastName": "Nair",
+    "email": "mohan.nair57@company.com",
+    "phone": "+91-7901419863",
+    "age": 44,
+    "departmentId": "oid_01076",
+    "roleId": "oid_02089",
+    "projectIds": [
+      "oid_04045"
+    ],
+    "salary": 984000,
+    "joiningDate": "2020-04-27T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "PostgreSQL",
+      "Git",
+      "AWS",
+      "REST APIs",
+      "Linux",
+      "Node.js",
+      "GCP"
+    ],
+    "performanceScore": 9.9,
+    "address": {
+      "street": "75 Gandhi Marg",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03058",
+    "firstName": "Preeti",
+    "lastName": "Patel",
+    "email": "preeti.patel36@company.com",
+    "phone": "+91-7569902893",
+    "age": 28,
+    "departmentId": "oid_01019",
+    "roleId": "oid_02092",
+    "projectIds": [
+      "oid_04042",
+      "oid_04032",
+      "oid_04098"
+    ],
+    "salary": 1372000,
+    "joiningDate": "2022-08-24T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "MongoDB",
+      "Microservices",
+      "Gradle",
+      "Maven",
+      "Shell Scripting",
+      "MySQL"
+    ],
+    "performanceScore": 7.6,
+    "address": {
+      "street": "72 Linking Road",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "PMP",
+      "Six Sigma Green Belt",
+      "AWS Certified"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03059",
+    "firstName": "Jyoti",
+    "lastName": "Hegde",
+    "email": "jyoti.hegde46@company.com",
+    "phone": "+91-8708176663",
+    "age": 27,
+    "departmentId": "oid_01055",
+    "roleId": "oid_02028",
+    "projectIds": [
+      "oid_04064",
+      "oid_04035"
+    ],
+    "salary": 1045000,
+    "joiningDate": "2024-05-07T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Linux",
+      "Hibernate",
+      "Maven",
+      "Spring Boot",
+      "React"
+    ],
+    "performanceScore": 8.1,
+    "address": {
+      "street": "118 MG Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03060",
+    "firstName": "Ananya",
+    "lastName": "Hegde",
+    "email": "ananya.hegde17@company.com",
+    "phone": "+91-8176904638",
+    "age": 23,
+    "departmentId": "oid_01084",
+    "roleId": "oid_02047",
+    "projectIds": [
+      "oid_04033"
+    ],
+    "salary": 642000,
+    "joiningDate": "2022-06-12T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "JUnit",
+      "JPA",
+      "Maven",
+      "Kubernetes",
+      "Redis"
+    ],
+    "performanceScore": 8.3,
+    "address": {
+      "street": "181 Park Street",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03061",
+    "firstName": "Rajesh",
+    "lastName": "Rajput",
+    "email": "rajesh.rajput2@company.com",
+    "phone": "+91-8475639733",
+    "age": 24,
+    "departmentId": "oid_01055",
+    "roleId": "oid_02089",
+    "projectIds": [
+      "oid_04017",
+      "oid_04062",
+      "oid_04010"
+    ],
+    "salary": 717000,
+    "joiningDate": "2019-02-27T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Linux",
+      "Azure",
+      "Python",
+      "MySQL",
+      "Maven"
+    ],
+    "performanceScore": 9.1,
+    "address": {
+      "street": "35 Brigade Road",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03062",
+    "firstName": "Sonal",
+    "lastName": "Bhosale",
+    "email": "sonal.bhosale20@company.com",
+    "phone": "+91-9948779260",
+    "age": 35,
+    "departmentId": "oid_01028",
+    "roleId": "oid_02012",
+    "projectIds": [
+      "oid_04013",
+      "oid_04018"
+    ],
+    "salary": 2193000,
+    "joiningDate": "2021-07-12T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "AWS",
+      "Microservices",
+      "MongoDB",
+      "Kubernetes"
+    ],
+    "performanceScore": 7.8,
+    "address": {
+      "street": "154 Gandhi Marg",
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "pincode": "700001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03063",
+    "firstName": "Ananya",
+    "lastName": "Bhosale",
+    "email": "ananya.bhosale51@company.com",
+    "phone": "+91-7234372626",
+    "age": 28,
+    "departmentId": "oid_01064",
+    "roleId": "oid_02050",
+    "projectIds": [
+      "oid_04015",
+      "oid_04031",
+      "oid_04064"
+    ],
+    "salary": 1755000,
+    "joiningDate": "2019-06-25T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Redis",
+      "PostgreSQL",
+      "Git",
+      "Hibernate",
+      "Node.js",
+      "Maven",
+      "GraphQL"
+    ],
+    "address": {
+      "street": "198 Park Street",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03064",
+    "firstName": "Neha",
+    "lastName": "Dubey",
+    "email": "neha.dubey65@company.com",
+    "phone": "+91-9151988914",
+    "age": 45,
+    "departmentId": "oid_01054",
+    "roleId": "oid_02055",
+    "projectIds": [
+      "oid_04090",
+      "oid_04052",
+      "oid_04011"
+    ],
+    "salary": 874000,
+    "joiningDate": "2021-06-23T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Shell Scripting",
+      "Docker",
+      "Gradle",
+      "Python",
+      "Git",
+      "GCP",
+      "MySQL"
+    ],
+    "performanceScore": 7.9,
+    "address": {
+      "street": "196 Park Street",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03065",
+    "firstName": "Nikhil",
+    "lastName": "Sethi",
+    "email": "nikhil.sethi78@company.com",
+    "phone": "+91-9860790008",
+    "age": 44,
+    "departmentId": "oid_01085",
+    "roleId": "oid_02095",
+    "projectIds": [
+      "oid_04023"
+    ],
+    "salary": 661000,
+    "joiningDate": "2019-11-03T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "TypeScript",
+      "Gradle",
+      "Terraform",
+      "JUnit",
+      "AWS"
+    ],
+    "performanceScore": 5.8,
+    "address": {
+      "street": "33 Gandhi Marg",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03066",
+    "firstName": "Varun",
+    "lastName": "Reddy",
+    "email": "varun.reddy34@company.com",
+    "phone": "+91-7331013265",
+    "age": 36,
+    "departmentId": "oid_01059",
+    "roleId": "oid_02066",
+    "projectIds": [
+      "oid_04047",
+      "oid_04008",
+      "oid_04064"
+    ],
+    "salary": 890000,
+    "joiningDate": "2024-06-08T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "React",
+      "Kubernetes",
+      "JUnit",
+      "TypeScript",
+      "Java",
+      "Spring Boot",
+      "Gradle",
+      "Linux"
+    ],
+    "performanceScore": 5.2,
+    "address": {
+      "street": "94 Anna Salai",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "AWS Certified"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03067",
+    "firstName": "Ramesh",
+    "lastName": "Pawar",
+    "email": "ramesh.pawar41@company.com",
+    "phone": "+91-9454728281",
+    "age": 32,
+    "departmentId": "oid_01016",
+    "roleId": "oid_02065",
+    "projectIds": [],
+    "salary": 2328000,
+    "joiningDate": "2018-10-10T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Maven",
+      "Ansible",
+      "Azure",
+      "GCP",
+      "MongoDB"
+    ],
+    "performanceScore": 7.8,
+    "address": {
+      "street": "3 Linking Road",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "Six Sigma Green Belt",
+      "Kubernetes CKA"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03068",
+    "firstName": "Akash",
+    "lastName": "Kulkarni",
+    "email": "akash.kulkarni26@company.com",
+    "phone": "+91-7646677686",
+    "age": 21,
+    "departmentId": "oid_01053",
+    "roleId": "oid_02004",
+    "projectIds": [
+      "oid_04030"
+    ],
+    "salary": 877000,
+    "joiningDate": "2021-10-04T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "MySQL",
+      "Ansible",
+      "JUnit",
+      "Linux",
+      "Azure",
+      "React",
+      "Docker",
+      "TypeScript"
+    ],
+    "performanceScore": 9.9,
+    "address": {
+      "street": "108 Banjara Hills",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03069",
+    "firstName": "Savita",
+    "lastName": "Bose",
+    "email": "savita.bose53@company.com",
+    "phone": "+91-7364653118",
+    "age": 39,
+    "departmentId": "oid_01013",
+    "roleId": "oid_02065",
+    "projectIds": [
+      "oid_04018",
+      "oid_04082"
+    ],
+    "salary": 2381000,
+    "joiningDate": "2019-06-20T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "AWS",
+      "Ansible",
+      "GCP",
+      "Shell Scripting",
+      "Gradle"
+    ],
+    "performanceScore": 7.0,
+    "address": {
+      "street": "189 Linking Road",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "pincode": "600001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03070",
+    "firstName": "Rahul",
+    "lastName": "Gupta",
+    "email": "rahul.gupta14@company.com",
+    "phone": "+91-9001691476",
+    "age": 31,
+    "departmentId": "oid_01053",
+    "roleId": "oid_02016",
+    "projectIds": [
+      "oid_04069",
+      "oid_04046"
+    ],
+    "salary": 706000,
+    "joiningDate": "2019-01-06T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Azure",
+      "Terraform",
+      "JPA",
+      "Ansible",
+      "REST APIs",
+      "Spring Boot",
+      "Docker",
+      "GCP"
+    ],
+    "performanceScore": 5.7,
+    "address": {
+      "street": "183 Nehru Nagar",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "TOGAF",
+      "AWS Certified",
+      "Kubernetes CKA"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03071",
+    "firstName": "Tarun",
+    "lastName": "Rajput",
+    "email": "tarun.rajput72@company.com",
+    "phone": "+91-7406841968",
+    "age": 35,
+    "departmentId": "oid_01014",
+    "roleId": "oid_02018",
+    "projectIds": [
+      "oid_04016"
+    ],
+    "salary": 931000,
+    "joiningDate": "2020-03-22T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Hibernate",
+      "Microservices",
+      "MongoDB",
+      "CI/CD",
+      "AWS"
+    ],
+    "address": {
+      "street": "20 MG Road",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "Oracle Java SE"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03072",
+    "firstName": "Yogesh",
+    "lastName": "Pandey",
+    "email": "yogesh.pandey16@company.com",
+    "phone": "+91-7217487269",
+    "age": 26,
+    "departmentId": "oid_01074",
+    "roleId": "oid_02056",
+    "projectIds": [
+      "oid_04093",
+      "oid_04051"
+    ],
+    "salary": 915000,
+    "joiningDate": "2021-12-20T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "AWS",
+      "Kafka",
+      "Linux",
+      "Python"
+    ],
+    "performanceScore": 5.2,
+    "address": {
+      "street": "159 Nehru Nagar",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03073",
+    "firstName": "Arjun",
+    "lastName": "Yadav",
+    "email": "arjun.yadav26@company.com",
+    "phone": "+91-9709069459",
+    "age": 38,
+    "departmentId": "oid_01003",
+    "roleId": "oid_02049",
+    "projectIds": [
+      "oid_04092"
+    ],
+    "salary": 1578000,
+    "joiningDate": "2024-05-05T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "MySQL",
+      "AWS",
+      "Node.js",
+      "Java",
+      "GCP"
+    ],
+    "performanceScore": 8.0,
+    "address": {
+      "street": "8 Gandhi Marg",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "TOGAF",
+      "PMP",
+      "Six Sigma Green Belt"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03074",
+    "firstName": "Jyoti",
+    "lastName": "Pillai",
+    "email": "jyoti.pillai35@company.com",
+    "phone": "+91-7240125829",
+    "age": 45,
+    "departmentId": "oid_01029",
+    "roleId": "oid_02074",
+    "projectIds": [
+      "oid_04050",
+      "oid_04046",
+      "oid_04023"
+    ],
+    "salary": 1603000,
+    "joiningDate": "2018-04-26T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "PostgreSQL",
+      "CI/CD",
+      "Linux",
+      "Python",
+      "Ansible",
+      "Docker",
+      "GraphQL",
+      "Git"
+    ],
+    "address": {
+      "street": "126 MG Road",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03075",
+    "firstName": "Shruti",
+    "lastName": "Kumar",
+    "email": "shruti.kumar43@company.com",
+    "phone": "+91-7560448350",
+    "age": 31,
+    "departmentId": "oid_01092",
+    "roleId": "oid_02023",
+    "projectIds": [
+      "oid_04042"
+    ],
+    "salary": 911000,
+    "joiningDate": "2019-03-31T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "MongoDB",
+      "PostgreSQL",
+      "JPA",
+      "Hibernate",
+      "MySQL"
+    ],
+    "performanceScore": 7.9,
+    "address": {
+      "street": "87 Gandhi Marg",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Google Cloud ACE"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03076",
+    "firstName": "Vivek",
+    "lastName": "Saxena",
+    "email": "vivek.saxena23@company.com",
+    "phone": "+91-9635860024",
+    "age": 32,
+    "departmentId": "oid_01029",
+    "roleId": "oid_02086",
+    "projectIds": [
+      "oid_04076",
+      "oid_04023",
+      "oid_04049"
+    ],
+    "salary": 1275000,
+    "joiningDate": "2018-01-08T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "MySQL",
+      "Ansible",
+      "Maven",
+      "CI/CD",
+      "Spring Boot",
+      "Node.js",
+      "REST APIs"
+    ],
+    "performanceScore": 6.6,
+    "address": {
+      "street": "157 Nehru Nagar",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03077",
+    "firstName": "Rohit",
+    "lastName": "Chandra",
+    "email": "rohit.chandra41@company.com",
+    "phone": "+91-7381075297",
+    "age": 43,
+    "departmentId": "oid_01086",
+    "roleId": "oid_02082",
+    "projectIds": [
+      "oid_04094",
+      "oid_04043",
+      "oid_04058"
+    ],
+    "salary": 605000,
+    "joiningDate": "2021-12-06T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "JUnit",
+      "Java",
+      "Spring Boot"
+    ],
+    "performanceScore": 6.9,
+    "address": {
+      "street": "188 Anna Salai",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03078",
+    "firstName": "Hema",
+    "lastName": "Arora",
+    "email": "hema.arora84@company.com",
+    "phone": "+91-8938264714",
+    "age": 23,
+    "departmentId": "oid_01005",
+    "roleId": "oid_02038",
+    "projectIds": [
+      "oid_04003"
+    ],
+    "salary": 1787000,
+    "joiningDate": "2019-11-28T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "JUnit",
+      "MongoDB",
+      "Git",
+      "Linux"
+    ],
+    "performanceScore": 9.9,
+    "address": {
+      "street": "87 Banjara Hills",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "pincode": "411001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03079",
+    "firstName": "Pawan",
+    "lastName": "Chauhan",
+    "email": "pawan.chauhan21@company.com",
+    "phone": "+91-8422040412",
+    "age": 27,
+    "departmentId": "oid_01025",
+    "roleId": "oid_02053",
+    "projectIds": [],
+    "salary": 1773000,
+    "joiningDate": "2021-02-27T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "React",
+      "Spring Boot",
+      "MySQL",
+      "CI/CD"
+    ],
+    "performanceScore": 7.7,
+    "address": {
+      "street": "126 Brigade Road",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "AWS Certified",
+      "Certified Scrum Master"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03080",
+    "firstName": "Anjali",
+    "lastName": "Banerjee",
+    "email": "anjali.banerjee26@company.com",
+    "phone": "+91-7888856289",
+    "age": 26,
+    "departmentId": "oid_01082",
+    "roleId": "oid_02038",
+    "projectIds": [],
+    "salary": 1918000,
+    "joiningDate": "2023-04-13T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "AWS",
+      "MongoDB",
+      "Microservices",
+      "Git",
+      "MySQL",
+      "Node.js",
+      "PostgreSQL",
+      "Gradle"
+    ],
+    "performanceScore": 6.8,
+    "address": {
+      "street": "115 MG Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "CISSP",
+      "Kubernetes CKA",
+      "MongoDB Associate"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03081",
+    "firstName": "Bhavna",
+    "lastName": "Rajan",
+    "email": "bhavna.rajan13@company.com",
+    "phone": "+91-8476572736",
+    "age": 38,
+    "departmentId": "oid_01053",
+    "roleId": "oid_02097",
+    "projectIds": [
+      "oid_04076",
+      "oid_04030",
+      "oid_04071"
+    ],
+    "salary": 3028000,
+    "joiningDate": "2023-04-29T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "GraphQL",
+      "Azure",
+      "MongoDB",
+      "MySQL"
+    ],
+    "performanceScore": 9.5,
+    "address": {
+      "street": "183 MG Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Azure Fundamentals"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03082",
+    "firstName": "Vijay",
+    "lastName": "Desai",
+    "email": "vijay.desai17@company.com",
+    "phone": "+91-7336590217",
+    "age": 42,
+    "departmentId": "oid_01056",
+    "roleId": "oid_02026",
+    "projectIds": [
+      "oid_04081",
+      "oid_04019"
+    ],
+    "salary": 732000,
+    "joiningDate": "2018-12-23T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "MySQL",
+      "Git",
+      "GCP",
+      "AWS",
+      "TypeScript",
+      "Kafka",
+      "Java"
+    ],
+    "performanceScore": 8.9,
+    "address": {
+      "street": "160 Anna Salai",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "Google Cloud ACE",
+      "Spring Professional",
+      "Six Sigma Green Belt"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03083",
+    "firstName": "Hema",
+    "lastName": "Malhotra",
+    "email": "hema.malhotra45@company.com",
+    "phone": "+91-8645159179",
+    "age": 41,
+    "departmentId": "oid_01063",
+    "roleId": "oid_02074",
+    "projectIds": [
+      "oid_04078"
+    ],
+    "salary": 919000,
+    "joiningDate": "2022-07-04T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Linux",
+      "Shell Scripting",
+      "GCP",
+      "JPA",
+      "Kubernetes",
+      "Spring Boot"
+    ],
+    "performanceScore": 8.7,
+    "address": {
+      "street": "69 Linking Road",
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "pincode": "700001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "Kubernetes CKA",
+      "Spring Professional"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03084",
+    "firstName": "Rajesh",
+    "lastName": "Verma",
+    "email": "rajesh.verma30@company.com",
+    "phone": "+91-8903145590",
+    "age": 45,
+    "departmentId": "oid_01042",
+    "roleId": "oid_02035",
+    "projectIds": [
+      "oid_04094"
+    ],
+    "salary": 1891000,
+    "joiningDate": "2020-05-15T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "GraphQL",
+      "Maven",
+      "TypeScript",
+      "PostgreSQL",
+      "Spring Boot",
+      "Ansible",
+      "Node.js",
+      "MongoDB"
+    ],
+    "performanceScore": 6.6,
+    "address": {
+      "street": "130 Anna Salai",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03085",
+    "firstName": "Seema",
+    "lastName": "Patel",
+    "email": "seema.patel32@company.com",
+    "phone": "+91-7217150457",
+    "age": 32,
+    "departmentId": "oid_01091",
+    "roleId": "oid_02026",
+    "projectIds": [
+      "oid_04036",
+      "oid_04048"
+    ],
+    "salary": 837000,
+    "joiningDate": "2018-05-06T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "GraphQL",
+      "REST APIs",
+      "Kafka",
+      "Node.js",
+      "Ansible"
+    ],
+    "performanceScore": 7.4,
+    "address": {
+      "street": "142 Linking Road",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Kubernetes CKA"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03086",
+    "firstName": "Kiran",
+    "lastName": "Arora",
+    "email": "kiran.arora28@company.com",
+    "phone": "+91-7966848837",
+    "age": 42,
+    "departmentId": "oid_01027",
+    "roleId": "oid_02035",
+    "projectIds": [
+      "oid_04084",
+      "oid_04053",
+      "oid_04066"
+    ],
+    "salary": 610000,
+    "joiningDate": "2023-04-26T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Node.js",
+      "REST APIs",
+      "Gradle",
+      "Java",
+      "Kubernetes",
+      "AWS",
+      "Linux",
+      "Azure"
+    ],
+    "performanceScore": 8.6,
+    "address": {
+      "street": "182 Gandhi Marg",
+      "city": "Pune",
+      "state": "Maharashtra",
+      "pincode": "411001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "PMP",
+      "CISSP",
+      "Kubernetes CKA"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03087",
+    "firstName": "Mohan",
+    "lastName": "Sethi",
+    "email": "mohan.sethi51@company.com",
+    "phone": "+91-7031557592",
+    "age": 37,
+    "departmentId": "oid_01085",
+    "roleId": "oid_02048",
+    "projectIds": [],
+    "salary": 1604000,
+    "joiningDate": "2019-03-19T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "GCP",
+      "AWS",
+      "Microservices"
+    ],
+    "performanceScore": 6.6,
+    "address": {
+      "street": "71 Gandhi Marg",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "MongoDB Associate",
+      "Google Cloud ACE"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03088",
+    "firstName": "Geeta",
+    "lastName": "Chopra",
+    "email": "geeta.chopra52@company.com",
+    "phone": "+91-7600992653",
+    "age": 44,
+    "departmentId": "oid_01004",
+    "roleId": "oid_02084",
+    "projectIds": [
+      "oid_04064",
+      "oid_04038",
+      "oid_04034"
+    ],
+    "salary": 2636000,
+    "joiningDate": "2024-06-01T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "JUnit",
+      "JPA",
+      "Kubernetes",
+      "Hibernate",
+      "Git"
+    ],
+    "performanceScore": 8.2,
+    "address": {
+      "street": "122 Linking Road",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "pincode": "600001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "Google Cloud ACE",
+      "Oracle Java SE"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03089",
+    "firstName": "Chetan",
+    "lastName": "Agarwal",
+    "email": "chetan.agarwal93@company.com",
+    "phone": "+91-9919342370",
+    "age": 31,
+    "departmentId": "oid_01084",
+    "roleId": "oid_02012",
+    "projectIds": [
+      "oid_04029"
+    ],
+    "salary": 1681000,
+    "joiningDate": "2022-03-03T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Azure",
+      "Kafka",
+      "Ansible",
+      "React",
+      "GraphQL",
+      "Spring Boot",
+      "Microservices"
+    ],
+    "performanceScore": 7.9,
+    "address": {
+      "street": "159 Park Street",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "TOGAF"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03090",
+    "firstName": "Arun",
+    "lastName": "Yadav",
+    "email": "arun.yadav7@company.com",
+    "phone": "+91-7860267314",
+    "age": 31,
+    "departmentId": "oid_01053",
+    "roleId": "oid_02073",
+    "projectIds": [
+      "oid_04059"
+    ],
+    "salary": 673000,
+    "joiningDate": "2023-06-21T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Node.js",
+      "GCP",
+      "Microservices",
+      "Spring Boot",
+      "Java",
+      "Kafka",
+      "AWS",
+      "Docker"
+    ],
+    "performanceScore": 8.8,
+    "address": {
+      "street": "44 Brigade Road",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03091",
+    "firstName": "Tarun",
+    "lastName": "Chauhan",
+    "email": "tarun.chauhan62@company.com",
+    "phone": "+91-7162028997",
+    "age": 38,
+    "departmentId": "oid_01026",
+    "roleId": "oid_02094",
+    "projectIds": [],
+    "salary": 3375000,
+    "joiningDate": "2020-02-20T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Java",
+      "Microservices",
+      "JUnit",
+      "Kubernetes",
+      "Terraform",
+      "JPA",
+      "PostgreSQL",
+      "Azure"
+    ],
+    "performanceScore": 5.6,
+    "address": {
+      "street": "99 Gandhi Marg",
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "pincode": "700001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03092",
+    "firstName": "Usha",
+    "lastName": "Bose",
+    "email": "usha.bose77@company.com",
+    "phone": "+91-8862577974",
+    "age": 42,
+    "departmentId": "oid_01018",
+    "roleId": "oid_02044",
+    "projectIds": [
+      "oid_04063"
+    ],
+    "salary": 1968000,
+    "joiningDate": "2018-03-20T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "JUnit",
+      "Python",
+      "Docker",
+      "Java"
+    ],
+    "performanceScore": 7.9,
+    "address": {
+      "street": "44 Park Street",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03093",
+    "firstName": "Sunita",
+    "lastName": "Sethi",
+    "email": "sunita.sethi7@company.com",
+    "phone": "+91-9843139149",
+    "age": 24,
+    "departmentId": "oid_01084",
+    "roleId": "oid_02003",
+    "projectIds": [],
+    "salary": 2226000,
+    "joiningDate": "2019-05-22T00:00:00Z",
+    "status": "inactive",
+    "skills": [
+      "GraphQL",
+      "JPA",
+      "Python",
+      "Docker",
+      "Hibernate"
+    ],
+    "performanceScore": 8.2,
+    "address": {
+      "street": "78 Anna Salai",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03094",
+    "firstName": "Preeti",
+    "lastName": "Verma",
+    "email": "preeti.verma66@company.com",
+    "phone": "+91-8214216328",
+    "age": 24,
+    "departmentId": "oid_01014",
+    "roleId": "oid_02064",
+    "projectIds": [],
+    "salary": 2869000,
+    "joiningDate": "2020-04-06T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Redis",
+      "Azure",
+      "Node.js",
+      "Spring Boot",
+      "Git",
+      "GraphQL",
+      "Docker",
+      "JPA"
+    ],
+    "performanceScore": 9.7,
+    "address": {
+      "street": "85 Nehru Nagar",
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "pincode": "201301",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03095",
+    "firstName": "Pooja",
+    "lastName": "Nair",
+    "email": "pooja.nair66@company.com",
+    "phone": "+91-7435039291",
+    "age": 29,
+    "departmentId": "oid_01083",
+    "roleId": "oid_02030",
+    "projectIds": [
+      "oid_04059",
+      "oid_04038",
+      "oid_04034"
+    ],
+    "salary": 837000,
+    "joiningDate": "2021-04-05T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "GCP",
+      "Redis",
+      "JUnit",
+      "React",
+      "Terraform",
+      "Maven",
+      "Spring Boot",
+      "Java"
+    ],
+    "address": {
+      "street": "170 Brigade Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [
+      "CISSP",
+      "Six Sigma Green Belt"
+    ],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03096",
+    "firstName": "Mohan",
+    "lastName": "Pandey",
+    "email": "mohan.pandey24@company.com",
+    "phone": "+91-8719061621",
+    "age": 35,
+    "departmentId": "oid_01035",
+    "roleId": "oid_02050",
+    "projectIds": [
+      "oid_04089",
+      "oid_04062"
+    ],
+    "salary": 1232000,
+    "joiningDate": "2018-08-29T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Redis",
+      "Shell Scripting",
+      "CI/CD"
+    ],
+    "performanceScore": 7.4,
+    "address": {
+      "street": "146 Banjara Hills",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [
+      "PMP",
+      "Six Sigma Green Belt",
+      "AWS Certified"
+    ],
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03097",
+    "firstName": "Pawan",
+    "lastName": "Yadav",
+    "email": "pawan.yadav57@company.com",
+    "phone": "+91-8123618706",
+    "age": 41,
+    "departmentId": "oid_01041",
+    "roleId": "oid_02002",
+    "projectIds": [],
+    "salary": 3341000,
+    "joiningDate": "2020-07-06T00:00:00Z",
+    "status": "on_leave",
+    "skills": [
+      "TypeScript",
+      "JPA",
+      "REST APIs",
+      "React",
+      "Redis"
+    ],
+    "performanceScore": 8.3,
+    "address": {
+      "street": "64 Banjara Hills",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03098",
+    "firstName": "Pallavi",
+    "lastName": "Banerjee",
+    "email": "pallavi.banerjee64@company.com",
+    "phone": "+91-9111611923",
+    "age": 31,
+    "departmentId": "oid_01031",
+    "roleId": "oid_02043",
+    "projectIds": [],
+    "salary": 2028000,
+    "joiningDate": "2022-07-10T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Kafka",
+      "Gradle",
+      "CI/CD"
+    ],
+    "address": {
+      "street": "128 Banjara Hills",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "certifications": [],
+    "managerApproval": false
+  },
+  {
+    "_id": "oid_03099",
+    "firstName": "Tarun",
+    "lastName": "Yadav",
+    "email": "tarun.yadav5@company.com",
+    "phone": "+91-7000728926",
+    "age": 23,
+    "departmentId": "oid_01078",
+    "roleId": "oid_02080",
+    "projectIds": [
+      "oid_04082",
+      "oid_04039"
+    ],
+    "salary": 2470000,
+    "joiningDate": "2021-10-28T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Terraform",
+      "Kubernetes",
+      "Ansible"
+    ],
+    "performanceScore": 7.3,
+    "address": {
+      "street": "144 Banjara Hills",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380001",
+      "country": "IN"
+    },
+    "isRemote": false,
+    "managerApproval": true
+  },
+  {
+    "_id": "oid_03100",
+    "firstName": "Ravi",
+    "lastName": "Pandey",
+    "email": "ravi.pandey46@company.com",
+    "phone": "+91-9241908873",
+    "age": 32,
+    "departmentId": "oid_01090",
+    "roleId": "oid_02014",
+    "projectIds": [
+      "oid_04006",
+      "oid_04022"
+    ],
+    "salary": 2534000,
+    "joiningDate": "2019-03-15T00:00:00Z",
+    "status": "active",
+    "skills": [
+      "Docker",
+      "Shell Scripting",
+      "React",
+      "MySQL",
+      "Linux",
+      "Kafka",
+      "Gradle"
+    ],
+    "performanceScore": 8.6,
+    "address": {
+      "street": "28 Anna Salai",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pincode": "500001",
+      "country": "IN"
+    },
+    "isRemote": true,
+    "certifications": [],
+    "managerApproval": false
+  }
+]

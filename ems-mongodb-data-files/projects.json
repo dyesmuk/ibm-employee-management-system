@@ -1,0 +1,3504 @@
+[
+  {
+    "_id": "oid_04001",
+    "name": "Project Atlas",
+    "description": "Initiative to deliver project atlas capabilities.",
+    "status": "completed",
+    "priority": "medium",
+    "startDate": "2021-05-30T00:00:00Z",
+    "endDate": "2021-08-29T00:00:00Z",
+    "budget": 3100000,
+    "spentBudget": 2400000,
+    "techStack": [
+      "Kotlin",
+      "Spring Boot",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03005",
+    "teamMemberIds": [
+      "oid_03027",
+      "oid_03097",
+      "oid_03070",
+      "oid_03005",
+      "oid_03046",
+      "oid_03058"
+    ],
+    "teamSize": 6,
+    "milestones": 3,
+    "completedMilestones": 8,
+    "tags": [
+      "backend",
+      "ai-ml",
+      "compliance"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-05-30T00:00:00Z"
+  },
+  {
+    "_id": "oid_04002",
+    "name": "Project Orion",
+    "description": "Initiative to deliver project orion capabilities.",
+    "status": "completed",
+    "priority": "critical",
+    "startDate": "2022-07-20T00:00:00Z",
+    "endDate": "2022-10-15T00:00:00Z",
+    "budget": 5600000,
+    "spentBudget": 5400000,
+    "techStack": [
+      "Java",
+      "Hibernate",
+      "Oracle DB"
+    ],
+    "leadId": "oid_03033",
+    "teamMemberIds": [
+      "oid_03096",
+      "oid_03033"
+    ],
+    "teamSize": 2,
+    "milestones": 8,
+    "completedMilestones": 8,
+    "tags": [
+      "infra",
+      "security"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-07-20T00:00:00Z"
+  },
+  {
+    "_id": "oid_04003",
+    "name": "Project Nexus",
+    "description": "Initiative to deliver project nexus capabilities.",
+    "status": "in_progress",
+    "priority": "low",
+    "startDate": "2022-12-01T00:00:00Z",
+    "endDate": "2023-05-16T00:00:00Z",
+    "budget": 10100000,
+    "spentBudget": 5500000,
+    "techStack": [
+      "Vue.js",
+      "Node.js",
+      "MongoDB",
+      "Redis"
+    ],
+    "leadId": "oid_03066",
+    "teamMemberIds": [
+      "oid_03023",
+      "oid_03095",
+      "oid_03066",
+      "oid_03016"
+    ],
+    "teamSize": 4,
+    "milestones": 3,
+    "completedMilestones": 2,
+    "tags": [
+      "backend",
+      "mobile",
+      "automation"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-12-01T00:00:00Z"
+  },
+  {
+    "_id": "oid_04004",
+    "name": "Project Helios",
+    "description": "Initiative to deliver project helios capabilities.",
+    "status": "planning",
+    "priority": "high",
+    "startDate": "2021-06-07T00:00:00Z",
+    "endDate": "2022-05-18T00:00:00Z",
+    "budget": 16200000,
+    "spentBudget": 12600000,
+    "techStack": [
+      "Python",
+      "scikit-learn",
+      "Pandas",
+      "Airflow"
+    ],
+    "leadId": "oid_03081",
+    "teamMemberIds": [
+      "oid_03100",
+      "oid_03081"
+    ],
+    "teamSize": 2,
+    "milestones": 2,
+    "completedMilestones": 5,
+    "tags": [
+      "data",
+      "compliance"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-06-07T00:00:00Z"
+  },
+  {
+    "_id": "oid_04005",
+    "name": "Project Aurora",
+    "description": "Initiative to deliver project aurora capabilities.",
+    "status": "in_progress",
+    "priority": "critical",
+    "startDate": "2022-03-02T00:00:00Z",
+    "endDate": "2023-12-08T00:00:00Z",
+    "budget": 16300000,
+    "spentBudget": 14400000,
+    "techStack": [
+      "Java",
+      "Spring Boot",
+      "MongoDB"
+    ],
+    "leadId": "oid_03012",
+    "teamMemberIds": [
+      "oid_03052",
+      "oid_03012",
+      "oid_03045",
+      "oid_03029",
+      "oid_03028",
+      "oid_03085",
+      "oid_03043",
+      "oid_03047",
+      "oid_03038",
+      "oid_03097"
+    ],
+    "teamSize": 10,
+    "milestones": 7,
+    "completedMilestones": 5,
+    "tags": [
+      "infra",
+      "customer-facing",
+      "backend",
+      "mobile"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-03-02T00:00:00Z"
+  },
+  {
+    "_id": "oid_04006",
+    "name": "Project Titan",
+    "description": "Initiative to deliver project titan capabilities.",
+    "status": "on_hold",
+    "priority": "critical",
+    "startDate": "2023-03-27T00:00:00Z",
+    "endDate": "2023-10-19T00:00:00Z",
+    "budget": 13600000,
+    "spentBudget": 12500000,
+    "techStack": [
+      "React",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03004",
+    "teamMemberIds": [
+      "oid_03033",
+      "oid_03070",
+      "oid_03093",
+      "oid_03037",
+      "oid_03004",
+      "oid_03067",
+      "oid_03099",
+      "oid_03048"
+    ],
+    "teamSize": 8,
+    "milestones": 7,
+    "completedMilestones": 3,
+    "tags": [
+      "compliance",
+      "frontend",
+      "customer-facing"
+    ],
+    "clientFacing": true,
+    "createdAt": "2023-03-27T00:00:00Z"
+  },
+  {
+    "_id": "oid_04007",
+    "name": "Project Phoenix",
+    "description": "Initiative to deliver project phoenix capabilities.",
+    "status": "cancelled",
+    "priority": "critical",
+    "startDate": "2022-07-01T00:00:00Z",
+    "endDate": "2022-08-01T00:00:00Z",
+    "budget": 5900000,
+    "spentBudget": 5400000,
+    "techStack": [
+      "Java",
+      "Kafka",
+      "AWS",
+      "Kubernetes"
+    ],
+    "leadId": "oid_03027",
+    "teamMemberIds": [
+      "oid_03027",
+      "oid_03086",
+      "oid_03081"
+    ],
+    "teamSize": 3,
+    "milestones": 6,
+    "completedMilestones": 6,
+    "tags": [
+      "data"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-07-01T00:00:00Z"
+  },
+  {
+    "_id": "oid_04008",
+    "name": "Project Nova",
+    "description": "Initiative to deliver project nova capabilities.",
+    "status": "on_hold",
+    "priority": "medium",
+    "startDate": "2023-01-05T00:00:00Z",
+    "endDate": "2024-03-09T00:00:00Z",
+    "budget": 1800000,
+    "spentBudget": 900000,
+    "techStack": [
+      "Kotlin",
+      "Spring Boot",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03012",
+    "teamMemberIds": [
+      "oid_03012",
+      "oid_03010"
+    ],
+    "teamSize": 2,
+    "milestones": 6,
+    "completedMilestones": 3,
+    "tags": [
+      "ai-ml",
+      "customer-facing",
+      "automation"
+    ],
+    "clientFacing": false,
+    "createdAt": "2023-01-05T00:00:00Z"
+  },
+  {
+    "_id": "oid_04009",
+    "name": "Project Horizon",
+    "description": "Initiative to deliver project horizon capabilities.",
+    "status": "on_hold",
+    "priority": "low",
+    "startDate": "2021-11-20T00:00:00Z",
+    "endDate": "2022-03-07T00:00:00Z",
+    "budget": 19800000,
+    "spentBudget": 18000000,
+    "techStack": [
+      "Python",
+      "FastAPI",
+      "MongoDB",
+      "Docker"
+    ],
+    "leadId": "oid_03093",
+    "teamMemberIds": [
+      "oid_03087",
+      "oid_03016",
+      "oid_03069",
+      "oid_03001",
+      "oid_03083",
+      "oid_03093",
+      "oid_03080",
+      "oid_03009"
+    ],
+    "teamSize": 8,
+    "milestones": 6,
+    "completedMilestones": 1,
+    "tags": [
+      "security",
+      "frontend",
+      "customer-facing"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-11-20T00:00:00Z"
+  },
+  {
+    "_id": "oid_04010",
+    "name": "Project Apex",
+    "description": "Initiative to deliver project apex capabilities.",
+    "status": "on_hold",
+    "priority": "high",
+    "startDate": "2022-02-09T00:00:00Z",
+    "endDate": "2022-06-10T00:00:00Z",
+    "budget": 4100000,
+    "spentBudget": 2400000,
+    "techStack": [
+      "Java",
+      "Spring Boot",
+      "MongoDB"
+    ],
+    "leadId": "oid_03082",
+    "teamMemberIds": [
+      "oid_03021",
+      "oid_03069",
+      "oid_03029",
+      "oid_03018",
+      "oid_03096",
+      "oid_03051",
+      "oid_03070",
+      "oid_03038",
+      "oid_03082"
+    ],
+    "teamSize": 9,
+    "milestones": 8,
+    "completedMilestones": 8,
+    "tags": [
+      "frontend",
+      "backend"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-02-09T00:00:00Z"
+  },
+  {
+    "_id": "oid_04011",
+    "name": "Project Sigma",
+    "description": "Initiative to deliver project sigma capabilities.",
+    "status": "cancelled",
+    "priority": "medium",
+    "startDate": "2022-09-03T00:00:00Z",
+    "endDate": "2023-01-11T00:00:00Z",
+    "budget": 17000000,
+    "spentBudget": 4200000,
+    "techStack": [
+      "Python",
+      "TensorFlow",
+      "AWS S3"
+    ],
+    "leadId": "oid_03027",
+    "teamMemberIds": [
+      "oid_03071",
+      "oid_03011",
+      "oid_03040",
+      "oid_03027",
+      "oid_03096",
+      "oid_03095",
+      "oid_03093",
+      "oid_03045",
+      "oid_03028",
+      "oid_03053"
+    ],
+    "teamSize": 10,
+    "milestones": 6,
+    "completedMilestones": 4,
+    "tags": [
+      "frontend",
+      "data"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-09-03T00:00:00Z"
+  },
+  {
+    "_id": "oid_04012",
+    "name": "Project Zeta",
+    "description": "Initiative to deliver project zeta capabilities.",
+    "status": "cancelled",
+    "priority": "high",
+    "startDate": "2022-04-18T00:00:00Z",
+    "endDate": "2022-10-30T00:00:00Z",
+    "budget": 8900000,
+    "spentBudget": 1700000,
+    "techStack": [
+      "Java",
+      "Hibernate",
+      "Oracle DB"
+    ],
+    "leadId": "oid_03038",
+    "teamMemberIds": [
+      "oid_03010",
+      "oid_03038",
+      "oid_03086",
+      "oid_03009",
+      "oid_03033",
+      "oid_03013",
+      "oid_03026",
+      "oid_03093",
+      "oid_03075",
+      "oid_03063"
+    ],
+    "teamSize": 10,
+    "milestones": 4,
+    "completedMilestones": 1,
+    "tags": [
+      "mobile",
+      "automation"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-04-18T00:00:00Z"
+  },
+  {
+    "_id": "oid_04013",
+    "name": "Project Echo",
+    "description": "Initiative to deliver project echo capabilities.",
+    "status": "completed",
+    "priority": "medium",
+    "startDate": "2022-09-24T00:00:00Z",
+    "endDate": "2023-10-26T00:00:00Z",
+    "budget": 11400000,
+    "spentBudget": 100000,
+    "techStack": [
+      "Go",
+      "gRPC",
+      "Kubernetes",
+      "Prometheus"
+    ],
+    "leadId": "oid_03075",
+    "teamMemberIds": [
+      "oid_03089",
+      "oid_03075",
+      "oid_03020",
+      "oid_03073",
+      "oid_03047",
+      "oid_03041"
+    ],
+    "teamSize": 6,
+    "milestones": 8,
+    "completedMilestones": 3,
+    "tags": [
+      "security",
+      "mobile",
+      "data",
+      "compliance"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-09-24T00:00:00Z"
+  },
+  {
+    "_id": "oid_04014",
+    "name": "Project Delta",
+    "description": "Initiative to deliver project delta capabilities.",
+    "status": "on_hold",
+    "priority": "low",
+    "startDate": "2022-04-19T00:00:00Z",
+    "endDate": "2023-10-17T00:00:00Z",
+    "budget": 16000000,
+    "spentBudget": 7200000,
+    "techStack": [
+      "Angular",
+      "Spring Boot",
+      "MySQL"
+    ],
+    "leadId": "oid_03014",
+    "teamMemberIds": [
+      "oid_03100",
+      "oid_03040",
+      "oid_03063",
+      "oid_03071",
+      "oid_03014",
+      "oid_03023",
+      "oid_03083"
+    ],
+    "teamSize": 7,
+    "milestones": 3,
+    "completedMilestones": 4,
+    "tags": [
+      "frontend"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-04-19T00:00:00Z"
+  },
+  {
+    "_id": "oid_04015",
+    "name": "Project Vega",
+    "description": "Initiative to deliver project vega capabilities.",
+    "status": "cancelled",
+    "priority": "medium",
+    "startDate": "2022-10-09T00:00:00Z",
+    "endDate": "2022-11-15T00:00:00Z",
+    "budget": 17200000,
+    "spentBudget": 9400000,
+    "techStack": [
+      "Spring Boot",
+      "Kafka",
+      "Elasticsearch",
+      "Kibana"
+    ],
+    "leadId": "oid_03005",
+    "teamMemberIds": [
+      "oid_03099",
+      "oid_03076",
+      "oid_03028",
+      "oid_03005",
+      "oid_03071",
+      "oid_03034",
+      "oid_03070",
+      "oid_03061"
+    ],
+    "teamSize": 8,
+    "milestones": 8,
+    "completedMilestones": 4,
+    "tags": [
+      "automation",
+      "compliance"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-10-09T00:00:00Z"
+  },
+  {
+    "_id": "oid_04016",
+    "name": "Project Andromeda",
+    "description": "Initiative to deliver project andromeda capabilities.",
+    "status": "on_hold",
+    "priority": "medium",
+    "startDate": "2022-01-08T00:00:00Z",
+    "endDate": "2023-09-04T00:00:00Z",
+    "budget": 16200000,
+    "spentBudget": 13200000,
+    "techStack": [
+      "Angular",
+      "Spring Boot",
+      "MySQL"
+    ],
+    "leadId": "oid_03031",
+    "teamMemberIds": [
+      "oid_03085",
+      "oid_03031"
+    ],
+    "teamSize": 2,
+    "milestones": 3,
+    "completedMilestones": 2,
+    "tags": [
+      "automation",
+      "mobile"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-01-08T00:00:00Z"
+  },
+  {
+    "_id": "oid_04017",
+    "name": "Project Pegasus",
+    "description": "Initiative to deliver project pegasus capabilities.",
+    "status": "in_progress",
+    "priority": "medium",
+    "startDate": "2023-02-19T00:00:00Z",
+    "endDate": "2024-09-30T00:00:00Z",
+    "budget": 17600000,
+    "spentBudget": 13300000,
+    "techStack": [
+      "Rust",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "leadId": "oid_03030",
+    "teamMemberIds": [
+      "oid_03009",
+      "oid_03034",
+      "oid_03048",
+      "oid_03030",
+      "oid_03006"
+    ],
+    "teamSize": 5,
+    "milestones": 5,
+    "completedMilestones": 7,
+    "tags": [
+      "backend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2023-02-19T00:00:00Z"
+  },
+  {
+    "_id": "oid_04018",
+    "name": "Project Mercury",
+    "description": "Initiative to deliver project mercury capabilities.",
+    "status": "planning",
+    "priority": "critical",
+    "startDate": "2022-12-22T00:00:00Z",
+    "endDate": "2024-03-12T00:00:00Z",
+    "budget": 10100000,
+    "spentBudget": 4700000,
+    "techStack": [
+      "Python",
+      "scikit-learn",
+      "Pandas",
+      "Airflow"
+    ],
+    "leadId": "oid_03023",
+    "teamMemberIds": [
+      "oid_03095",
+      "oid_03034",
+      "oid_03075",
+      "oid_03070",
+      "oid_03073",
+      "oid_03023"
+    ],
+    "teamSize": 6,
+    "milestones": 8,
+    "completedMilestones": 1,
+    "tags": [
+      "ai-ml",
+      "infra",
+      "customer-facing"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-12-22T00:00:00Z"
+  },
+  {
+    "_id": "oid_04019",
+    "name": "Project Saturn",
+    "description": "Initiative to deliver project saturn capabilities.",
+    "status": "completed",
+    "priority": "medium",
+    "startDate": "2022-05-14T00:00:00Z",
+    "endDate": "2023-03-16T00:00:00Z",
+    "budget": 11700000,
+    "spentBudget": 3000000,
+    "techStack": [
+      "Python",
+      "FastAPI",
+      "MongoDB",
+      "Docker"
+    ],
+    "leadId": "oid_03018",
+    "teamMemberIds": [
+      "oid_03065",
+      "oid_03018"
+    ],
+    "teamSize": 2,
+    "milestones": 3,
+    "completedMilestones": 2,
+    "tags": [
+      "data",
+      "mobile"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-05-14T00:00:00Z"
+  },
+  {
+    "_id": "oid_04020",
+    "name": "Project Jupiter",
+    "description": "Initiative to deliver project jupiter capabilities.",
+    "status": "in_progress",
+    "priority": "medium",
+    "startDate": "2022-03-01T00:00:00Z",
+    "endDate": "2023-05-03T00:00:00Z",
+    "budget": 15600000,
+    "spentBudget": 10600000,
+    "techStack": [
+      "Java",
+      "Spring Boot",
+      "MongoDB"
+    ],
+    "leadId": "oid_03062",
+    "teamMemberIds": [
+      "oid_03062",
+      "oid_03087",
+      "oid_03027"
+    ],
+    "teamSize": 3,
+    "milestones": 2,
+    "completedMilestones": 2,
+    "tags": [
+      "data",
+      "compliance"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-03-01T00:00:00Z"
+  },
+  {
+    "_id": "oid_04021",
+    "name": "EMS Portal",
+    "description": "Initiative to deliver ems portal capabilities.",
+    "status": "cancelled",
+    "priority": "low",
+    "startDate": "2021-05-31T00:00:00Z",
+    "endDate": "2021-07-14T00:00:00Z",
+    "budget": 15800000,
+    "spentBudget": 7300000,
+    "techStack": [
+      "Python",
+      "FastAPI",
+      "MongoDB",
+      "Docker"
+    ],
+    "leadId": "oid_03024",
+    "teamMemberIds": [
+      "oid_03034",
+      "oid_03024",
+      "oid_03067",
+      "oid_03052"
+    ],
+    "teamSize": 4,
+    "milestones": 5,
+    "completedMilestones": 7,
+    "tags": [
+      "data",
+      "infra",
+      "ai-ml",
+      "security"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-05-31T00:00:00Z"
+  },
+  {
+    "_id": "oid_04022",
+    "name": "HR Automation",
+    "description": "Initiative to deliver hr automation capabilities.",
+    "status": "cancelled",
+    "priority": "critical",
+    "startDate": "2023-04-21T00:00:00Z",
+    "endDate": "2023-07-06T00:00:00Z",
+    "budget": 10100000,
+    "spentBudget": 1700000,
+    "techStack": [
+      "Java",
+      "Kafka",
+      "AWS",
+      "Kubernetes"
+    ],
+    "leadId": "oid_03034",
+    "teamMemberIds": [
+      "oid_03034",
+      "oid_03022",
+      "oid_03093",
+      "oid_03088",
+      "oid_03044",
+      "oid_03059",
+      "oid_03077",
+      "oid_03076",
+      "oid_03009",
+      "oid_03030"
+    ],
+    "teamSize": 10,
+    "milestones": 3,
+    "completedMilestones": 8,
+    "tags": [
+      "data",
+      "frontend",
+      "customer-facing",
+      "infra"
+    ],
+    "clientFacing": true,
+    "createdAt": "2023-04-21T00:00:00Z"
+  },
+  {
+    "_id": "oid_04023",
+    "name": "Payroll Engine",
+    "description": "Initiative to deliver payroll engine capabilities.",
+    "status": "cancelled",
+    "priority": "low",
+    "startDate": "2022-05-31T00:00:00Z",
+    "endDate": "2022-07-30T00:00:00Z",
+    "budget": 15900000,
+    "spentBudget": 11100000,
+    "techStack": [
+      "Java",
+      "JUnit",
+      "Selenium",
+      "Maven"
+    ],
+    "leadId": "oid_03085",
+    "teamMemberIds": [
+      "oid_03062",
+      "oid_03085",
+      "oid_03017"
+    ],
+    "teamSize": 3,
+    "milestones": 4,
+    "completedMilestones": 0,
+    "tags": [
+      "infra",
+      "automation",
+      "ai-ml",
+      "data"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-05-31T00:00:00Z"
+  },
+  {
+    "_id": "oid_04024",
+    "name": "Analytics Dashboard",
+    "description": "Initiative to deliver analytics dashboard capabilities.",
+    "status": "on_hold",
+    "priority": "low",
+    "startDate": "2021-05-18T00:00:00Z",
+    "endDate": "2022-05-03T00:00:00Z",
+    "budget": 600000,
+    "spentBudget": 500000,
+    "techStack": [
+      "Java",
+      "JUnit",
+      "Selenium",
+      "Maven"
+    ],
+    "leadId": "oid_03030",
+    "teamMemberIds": [
+      "oid_03099",
+      "oid_03030",
+      "oid_03011",
+      "oid_03037",
+      "oid_03077",
+      "oid_03070",
+      "oid_03053",
+      "oid_03033",
+      "oid_03025"
+    ],
+    "teamSize": 9,
+    "milestones": 6,
+    "completedMilestones": 0,
+    "tags": [
+      "infra",
+      "mobile",
+      "ai-ml",
+      "data"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-05-18T00:00:00Z"
+  },
+  {
+    "_id": "oid_04025",
+    "name": "Data Lake Initiative",
+    "description": "Initiative to deliver data lake initiative capabilities.",
+    "status": "in_progress",
+    "priority": "critical",
+    "startDate": "2022-03-13T00:00:00Z",
+    "endDate": "2024-01-31T00:00:00Z",
+    "budget": 7500000,
+    "spentBudget": 2700000,
+    "techStack": [
+      "React Native",
+      "Node.js",
+      "AWS",
+      "MongoDB"
+    ],
+    "leadId": "oid_03047",
+    "teamMemberIds": [
+      "oid_03034",
+      "oid_03069",
+      "oid_03055",
+      "oid_03073",
+      "oid_03047",
+      "oid_03079"
+    ],
+    "teamSize": 6,
+    "milestones": 8,
+    "completedMilestones": 8,
+    "tags": [
+      "data",
+      "mobile",
+      "automation",
+      "customer-facing"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-03-13T00:00:00Z"
+  },
+  {
+    "_id": "oid_04026",
+    "name": "API Gateway",
+    "description": "Initiative to deliver api gateway capabilities.",
+    "status": "cancelled",
+    "priority": "medium",
+    "startDate": "2021-12-19T00:00:00Z",
+    "endDate": "2022-04-29T00:00:00Z",
+    "budget": 11900000,
+    "spentBudget": 1300000,
+    "techStack": [
+      "React",
+      "TypeScript",
+      "GraphQL",
+      "Redis"
+    ],
+    "leadId": "oid_03030",
+    "teamMemberIds": [
+      "oid_03085",
+      "oid_03016",
+      "oid_03096",
+      "oid_03030"
+    ],
+    "teamSize": 4,
+    "milestones": 8,
+    "completedMilestones": 5,
+    "tags": [
+      "data"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-12-19T00:00:00Z"
+  },
+  {
+    "_id": "oid_04027",
+    "name": "Microservices Migration",
+    "description": "Initiative to deliver microservices migration capabilities.",
+    "status": "planning",
+    "priority": "high",
+    "startDate": "2023-04-04T00:00:00Z",
+    "endDate": "2023-11-16T00:00:00Z",
+    "budget": 2100000,
+    "spentBudget": 800000,
+    "techStack": [
+      "Rust",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "leadId": "oid_03061",
+    "teamMemberIds": [
+      "oid_03061",
+      "oid_03077",
+      "oid_03056",
+      "oid_03012"
+    ],
+    "teamSize": 4,
+    "milestones": 6,
+    "completedMilestones": 0,
+    "tags": [
+      "ai-ml",
+      "compliance",
+      "security",
+      "mobile"
+    ],
+    "clientFacing": true,
+    "createdAt": "2023-04-04T00:00:00Z"
+  },
+  {
+    "_id": "oid_04028",
+    "name": "Cloud Lift & Shift",
+    "description": "Initiative to deliver cloud lift & shift capabilities.",
+    "status": "in_progress",
+    "priority": "medium",
+    "startDate": "2022-10-18T00:00:00Z",
+    "endDate": "2024-06-05T00:00:00Z",
+    "budget": 13700000,
+    "spentBudget": 4400000,
+    "techStack": [
+      "React",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03025",
+    "teamMemberIds": [
+      "oid_03002",
+      "oid_03026",
+      "oid_03085",
+      "oid_03067",
+      "oid_03037",
+      "oid_03025",
+      "oid_03005",
+      "oid_03077",
+      "oid_03066"
+    ],
+    "teamSize": 9,
+    "milestones": 3,
+    "completedMilestones": 0,
+    "tags": [
+      "frontend",
+      "security"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-10-18T00:00:00Z"
+  },
+  {
+    "_id": "oid_04029",
+    "name": "Zero Trust Security",
+    "description": "Initiative to deliver zero trust security capabilities.",
+    "status": "completed",
+    "priority": "high",
+    "startDate": "2022-11-17T00:00:00Z",
+    "endDate": "2023-08-06T00:00:00Z",
+    "budget": 14500000,
+    "spentBudget": 14400000,
+    "techStack": [
+      "Python",
+      "scikit-learn",
+      "Pandas",
+      "Airflow"
+    ],
+    "leadId": "oid_03091",
+    "teamMemberIds": [
+      "oid_03076",
+      "oid_03026",
+      "oid_03067",
+      "oid_03002",
+      "oid_03095",
+      "oid_03091",
+      "oid_03009",
+      "oid_03012"
+    ],
+    "teamSize": 8,
+    "milestones": 4,
+    "completedMilestones": 4,
+    "tags": [
+      "customer-facing",
+      "infra"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-11-17T00:00:00Z"
+  },
+  {
+    "_id": "oid_04030",
+    "name": "DevOps Pipeline",
+    "description": "Initiative to deliver devops pipeline capabilities.",
+    "status": "on_hold",
+    "priority": "high",
+    "startDate": "2022-08-12T00:00:00Z",
+    "endDate": "2022-11-14T00:00:00Z",
+    "budget": 13300000,
+    "spentBudget": 8800000,
+    "techStack": [
+      "Java",
+      "Kafka",
+      "AWS",
+      "Kubernetes"
+    ],
+    "leadId": "oid_03072",
+    "teamMemberIds": [
+      "oid_03023",
+      "oid_03053",
+      "oid_03065",
+      "oid_03014",
+      "oid_03072",
+      "oid_03010"
+    ],
+    "teamSize": 6,
+    "milestones": 4,
+    "completedMilestones": 8,
+    "tags": [
+      "automation",
+      "ai-ml",
+      "customer-facing"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-08-12T00:00:00Z"
+  },
+  {
+    "_id": "oid_04031",
+    "name": "Customer 360",
+    "description": "Initiative to deliver customer 360 capabilities.",
+    "status": "completed",
+    "priority": "medium",
+    "startDate": "2023-03-06T00:00:00Z",
+    "endDate": "2023-12-25T00:00:00Z",
+    "budget": 17800000,
+    "spentBudget": 8100000,
+    "techStack": [
+      "React Native",
+      "Node.js",
+      "AWS",
+      "MongoDB"
+    ],
+    "leadId": "oid_03009",
+    "teamMemberIds": [
+      "oid_03076",
+      "oid_03004",
+      "oid_03062",
+      "oid_03015",
+      "oid_03034",
+      "oid_03009",
+      "oid_03049",
+      "oid_03082",
+      "oid_03029"
+    ],
+    "teamSize": 9,
+    "milestones": 6,
+    "completedMilestones": 8,
+    "tags": [
+      "security"
+    ],
+    "clientFacing": true,
+    "createdAt": "2023-03-06T00:00:00Z"
+  },
+  {
+    "_id": "oid_04032",
+    "name": "Sales CRM",
+    "description": "Initiative to deliver sales crm capabilities.",
+    "status": "completed",
+    "priority": "high",
+    "startDate": "2021-04-06T00:00:00Z",
+    "endDate": "2021-12-26T00:00:00Z",
+    "budget": 15100000,
+    "spentBudget": 4700000,
+    "techStack": [
+      "React",
+      "TypeScript",
+      "GraphQL",
+      "Redis"
+    ],
+    "leadId": "oid_03061",
+    "teamMemberIds": [
+      "oid_03010",
+      "oid_03071",
+      "oid_03023",
+      "oid_03061",
+      "oid_03041",
+      "oid_03046",
+      "oid_03028"
+    ],
+    "teamSize": 7,
+    "milestones": 7,
+    "completedMilestones": 3,
+    "tags": [
+      "infra",
+      "security"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-04-06T00:00:00Z"
+  },
+  {
+    "_id": "oid_04033",
+    "name": "Lead Tracking System",
+    "description": "Initiative to deliver lead tracking system capabilities.",
+    "status": "in_progress",
+    "priority": "low",
+    "startDate": "2021-07-27T00:00:00Z",
+    "endDate": "2022-07-07T00:00:00Z",
+    "budget": 13100000,
+    "spentBudget": 1100000,
+    "techStack": [
+      "Python",
+      "Apache Spark",
+      "Hadoop",
+      "HBase"
+    ],
+    "leadId": "oid_03014",
+    "teamMemberIds": [
+      "oid_03020",
+      "oid_03100",
+      "oid_03014",
+      "oid_03016",
+      "oid_03011",
+      "oid_03087",
+      "oid_03085"
+    ],
+    "teamSize": 7,
+    "milestones": 6,
+    "completedMilestones": 5,
+    "tags": [
+      "customer-facing",
+      "security",
+      "automation",
+      "frontend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-07-27T00:00:00Z"
+  },
+  {
+    "_id": "oid_04034",
+    "name": "Campaign Manager",
+    "description": "Initiative to deliver campaign manager capabilities.",
+    "status": "on_hold",
+    "priority": "low",
+    "startDate": "2021-08-16T00:00:00Z",
+    "endDate": "2023-06-27T00:00:00Z",
+    "budget": 14300000,
+    "spentBudget": 12900000,
+    "techStack": [
+      "Rust",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "leadId": "oid_03062",
+    "teamMemberIds": [
+      "oid_03007",
+      "oid_03068",
+      "oid_03055",
+      "oid_03062"
+    ],
+    "teamSize": 4,
+    "milestones": 8,
+    "completedMilestones": 2,
+    "tags": [
+      "frontend",
+      "compliance",
+      "automation",
+      "data"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-08-16T00:00:00Z"
+  },
+  {
+    "_id": "oid_04035",
+    "name": "Email Automation",
+    "description": "Initiative to deliver email automation capabilities.",
+    "status": "planning",
+    "priority": "medium",
+    "startDate": "2022-11-22T00:00:00Z",
+    "endDate": "2023-09-05T00:00:00Z",
+    "budget": 7200000,
+    "spentBudget": 3500000,
+    "techStack": [
+      "Python",
+      "Apache Spark",
+      "Hadoop",
+      "HBase"
+    ],
+    "leadId": "oid_03034",
+    "teamMemberIds": [
+      "oid_03075",
+      "oid_03013",
+      "oid_03042",
+      "oid_03047",
+      "oid_03079",
+      "oid_03034",
+      "oid_03024",
+      "oid_03071"
+    ],
+    "teamSize": 8,
+    "milestones": 4,
+    "completedMilestones": 2,
+    "tags": [
+      "ai-ml",
+      "infra",
+      "customer-facing",
+      "mobile"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-11-22T00:00:00Z"
+  },
+  {
+    "_id": "oid_04036",
+    "name": "AI Chatbot",
+    "description": "Initiative to deliver ai chatbot capabilities.",
+    "status": "on_hold",
+    "priority": "high",
+    "startDate": "2021-10-14T00:00:00Z",
+    "endDate": "2023-04-18T00:00:00Z",
+    "budget": 3000000,
+    "spentBudget": 2600000,
+    "techStack": [
+      "Java",
+      "Hibernate",
+      "Oracle DB"
+    ],
+    "leadId": "oid_03030",
+    "teamMemberIds": [
+      "oid_03074",
+      "oid_03017",
+      "oid_03088",
+      "oid_03030"
+    ],
+    "teamSize": 4,
+    "milestones": 8,
+    "completedMilestones": 6,
+    "tags": [
+      "data",
+      "customer-facing"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-10-14T00:00:00Z"
+  },
+  {
+    "_id": "oid_04037",
+    "name": "Recommendation Engine",
+    "description": "Initiative to deliver recommendation engine capabilities.",
+    "status": "planning",
+    "priority": "low",
+    "startDate": "2021-06-30T00:00:00Z",
+    "budget": 14800000,
+    "spentBudget": 10200000,
+    "techStack": [
+      "Java",
+      "Kafka",
+      "AWS",
+      "Kubernetes"
+    ],
+    "leadId": "oid_03067",
+    "teamMemberIds": [
+      "oid_03018",
+      "oid_03081",
+      "oid_03067",
+      "oid_03069",
+      "oid_03093",
+      "oid_03041",
+      "oid_03063",
+      "oid_03039",
+      "oid_03033"
+    ],
+    "teamSize": 9,
+    "milestones": 2,
+    "completedMilestones": 3,
+    "tags": [
+      "automation",
+      "frontend",
+      "customer-facing"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-06-30T00:00:00Z"
+  },
+  {
+    "_id": "oid_04038",
+    "name": "Fraud Detection",
+    "description": "Initiative to deliver fraud detection capabilities.",
+    "status": "completed",
+    "priority": "medium",
+    "startDate": "2022-07-28T00:00:00Z",
+    "endDate": "2023-07-08T00:00:00Z",
+    "budget": 5500000,
+    "spentBudget": 5000000,
+    "techStack": [
+      "Flutter",
+      "Firebase",
+      "GCP"
+    ],
+    "leadId": "oid_03053",
+    "teamMemberIds": [
+      "oid_03045",
+      "oid_03003",
+      "oid_03053",
+      "oid_03016",
+      "oid_03087",
+      "oid_03078"
+    ],
+    "teamSize": 6,
+    "milestones": 4,
+    "completedMilestones": 8,
+    "tags": [
+      "automation",
+      "frontend",
+      "ai-ml",
+      "security"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-07-28T00:00:00Z"
+  },
+  {
+    "_id": "oid_04039",
+    "name": "Risk Scoring Model",
+    "description": "Initiative to deliver risk scoring model capabilities.",
+    "status": "on_hold",
+    "priority": "critical",
+    "startDate": "2022-10-09T00:00:00Z",
+    "endDate": "2023-06-04T00:00:00Z",
+    "budget": 16100000,
+    "spentBudget": 1900000,
+    "techStack": [
+      "Python",
+      "FastAPI",
+      "MongoDB",
+      "Docker"
+    ],
+    "leadId": "oid_03044",
+    "teamMemberIds": [
+      "oid_03082",
+      "oid_03044",
+      "oid_03054",
+      "oid_03081"
+    ],
+    "teamSize": 4,
+    "milestones": 4,
+    "completedMilestones": 3,
+    "tags": [
+      "mobile",
+      "security",
+      "compliance"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-10-09T00:00:00Z"
+  },
+  {
+    "_id": "oid_04040",
+    "name": "Churn Predictor",
+    "description": "Initiative to deliver churn predictor capabilities.",
+    "status": "completed",
+    "priority": "low",
+    "startDate": "2022-04-01T00:00:00Z",
+    "endDate": "2022-12-02T00:00:00Z",
+    "budget": 19500000,
+    "spentBudget": 5400000,
+    "techStack": [
+      "Python",
+      "TensorFlow",
+      "AWS S3"
+    ],
+    "leadId": "oid_03094",
+    "teamMemberIds": [
+      "oid_03058",
+      "oid_03053",
+      "oid_03022",
+      "oid_03024",
+      "oid_03003",
+      "oid_03017",
+      "oid_03094",
+      "oid_03031",
+      "oid_03085",
+      "oid_03033"
+    ],
+    "teamSize": 10,
+    "milestones": 2,
+    "completedMilestones": 1,
+    "tags": [
+      "automation"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-04-01T00:00:00Z"
+  },
+  {
+    "_id": "oid_04041",
+    "name": "Mobile App Rewrite",
+    "description": "Initiative to deliver mobile app rewrite capabilities.",
+    "status": "planning",
+    "priority": "high",
+    "startDate": "2023-03-01T00:00:00Z",
+    "endDate": "2024-03-18T00:00:00Z",
+    "budget": 6800000,
+    "spentBudget": 5700000,
+    "techStack": [
+      "Angular",
+      "Spring Boot",
+      "MySQL"
+    ],
+    "leadId": "oid_03014",
+    "teamMemberIds": [
+      "oid_03098",
+      "oid_03011",
+      "oid_03014",
+      "oid_03034",
+      "oid_03080",
+      "oid_03020",
+      "oid_03084",
+      "oid_03050",
+      "oid_03040",
+      "oid_03030"
+    ],
+    "teamSize": 10,
+    "milestones": 6,
+    "completedMilestones": 2,
+    "tags": [
+      "backend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2023-03-01T00:00:00Z"
+  },
+  {
+    "_id": "oid_04042",
+    "name": "Progressive Web App",
+    "description": "Initiative to deliver progressive web app capabilities.",
+    "status": "completed",
+    "priority": "critical",
+    "startDate": "2023-06-04T00:00:00Z",
+    "endDate": "2024-04-02T00:00:00Z",
+    "budget": 12100000,
+    "spentBudget": 6800000,
+    "techStack": [
+      "Kotlin",
+      "Spring Boot",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03018",
+    "teamMemberIds": [
+      "oid_03070",
+      "oid_03035",
+      "oid_03071",
+      "oid_03057",
+      "oid_03018",
+      "oid_03090",
+      "oid_03023",
+      "oid_03076",
+      "oid_03077"
+    ],
+    "teamSize": 9,
+    "milestones": 4,
+    "completedMilestones": 7,
+    "tags": [
+      "frontend",
+      "automation"
+    ],
+    "clientFacing": false,
+    "createdAt": "2023-06-04T00:00:00Z"
+  },
+  {
+    "_id": "oid_04043",
+    "name": "Design System v2",
+    "description": "Initiative to deliver design system v2 capabilities.",
+    "status": "completed",
+    "priority": "medium",
+    "startDate": "2022-02-27T00:00:00Z",
+    "endDate": "2022-09-08T00:00:00Z",
+    "budget": 19900000,
+    "spentBudget": 8900000,
+    "techStack": [
+      "Flutter",
+      "Firebase",
+      "GCP"
+    ],
+    "leadId": "oid_03067",
+    "teamMemberIds": [
+      "oid_03039",
+      "oid_03002",
+      "oid_03001",
+      "oid_03067"
+    ],
+    "teamSize": 4,
+    "milestones": 6,
+    "completedMilestones": 0,
+    "tags": [
+      "automation",
+      "security",
+      "backend",
+      "ai-ml"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-02-27T00:00:00Z"
+  },
+  {
+    "_id": "oid_04044",
+    "name": "Accessibility Audit",
+    "description": "Initiative to deliver accessibility audit capabilities.",
+    "status": "completed",
+    "priority": "critical",
+    "startDate": "2022-09-04T00:00:00Z",
+    "endDate": "2023-03-01T00:00:00Z",
+    "budget": 5300000,
+    "spentBudget": 3600000,
+    "techStack": [
+      "React Native",
+      "Node.js",
+      "AWS",
+      "MongoDB"
+    ],
+    "leadId": "oid_03048",
+    "teamMemberIds": [
+      "oid_03071",
+      "oid_03048"
+    ],
+    "teamSize": 2,
+    "milestones": 3,
+    "completedMilestones": 2,
+    "tags": [
+      "ai-ml",
+      "infra",
+      "security",
+      "backend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-09-04T00:00:00Z"
+  },
+  {
+    "_id": "oid_04045",
+    "name": "UX Revamp",
+    "description": "Initiative to deliver ux revamp capabilities.",
+    "status": "in_progress",
+    "priority": "low",
+    "startDate": "2022-06-14T00:00:00Z",
+    "endDate": "2024-05-31T00:00:00Z",
+    "budget": 5300000,
+    "spentBudget": 1200000,
+    "techStack": [
+      "Angular",
+      "Spring Boot",
+      "MySQL"
+    ],
+    "leadId": "oid_03096",
+    "teamMemberIds": [
+      "oid_03037",
+      "oid_03084",
+      "oid_03096",
+      "oid_03069",
+      "oid_03035",
+      "oid_03053"
+    ],
+    "teamSize": 6,
+    "milestones": 2,
+    "completedMilestones": 7,
+    "tags": [
+      "security",
+      "automation",
+      "infra",
+      "data"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-06-14T00:00:00Z"
+  },
+  {
+    "_id": "oid_04046",
+    "name": "SOC 2 Compliance",
+    "description": "Initiative to deliver soc 2 compliance capabilities.",
+    "status": "in_progress",
+    "priority": "high",
+    "startDate": "2021-02-20T00:00:00Z",
+    "endDate": "2022-11-19T00:00:00Z",
+    "budget": 7700000,
+    "spentBudget": 1700000,
+    "techStack": [
+      "Terraform",
+      "Ansible",
+      "AWS",
+      "Jenkins"
+    ],
+    "leadId": "oid_03024",
+    "teamMemberIds": [
+      "oid_03024",
+      "oid_03014"
+    ],
+    "teamSize": 2,
+    "milestones": 3,
+    "completedMilestones": 1,
+    "tags": [
+      "backend",
+      "automation"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-02-20T00:00:00Z"
+  },
+  {
+    "_id": "oid_04047",
+    "name": "GDPR Tooling",
+    "description": "Initiative to deliver gdpr tooling capabilities.",
+    "status": "completed",
+    "priority": "critical",
+    "startDate": "2022-03-07T00:00:00Z",
+    "endDate": "2022-10-12T00:00:00Z",
+    "budget": 7300000,
+    "spentBudget": 1000000,
+    "techStack": [
+      "Kotlin",
+      "Spring Boot",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03019",
+    "teamMemberIds": [
+      "oid_03048",
+      "oid_03060",
+      "oid_03090",
+      "oid_03005",
+      "oid_03043",
+      "oid_03011",
+      "oid_03097",
+      "oid_03019",
+      "oid_03008"
+    ],
+    "teamSize": 9,
+    "milestones": 3,
+    "completedMilestones": 3,
+    "tags": [
+      "ai-ml",
+      "backend",
+      "frontend"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-03-07T00:00:00Z"
+  },
+  {
+    "_id": "oid_04048",
+    "name": "Penetration Testing",
+    "description": "Initiative to deliver penetration testing capabilities.",
+    "status": "on_hold",
+    "priority": "medium",
+    "startDate": "2023-03-01T00:00:00Z",
+    "endDate": "2024-08-25T00:00:00Z",
+    "budget": 2900000,
+    "spentBudget": 1600000,
+    "techStack": [
+      "Spring Boot",
+      "Kafka",
+      "Elasticsearch",
+      "Kibana"
+    ],
+    "leadId": "oid_03026",
+    "teamMemberIds": [
+      "oid_03095",
+      "oid_03005",
+      "oid_03026",
+      "oid_03059",
+      "oid_03099"
+    ],
+    "teamSize": 5,
+    "milestones": 4,
+    "completedMilestones": 2,
+    "tags": [
+      "compliance"
+    ],
+    "clientFacing": true,
+    "createdAt": "2023-03-01T00:00:00Z"
+  },
+  {
+    "_id": "oid_04049",
+    "name": "Vulnerability Scanner",
+    "description": "Initiative to deliver vulnerability scanner capabilities.",
+    "status": "completed",
+    "priority": "critical",
+    "startDate": "2022-05-08T00:00:00Z",
+    "endDate": "2023-05-29T00:00:00Z",
+    "budget": 6500000,
+    "spentBudget": 4200000,
+    "techStack": [
+      "Java",
+      "Spring Boot",
+      "MongoDB"
+    ],
+    "leadId": "oid_03047",
+    "teamMemberIds": [
+      "oid_03026",
+      "oid_03047",
+      "oid_03007",
+      "oid_03086",
+      "oid_03028",
+      "oid_03015"
+    ],
+    "teamSize": 6,
+    "milestones": 8,
+    "completedMilestones": 4,
+    "tags": [
+      "ai-ml"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-05-08T00:00:00Z"
+  },
+  {
+    "_id": "oid_04050",
+    "name": "SIEM Integration",
+    "description": "Initiative to deliver siem integration capabilities.",
+    "status": "planning",
+    "priority": "high",
+    "startDate": "2021-02-13T00:00:00Z",
+    "budget": 2800000,
+    "spentBudget": 2500000,
+    "techStack": [
+      "React",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03089",
+    "teamMemberIds": [
+      "oid_03089",
+      "oid_03077",
+      "oid_03020",
+      "oid_03048",
+      "oid_03099",
+      "oid_03012",
+      "oid_03032",
+      "oid_03021",
+      "oid_03064"
+    ],
+    "teamSize": 9,
+    "milestones": 4,
+    "completedMilestones": 2,
+    "tags": [
+      "data"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-02-13T00:00:00Z"
+  },
+  {
+    "_id": "oid_04051",
+    "name": "Inventory Manager",
+    "description": "Initiative to deliver inventory manager capabilities.",
+    "status": "cancelled",
+    "priority": "medium",
+    "startDate": "2023-03-19T00:00:00Z",
+    "endDate": "2023-09-30T00:00:00Z",
+    "budget": 19000000,
+    "spentBudget": 6500000,
+    "techStack": [
+      "React",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03003",
+    "teamMemberIds": [
+      "oid_03057",
+      "oid_03094",
+      "oid_03025",
+      "oid_03003",
+      "oid_03089",
+      "oid_03049",
+      "oid_03046"
+    ],
+    "teamSize": 7,
+    "milestones": 7,
+    "completedMilestones": 7,
+    "tags": [
+      "compliance",
+      "automation",
+      "infra"
+    ],
+    "clientFacing": true,
+    "createdAt": "2023-03-19T00:00:00Z"
+  },
+  {
+    "_id": "oid_04052",
+    "name": "Procurement Portal",
+    "description": "Initiative to deliver procurement portal capabilities.",
+    "status": "cancelled",
+    "priority": "high",
+    "startDate": "2021-12-23T00:00:00Z",
+    "endDate": "2022-04-14T00:00:00Z",
+    "budget": 7200000,
+    "spentBudget": 5900000,
+    "techStack": [
+      "Java",
+      "Spring Boot",
+      "MongoDB"
+    ],
+    "leadId": "oid_03038",
+    "teamMemberIds": [
+      "oid_03036",
+      "oid_03077",
+      "oid_03071",
+      "oid_03021",
+      "oid_03009",
+      "oid_03068",
+      "oid_03020",
+      "oid_03058",
+      "oid_03038"
+    ],
+    "teamSize": 9,
+    "milestones": 5,
+    "completedMilestones": 2,
+    "tags": [
+      "customer-facing"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-12-23T00:00:00Z"
+  },
+  {
+    "_id": "oid_04053",
+    "name": "Vendor Onboarding",
+    "description": "Initiative to deliver vendor onboarding capabilities.",
+    "status": "cancelled",
+    "priority": "critical",
+    "startDate": "2021-09-02T00:00:00Z",
+    "endDate": "2021-12-23T00:00:00Z",
+    "budget": 5300000,
+    "spentBudget": 5000000,
+    "techStack": [
+      "Kotlin",
+      "Spring Boot",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03085",
+    "teamMemberIds": [
+      "oid_03085",
+      "oid_03069",
+      "oid_03050"
+    ],
+    "teamSize": 3,
+    "milestones": 6,
+    "completedMilestones": 4,
+    "tags": [
+      "ai-ml",
+      "mobile",
+      "frontend"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-09-02T00:00:00Z"
+  },
+  {
+    "_id": "oid_04054",
+    "name": "Asset Tracker",
+    "description": "Initiative to deliver asset tracker capabilities.",
+    "status": "cancelled",
+    "priority": "medium",
+    "startDate": "2022-11-06T00:00:00Z",
+    "endDate": "2022-12-23T00:00:00Z",
+    "budget": 1300000,
+    "spentBudget": 200000,
+    "techStack": [
+      "Python",
+      "Apache Spark",
+      "Hadoop",
+      "HBase"
+    ],
+    "leadId": "oid_03017",
+    "teamMemberIds": [
+      "oid_03017",
+      "oid_03023"
+    ],
+    "teamSize": 2,
+    "milestones": 2,
+    "completedMilestones": 0,
+    "tags": [
+      "automation",
+      "compliance",
+      "security",
+      "backend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-11-06T00:00:00Z"
+  },
+  {
+    "_id": "oid_04055",
+    "name": "Facility Booking",
+    "description": "Initiative to deliver facility booking capabilities.",
+    "status": "in_progress",
+    "priority": "low",
+    "startDate": "2022-09-13T00:00:00Z",
+    "endDate": "2023-02-22T00:00:00Z",
+    "budget": 13000000,
+    "spentBudget": 12000000,
+    "techStack": [
+      "React",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03084",
+    "teamMemberIds": [
+      "oid_03027",
+      "oid_03084"
+    ],
+    "teamSize": 2,
+    "milestones": 6,
+    "completedMilestones": 6,
+    "tags": [
+      "backend",
+      "security",
+      "customer-facing"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-09-13T00:00:00Z"
+  },
+  {
+    "_id": "oid_04056",
+    "name": "Knowledge Base",
+    "description": "Initiative to deliver knowledge base capabilities.",
+    "status": "completed",
+    "priority": "medium",
+    "startDate": "2021-03-21T00:00:00Z",
+    "endDate": "2021-09-07T00:00:00Z",
+    "budget": 16500000,
+    "spentBudget": 14300000,
+    "techStack": [
+      "Kotlin",
+      "Spring Boot",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03068",
+    "teamMemberIds": [
+      "oid_03013",
+      "oid_03093",
+      "oid_03030",
+      "oid_03069",
+      "oid_03050",
+      "oid_03025",
+      "oid_03068",
+      "oid_03085",
+      "oid_03032",
+      "oid_03073"
+    ],
+    "teamSize": 10,
+    "milestones": 7,
+    "completedMilestones": 1,
+    "tags": [
+      "automation",
+      "ai-ml",
+      "frontend"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-03-21T00:00:00Z"
+  },
+  {
+    "_id": "oid_04057",
+    "name": "Internal Wiki",
+    "description": "Initiative to deliver internal wiki capabilities.",
+    "status": "in_progress",
+    "priority": "critical",
+    "startDate": "2022-07-18T00:00:00Z",
+    "endDate": "2023-12-01T00:00:00Z",
+    "budget": 10000000,
+    "spentBudget": 9800000,
+    "techStack": [
+      "React Native",
+      "Node.js",
+      "AWS",
+      "MongoDB"
+    ],
+    "leadId": "oid_03057",
+    "teamMemberIds": [
+      "oid_03044",
+      "oid_03085",
+      "oid_03021",
+      "oid_03069",
+      "oid_03077",
+      "oid_03057",
+      "oid_03046",
+      "oid_03041",
+      "oid_03071",
+      "oid_03042"
+    ],
+    "teamSize": 10,
+    "milestones": 6,
+    "completedMilestones": 3,
+    "tags": [
+      "ai-ml",
+      "compliance"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-07-18T00:00:00Z"
+  },
+  {
+    "_id": "oid_04058",
+    "name": "Onboarding Bot",
+    "description": "Initiative to deliver onboarding bot capabilities.",
+    "status": "completed",
+    "priority": "low",
+    "startDate": "2022-04-09T00:00:00Z",
+    "endDate": "2023-01-23T00:00:00Z",
+    "budget": 8200000,
+    "spentBudget": 3900000,
+    "techStack": [
+      "Java",
+      "Hibernate",
+      "Oracle DB"
+    ],
+    "leadId": "oid_03037",
+    "teamMemberIds": [
+      "oid_03001",
+      "oid_03093",
+      "oid_03005",
+      "oid_03037",
+      "oid_03077",
+      "oid_03003",
+      "oid_03067",
+      "oid_03018"
+    ],
+    "teamSize": 8,
+    "milestones": 8,
+    "completedMilestones": 5,
+    "tags": [
+      "security"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-04-09T00:00:00Z"
+  },
+  {
+    "_id": "oid_04059",
+    "name": "LMS Integration",
+    "description": "Initiative to deliver lms integration capabilities.",
+    "status": "planning",
+    "priority": "high",
+    "startDate": "2021-02-08T00:00:00Z",
+    "budget": 7000000,
+    "spentBudget": 1200000,
+    "techStack": [
+      "Python",
+      "scikit-learn",
+      "Pandas",
+      "Airflow"
+    ],
+    "leadId": "oid_03047",
+    "teamMemberIds": [
+      "oid_03020",
+      "oid_03018",
+      "oid_03034",
+      "oid_03047",
+      "oid_03075",
+      "oid_03032",
+      "oid_03030"
+    ],
+    "teamSize": 7,
+    "milestones": 6,
+    "completedMilestones": 3,
+    "tags": [
+      "mobile"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-02-08T00:00:00Z"
+  },
+  {
+    "_id": "oid_04060",
+    "name": "Skills Matrix Tool",
+    "description": "Initiative to deliver skills matrix tool capabilities.",
+    "status": "cancelled",
+    "priority": "high",
+    "startDate": "2023-04-20T00:00:00Z",
+    "endDate": "2023-06-13T00:00:00Z",
+    "budget": 1900000,
+    "spentBudget": 1200000,
+    "techStack": [
+      "React Native",
+      "Node.js",
+      "AWS",
+      "MongoDB"
+    ],
+    "leadId": "oid_03049",
+    "teamMemberIds": [
+      "oid_03005",
+      "oid_03094",
+      "oid_03074",
+      "oid_03049",
+      "oid_03011",
+      "oid_03100"
+    ],
+    "teamSize": 6,
+    "milestones": 8,
+    "completedMilestones": 1,
+    "tags": [
+      "customer-facing",
+      "backend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2023-04-20T00:00:00Z"
+  },
+  {
+    "_id": "oid_04061",
+    "name": "Real-time Notifications",
+    "description": "Initiative to deliver real-time notifications capabilities.",
+    "status": "planning",
+    "priority": "medium",
+    "startDate": "2021-11-09T00:00:00Z",
+    "budget": 14900000,
+    "spentBudget": 8400000,
+    "techStack": [
+      "Java",
+      "JUnit",
+      "Selenium",
+      "Maven"
+    ],
+    "leadId": "oid_03041",
+    "teamMemberIds": [
+      "oid_03041",
+      "oid_03070"
+    ],
+    "teamSize": 2,
+    "milestones": 3,
+    "completedMilestones": 0,
+    "tags": [
+      "automation",
+      "compliance",
+      "frontend",
+      "customer-facing"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-11-09T00:00:00Z"
+  },
+  {
+    "_id": "oid_04062",
+    "name": "Websocket Service",
+    "description": "Initiative to deliver websocket service capabilities.",
+    "status": "on_hold",
+    "priority": "low",
+    "startDate": "2021-06-01T00:00:00Z",
+    "endDate": "2022-01-12T00:00:00Z",
+    "budget": 7200000,
+    "spentBudget": 5200000,
+    "techStack": [
+      "Java",
+      "JUnit",
+      "Selenium",
+      "Maven"
+    ],
+    "leadId": "oid_03096",
+    "teamMemberIds": [
+      "oid_03011",
+      "oid_03061",
+      "oid_03074",
+      "oid_03096",
+      "oid_03007",
+      "oid_03071",
+      "oid_03052"
+    ],
+    "teamSize": 7,
+    "milestones": 8,
+    "completedMilestones": 2,
+    "tags": [
+      "automation",
+      "compliance"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-06-01T00:00:00Z"
+  },
+  {
+    "_id": "oid_04063",
+    "name": "Event Bus Migration",
+    "description": "Initiative to deliver event bus migration capabilities.",
+    "status": "on_hold",
+    "priority": "low",
+    "startDate": "2022-02-09T00:00:00Z",
+    "endDate": "2023-12-16T00:00:00Z",
+    "budget": 6700000,
+    "spentBudget": 3500000,
+    "techStack": [
+      "React Native",
+      "Node.js",
+      "AWS",
+      "MongoDB"
+    ],
+    "leadId": "oid_03095",
+    "teamMemberIds": [
+      "oid_03072",
+      "oid_03079",
+      "oid_03095",
+      "oid_03068",
+      "oid_03032"
+    ],
+    "teamSize": 5,
+    "milestones": 7,
+    "completedMilestones": 1,
+    "tags": [
+      "ai-ml"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-02-09T00:00:00Z"
+  },
+  {
+    "_id": "oid_04064",
+    "name": "Cache Layer",
+    "description": "Initiative to deliver cache layer capabilities.",
+    "status": "completed",
+    "priority": "critical",
+    "startDate": "2021-12-23T00:00:00Z",
+    "endDate": "2022-05-29T00:00:00Z",
+    "budget": 9400000,
+    "spentBudget": 8000000,
+    "techStack": [
+      "Angular",
+      "Spring Boot",
+      "MySQL"
+    ],
+    "leadId": "oid_03004",
+    "teamMemberIds": [
+      "oid_03045",
+      "oid_03077",
+      "oid_03084",
+      "oid_03004",
+      "oid_03099",
+      "oid_03040",
+      "oid_03022"
+    ],
+    "teamSize": 7,
+    "milestones": 2,
+    "completedMilestones": 3,
+    "tags": [
+      "mobile",
+      "data"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-12-23T00:00:00Z"
+  },
+  {
+    "_id": "oid_04065",
+    "name": "Search Platform",
+    "description": "Initiative to deliver search platform capabilities.",
+    "status": "planning",
+    "priority": "low",
+    "startDate": "2023-01-28T00:00:00Z",
+    "endDate": "2023-08-23T00:00:00Z",
+    "budget": 18200000,
+    "spentBudget": 7900000,
+    "techStack": [
+      "Terraform",
+      "Ansible",
+      "AWS",
+      "Jenkins"
+    ],
+    "leadId": "oid_03002",
+    "teamMemberIds": [
+      "oid_03080",
+      "oid_03019",
+      "oid_03037",
+      "oid_03002",
+      "oid_03044"
+    ],
+    "teamSize": 5,
+    "milestones": 2,
+    "completedMilestones": 5,
+    "tags": [
+      "compliance",
+      "infra"
+    ],
+    "clientFacing": true,
+    "createdAt": "2023-01-28T00:00:00Z"
+  },
+  {
+    "_id": "oid_04066",
+    "name": "Multi-tenant SaaS",
+    "description": "Initiative to deliver multi-tenant saas capabilities.",
+    "status": "completed",
+    "priority": "low",
+    "startDate": "2022-07-16T00:00:00Z",
+    "endDate": "2023-05-19T00:00:00Z",
+    "budget": 10100000,
+    "spentBudget": 3300000,
+    "techStack": [
+      "Python",
+      "TensorFlow",
+      "AWS S3"
+    ],
+    "leadId": "oid_03089",
+    "teamMemberIds": [
+      "oid_03089",
+      "oid_03090",
+      "oid_03086",
+      "oid_03003"
+    ],
+    "teamSize": 4,
+    "milestones": 4,
+    "completedMilestones": 3,
+    "tags": [
+      "backend",
+      "automation",
+      "customer-facing"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-07-16T00:00:00Z"
+  },
+  {
+    "_id": "oid_04067",
+    "name": "White-label Solution",
+    "description": "Initiative to deliver white-label solution capabilities.",
+    "status": "on_hold",
+    "priority": "low",
+    "startDate": "2022-11-08T00:00:00Z",
+    "endDate": "2023-11-10T00:00:00Z",
+    "budget": 13500000,
+    "spentBudget": 8100000,
+    "techStack": [
+      "Python",
+      "Apache Spark",
+      "Hadoop",
+      "HBase"
+    ],
+    "leadId": "oid_03049",
+    "teamMemberIds": [
+      "oid_03014",
+      "oid_03003",
+      "oid_03038",
+      "oid_03084",
+      "oid_03050",
+      "oid_03030",
+      "oid_03049"
+    ],
+    "teamSize": 7,
+    "milestones": 6,
+    "completedMilestones": 8,
+    "tags": [
+      "data"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-11-08T00:00:00Z"
+  },
+  {
+    "_id": "oid_04068",
+    "name": "Partner API",
+    "description": "Initiative to deliver partner api capabilities.",
+    "status": "cancelled",
+    "priority": "high",
+    "startDate": "2022-04-14T00:00:00Z",
+    "endDate": "2022-10-04T00:00:00Z",
+    "budget": 14000000,
+    "spentBudget": 8600000,
+    "techStack": [
+      "Python",
+      "Apache Spark",
+      "Hadoop",
+      "HBase"
+    ],
+    "leadId": "oid_03032",
+    "teamMemberIds": [
+      "oid_03006",
+      "oid_03032"
+    ],
+    "teamSize": 2,
+    "milestones": 7,
+    "completedMilestones": 2,
+    "tags": [
+      "mobile"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-04-14T00:00:00Z"
+  },
+  {
+    "_id": "oid_04069",
+    "name": "Marketplace Integration",
+    "description": "Initiative to deliver marketplace integration capabilities.",
+    "status": "completed",
+    "priority": "low",
+    "startDate": "2022-10-03T00:00:00Z",
+    "endDate": "2023-05-05T00:00:00Z",
+    "budget": 10400000,
+    "spentBudget": 7200000,
+    "techStack": [
+      "Vue.js",
+      "Node.js",
+      "MongoDB",
+      "Redis"
+    ],
+    "leadId": "oid_03036",
+    "teamMemberIds": [
+      "oid_03065",
+      "oid_03036",
+      "oid_03008",
+      "oid_03081",
+      "oid_03033"
+    ],
+    "teamSize": 5,
+    "milestones": 3,
+    "completedMilestones": 5,
+    "tags": [
+      "data",
+      "frontend",
+      "ai-ml",
+      "security"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-10-03T00:00:00Z"
+  },
+  {
+    "_id": "oid_04070",
+    "name": "Webhook Manager",
+    "description": "Initiative to deliver webhook manager capabilities.",
+    "status": "on_hold",
+    "priority": "medium",
+    "startDate": "2021-09-04T00:00:00Z",
+    "endDate": "2023-07-12T00:00:00Z",
+    "budget": 11900000,
+    "spentBudget": 2700000,
+    "techStack": [
+      "Angular",
+      "Spring Boot",
+      "MySQL"
+    ],
+    "leadId": "oid_03040",
+    "teamMemberIds": [
+      "oid_03055",
+      "oid_03040",
+      "oid_03078",
+      "oid_03043"
+    ],
+    "teamSize": 4,
+    "milestones": 8,
+    "completedMilestones": 2,
+    "tags": [
+      "compliance",
+      "data",
+      "ai-ml"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-09-04T00:00:00Z"
+  },
+  {
+    "_id": "oid_04071",
+    "name": "CI/CD Overhaul",
+    "description": "Initiative to deliver ci/cd overhaul capabilities.",
+    "status": "cancelled",
+    "priority": "medium",
+    "startDate": "2021-06-11T00:00:00Z",
+    "endDate": "2021-09-30T00:00:00Z",
+    "budget": 3500000,
+    "spentBudget": 2100000,
+    "techStack": [
+      "Angular",
+      "Spring Boot",
+      "MySQL"
+    ],
+    "leadId": "oid_03093",
+    "teamMemberIds": [
+      "oid_03072",
+      "oid_03069",
+      "oid_03093"
+    ],
+    "teamSize": 3,
+    "milestones": 2,
+    "completedMilestones": 5,
+    "tags": [
+      "ai-ml",
+      "security",
+      "automation",
+      "mobile"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-06-11T00:00:00Z"
+  },
+  {
+    "_id": "oid_04072",
+    "name": "Kubernetes Migration",
+    "description": "Initiative to deliver kubernetes migration capabilities.",
+    "status": "in_progress",
+    "priority": "high",
+    "startDate": "2023-03-09T00:00:00Z",
+    "endDate": "2023-12-16T00:00:00Z",
+    "budget": 20000000,
+    "spentBudget": 15600000,
+    "techStack": [
+      "Python",
+      "scikit-learn",
+      "Pandas",
+      "Airflow"
+    ],
+    "leadId": "oid_03004",
+    "teamMemberIds": [
+      "oid_03017",
+      "oid_03024",
+      "oid_03004"
+    ],
+    "teamSize": 3,
+    "milestones": 3,
+    "completedMilestones": 3,
+    "tags": [
+      "backend",
+      "mobile"
+    ],
+    "clientFacing": true,
+    "createdAt": "2023-03-09T00:00:00Z"
+  },
+  {
+    "_id": "oid_04073",
+    "name": "Service Mesh",
+    "description": "Initiative to deliver service mesh capabilities.",
+    "status": "on_hold",
+    "priority": "medium",
+    "startDate": "2021-05-18T00:00:00Z",
+    "endDate": "2023-01-12T00:00:00Z",
+    "budget": 5400000,
+    "spentBudget": 300000,
+    "techStack": [
+      "React Native",
+      "Node.js",
+      "AWS",
+      "MongoDB"
+    ],
+    "leadId": "oid_03092",
+    "teamMemberIds": [
+      "oid_03092",
+      "oid_03084",
+      "oid_03048",
+      "oid_03024",
+      "oid_03050",
+      "oid_03063",
+      "oid_03061",
+      "oid_03018",
+      "oid_03021"
+    ],
+    "teamSize": 9,
+    "milestones": 4,
+    "completedMilestones": 6,
+    "tags": [
+      "infra",
+      "customer-facing"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-05-18T00:00:00Z"
+  },
+  {
+    "_id": "oid_04074",
+    "name": "Observability Platform",
+    "description": "Initiative to deliver observability platform capabilities.",
+    "status": "in_progress",
+    "priority": "critical",
+    "startDate": "2022-03-26T00:00:00Z",
+    "endDate": "2024-03-16T00:00:00Z",
+    "budget": 19300000,
+    "spentBudget": 18500000,
+    "techStack": [
+      "Go",
+      "gRPC",
+      "Kubernetes",
+      "Prometheus"
+    ],
+    "leadId": "oid_03100",
+    "teamMemberIds": [
+      "oid_03089",
+      "oid_03042",
+      "oid_03059",
+      "oid_03032",
+      "oid_03055",
+      "oid_03052",
+      "oid_03100",
+      "oid_03006",
+      "oid_03078"
+    ],
+    "teamSize": 9,
+    "milestones": 6,
+    "completedMilestones": 8,
+    "tags": [
+      "compliance"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-03-26T00:00:00Z"
+  },
+  {
+    "_id": "oid_04075",
+    "name": "SLO Dashboard",
+    "description": "Initiative to deliver slo dashboard capabilities.",
+    "status": "on_hold",
+    "priority": "critical",
+    "startDate": "2022-04-13T00:00:00Z",
+    "endDate": "2022-08-24T00:00:00Z",
+    "budget": 14700000,
+    "spentBudget": 13300000,
+    "techStack": [
+      "React",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03069",
+    "teamMemberIds": [
+      "oid_03067",
+      "oid_03069",
+      "oid_03051",
+      "oid_03095",
+      "oid_03006"
+    ],
+    "teamSize": 5,
+    "milestones": 4,
+    "completedMilestones": 7,
+    "tags": [
+      "security",
+      "customer-facing",
+      "automation",
+      "frontend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-04-13T00:00:00Z"
+  },
+  {
+    "_id": "oid_04076",
+    "name": "DB Performance Tuning",
+    "description": "Initiative to deliver db performance tuning capabilities.",
+    "status": "completed",
+    "priority": "medium",
+    "startDate": "2022-09-20T00:00:00Z",
+    "endDate": "2022-12-16T00:00:00Z",
+    "budget": 15400000,
+    "spentBudget": 10100000,
+    "techStack": [
+      "React Native",
+      "Node.js",
+      "AWS",
+      "MongoDB"
+    ],
+    "leadId": "oid_03093",
+    "teamMemberIds": [
+      "oid_03019",
+      "oid_03060",
+      "oid_03083",
+      "oid_03058",
+      "oid_03012",
+      "oid_03093",
+      "oid_03065",
+      "oid_03015",
+      "oid_03024",
+      "oid_03100"
+    ],
+    "teamSize": 10,
+    "milestones": 5,
+    "completedMilestones": 0,
+    "tags": [
+      "automation",
+      "infra"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-09-20T00:00:00Z"
+  },
+  {
+    "_id": "oid_04077",
+    "name": "Schema Migration Tool",
+    "description": "Initiative to deliver schema migration tool capabilities.",
+    "status": "planning",
+    "priority": "critical",
+    "startDate": "2021-09-14T00:00:00Z",
+    "budget": 3400000,
+    "spentBudget": 2400000,
+    "techStack": [
+      "Python",
+      "FastAPI",
+      "MongoDB",
+      "Docker"
+    ],
+    "leadId": "oid_03012",
+    "teamMemberIds": [
+      "oid_03092",
+      "oid_03094",
+      "oid_03016",
+      "oid_03012"
+    ],
+    "teamSize": 4,
+    "milestones": 7,
+    "completedMilestones": 8,
+    "tags": [
+      "ai-ml",
+      "compliance"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-09-14T00:00:00Z"
+  },
+  {
+    "_id": "oid_04078",
+    "name": "Backup Automation",
+    "description": "Initiative to deliver backup automation capabilities.",
+    "status": "in_progress",
+    "priority": "low",
+    "startDate": "2021-12-10T00:00:00Z",
+    "endDate": "2023-10-10T00:00:00Z",
+    "budget": 18700000,
+    "spentBudget": 10800000,
+    "techStack": [
+      "Flutter",
+      "Firebase",
+      "GCP"
+    ],
+    "leadId": "oid_03023",
+    "teamMemberIds": [
+      "oid_03021",
+      "oid_03019",
+      "oid_03023",
+      "oid_03099"
+    ],
+    "teamSize": 4,
+    "milestones": 7,
+    "completedMilestones": 7,
+    "tags": [
+      "data",
+      "frontend",
+      "customer-facing"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-12-10T00:00:00Z"
+  },
+  {
+    "_id": "oid_04079",
+    "name": "DR Runbook",
+    "description": "Initiative to deliver dr runbook capabilities.",
+    "status": "planning",
+    "priority": "low",
+    "startDate": "2022-09-30T00:00:00Z",
+    "budget": 13200000,
+    "spentBudget": 12700000,
+    "techStack": [
+      "Java",
+      "Hibernate",
+      "Oracle DB"
+    ],
+    "leadId": "oid_03059",
+    "teamMemberIds": [
+      "oid_03059",
+      "oid_03064"
+    ],
+    "teamSize": 2,
+    "milestones": 6,
+    "completedMilestones": 7,
+    "tags": [
+      "ai-ml",
+      "automation",
+      "frontend",
+      "security"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-09-30T00:00:00Z"
+  },
+  {
+    "_id": "oid_04080",
+    "name": "Infra Cost Optimizer",
+    "description": "Initiative to deliver infra cost optimizer capabilities.",
+    "status": "cancelled",
+    "priority": "high",
+    "startDate": "2021-10-12T00:00:00Z",
+    "endDate": "2022-04-18T00:00:00Z",
+    "budget": 15900000,
+    "spentBudget": 8500000,
+    "techStack": [
+      "Python",
+      "FastAPI",
+      "MongoDB",
+      "Docker"
+    ],
+    "leadId": "oid_03027",
+    "teamMemberIds": [
+      "oid_03027",
+      "oid_03007",
+      "oid_03024",
+      "oid_03019",
+      "oid_03008",
+      "oid_03084",
+      "oid_03045",
+      "oid_03005",
+      "oid_03086",
+      "oid_03074"
+    ],
+    "teamSize": 10,
+    "milestones": 2,
+    "completedMilestones": 6,
+    "tags": [
+      "data",
+      "security"
+    ],
+    "clientFacing": true,
+    "createdAt": "2021-10-12T00:00:00Z"
+  },
+  {
+    "_id": "oid_04081",
+    "name": "Contract Management",
+    "description": "Initiative to deliver contract management capabilities.",
+    "status": "on_hold",
+    "priority": "critical",
+    "startDate": "2023-02-07T00:00:00Z",
+    "endDate": "2024-12-20T00:00:00Z",
+    "budget": 2200000,
+    "spentBudget": 1800000,
+    "techStack": [
+      "Python",
+      "FastAPI",
+      "MongoDB",
+      "Docker"
+    ],
+    "leadId": "oid_03099",
+    "teamMemberIds": [
+      "oid_03005",
+      "oid_03012",
+      "oid_03099",
+      "oid_03039",
+      "oid_03042",
+      "oid_03048",
+      "oid_03049"
+    ],
+    "teamSize": 7,
+    "milestones": 5,
+    "completedMilestones": 2,
+    "tags": [
+      "security"
+    ],
+    "clientFacing": false,
+    "createdAt": "2023-02-07T00:00:00Z"
+  },
+  {
+    "_id": "oid_04082",
+    "name": "E-signature Flow",
+    "description": "Initiative to deliver e-signature flow capabilities.",
+    "status": "cancelled",
+    "priority": "low",
+    "startDate": "2022-02-28T00:00:00Z",
+    "endDate": "2022-08-11T00:00:00Z",
+    "budget": 15100000,
+    "spentBudget": 12400000,
+    "techStack": [
+      "Svelte",
+      "Deno",
+      "CockroachDB"
+    ],
+    "leadId": "oid_03079",
+    "teamMemberIds": [
+      "oid_03090",
+      "oid_03027",
+      "oid_03079",
+      "oid_03008",
+      "oid_03014"
+    ],
+    "teamSize": 5,
+    "milestones": 5,
+    "completedMilestones": 5,
+    "tags": [
+      "compliance",
+      "mobile",
+      "data"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-02-28T00:00:00Z"
+  },
+  {
+    "_id": "oid_04083",
+    "name": "Legal Document Store",
+    "description": "Initiative to deliver legal document store capabilities.",
+    "status": "cancelled",
+    "priority": "critical",
+    "startDate": "2023-01-17T00:00:00Z",
+    "endDate": "2023-07-27T00:00:00Z",
+    "budget": 1100000,
+    "spentBudget": 1100000,
+    "techStack": [
+      "Java",
+      "Kafka",
+      "AWS",
+      "Kubernetes"
+    ],
+    "leadId": "oid_03030",
+    "teamMemberIds": [
+      "oid_03064",
+      "oid_03024",
+      "oid_03079",
+      "oid_03030",
+      "oid_03091",
+      "oid_03038",
+      "oid_03025",
+      "oid_03001",
+      "oid_03016"
+    ],
+    "teamSize": 9,
+    "milestones": 8,
+    "completedMilestones": 6,
+    "tags": [
+      "backend",
+      "mobile",
+      "compliance",
+      "security"
+    ],
+    "clientFacing": true,
+    "createdAt": "2023-01-17T00:00:00Z"
+  },
+  {
+    "_id": "oid_04084",
+    "name": "IP Filing Tool",
+    "description": "Initiative to deliver ip filing tool capabilities.",
+    "status": "planning",
+    "priority": "low",
+    "startDate": "2022-10-18T00:00:00Z",
+    "endDate": "2023-07-28T00:00:00Z",
+    "budget": 8700000,
+    "spentBudget": 1500000,
+    "techStack": [
+      "Go",
+      "gRPC",
+      "Kubernetes",
+      "Prometheus"
+    ],
+    "leadId": "oid_03040",
+    "teamMemberIds": [
+      "oid_03033",
+      "oid_03009",
+      "oid_03040",
+      "oid_03039",
+      "oid_03065",
+      "oid_03071"
+    ],
+    "teamSize": 6,
+    "milestones": 5,
+    "completedMilestones": 0,
+    "tags": [
+      "infra",
+      "mobile"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-10-18T00:00:00Z"
+  },
+  {
+    "_id": "oid_04085",
+    "name": "Audit Trail",
+    "description": "Initiative to deliver audit trail capabilities.",
+    "status": "on_hold",
+    "priority": "high",
+    "startDate": "2022-05-01T00:00:00Z",
+    "endDate": "2022-09-04T00:00:00Z",
+    "budget": 14200000,
+    "spentBudget": 11900000,
+    "techStack": [
+      "React Native",
+      "Node.js",
+      "AWS",
+      "MongoDB"
+    ],
+    "leadId": "oid_03062",
+    "teamMemberIds": [
+      "oid_03062",
+      "oid_03020",
+      "oid_03081",
+      "oid_03059"
+    ],
+    "teamSize": 4,
+    "milestones": 8,
+    "completedMilestones": 8,
+    "tags": [
+      "customer-facing",
+      "mobile",
+      "backend"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-05-01T00:00:00Z"
+  },
+  {
+    "_id": "oid_04086",
+    "name": "Budget Tracker",
+    "description": "Initiative to deliver budget tracker capabilities.",
+    "status": "cancelled",
+    "priority": "medium",
+    "startDate": "2022-12-03T00:00:00Z",
+    "endDate": "2023-03-27T00:00:00Z",
+    "budget": 14100000,
+    "spentBudget": 10000000,
+    "techStack": [
+      "Python",
+      "TensorFlow",
+      "AWS S3"
+    ],
+    "leadId": "oid_03044",
+    "teamMemberIds": [
+      "oid_03009",
+      "oid_03020",
+      "oid_03036",
+      "oid_03004",
+      "oid_03044",
+      "oid_03049",
+      "oid_03081"
+    ],
+    "teamSize": 7,
+    "milestones": 2,
+    "completedMilestones": 4,
+    "tags": [
+      "backend",
+      "security",
+      "ai-ml"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-12-03T00:00:00Z"
+  },
+  {
+    "_id": "oid_04087",
+    "name": "Expense Reporting",
+    "description": "Initiative to deliver expense reporting capabilities.",
+    "status": "on_hold",
+    "priority": "medium",
+    "startDate": "2023-06-18T00:00:00Z",
+    "endDate": "2024-05-16T00:00:00Z",
+    "budget": 1400000,
+    "spentBudget": 200000,
+    "techStack": [
+      "Terraform",
+      "Ansible",
+      "AWS",
+      "Jenkins"
+    ],
+    "leadId": "oid_03023",
+    "teamMemberIds": [
+      "oid_03058",
+      "oid_03039",
+      "oid_03028",
+      "oid_03068",
+      "oid_03023",
+      "oid_03015",
+      "oid_03048"
+    ],
+    "teamSize": 7,
+    "milestones": 2,
+    "completedMilestones": 7,
+    "tags": [
+      "infra",
+      "mobile"
+    ],
+    "clientFacing": false,
+    "createdAt": "2023-06-18T00:00:00Z"
+  },
+  {
+    "_id": "oid_04088",
+    "name": "Financial Forecasting",
+    "description": "Initiative to deliver financial forecasting capabilities.",
+    "status": "cancelled",
+    "priority": "medium",
+    "startDate": "2021-11-14T00:00:00Z",
+    "endDate": "2022-03-07T00:00:00Z",
+    "budget": 3800000,
+    "spentBudget": 300000,
+    "techStack": [
+      "Terraform",
+      "Ansible",
+      "AWS",
+      "Jenkins"
+    ],
+    "leadId": "oid_03087",
+    "teamMemberIds": [
+      "oid_03099",
+      "oid_03013",
+      "oid_03067",
+      "oid_03087"
+    ],
+    "teamSize": 4,
+    "milestones": 7,
+    "completedMilestones": 8,
+    "tags": [
+      "backend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-11-14T00:00:00Z"
+  },
+  {
+    "_id": "oid_04089",
+    "name": "Revenue Dashboard",
+    "description": "Initiative to deliver revenue dashboard capabilities.",
+    "status": "planning",
+    "priority": "high",
+    "startDate": "2022-12-05T00:00:00Z",
+    "endDate": "2024-04-02T00:00:00Z",
+    "budget": 3100000,
+    "spentBudget": 100000,
+    "techStack": [
+      "Python",
+      "scikit-learn",
+      "Pandas",
+      "Airflow"
+    ],
+    "leadId": "oid_03060",
+    "teamMemberIds": [
+      "oid_03043",
+      "oid_03060",
+      "oid_03006"
+    ],
+    "teamSize": 3,
+    "milestones": 7,
+    "completedMilestones": 3,
+    "tags": [
+      "infra",
+      "customer-facing",
+      "security"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-12-05T00:00:00Z"
+  },
+  {
+    "_id": "oid_04090",
+    "name": "Tax Automation",
+    "description": "Initiative to deliver tax automation capabilities.",
+    "status": "on_hold",
+    "priority": "low",
+    "startDate": "2022-11-19T00:00:00Z",
+    "endDate": "2023-06-17T00:00:00Z",
+    "budget": 14800000,
+    "spentBudget": 5300000,
+    "techStack": [
+      "Kotlin",
+      "Spring Boot",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03036",
+    "teamMemberIds": [
+      "oid_03020",
+      "oid_03021",
+      "oid_03036",
+      "oid_03015",
+      "oid_03002",
+      "oid_03080"
+    ],
+    "teamSize": 6,
+    "milestones": 6,
+    "completedMilestones": 5,
+    "tags": [
+      "data",
+      "security",
+      "infra"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-11-19T00:00:00Z"
+  },
+  {
+    "_id": "oid_04091",
+    "name": "Employee Self-Service",
+    "description": "Initiative to deliver employee self-service capabilities.",
+    "status": "planning",
+    "priority": "low",
+    "startDate": "2021-11-15T00:00:00Z",
+    "budget": 1700000,
+    "spentBudget": 1300000,
+    "techStack": [
+      "React",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03070",
+    "teamMemberIds": [
+      "oid_03070",
+      "oid_03057",
+      "oid_03007",
+      "oid_03017",
+      "oid_03004",
+      "oid_03061",
+      "oid_03087"
+    ],
+    "teamSize": 7,
+    "milestones": 5,
+    "completedMilestones": 6,
+    "tags": [
+      "customer-facing",
+      "automation"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-11-15T00:00:00Z"
+  },
+  {
+    "_id": "oid_04092",
+    "name": "Leave Management",
+    "description": "Initiative to deliver leave management capabilities.",
+    "status": "in_progress",
+    "priority": "medium",
+    "startDate": "2023-01-01T00:00:00Z",
+    "endDate": "2024-09-28T00:00:00Z",
+    "budget": 15000000,
+    "spentBudget": 2400000,
+    "techStack": [
+      "Terraform",
+      "Ansible",
+      "AWS",
+      "Jenkins"
+    ],
+    "leadId": "oid_03097",
+    "teamMemberIds": [
+      "oid_03097",
+      "oid_03098",
+      "oid_03060"
+    ],
+    "teamSize": 3,
+    "milestones": 5,
+    "completedMilestones": 4,
+    "tags": [
+      "automation",
+      "infra",
+      "compliance",
+      "frontend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "_id": "oid_04093",
+    "name": "Performance Review",
+    "description": "Initiative to deliver performance review capabilities.",
+    "status": "completed",
+    "priority": "critical",
+    "startDate": "2022-02-06T00:00:00Z",
+    "endDate": "2022-07-09T00:00:00Z",
+    "budget": 9400000,
+    "spentBudget": 6000000,
+    "techStack": [
+      "Python",
+      "TensorFlow",
+      "AWS S3"
+    ],
+    "leadId": "oid_03063",
+    "teamMemberIds": [
+      "oid_03042",
+      "oid_03059",
+      "oid_03063",
+      "oid_03004",
+      "oid_03009",
+      "oid_03061",
+      "oid_03015"
+    ],
+    "teamSize": 7,
+    "milestones": 8,
+    "completedMilestones": 5,
+    "tags": [
+      "compliance",
+      "frontend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2022-02-06T00:00:00Z"
+  },
+  {
+    "_id": "oid_04094",
+    "name": "360 Feedback Tool",
+    "description": "Initiative to deliver 360 feedback tool capabilities.",
+    "status": "planning",
+    "priority": "critical",
+    "startDate": "2021-11-30T00:00:00Z",
+    "endDate": "2023-03-09T00:00:00Z",
+    "budget": 10700000,
+    "spentBudget": 3100000,
+    "techStack": [
+      "Svelte",
+      "Deno",
+      "CockroachDB"
+    ],
+    "leadId": "oid_03039",
+    "teamMemberIds": [
+      "oid_03039",
+      "oid_03069",
+      "oid_03060"
+    ],
+    "teamSize": 3,
+    "milestones": 6,
+    "completedMilestones": 2,
+    "tags": [
+      "ai-ml",
+      "frontend",
+      "mobile",
+      "compliance"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-11-30T00:00:00Z"
+  },
+  {
+    "_id": "oid_04095",
+    "name": "Org Chart Builder",
+    "description": "Initiative to deliver org chart builder capabilities.",
+    "status": "on_hold",
+    "priority": "critical",
+    "startDate": "2022-08-04T00:00:00Z",
+    "endDate": "2023-10-18T00:00:00Z",
+    "budget": 3400000,
+    "spentBudget": 2100000,
+    "techStack": [
+      "Kotlin",
+      "Spring Boot",
+      "PostgreSQL"
+    ],
+    "leadId": "oid_03031",
+    "teamMemberIds": [
+      "oid_03089",
+      "oid_03031",
+      "oid_03023",
+      "oid_03085",
+      "oid_03086",
+      "oid_03010",
+      "oid_03095",
+      "oid_03092",
+      "oid_03074",
+      "oid_03063"
+    ],
+    "teamSize": 10,
+    "milestones": 8,
+    "completedMilestones": 7,
+    "tags": [
+      "security",
+      "ai-ml"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-08-04T00:00:00Z"
+  },
+  {
+    "_id": "oid_04096",
+    "name": "Customer Support Portal",
+    "description": "Initiative to deliver customer support portal capabilities.",
+    "status": "cancelled",
+    "priority": "low",
+    "startDate": "2021-04-22T00:00:00Z",
+    "endDate": "2021-10-21T00:00:00Z",
+    "budget": 15300000,
+    "spentBudget": 3800000,
+    "techStack": [
+      "Angular",
+      "Spring Boot",
+      "MySQL"
+    ],
+    "leadId": "oid_03018",
+    "teamMemberIds": [
+      "oid_03042",
+      "oid_03064",
+      "oid_03083",
+      "oid_03085",
+      "oid_03008",
+      "oid_03012",
+      "oid_03028",
+      "oid_03018"
+    ],
+    "teamSize": 8,
+    "milestones": 6,
+    "completedMilestones": 4,
+    "tags": [
+      "customer-facing",
+      "automation",
+      "infra",
+      "frontend"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-04-22T00:00:00Z"
+  },
+  {
+    "_id": "oid_04097",
+    "name": "Ticketing System",
+    "description": "Initiative to deliver ticketing system capabilities.",
+    "status": "completed",
+    "priority": "high",
+    "startDate": "2022-08-07T00:00:00Z",
+    "endDate": "2023-03-10T00:00:00Z",
+    "budget": 3700000,
+    "spentBudget": 400000,
+    "techStack": [
+      "Rust",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "leadId": "oid_03092",
+    "teamMemberIds": [
+      "oid_03092",
+      "oid_03045",
+      "oid_03012",
+      "oid_03075",
+      "oid_03002",
+      "oid_03079",
+      "oid_03066",
+      "oid_03052"
+    ],
+    "teamSize": 8,
+    "milestones": 2,
+    "completedMilestones": 8,
+    "tags": [
+      "frontend",
+      "security",
+      "backend"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-08-07T00:00:00Z"
+  },
+  {
+    "_id": "oid_04098",
+    "name": "SLA Monitor",
+    "description": "Initiative to deliver sla monitor capabilities.",
+    "status": "on_hold",
+    "priority": "medium",
+    "startDate": "2022-12-21T00:00:00Z",
+    "endDate": "2024-11-14T00:00:00Z",
+    "budget": 17400000,
+    "spentBudget": 12200000,
+    "techStack": [
+      "Angular",
+      "Spring Boot",
+      "MySQL"
+    ],
+    "leadId": "oid_03049",
+    "teamMemberIds": [
+      "oid_03081",
+      "oid_03041",
+      "oid_03092",
+      "oid_03049",
+      "oid_03052",
+      "oid_03056",
+      "oid_03070",
+      "oid_03028"
+    ],
+    "teamSize": 8,
+    "milestones": 6,
+    "completedMilestones": 6,
+    "tags": [
+      "ai-ml",
+      "data",
+      "security"
+    ],
+    "clientFacing": true,
+    "createdAt": "2022-12-21T00:00:00Z"
+  },
+  {
+    "_id": "oid_04099",
+    "name": "Feedback Loop",
+    "description": "Initiative to deliver feedback loop capabilities.",
+    "status": "in_progress",
+    "priority": "critical",
+    "startDate": "2021-01-12T00:00:00Z",
+    "endDate": "2021-06-24T00:00:00Z",
+    "budget": 12900000,
+    "spentBudget": 3500000,
+    "techStack": [
+      "Python",
+      "FastAPI",
+      "MongoDB",
+      "Docker"
+    ],
+    "leadId": "oid_03019",
+    "teamMemberIds": [
+      "oid_03019",
+      "oid_03093"
+    ],
+    "teamSize": 2,
+    "milestones": 7,
+    "completedMilestones": 6,
+    "tags": [
+      "customer-facing",
+      "ai-ml",
+      "data",
+      "infra"
+    ],
+    "clientFacing": false,
+    "createdAt": "2021-01-12T00:00:00Z"
+  },
+  {
+    "_id": "oid_04100",
+    "name": "NPS Dashboard",
+    "description": "Initiative to deliver nps dashboard capabilities.",
+    "status": "cancelled",
+    "priority": "medium",
+    "startDate": "2023-04-20T00:00:00Z",
+    "endDate": "2023-09-12T00:00:00Z",
+    "budget": 19200000,
+    "spentBudget": 18300000,
+    "techStack": [
+      "Java",
+      "JUnit",
+      "Selenium",
+      "Maven"
+    ],
+    "leadId": "oid_03078",
+    "teamMemberIds": [
+      "oid_03046",
+      "oid_03029",
+      "oid_03024",
+      "oid_03055",
+      "oid_03078",
+      "oid_03001",
+      "oid_03074",
+      "oid_03064"
+    ],
+    "teamSize": 8,
+    "milestones": 5,
+    "completedMilestones": 8,
+    "tags": [
+      "backend",
+      "customer-facing",
+      "automation"
+    ],
+    "clientFacing": false,
+    "createdAt": "2023-04-20T00:00:00Z"
+  }
+]
