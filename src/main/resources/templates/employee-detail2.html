@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Details</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 20px;
+}
+
+.details-container {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	background-color: #f9f9f9;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.detail-section {
+	margin-bottom: 20px;
+	padding: 15px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.detail-row {
+	margin: 10px 0;
+	padding: 8px;
+	border-bottom: 1px solid #eee;
+}
+
+.label {
+	font-weight: bold;
+	display: inline-block;
+	width: 150px;
+	color: #555;
+}
+
+.value {
+	display: inline-block;
+	color: #333;
+}
+
+.section-title {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px;
+	margin: -15px -15px 15px -15px;
+	border-radius: 5px 5px 0 0;
+}
+
+.back-link {
+	margin-top: 20px;
+	text-align: center;
+}
+
+button {
+	padding: 10px 20px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+
+.error-container {
+	max-width: 600px;
+	margin: 20px auto;
+	padding: 20px;
+	border: 1px solid #ff4444;
+	border-radius: 5px;
+	background-color: #ffeeee;
+	color: #ff4444;
+	text-align: center;
+}
+
+.status-badge {
+	display: inline-block;
+	padding: 3px 8px;
+	border-radius: 3px;
+	font-weight: bold;
+}
+
+.status-active {
+	background-color: #d4edda;
+	color: #155724;
+}
+
+.status-inactive {
+	background-color: #f8d7da;
+	color: #721c24;
+}
+
+.skill-tag {
+	display: inline-block;
+	background-color: #007bff;
+	color: white;
+	padding: 3px 8px;
+	margin: 2px;
+	border-radius: 3px;
+	font-size: 12px;
+}
+</style>
+</head>
+<body>
+	<h1>Employee Details</h1>
+
+	<div th:if="${error != null}" class="error-container">
+		<h2>Error!</h2>
+		<p th:text="${error}">Error message</p>
+		<button onclick="window.location.href='/employees'">Back to
+			Employee List</button>
+	</div>
+
+	<div th:unless="${error != null}" th:if="${employee != null}"
+		class="details-container">
+		<!-- Basic Information Section -->
+		<div class="detail-section">
+			<div class="section-title">Basic Information</div>
+			<div class="detail-row">
+				<span class="label">Employee ID:</span> <span class="value"
+					th:text="${employee.id}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Full Name:</span> <span class="value"
+					th:text="${employee.firstName + ' ' + employee.lastName}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Email:</span> <span class="value"
+					th:text="${employee.email}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Phone:</span> <span class="value"
+					th:text="${employee.phone}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Age:</span> <span class="value"
+					th:text="${employee.age}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Status:</span> <span class="value"> <span
+					th:class="'status-badge ' + (employee.status == 'ACTIVE' ? 'status-active' : 'status-inactive')"
+					th:text="${employee.status}"></span>
+				</span>
+			</div>
+		</div>
+
+		<!-- Work Information Section -->
+		<div class="detail-section">
+			<div class="section-title">Work Information</div>
+			<div class="detail-row">
+				<span class="label">Department ID:</span> <span class="value"
+					th:text="${employee.departmentId}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Role ID:</span> <span class="value"
+					th:text="${employee.roleId}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Salary:</span> <span class="value">$ <span
+					th:text="${employee.salary}"></span></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Joining Date:</span> <span class="value"
+					th:text="${#temporals.format(employee.joiningDate, 'dd-MM-yyyy')}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Remote Work:</span> <span class="value"
+					th:text="${employee.remote ? 'Yes' : 'No'}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Manager Approval:</span> <span class="value"
+					th:text="${employee.managerApproval ? 'Approved' : 'Pending'}"></span>
+			</div>
+		</div>
+
+		<!-- Skills & Projects Section -->
+		<div class="detail-section">
+			<div class="section-title">Skills & Projects</div>
+			<div class="detail-row">
+				<span class="label">Skills:</span>
+				<div class="value" style="display: inline-block;">
+					<span th:each="skill : ${employee.skills}" class="skill-tag"
+						th:text="${skill}"></span> <span
+						th:if="${employee.skills == null or employee.skills.empty}">No
+						skills listed</span>
+				</div>
+			</div>
+			<div class="detail-row">
+				<span class="label">Project IDs:</span>
+				<div class="value" style="display: inline-block;">
+					<span th:each="project : ${employee.projectIds}"
+						style="display: inline-block; margin: 2px;"> <span
+						th:text="${project}"></span><span th:if="${!projectStat.last}">,
+					</span>
+					</span> <span
+						th:if="${employee.projectIds == null or employee.projectIds.empty}">No
+						projects assigned</span>
+				</div>
+			</div>
+			<div class="detail-row">
+				<span class="label">Certifications:</span>
+				<div class="value" style="display: inline-block;">
+					<span th:each="cert : ${employee.certifications}"
+						style="display: inline-block; margin: 2px;"> <span
+						th:text="${cert}"></span><span th:if="${!certStat.last}">,
+					</span>
+					</span> <span
+						th:if="${employee.certifications == null or employee.certifications.empty}">No
+						certifications</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Performance Section -->
+		<div class="detail-section">
+			<div class="section-title">Performance</div>
+			<div class="detail-row">
+				<span class="label">Performance Score:</span> <span class="value"
+					th:text="${employee.performanceScore}"></span>
+			</div>
+		</div>
+
+		<!-- Address Section - FIXED with correct field name 'pincode' -->
+		<div class="detail-section" th:if="${employee.address != null}">
+			<div class="section-title">Address</div>
+			<div class="detail-row">
+				<span class="label">Street:</span> <span class="value"
+					th:text="${employee.address.street}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">City:</span> <span class="value"
+					th:text="${employee.address.city}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">State:</span> <span class="value"
+					th:text="${employee.address.state}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Pincode:</span> <span class="value"
+					th:text="${employee.address.pincode}"></span>
+			</div>
+			<div class="detail-row">
+				<span class="label">Country:</span> <span class="value"
+					th:text="${employee.address.country}"></span>
+			</div>
+		</div>
+	</div>
+
+	<div th:if="${error == null and employee == null}"
+		class="details-container">
+		<p>Loading employee details...</p>
+	</div>
+
+	<div class="back-link">
+		<button onclick="window.location.href='/employees'">Back to
+			Employee List</button>
+	</div>
+
+	<!-- API Links -->
+	<div
+		style="margin-top: 30px; text-align: center; font-size: 12px; color: #666;">
+		<p>API Endpoints:</p>
+		<a th:href="@{/api/v1/employees}">GET /api/v1/employees</a> | <a
+			th:href="@{/api/v1/employees/{id}(id=${employee.id})}"
+			th:if="${employee != null}">GET /api/v1/employees/${employee.id}</a>
+	</div>
+</body>
+</html>
