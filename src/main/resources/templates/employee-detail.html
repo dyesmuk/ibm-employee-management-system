@@ -167,11 +167,11 @@ button:hover {
 			</div>
 			<div class="detail-row">
 				<span class="label">Salary:</span> <span class="value">$ <span
-					th:text="${#numbers.formatDecimal(employee.salary, 0, 'COMMA')}"></span></span>
+					th:text="${employee.salary}"></span></span>
 			</div>
 			<div class="detail-row">
 				<span class="label">Joining Date:</span> <span class="value"
-					th:text="${#dates.format(employee.joiningDate, 'dd-MM-yyyy')}"></span>
+					th:text="${#temporals.format(employee.joiningDate, 'dd-MM-yyyy')}"></span>
 			</div>
 			<div class="detail-row">
 				<span class="label">Remote Work:</span> <span class="value"
@@ -230,7 +230,7 @@ button:hover {
 			</div>
 		</div>
 
-		<!-- Address Section -->
+		<!-- Address Section - FIXED with correct field name 'pincode' -->
 		<div class="detail-section" th:if="${employee.address != null}">
 			<div class="section-title">Address</div>
 			<div class="detail-row">
@@ -246,8 +246,8 @@ button:hover {
 					th:text="${employee.address.state}"></span>
 			</div>
 			<div class="detail-row">
-				<span class="label">Zip Code:</span> <span class="value"
-					th:text="${employee.address.zipCode}"></span>
+				<span class="label">Pincode:</span> <span class="value"
+					th:text="${employee.address.pincode}"></span>
 			</div>
 			<div class="detail-row">
 				<span class="label">Country:</span> <span class="value"

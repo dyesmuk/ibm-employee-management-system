@@ -1,7 +1,10 @@
 package com.ibm.ems.service;
 
+import java.lang.System.LoggerFinder;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +17,16 @@ public class EmployeeService {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	
+	Logger LOG = LoggerFactory.getLogger(this.getClass());
 
 	public List<Employee> findAll() {
+		LOG.info("findAll()");
 		return employeeRepository.findAll();
 	}
 
 	public Employee findById(String id) {
+		LOG.info("findById " + id);
 
 		return employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee", "id", id));
 
