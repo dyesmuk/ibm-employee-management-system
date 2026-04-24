@@ -2220,3 +2220,41 @@ org.springframework.security.authentication.BadCredentialsException: Bad credent
 2026-04-24T15:25:47.088+05:30  INFO 13076 --- [restartedMain] com.ibm.ems.App                          : IBM EMS started. Navigate to /swagger-ui.html
 2026-04-24T15:26:04.871+05:30  WARN 13076 --- [Thread-36] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-224]
 2026-04-24T15:26:04.938+05:30  INFO 13076 --- [restartedMain] com.ibm.ems.App                          : Starting IBM Employee Management System...
+2026-04-24T15:26:04.950+05:30  INFO 13076 --- [restartedMain] com.ibm.ems.App                          : Starting App using Java 17.0.18 with PID 13076 (D:\Projects\ibm-26-mar-2026\ibm-ems\ibm-ems-springboot\target\classes started by DELL in D:\Projects\ibm-26-mar-2026\ibm-ems\ibm-ems-springboot)
+2026-04-24T15:26:04.950+05:30 DEBUG 13076 --- [restartedMain] com.ibm.ems.App                          : Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-04-24T15:26:04.950+05:30  INFO 13076 --- [restartedMain] com.ibm.ems.App                          : The following 1 profile is active: "dev"
+2026-04-24T15:26:05.299+05:30  INFO 13076 --- [restartedMain] com.ibm.ems.security.JwtUtil             : JwtUtil initialised. Token expiry: 3600000 ms
+2026-04-24T15:26:05.311+05:30 DEBUG 13076 --- [restartedMain] com.ibm.ems.security.JwtFilter           : Filter 'jwtFilter' configured for use
+2026-04-24T15:26:05.350+05:30  WARN 13076 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-24T15:26:06.106+05:30  WARN 13076 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-24T15:26:06.252+05:30  INFO 13076 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6c775a34, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4edc580f, org.springframework.security.web.context.SecurityContextHolderFilter@77c1e2b2, org.springframework.security.web.header.HeaderWriterFilter@6ff45535, org.springframework.web.filter.CorsFilter@4908328f, org.springframework.security.web.authentication.logout.LogoutFilter@38d292e6, com.ibm.ems.security.JwtFilter@f36cb75, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7cfa4452, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4e4649bd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@51962e0, org.springframework.security.web.session.SessionManagementFilter@5a4546da, org.springframework.security.web.access.ExceptionTranslationFilter@df5f5be, org.springframework.security.web.access.intercept.AuthorizationFilter@427c0ea3]
+2026-04-24T15:26:06.408+05:30  INFO 13076 --- [restartedMain] com.ibm.ems.App                          : Started App in 1.468 seconds (process running for 3694.453)
+2026-04-24T15:26:06.409+05:30  INFO 13076 --- [restartedMain] com.ibm.ems.App                          : IBM EMS started. Navigate to /swagger-ui.html
+2026-04-24T15:39:27.525+05:30  INFO 13076 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-24T15:39:27.542+05:30 DEBUG 13076 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 15ms
+2026-04-24T15:39:27.542+05:30  INFO 13076 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 17ms
+2026-04-24T15:39:27.556+05:30  INFO 13076 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-24T15:39:27.569+05:30 DEBUG 13076 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 12ms
+2026-04-24T15:39:27.570+05:30  INFO 13076 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 14ms
+2026-04-24T15:39:46.744+05:30  INFO 13076 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-04-24T15:39:47.320+05:30  INFO 13076 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 576ms
+2026-04-24T15:41:02.663+05:30  INFO 13076 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-04-24T15:41:02.944+05:30  INFO 13076 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 281ms
+2026-04-24T15:45:47.130+05:30  WARN 13076 --- [http-nio-8080-exec-4] com.ibm.ems.security.JwtUtil             : JWT validation failed: MalformedJwtException
+2026-04-24T15:45:47.136+05:30  WARN 13076 --- [http-nio-8080-exec-10] com.ibm.ems.security.JwtUtil             : JWT validation failed: MalformedJwtException
+2026-04-24T15:45:52.655+05:30  INFO 13076 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-04-24T15:45:52.968+05:30  INFO 13076 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 313ms
+2026-04-24T15:46:07.687+05:30  WARN 13076 --- [http-nio-8080-exec-1] com.ibm.ems.security.JwtUtil             : JWT validation failed: MalformedJwtException
+2026-04-24T15:46:07.693+05:30  WARN 13076 --- [http-nio-8080-exec-3] com.ibm.ems.security.JwtUtil             : JWT validation failed: MalformedJwtException
+2026-04-24T15:47:08.419+05:30  INFO 13076 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-04-24T15:47:08.697+05:30  INFO 13076 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 278ms
+2026-04-24T15:47:17.817+05:30  INFO 13076 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-24T15:47:17.826+05:30 DEBUG 13076 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 8ms
+2026-04-24T15:47:17.827+05:30  INFO 13076 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 10ms
+2026-04-24T15:47:17.834+05:30  INFO 13076 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-24T15:47:17.843+05:30 DEBUG 13076 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 8ms
+2026-04-24T15:47:17.844+05:30  INFO 13076 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 10ms
+2026-04-24T15:47:21.901+05:30  INFO 13076 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-04-24T15:47:22.197+05:30  INFO 13076 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 296ms
+2026-04-24T15:49:43.521+05:30  WARN 13076 --- [HikariPool-10 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-10 - Thread starvation or clock leap detected (housekeeper delta=1m37s701ms342µs800ns).
+2026-04-24T16:04:12.073+05:30  WARN 13076 --- [HikariPool-10 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-10 - Thread starvation or clock leap detected (housekeeper delta=13m58s536ms618µs900ns).

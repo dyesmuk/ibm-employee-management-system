@@ -1,0 +1,186 @@
+/* =========================
+   THEME VARIABLES
+========================= */
+:root {
+  --bg: #121212;
+  --text: #e0e0e0;
+  --nav-bg: #1e1e1e;
+  --border: #333;
+  --link: #90caf9;
+  --input-bg: #1e1e1e;
+  --input-border: #444;
+
+  font-family: Calibri, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+nav {
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* =========================
+   LINKS (React Router Link → <a>)
+========================= */
+a {
+  color: var(--link);
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h1,
+h2,
+h3 {
+  margin-bottom: 15px;
+}
+
+/* =========================
+   FORM (Login/Register/Add/Update)
+========================= */
+form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: #1a1a1a;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 25%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text);
+}
+
+/* =========================
+   BUTTONS (Logout, Submit, Actions)
+========================= */
+button {
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text);
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #2a2a2a;
+}
+
+/* =========================
+   TABLE (Employee List)
+========================= */
+table {
+  width: 95%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #1f1f1f;
+}
+
+/* =========================
+   SECTION (Employee Details)
+========================= */
+section {
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+/* =========================
+   MAIN (Home / Logout pages)
+========================= */
+main {
+  text-align: center;
+  margin-top: 50px;
+  padding: 10px;
+}
+
+/* =========================
+   TEXT
+========================= */
+p {
+  margin-top: 10px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    display: block;
+    margin: 8px 0;
+  }
+
+  form {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  input,
+  button {
+    font-size: 16px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  section {
+    width: 90%;
+  }
+}

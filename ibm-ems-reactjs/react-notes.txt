@@ -1,0 +1,69 @@
+
+React JS Notes 
+
+	Component 
+	JSX 
+	State 
+	Props 
+
+	hook == method == function 
+
+	.ts or .tsx ?
+	if the code in a file returns JSX, 
+	then that file should be .tsx, 
+	else that file should be .ts. 
+
+	folders in src folder - 
+	components - 
+	pages - 
+	services - 
+	models - 
+	utils - 
+	config - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Login method:
+Email + + OTP?
+2FA / OTP:
+Are you okay with manual OTP entry during automation?
+Yes. 
+Environment:
+OS: Windows 
+Python version (approx)?
+Output:
+save to downloads 
+Naming format (e.g., date_tripid.pdf)?
+Date range:
+Example: 2026-13-04 to 2025-22-04 
+The script should just save the pdf files by going to each trip page. 
+No specific config is needed for this. 
+
+
+
+
+
+
+
+
+
+
