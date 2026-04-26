@@ -12,37 +12,12 @@ Initial data for the IBM EMS database. Each file maps directly to a MongoDB coll
 | `employee_projects.json` | `employee_projects` | 10 project assignments |
 | `projects.json` | `projects` | 5 projects (various statuses) |
 
-## Import with mongoimport
+## Import into MongoDB
 
-Run these commands from this directory against a running MongoDB instance:
-
-```bash
-DB=ems_db
-HOST=localhost:27017
-
-mongoimport --host $HOST --db $DB --collection roles           --file roles.json           --jsonArray
-mongoimport --host $HOST --db $DB --collection departments     --file departments.json     --jsonArray
-mongoimport --host $HOST --db $DB --collection employees       --file employees.json       --jsonArray
-mongoimport --host $HOST --db $DB --collection projects        --file projects.json        --jsonArray
-mongoimport --host $HOST --db $DB --collection employee_projects --file employee_projects.json --jsonArray
-```
+Import these json files into MongoDB using Compass. 
 
 > **Order matters**: import `roles` and `departments` before `employees`,
 > and `employees` + `projects` before `employee_projects`.
-
-## Import with Docker Compose
-
-If your MongoDB is running via `docker compose`, copy the files into the container first:
-
-```bash
-docker cp . ibm-ems-mongodb:/seed/
-
-docker exec ibm-ems-mongodb mongoimport --db ems_db --collection roles           --file /seed/roles.json           --jsonArray
-docker exec ibm-ems-mongodb mongoimport --db ems_db --collection departments     --file /seed/departments.json     --jsonArray
-docker exec ibm-ems-mongodb mongoimport --db ems_db --collection employees       --file /seed/employees.json       --jsonArray
-docker exec ibm-ems-mongodb mongoimport --db ems_db --collection projects        --file /seed/projects.json        --jsonArray
-docker exec ibm-ems-mongodb mongoimport --db ems_db --collection employee_projects --file /seed/employee_projects.json --jsonArray
-```
 
 ## ID Reference Map
 
