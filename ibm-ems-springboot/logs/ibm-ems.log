@@ -460,3 +460,4 @@ com.ibm.ems.exception.ConflictException: Project already exists with name = 'YON
 2026-04-26T20:44:59.618+05:30  INFO 8184 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
 2026-04-26T20:44:59.846+05:30 DEBUG 8184 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 227ms
 2026-04-26T20:44:59.847+05:30  INFO 8184 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 229ms
+2026-04-26T20:49:13.980+05:30  INFO 8184 --- [restartedMain] com.ibm.ems.App                          : Starting IBM Employee Management System...
