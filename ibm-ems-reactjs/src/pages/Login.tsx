@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const apiUrl = "http://localhost:8080/api/v1/auth/login";
@@ -10,12 +11,19 @@ const Login = () => {
     const [token, setToken] = useState("");
     const [postLogin, setPostLogin] = useState("");
 
-    const login = async () => {
+    const navigate = useNavigate();
+
+    const handleLogin = async () => {
+
         try {
             const res = await axios.post(apiUrl, { username, password });
             setToken(res.data.token);
             localStorage.setItem("token", res.data.token);
             setPostLogin("Login successful!");
+            console.log(token);
+            setTimeout(() => {
+                navigate("/home");
+            }, 2000);
 
         } catch (err) {
             console.error(err);
@@ -42,10 +50,9 @@ const Login = () => {
             />
             <br /><br />
 
-            <button onClick={login}>Login</button>
+            <button onClick={handleLogin}>Login</button>
 
             <br /><br />
-            <div>{token && token.substring(0, 30) + "..."}</div>
             <p>{postLogin && postLogin}</p>
         </>
     );

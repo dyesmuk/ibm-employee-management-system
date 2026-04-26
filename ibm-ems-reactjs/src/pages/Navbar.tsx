@@ -23,7 +23,6 @@ const Navbar = () => {
 
             <div>
                 <Link to="/about">About</Link>
-                <Link to="/employeelist">Employee List</Link>
 
                 {!isLoggedIn && (
                     <>
@@ -32,10 +31,13 @@ const Navbar = () => {
                     </>
                 )}
 
-                {isLoggedIn && (
+                {isLoggedIn && (<>
+                    <Link to="/login">Login</Link>
+                    <Link to="/employeelist">Employee List</Link>
                     <button onClick={handleLogout}>
                         Logout
                     </button>
+                </>
                 )}
             </div>
 
