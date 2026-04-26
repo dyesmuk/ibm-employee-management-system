@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ibm</groupId>
-    <artifactId>ibm-ems-rest-api</artifactId>
+    <artifactId>ibm-ems-springboot</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>IBM Employee Management System</name>

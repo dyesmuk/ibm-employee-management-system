@@ -1,15 +1,15 @@
 // AppRoutes.tsx 
 
 import { Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-// import Employee from "./pages/Employee";
-import Page404 from "./pages/Page404";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import EmployeeList from "./pages/EmployeeList";
-import EmployeeDetails from "./pages/EmployeeDetails";
-import AddEmployee from "./pages/AddEmployee";
+import Home from "../pages/Home";
+import About from "../pages/About";
+// import Employee from "../pages/Employee";
+import Page404 from "../pages/Page404";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
+import EmployeeList from "../pages/EmployeeList";
+import EmployeeDetails from "../pages/EmployeeDetails";
+import AddEmployee from "../pages/AddEmployee";
 
 const AppRoutes = () => {
 
