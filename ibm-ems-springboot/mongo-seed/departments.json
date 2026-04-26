@@ -1,0 +1,27 @@
+[
+  {
+    "_id": { "$oid": "664200000000000000000001" },
+    "name": "Engineering",
+    "description": "Core software development and architecture team"
+  },
+  {
+    "_id": { "$oid": "664200000000000000000002" },
+    "name": "Quality Assurance",
+    "description": "Testing, automation and quality control"
+  },
+  {
+    "_id": { "$oid": "664200000000000000000003" },
+    "name": "DevOps & Infrastructure",
+    "description": "Cloud infrastructure, CI/CD and platform reliability"
+  },
+  {
+    "_id": { "$oid": "664200000000000000000004" },
+    "name": "Human Resources",
+    "description": "Recruitment, onboarding, compliance and employee welfare"
+  },
+  {
+    "_id": { "$oid": "664200000000000000000005" },
+    "name": "Business Analysis",
+    "description": "Requirements gathering and stakeholder alignment"
+  }
+]

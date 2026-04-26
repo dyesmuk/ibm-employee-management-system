@@ -1,0 +1,50 @@
+[
+  {
+    "_id": { "$oid": "664100000000000000000001" },
+    "name": "SOFTWARE_ENGINEER",
+    "description": "Develops and maintains software applications",
+    "level": 2
+  },
+  {
+    "_id": { "$oid": "664100000000000000000002" },
+    "name": "SENIOR_ENGINEER",
+    "description": "Senior software engineer responsible for architecture decisions",
+    "level": 4
+  },
+  {
+    "_id": { "$oid": "664100000000000000000003" },
+    "name": "TECH_LEAD",
+    "description": "Leads a technical team and drives delivery",
+    "level": 6
+  },
+  {
+    "_id": { "$oid": "664100000000000000000004" },
+    "name": "ENGINEERING_MANAGER",
+    "description": "Manages engineering team, performance, and roadmap",
+    "level": 8
+  },
+  {
+    "_id": { "$oid": "664100000000000000000005" },
+    "name": "QA_ENGINEER",
+    "description": "Ensures quality through testing and automation",
+    "level": 2
+  },
+  {
+    "_id": { "$oid": "664100000000000000000006" },
+    "name": "DEVOPS_ENGINEER",
+    "description": "Manages CI/CD pipelines, infrastructure, and deployments",
+    "level": 3
+  },
+  {
+    "_id": { "$oid": "664100000000000000000007" },
+    "name": "HR_MANAGER",
+    "description": "Manages human resources, recruitment and compliance",
+    "level": 7
+  },
+  {
+    "_id": { "$oid": "664100000000000000000008" },
+    "name": "BUSINESS_ANALYST",
+    "description": "Bridges business requirements and technical delivery",
+    "level": 3
+  }
+]

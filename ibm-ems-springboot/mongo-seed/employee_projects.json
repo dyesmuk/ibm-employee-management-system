@@ -1,0 +1,72 @@
+[
+  {
+    "_id": { "$oid": "664500000000000000000001" },
+    "employeeId": "664300000000000000000001",
+    "projectId": "664400000000000000000001",
+    "assignedDate": { "$date": "2024-01-15T00:00:00.000Z" },
+    "projectRole": "Tech Lead"
+  },
+  {
+    "_id": { "$oid": "664500000000000000000002" },
+    "employeeId": "664300000000000000000002",
+    "projectId": "664400000000000000000001",
+    "assignedDate": { "$date": "2024-01-20T00:00:00.000Z" },
+    "projectRole": "Backend Developer"
+  },
+  {
+    "_id": { "$oid": "664500000000000000000003" },
+    "employeeId": "664300000000000000000003",
+    "projectId": "664400000000000000000001",
+    "assignedDate": { "$date": "2024-02-01T00:00:00.000Z" },
+    "projectRole": "Frontend Developer"
+  },
+  {
+    "_id": { "$oid": "664500000000000000000004" },
+    "employeeId": "664300000000000000000004",
+    "projectId": "664400000000000000000001",
+    "assignedDate": { "$date": "2024-01-20T00:00:00.000Z" },
+    "projectRole": "QA Engineer"
+  },
+  {
+    "_id": { "$oid": "664500000000000000000005" },
+    "employeeId": "664300000000000000000005",
+    "projectId": "664400000000000000000002",
+    "assignedDate": { "$date": "2024-03-01T00:00:00.000Z" },
+    "projectRole": "DevOps Lead"
+  },
+  {
+    "_id": { "$oid": "664500000000000000000006" },
+    "employeeId": "664300000000000000000002",
+    "projectId": "664400000000000000000002",
+    "assignedDate": { "$date": "2024-03-10T00:00:00.000Z" },
+    "projectRole": "Backend Developer"
+  },
+  {
+    "_id": { "$oid": "664500000000000000000007" },
+    "employeeId": "664300000000000000000007",
+    "projectId": "664400000000000000000003",
+    "assignedDate": { "$date": "2024-05-01T00:00:00.000Z" },
+    "projectRole": "Business Analyst"
+  },
+  {
+    "_id": { "$oid": "664500000000000000000008" },
+    "employeeId": "664300000000000000000008",
+    "projectId": "664400000000000000000003",
+    "assignedDate": { "$date": "2024-05-05T00:00:00.000Z" },
+    "projectRole": "Frontend Developer"
+  },
+  {
+    "_id": { "$oid": "664500000000000000000009" },
+    "employeeId": "664300000000000000000001",
+    "projectId": "664400000000000000000004",
+    "assignedDate": { "$date": "2023-09-01T00:00:00.000Z" },
+    "projectRole": "Tech Lead"
+  },
+  {
+    "_id": { "$oid": "664500000000000000000010" },
+    "employeeId": "664300000000000000000010",
+    "projectId": "664400000000000000000002",
+    "assignedDate": { "$date": "2024-03-01T00:00:00.000Z" },
+    "projectRole": "Engineering Manager"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "_id": { "$oid": "664400000000000000000001" },
+    "name": "YONO 2.0",
+    "description": "Next-generation mobile banking platform with UPI and investment features",
+    "startDate": { "$date": "2024-01-15T00:00:00.000Z" },
+    "endDate": { "$date": "2024-12-31T00:00:00.000Z" },
+    "status": "ACTIVE"
+  },
+  {
+    "_id": { "$oid": "664400000000000000000002" },
+    "name": "Cloud Migration Phase 2",
+    "description": "Migrate legacy on-premise services to IBM Cloud infrastructure",
+    "startDate": { "$date": "2024-03-01T00:00:00.000Z" },
+    "endDate": { "$date": "2025-06-30T00:00:00.000Z" },
+    "status": "ACTIVE"
+  },
+  {
+    "_id": { "$oid": "664400000000000000000003" },
+    "name": "HR Self-Service Portal",
+    "description": "Internal portal for employees to manage leave, payroll and benefits",
+    "startDate": { "$date": "2024-05-01T00:00:00.000Z" },
+    "endDate": { "$date": "2024-11-30T00:00:00.000Z" },
+    "status": "PLANNED"
+  },
+  {
+    "_id": { "$oid": "664400000000000000000004" },
+    "name": "API Gateway Consolidation",
+    "description": "Unified API gateway to standardise authentication and rate-limiting across services",
+    "startDate": { "$date": "2023-09-01T00:00:00.000Z" },
+    "endDate": { "$date": "2024-02-28T00:00:00.000Z" },
+    "status": "COMPLETED"
+  },
+  {
+    "_id": { "$oid": "664400000000000000000005" },
+    "name": "AI Fraud Detection",
+    "description": "Machine learning model for real-time transaction fraud detection",
+    "startDate": { "$date": "2024-07-01T00:00:00.000Z" },
+    "endDate": null,
+    "status": "PLANNED"
+  }
+]
