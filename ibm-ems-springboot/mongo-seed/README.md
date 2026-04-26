@@ -16,8 +16,7 @@ Initial data for the IBM EMS database. Each file maps directly to a MongoDB coll
 
 Import these json files into MongoDB using Compass. 
 
-> **Order matters**: import `roles` and `departments` before `employees`,
-> and `employees` + `projects` before `employee_projects`.
+> **Order matters**: import `roles` , `departments` , `employees`, `projects` , `employee_projects` in this order.
 
 ## ID Reference Map
 
