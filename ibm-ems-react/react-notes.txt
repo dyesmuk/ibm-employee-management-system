@@ -26,7 +26,7 @@ Suggested folders and files -
 
 src/
 │
-├── api/                          # Global HTTP layer (shared)
+├── api/                          
 │   ├── axios-client.ts
 │   ├── auth.api.ts
 │   ├── employee.api.ts
