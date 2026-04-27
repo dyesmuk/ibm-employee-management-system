@@ -1,4 +1,3 @@
-
 React JS Notes 
 
 	Component 
@@ -13,57 +12,53 @@ React JS Notes
 	then that file should be .tsx, 
 	else that file should be .ts. 
 
-	folders in src folder - 
-	components - 
-	pages - 
-	services - 
-	models - 
-	utils - 
-	config - 
+	order of progression - 
+	- full code in one single component 
+	- separate model 
+	- separate service 
+	- separate authorization 
+	- separate small components 
+	- separate styles 
+	- etc 
 
+Suggested folders and files - 
+	 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Login method:
-Email + + OTP?
-2FA / OTP:
-Are you okay with manual OTP entry during automation?
-Yes. 
-Environment:
-OS: Windows 
-Python version (approx)?
-Output:
-save to downloads 
-Naming format (e.g., date_tripid.pdf)?
-Date range:
-Example: 2026-13-04 to 2025-22-04 
-The script should just save the pdf files by going to each trip page. 
-No specific config is needed for this. 
-
-
-
-
-
-
-
-
-
-
+src/
+│
+├── api/                          # Global HTTP layer (shared)
+│   ├── axios-client.ts
+│   ├── auth.api.ts
+│   ├── employee.api.ts
+│   ├── department.api.ts
+│
+├── features/
+│
+│   ├── auth/
+│   │   ├── auth.service.ts
+│   │   ├── auth.types.ts
+│   │   ├── AuthContext.tsx
+│   │   ├── useAuth.ts
+│   │   ├── Login.tsx
+│   │
+│   ├── employees/
+│   │   ├── employee.service.ts
+│   │   ├── employee.types.ts
+│   │   ├── EmployeeList.tsx
+│   │   └── EmployeeForm.tsx
+│
+├── pages/
+│   ├── LoginPage.tsx
+│   ├── Dashboard.tsx
+│   ├── EmployeesPage.tsx
+│
+├── routes/
+│   ├── AppRoutes.tsx
+│   └── PrivateRoute.tsx
+│
+├── components/
+│   ├── Navbar.tsx
+│   ├── Table.tsx
+│
+├── App.tsx
+└── main.tsx
