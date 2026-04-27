@@ -64,9 +64,6 @@ src/
 │   │   │   ├── SalaryDisplay.tsx
 │   │   │   └── EmployeeSearchBar.tsx
 │   │   ├── hooks/
-│   │   │   ├── useEmployees.ts
-│   │   │   ├── useEmployee.ts
-│   │   │   ├── useEmployeeSearch.ts
 │   │   │   └── useEmployeeProjects.ts
 │   │   ├── services/
 │   │   │   └── employee.service.ts
@@ -83,10 +80,6 @@ src/
 │   │   │   ├── DepartmentList.tsx
 │   │   │   ├── DepartmentForm.tsx
 │   │   │   └── DepartmentEmployees.tsx
-│   │   ├── hooks/
-│   │   │   ├── useDepartments.ts
-│   │   │   ├── useDepartment.ts
-│   │   │   └── useDepartmentEmployees.ts
 │   │   ├── services/
 │   │   │   └── department.service.ts
 │   │   └── types/
@@ -103,11 +96,6 @@ src/
 │   │   │   ├── ProjectStatusBadge.tsx
 │   │   │   ├── AssignEmployeeModal.tsx
 │   │   │   └── ProjectEmployeesList.tsx
-│   │   ├── hooks/
-│   │   │   ├── useProjects.ts
-│   │   │   ├── useProject.ts
-│   │   │   ├── useProjectEmployees.ts
-│   │   │   └── useAssignEmployee.ts
 │   │   ├── services/
 │   │   │   └── project.service.ts
 │   │   └── types/
@@ -120,8 +108,6 @@ src/
 │       ├── components/
 │       │   ├── RoleList.tsx
 │       │   └── RoleForm.tsx
-│       ├── hooks/
-│       │   └── useRoles.ts
 │       ├── services/
 │       │   └── role.service.ts
 │       └── types/
@@ -146,10 +132,8 @@ src/
 │   │       └── Layout.tsx
 │   │
 │   ├── hooks/
-│   │   ├── useDebounce.ts
 │   │   ├── useLocalStorage.ts
-│   │   ├── usePagination.ts
-│   │   └── useToast.ts
+│   │   └── usePagination.ts
 │   │
 │   ├── services/
 │   │   ├── api-client.ts
