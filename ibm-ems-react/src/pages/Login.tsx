@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
     const apiUrl = "http://localhost:8080/api/v1/auth/login";
     const [username, setUsername] = useState("hr.admin");
     const [password, setPassword] = useState("Admin@IBM123");
