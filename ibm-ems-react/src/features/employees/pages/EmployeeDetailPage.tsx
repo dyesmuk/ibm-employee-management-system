@@ -4,7 +4,6 @@ import { useAuth } from '../../auth/context/AuthContext';
 import { employeeService } from '../employeeService';
 import { type Employee } from '../employee.types';
 
-
 const EmployeeDetailPage = () => {
     const { id } = useParams();
     const [employee, setEmployee] = useState<Employee | null>(null);
