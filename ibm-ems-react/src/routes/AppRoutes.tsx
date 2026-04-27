@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from '../features/auth/context/AuthContext';
-import PrivateRoute from './PrivateRoute';
 import LoginPage from '../features/auth/pages/LoginPage';
 import EmployeeDetailPage from '../features/employees/pages/EmployeeDetailPage';
 import EmployeeFormPage from '../features/employees/pages/EmployeeFormPage';
