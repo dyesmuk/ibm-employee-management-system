@@ -1,6 +1,6 @@
 
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/ibm-logo-transparent.png";
+import logo from "../assets/ibm-logo.png";
 
 const Navbar = () => {
 

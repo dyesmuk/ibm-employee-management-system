@@ -1,7 +1,7 @@
 // App.tsx
 
 // // using routing 
-import AppRoutes from "./AppRoutes";
+import AppRoutes from "./routes/AppRoutes";
 import Navbar from "./pages/Navbar";
 
 const App = () => {

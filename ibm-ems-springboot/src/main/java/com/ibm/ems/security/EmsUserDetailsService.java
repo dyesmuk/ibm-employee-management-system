@@ -23,23 +23,18 @@ public class EmsUserDetailsService {
 
 	@Value("${app.security.user.password}")
 	private String userPassword;
+
 	@Bean
-    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
+	public UserDetailsService userDetailsService(PasswordEncoder encoder) {
 
-        // ADMIN — HR team: full access including salary fields
-        UserDetails admin = User.builder()
-                .username(adminUsername)
-                .password(encoder.encode(adminPassword))
-                .roles("ADMIN", "USER")
-                .build();
+		// ADMIN — HR team: full access including salary fields
+		UserDetails admin = User.builder().username(adminUsername).password(encoder.encode(adminPassword))
+				.roles("ADMIN", "USER").build();
 
-        // USER — Regular employee: limited access, salary masked
-        UserDetails user = User.builder()
-                .username(username)
-                .password(encoder.encode(userPassword))
-                .roles("USER")
-                .build();
+		// USER — Regular employee: limited access, salary masked
+		UserDetails user = User.builder().username(username).password(encoder.encode(userPassword)).roles("USER")
+				.build();
 
-        return new InMemoryUserDetailsManager(admin, user);
-    }
+		return new InMemoryUserDetailsManager(admin, user);
+	}
 }
