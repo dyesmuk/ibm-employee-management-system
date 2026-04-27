@@ -16,7 +16,7 @@ Initial data for the IBM EMS database. Each file maps directly to a MongoDB coll
 
 Create database `ems_db` in MongoDB using Compass.  
 
-Import these json files into MongoDB using Compass. 
+Import data from these json files into MongoDB using Compass. 
 
 ### Order matters: Import `roles` , `departments` , `employees`, `projects` , `employee_projects` in this order.
 
