@@ -7,6 +7,7 @@ import About from "../pages/About";
 import Page404 from "../pages/Page404";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import Login2 from "../pages/Login2";
 import EmployeeList from "../pages/EmployeeList";
 import EmployeeDetails from "../pages/EmployeeDetails";
 import AddEmployee from "../pages/AddEmployee";
@@ -25,6 +26,7 @@ const AppRoutes = () => {
         <Route path="/addemployee" element={<AddEmployee />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login2" element={<Login2 />} />
         <Route path="/*" element={<Page404 />} />
       </Routes>
     </>

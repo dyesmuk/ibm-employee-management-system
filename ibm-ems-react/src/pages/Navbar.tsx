@@ -28,11 +28,11 @@ const Navbar = () => {
                     <>
                         <Link to="/register">Register</Link>
                         <Link to="/login">Login</Link>
+                        <Link to="/login2">Login2</Link>
                     </>
                 )}
 
                 {isLoggedIn && (<>
-                    <Link to="/login">Login</Link>
                     <Link to="/employeelist">Employee List</Link>
                     <button onClick={handleLogout}>
                         Logout
