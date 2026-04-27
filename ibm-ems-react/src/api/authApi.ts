@@ -14,3 +14,4 @@ export interface LoginResponse {
 export const loginApi = (data: LoginRequest) => {
     return axiosClient.post<LoginResponse>("/auth/login", data);
 };
+
