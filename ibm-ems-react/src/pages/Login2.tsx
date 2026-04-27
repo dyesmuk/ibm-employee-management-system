@@ -18,6 +18,7 @@ const Login = () => {
     const handleLogin = async () => {
         console.log('handleLogin');
         try {
+            // call to service 
             const res = await loginApi({ username, password });
 
             const token = res.data.token;

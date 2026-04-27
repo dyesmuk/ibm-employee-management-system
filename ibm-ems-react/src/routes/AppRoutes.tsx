@@ -7,6 +7,7 @@ import About from "../pages/About";
 import Page404 from "../pages/Page404";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+// new import 
 import Login2 from "../pages/Login2";
 import EmployeeList from "../pages/EmployeeList";
 import EmployeeDetails from "../pages/EmployeeDetails";

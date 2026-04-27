@@ -2,6 +2,7 @@
 
 import axiosClient from "./axiosClient";
 
+// type interfaces 
 export interface LoginRequest {
     username: string;
     password: string;
