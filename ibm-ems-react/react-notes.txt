@@ -21,44 +21,159 @@ React JS Notes
 	- separate styles 
 	- etc 
 
-Suggested folders and files - 
-	 
+Suggested detailed folder structure - 
 
 src/
-│
-├── api/                          
-│   ├── axios-client.ts
-│   ├── auth.api.ts
-│   ├── employee.api.ts
-│   ├── department.api.ts
+├── app/
+│   ├── providers/
+│   │   ├── AppProviders.tsx
+│   │   └── AuthProvider.tsx
+│   └── routes/
+│       ├── AppRoutes.tsx
+│       ├── PrivateRoute.tsx
+│       └── PublicRoute.tsx
 │
 ├── features/
-│
+│   │
 │   ├── auth/
-│   │   ├── auth.service.ts
-│   │   ├── auth.types.ts
-│   │   ├── AuthContext.tsx
-│   │   ├── useAuth.ts
-│   │   ├── Login.tsx
+│   │   ├── pages/
+│   │   │   └── LoginPage.tsx
+│   │   ├── components/
+│   │   │   ├── LoginForm.tsx
+│   │   │   └── ProtectedContent.tsx
+│   │   ├── hooks/
+│   │   │   ├── useAuth.ts
+│   │   │   └── useRole.ts
+│   │   ├── services/
+│   │   │   └── auth.service.ts
+│   │   ├── types/
+│   │   │   └── auth.types.ts
+│   │   └── utils/
+│   │       └── tokenStorage.ts
 │   │
 │   ├── employees/
-│   │   ├── employee.service.ts
-│   │   ├── employee.types.ts
-│   │   ├── EmployeeList.tsx
-│   │   └── EmployeeForm.tsx
+│   │   ├── pages/
+│   │   │   ├── EmployeesPage.tsx
+│   │   │   ├── EmployeeDetailPage.tsx
+│   │   │   ├── EmployeeFormPage.tsx
+│   │   │   └── EmployeeSearchPage.tsx
+│   │   ├── components/
+│   │   │   ├── EmployeeList.tsx
+│   │   │   ├── EmployeeForm.tsx
+│   │   │   ├── EmployeeCard.tsx
+│   │   │   ├── SalaryDisplay.tsx
+│   │   │   └── EmployeeSearchBar.tsx
+│   │   ├── hooks/
+│   │   │   ├── useEmployees.ts
+│   │   │   ├── useEmployee.ts
+│   │   │   ├── useEmployeeSearch.ts
+│   │   │   └── useEmployeeProjects.ts
+│   │   ├── services/
+│   │   │   └── employee.service.ts
+│   │   ├── types/
+│   │   │   └── employee.types.ts
+│   │   └── utils/
+│   │       └── employeeHelpers.ts
+│   │
+│   ├── departments/
+│   │   ├── pages/
+│   │   │   ├── DepartmentsPage.tsx
+│   │   │   └── DepartmentDetailPage.tsx
+│   │   ├── components/
+│   │   │   ├── DepartmentList.tsx
+│   │   │   ├── DepartmentForm.tsx
+│   │   │   └── DepartmentEmployees.tsx
+│   │   ├── hooks/
+│   │   │   ├── useDepartments.ts
+│   │   │   ├── useDepartment.ts
+│   │   │   └── useDepartmentEmployees.ts
+│   │   ├── services/
+│   │   │   └── department.service.ts
+│   │   └── types/
+│   │       └── department.types.ts
+│   │
+│   ├── projects/
+│   │   ├── pages/
+│   │   │   ├── ProjectsPage.tsx
+│   │   │   ├── ProjectDetailPage.tsx
+│   │   │   └── ProjectFormPage.tsx
+│   │   ├── components/
+│   │   │   ├── ProjectList.tsx
+│   │   │   ├── ProjectForm.tsx
+│   │   │   ├── ProjectStatusBadge.tsx
+│   │   │   ├── AssignEmployeeModal.tsx
+│   │   │   └── ProjectEmployeesList.tsx
+│   │   ├── hooks/
+│   │   │   ├── useProjects.ts
+│   │   │   ├── useProject.ts
+│   │   │   ├── useProjectEmployees.ts
+│   │   │   └── useAssignEmployee.ts
+│   │   ├── services/
+│   │   │   └── project.service.ts
+│   │   └── types/
+│   │       └── project.types.ts
+│   │
+│   └── roles/
+│       ├── pages/
+│       │   ├── RolesPage.tsx
+│       │   └── RoleFormPage.tsx
+│       ├── components/
+│       │   ├── RoleList.tsx
+│       │   └── RoleForm.tsx
+│       ├── hooks/
+│       │   └── useRoles.ts
+│       ├── services/
+│       │   └── role.service.ts
+│       └── types/
+│           └── role.types.ts
 │
-├── pages/
-│   ├── LoginPage.tsx
-│   ├── Dashboard.tsx
-│   ├── EmployeesPage.tsx
+├── shared/
+│   ├── components/
+│   │   ├── ui/
+│   │   │   ├── Button.tsx
+│   │   │   ├── Input.tsx
+│   │   │   ├── Select.tsx
+│   │   │   ├── Table.tsx
+│   │   │   ├── Modal.tsx
+│   │   │   ├── Card.tsx
+│   │   │   ├── Badge.tsx
+│   │   │   ├── Spinner.tsx
+│   │   │   ├── Pagination.tsx
+│   │   │   └── Toast.tsx
+│   │   └── layout/
+│   │       ├── Navbar.tsx
+│   │       ├── Sidebar.tsx
+│   │       └── Layout.tsx
+│   │
+│   ├── hooks/
+│   │   ├── useDebounce.ts
+│   │   ├── useLocalStorage.ts
+│   │   ├── usePagination.ts
+│   │   └── useToast.ts
+│   │
+│   ├── services/
+│   │   ├── api-client.ts
+│   │   └── api-error-handler.ts
+│   │
+│   ├── types/
+│   │   ├── common.types.ts
+│   │   ├── env.types.ts
+│   │   └── error.types.ts
+│   │
+│   ├── utils/
+│   │   ├── date-formatters.ts
+│   │   ├── currency-formatter.ts
+│   │   ├── validation.ts
+│   │   ├── constants.ts
+│   │   └── role-helpers.ts
+│   │
+│   └── config/
+│       ├── routes.ts
+│       └── api-endpoints.ts
 │
-├── routes/
-│   ├── AppRoutes.tsx
-│   └── PrivateRoute.tsx
-│
-├── components/
-│   ├── Navbar.tsx
-│   ├── Table.tsx
+├── styles/
+│   ├── globals.css
+│   └── variables.css
 │
 ├── App.tsx
-└── main.tsx
+└── main.tsx 
