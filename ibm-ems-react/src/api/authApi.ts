@@ -1,6 +1,6 @@
 // src/api/authApi.ts
 
-import axiosClient from "./axiosClient";
+import axiosClient from "./apiClient";
 
 // type interfaces 
 export interface LoginRequest {
@@ -15,4 +15,5 @@ export interface LoginResponse {
 export const loginApi = (data: LoginRequest) => {
     return axiosClient.post<LoginResponse>("/auth/login", data);
 };
+
 

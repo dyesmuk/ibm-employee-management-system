@@ -1,6 +1,6 @@
 
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/ibm-logo.png";
+import logo from "../../assets/ibm-logo.png";
 
 const Navbar = () => {
 
@@ -28,13 +28,13 @@ const Navbar = () => {
                     <>
                         <Link to="/register">Register</Link>
                         <Link to="/login">Login</Link>
-                        {/* added new route  */}
-                        <Link to="/login2">Login2</Link>
                     </>
                 )}
 
                 {isLoggedIn && (<>
-                    <Link to="/employeelist">Employee List</Link>
+                    <Link to="/employees">Employee List</Link>
+                    <Link to="/employees/new">Add Employee</Link>
+                    <Link to="/employees/search">Search Employee</Link>
                     <button onClick={handleLogout}>
                         Logout
                     </button>

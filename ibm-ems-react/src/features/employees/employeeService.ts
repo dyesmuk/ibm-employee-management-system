@@ -1,12 +1,35 @@
-import { getEmployeesApi } from "../../api/employeeApi";
-import type { Employee } from "../employees/employee.types";
+import apiClient from '../../api/apiClient';
 
-export const fetchEmployees = async (
-  page = 0,
-  size = 10
-): Promise<Employee[]> => {
-  const res = await getEmployeesApi(page, size);
+export const employeeService = {
+  getAll: (page = 0, size = 10, sort = 'lastName,asc') => {
+    return apiClient.get('/employees', {
+      params: { page, size, sort }
+    });
+  },
 
-  // No transformation needed — backend already gives fullName
-  return res.data.content;
+  getById: (id: string) => {
+    return apiClient.get(`/employees/${id}`);
+  },
+
+  create: (data: any) => {
+    return apiClient.post('/employees', data);
+  },
+
+  update: (id: string, data: any) => {
+    return apiClient.put(`/employees/${id}`, data);
+  },
+
+  delete: (id: string) => {
+    return apiClient.delete(`/employees/${id}`);
+  },
+
+  search: (name: string) => {
+    return apiClient.get('/employees/search', {
+      params: { name }
+    });
+  },
+
+  getByDepartment: (deptId: string) => {
+    return apiClient.get(`/employees/department/${deptId}`);
+  }
 };

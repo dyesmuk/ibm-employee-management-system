@@ -4,17 +4,37 @@ export interface Employee {
     lastName: string;
     fullName: string;
     email: string;
-    phone: string;
+    phone?: string;
+    salary?: number;
+    hireDate: string;
+    status: 'ACTIVE' | 'INACTIVE' | 'TERMINATED';
     departmentId: string;
     departmentName: string;
     roleId: string;
     roleName: string;
-    status: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
-export interface EmployeePageResponse {
+export interface EmployeeRequest {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone?: string;
+    salary: number;
+    hireDate: string;
+    status: 'ACTIVE' | 'INACTIVE' | 'TERMINATED';
+    departmentId: string;
+    roleId: string;
+}
+
+export interface PageResponse {
     content: Employee[];
-    totalElements: number;
     totalPages: number;
-    number: number; // current page
+    totalElements: number;
+    size: number;
+    number: number;
+    first: boolean;
+    last: boolean;
+    empty: boolean;
 }
