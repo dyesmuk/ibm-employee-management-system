@@ -7,14 +7,16 @@ const About = () => {
     const [output, setOutput] = useState({ username: "", password: "" });
 
     const handleInput = (evt) => {
+        console.log(evt.target);
         const { name, value } = evt.target;
         setInput({ ...input, [name]: value });
     };
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        setOutput(input);
+        setOutput(input); // call rest apis 
         console.log("Form submitted:", input);
+        setInput({ username: "", password: "" });
     };
 
     return (
@@ -24,11 +26,20 @@ const About = () => {
             <hr />
             <>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" value={input.username} 
-                    onChange={handleInput} autoFocus />
+                    <input
+                        type="text"
+                        name="username"
+                        value={input.username}
+                        onChange={handleInput}
+                        autoFocus
+                    />
                     <br />
-                    <input type="password" value={input.password}
-                        onChange={handleInput} />
+                    <input
+                        type="password"
+                        name="password"
+                        value={input.password}
+                        onChange={handleInput}
+                    />
                     <br />
                     <input type="submit" value="Submit" />
                 </form>
