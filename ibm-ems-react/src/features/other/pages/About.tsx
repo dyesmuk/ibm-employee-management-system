@@ -17,6 +17,7 @@ const About = () => {
     };
 
     const usernameValidator = (user: string) => {
+        // validations - required, min, max
         if (user.length > 4 && user.length < 20) {
             console.log("username validated");
             return true;
@@ -25,6 +26,7 @@ const About = () => {
             return false;
     };
     const passwordValidator = (pass) => {
+        // validations - required, min, max, one each - upper, lower, number, special char 
         if (pass.length > 4 && pass.length < 20) {
             console.log("password validated");
             return true;
