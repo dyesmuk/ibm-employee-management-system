@@ -51,7 +51,7 @@ const EmployeeFormPage = () => {
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
         setLoading(true);
         setError('');

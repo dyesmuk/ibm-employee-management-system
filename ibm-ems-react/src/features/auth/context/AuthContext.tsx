@@ -37,7 +37,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     localStorage.setItem('token', token);
 
-    // Decode and set user (without token)
     const userData = authService.getCurrentUser();
     setUser(userData);
   };

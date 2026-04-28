@@ -76,24 +76,13 @@ const EmployeesPage = () => {
         <table border={1}>
           <thead>
             <tr>
-              <th>ID</th>
               <th>Name</th>
-              <th>Email</th>
-              <th>Department</th>
-              <th>Role</th>
-              <th>Status</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {employees.map((emp) => (
               <tr key={emp.id}>
-                <td>{emp.id.slice(-6)}</td>
                 <td>{emp.fullName}</td>
-                <td>{emp.email}</td>
-                <td>{emp.departmentName}</td>
-                <td>{emp.roleName}</td>
-                <td>{emp.status}</td>
                 <td>
                   <button onClick={() => navigate(`/employees/${emp.id}`)}>
                     View

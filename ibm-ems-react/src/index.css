@@ -1,6 +1,5 @@
-/* =========================
-   THEME VARIABLES
-========================= */
+/* 
+
 :root {
   --bg: #121212;
   --text: #e0e0e0;
@@ -13,18 +12,12 @@
   font-family: Calibri, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-/* =========================
-   GLOBAL
-========================= */
 body {
   margin: 0;
   background-color: var(--bg);
   color: var(--text);
 }
 
-/* =========================
-   NAVBAR
-========================= */
 nav {
   background-color: var(--nav-bg);
   border-bottom: 1px solid var(--border);
@@ -35,9 +28,6 @@ nav {
   align-items: center;
 }
 
-/* =========================
-   LINKS (React Router Link → <a>)
-========================= */
 a {
   color: var(--link);
   text-decoration: none;
@@ -48,18 +38,13 @@ a:hover {
   text-decoration: underline;
 }
 
-/* =========================
-   HEADINGS
-========================= */
+
 h1,
 h2,
 h3 {
   margin-bottom: 15px;
 }
 
-/* =========================
-   FORM (Login/Register/Add/Update)
-========================= */
 form {
   max-width: 400px;
   margin: 40px auto;
@@ -84,9 +69,6 @@ input {
   color: var(--text);
 }
 
-/* =========================
-   BUTTONS (Logout, Submit, Actions)
-========================= */
 button {
   padding: 10px 16px;
   border-radius: 4px;
@@ -101,9 +83,6 @@ button:hover {
   background-color: #2a2a2a;
 }
 
-/* =========================
-   TABLE (Employee List)
-========================= */
 table {
   width: 95%;
   margin: 20px auto;
@@ -121,9 +100,6 @@ th {
   background-color: #1f1f1f;
 }
 
-/* =========================
-   SECTION (Employee Details)
-========================= */
 section {
   border: 1px solid var(--border);
   padding: 20px;
@@ -133,25 +109,16 @@ section {
   margin: 20px auto;
 }
 
-/* =========================
-   MAIN (Home / Logout pages)
-========================= */
 main {
   text-align: center;
   margin-top: 50px;
   padding: 10px;
 }
 
-/* =========================
-   TEXT
-========================= */
 p {
   margin-top: 10px;
 }
 
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
 @media (max-width: 768px) {
 
   nav {
@@ -165,7 +132,6 @@ p {
   }
 
   form {
-    width: 90%;
     margin: 20px auto;
   }
 
@@ -183,4 +149,6 @@ p {
   section {
     width: 90%;
   }
-}
+} 
+
+*/
