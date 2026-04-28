@@ -22,6 +22,7 @@ React JS Notes
 	- etc 
 
 Suggested detailed folder structure - 
+(Use simple structure, if needed.)
 
 src/
 ├── app/
@@ -161,3 +162,20 @@ src/
 │
 ├── App.tsx
 └── main.tsx 
+
+
+
+	forms validation 
+	redux 
+	nest.js 
+
+
+https://docs.google.com/document/d/1hySRGdGKbsf9iSwmCHXJ-jpefWzh65CVWV2bAFeZWDw/edit?usp=sharing
+
+
+
+
+
+
+
+
