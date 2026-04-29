@@ -1,0 +1,152 @@
+ReactJS Discussion 
+
+Fundas 
+
+1. What happens when a React component re-renders?
+Answer: The function/component runs again, JSX is recalculated, and React updates only changed parts in the DOM.
+
+2. What is JSX? Is it HTML?
+Answer: JSX is a syntax extension that looks like HTML but compiles to JavaScript (React.createElement).
+
+3. Explain: const [count, setCount] = useState(0);
+Answer: Declares state variable 'count' with initial value 0 and function 'setCount' to update it.
+
+4. Why do we need 'key' in lists?
+Answer: Helps React identify which items changed, added, or removed for efficient updates.
+
+5. Difference between props and state?
+Answer: Props are read-only inputs from parent; state is internal and mutable.
+
+6. Can a component change its own props?
+Answer: No, props are immutable.
+
+7. Role of useState?
+Answer: To manage state in functional components.
+
+8. What if we do count = count + 1?
+Answer: UI won't update because React state is not updated via setter.
+
+9. Why is React a library?
+Answer: It focuses only on UI, not full application structure.
+
+10. What is a functional component?
+Answer: A JavaScript function returning JSX.
+
+Concepts
+
+11. Controlled vs uncontrolled components?
+Answer: Controlled uses React state; uncontrolled uses DOM (refs).
+
+12. When use uncontrolled components?
+Answer: Simple forms, less re-renders, quick prototyping.
+
+13. What is lifting state up?
+Answer: Moving shared state to common parent.
+
+14. What is prop drilling?
+Answer: Passing props through many layers unnecessarily.
+
+15. What is useEffect?
+Answer: Hook to handle side effects.
+
+16. No dependency array in useEffect?
+Answer: Runs after every render.
+
+17. Empty dependency array?
+Answer: Runs once after initial render.
+
+18. Explain useEffect(() => {console.log("Hello")}, []);
+Answer: Runs once after mount.
+
+19. useEffect vs useLayoutEffect?
+Answer: useEffect runs after paint; useLayoutEffect runs before paint.
+
+20. React events vs JS events?
+Answer: React uses synthetic events.
+
+21. Why useRef?
+Answer: Access DOM or persist values without re-render.
+
+22. useRef vs useState?
+Answer: useRef doesn't trigger re-render; useState does.
+
+Depth
+
+23. Why Virtual DOM?
+Answer: Efficient updates by diffing.
+
+24. What is reconciliation?
+Answer: Process of updating DOM based on diff.
+
+25. What is batching?
+Answer: Grouping multiple state updates.
+
+26. Why state updates async?
+Answer: For performance optimization.
+
+27. What happens on setState?
+Answer: Schedules re-render and updates state.
+
+28. Why not use index as key?
+Answer: Causes UI bugs on reorder.
+
+29. What is memoization?
+Answer: Caching results to avoid recomputation.
+
+30. React.memo?
+Answer: Prevents unnecessary re-renders.
+
+31. useMemo vs useCallback?
+Answer: useMemo returns value; useCallback returns function.
+
+32. Why hooks over class components?
+Answer: Simpler logic reuse and less boilerplate.
+
+Real time 
+
+33. 10-input form: controlled or uncontrolled?
+Answer: Controlled for validation; uncontrolled for simplicity.
+
+34. Too many re-renders?
+Answer: Check state updates, props, dependencies.
+
+35. Share data between siblings?
+Answer: Lift state up or use context.
+
+36. Prop drilling solution?
+Answer: Context API or state management.
+
+37. API calling multiple times?
+Answer: Wrong dependency array.
+
+38. State updated but UI not changing?
+Answer: Direct mutation or incorrect logic.
+
+39. List not updating?
+Answer: Wrong key usage.
+
+40. Performance optimization?
+Answer: Memoization, splitting components, lazy loading.
+
+41. When split components?
+Answer: When logic/UI becomes complex.
+
+42. When avoid state?
+Answer: When value doesn't affect UI.
+
+More 
+
+43. Hooks inside loops/conditions?
+Answer: Not allowed; must be top-level.
+
+44. Hook inside normal function?
+Answer: Not allowed.
+
+45. Is Virtual DOM the only reason React is fast?
+Answer: No, also diffing and batching.
+
+46. Does React re-render full DOM?
+Answer: No, only changed parts.
+
+47. Can we use React without JSX?
+Answer: Yes, using React.createElement.
