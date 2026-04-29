@@ -10,10 +10,18 @@ import { FormsModule } from '@angular/forms';
 })
 export class Employee {
 
+  employeeList = [
+    { firstName: 'Sonu', lastName: 'Joshi', salary: 12.75 },
+    { firstName: 'Monu', lastName: 'Joshi', salary: 11.50 },
+    { firstName: 'Tonu', lastName: 'Joshi', salary: 15.25 },
+    { firstName: 'Ponu', lastName: 'Joshi', salary: 13.00 }
+  ];
+
   employeeData = { firstName: 'Sonu', lastName: 'Joshi', salary: 12.75 }
 
   demoClick = () => {
     console.log("button clicked!");
+    this.isLoggedIn = !this.isLoggedIn;
   };
 
   isDisabled = false;
@@ -25,7 +33,6 @@ export class Employee {
 
   login = () => {
     console.log(this.username, this.password);
-    this.isLoggedIn = true;
   };
 
 }

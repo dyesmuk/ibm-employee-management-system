@@ -8,11 +8,14 @@
             <input type="password" [(ngModel)]="password">
             <br />
             <button (click)="login()">Click</button>
+            <br />
+            <button (click)="demoClick()">Show or Hide</button>
         </div>
         <div *ngIf="isLoggedIn">
             <p> {{username}} </p>
             <p> {{password}} </p>
         </div>
+        <div *ngFor ></div>
     </div>
 </div>
 

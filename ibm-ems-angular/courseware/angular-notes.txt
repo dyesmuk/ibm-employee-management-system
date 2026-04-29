@@ -39,13 +39,33 @@
 	sharing data between component and template 
 	- four types 
 	component to template 
-	1. Interpolation - {{ }} - from component to template 
-	2. property binding [] - from component to template 
-	3. event binding ()- from template to component 
+	1. Interpolation - {{ }} - from component to template - display data 
+	2. property binding [] - from component to template - pass data to
+	   attributes to control the element 
+	3. event binding ()- from template to component - capture user actions 
 	4. two-way binding [()] - both way 
 
 	Pipe in Angular 
 	- transform data in template 
+
+
+	Directives 
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
