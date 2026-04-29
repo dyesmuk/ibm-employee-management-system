@@ -51,7 +51,7 @@
 
 	Directives 
 
-	
+	*ngIf, *ngFor, *ngSwitch 	
 
 
 
