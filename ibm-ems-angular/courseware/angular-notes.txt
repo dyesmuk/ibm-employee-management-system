@@ -1,0 +1,17 @@
+
+	Angular - Google 
+	ReactJS - Meta 
+	Bootstrap -Twitter ?
+
+	Key concepts in Angular - 
+
+	Components 
+	Templates 
+	Data binding 
+	Directives 
+
+	Decorators 
+	Routing 
+	HTTP
+
+	commands begin with ng 
