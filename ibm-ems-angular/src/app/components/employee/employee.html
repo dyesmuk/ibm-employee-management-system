@@ -1,4 +1,15 @@
 <div>
     <h1>Employee Component</h1>
-    <p>This is employee component.</p>
+    <p>Employee data:</p>
+    <p>Full Name: {{ `${employeeData.firstName} ${employeeData.lastName}` | uppercase }} </p>
+    <p>Salary: {{employeeData.salary | currency: 'INR' }}/- </p>
+    <button (click)="demoClick()">Click</button>
+    <br />
+    <button [disabled]="isDisabled">Click</button>
+    <div>
+        <input type="text" [(ngModel)]="username" >
+        
+    <p>Username: {{ username }} </p>
+    </div>
+
 </div>

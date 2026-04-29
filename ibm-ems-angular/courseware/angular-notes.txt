@@ -24,8 +24,28 @@
 	app.css - styles - css 
 	app.spec.ts - testing 
 
-	
+	Generate a component 
 
+	ng generate component components/employee 
+	ng g c components/employee 
+
+	ng generate service services/employeeService 
+	ng g s services/employeeService 
+	
+	ng generate ? services/employeeService 
+	ng g ? services/employeeService 
+	
+	Data binding - 
+	sharing data between component and template 
+	- four types 
+	component to template 
+	1. Interpolation - {{ }} - from component to template 
+	2. property binding [] - from component to template 
+	3. event binding ()- from template to component 
+	4. two-way binding [()] - both way 
+
+	Pipe in Angular 
+	- transform data in template 
 
 
 
