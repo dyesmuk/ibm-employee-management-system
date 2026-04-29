@@ -72,8 +72,8 @@ const About = () => {
 
         // // Uncontrolled form - 3 - extract values into component  
         const input = {
-            username: usernameRef.current.value,
-            password: passwordRef.current.value
+            username: usernameRef.current!.value,
+            password: passwordRef.current!.value
         };
 
         if (inputValidator(input)) {

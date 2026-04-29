@@ -1,0 +1,63 @@
+ReactJS Discussion 
+
+Fundas 
+
+1. What happens when a React component re-renders?
+2. What is JSX? Is it HTML?
+3. Explain: const [count, setCount] = useState(0);
+4. Why do we need 'key' in lists?
+5. Difference between props and state?
+6. Can a component change its own props?
+7. Role of useState?
+8. What if we do count = count + 1?
+9. Why is React a library?
+10. What is a functional component?
+
+Concepts 
+
+11. Controlled vs uncontrolled components?
+12. When use uncontrolled components?
+13. What is lifting state up?
+14. What is prop drilling?
+15. What is useEffect?
+16. No dependency array in useEffect?
+17. Empty dependency array?
+18. Explain useEffect(() => {console.log("Hello")}, []);
+19. useEffect vs useLayoutEffect?
+20. React events vs JS events?
+21. Why useRef?
+22. useRef vs useState?
+
+Depth 
+
+23. Why Virtual DOM?
+24. What is reconciliation?
+25. What is batching?
+26. Why state updates async?
+27. What happens on setState?
+28. Why not use index as key?
+29. What is memoization?
+30. React.memo?
+31. useMemo vs useCallback?
+32. Why hooks over class components?
+
+Real time 
+
+33. 10-input form: controlled or uncontrolled?
+34. Too many re-renders?
+35. Share data between siblings?
+36. Prop drilling solution?
+37. API calling multiple times?
+38. State updated but UI not changing?
+39. List not updating?
+40. Performance optimization?
+41. When split components?
+42. When avoid state?
+
+More 
+
+43. Hooks inside loops/conditions?
+44. Hook inside normal function?
+45. Is Virtual DOM the only reason React is fast?
+46. Does React re-render full DOM?
+47. Can we use React without JSX?

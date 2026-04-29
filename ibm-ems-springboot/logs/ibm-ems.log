@@ -1313,3 +1313,125 @@ com.ibm.ems.exception.ResourceNotFoundException: Role not found with id = '64a1b
 2026-04-28T09:39:10.915+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 590ms
 2026-04-28T09:39:43.377+05:30  WARN 22344 --- [http-nio-8080-exec-6] c.i.e.exception.GlobalExceptionHandler   : Validation failed: phone: Phone must be 10–15 digits, optionally starting with +; firstName: First name must be 2–50 characters; lastName: Last name must be 2–50 characters
 2026-04-28T09:39:43.390+05:30  WARN 22344 --- [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.ibm.ems.dto.employee.EmployeeResponse> com.ibm.ems.controller.EmployeeController.createEmployee(com.ibm.ems.dto.employee.EmployeeRequest) with 3 errors: [Field error in object 'employeeRequest' on field 'phone': rejected value [8989]; codes [Pattern.employeeRequest.phone,Pattern.phone,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employeeRequest.phone,phone]; arguments []; default message [phone],[Ljakarta.validation.constraints.Pattern$Flag;@1569a419,^[+]?[0-9]{10,15}$]; default message [Phone must be 10–15 digits, optionally starting with +]] [Field error in object 'employeeRequest' on field 'firstName': rejected value [a]; codes [Size.employeeRequest.firstName,Size.firstName,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employeeRequest.firstName,firstName]; arguments []; default message [firstName],50,2]; default message [First name must be 2–50 characters]] [Field error in object 'employeeRequest' on field 'lastName': rejected value [a]; codes [Size.employeeRequest.lastName,Size.lastName,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [employeeRequest.lastName,lastName]; arguments []; default message [lastName],50,2]; default message [Last name must be 2–50 characters]] ]
+2026-04-28T15:30:57.722+05:30  INFO 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-04-28T15:30:58.061+05:30  INFO 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 339ms
+2026-04-28T15:31:12.949+05:30  INFO 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.search(..)
+2026-04-28T15:31:12.973+05:30 DEBUG 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.searchEmployees(..) in 21ms
+2026-04-28T15:31:12.973+05:30  INFO 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.search(..) completed in 24ms
+2026-04-28T15:31:15.658+05:30  INFO 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.search(..)
+2026-04-28T15:31:15.728+05:30 DEBUG 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.searchEmployees(..) in 70ms
+2026-04-28T15:31:15.728+05:30  INFO 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.search(..) completed in 70ms
+2026-04-28T15:31:17.598+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getEmployeeById(..)
+2026-04-28T15:31:17.607+05:30 DEBUG 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getEmployeeById(..) in 9ms
+2026-04-28T15:31:17.607+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getEmployeeById(..) completed in 9ms
+2026-04-28T15:31:17.617+05:30  INFO 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getEmployeeById(..)
+2026-04-28T15:31:17.622+05:30 DEBUG 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getEmployeeById(..) in 5ms
+2026-04-28T15:31:17.623+05:30  INFO 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getEmployeeById(..) completed in 6ms
+2026-04-28T15:33:17.605+05:30  INFO 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:33:17.661+05:30 DEBUG 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 55ms
+2026-04-28T15:33:17.662+05:30  INFO 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 57ms
+2026-04-28T15:33:17.675+05:30  INFO 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:33:17.709+05:30 DEBUG 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 33ms
+2026-04-28T15:33:17.709+05:30  INFO 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 34ms
+2026-04-28T15:35:02.809+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:02.856+05:30 DEBUG 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 47ms
+2026-04-28T15:35:02.856+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 47ms
+2026-04-28T15:35:02.864+05:30  INFO 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:02.910+05:30 DEBUG 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 45ms
+2026-04-28T15:35:02.910+05:30  INFO 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 46ms
+2026-04-28T15:35:07.727+05:30  INFO 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:07.760+05:30 DEBUG 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 32ms
+2026-04-28T15:35:07.761+05:30  INFO 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 34ms
+2026-04-28T15:35:07.769+05:30  INFO 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:07.812+05:30 DEBUG 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 43ms
+2026-04-28T15:35:07.812+05:30  INFO 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 43ms
+2026-04-28T15:35:10.743+05:30  INFO 22344 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:10.778+05:30 DEBUG 22344 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 35ms
+2026-04-28T15:35:10.778+05:30  INFO 22344 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 35ms
+2026-04-28T15:35:10.787+05:30  INFO 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:10.823+05:30 DEBUG 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 36ms
+2026-04-28T15:35:10.824+05:30  INFO 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 37ms
+2026-04-28T15:35:12.738+05:30  INFO 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:12.773+05:30 DEBUG 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 34ms
+2026-04-28T15:35:12.773+05:30  INFO 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 35ms
+2026-04-28T15:35:12.780+05:30  INFO 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:12.813+05:30 DEBUG 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 32ms
+2026-04-28T15:35:12.813+05:30  INFO 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 33ms
+2026-04-28T15:35:15.740+05:30  INFO 22344 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:15.772+05:30 DEBUG 22344 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 31ms
+2026-04-28T15:35:15.773+05:30  INFO 22344 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 33ms
+2026-04-28T15:35:15.778+05:30  INFO 22344 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:15.817+05:30 DEBUG 22344 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 39ms
+2026-04-28T15:35:15.817+05:30  INFO 22344 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 39ms
+2026-04-28T15:35:19.776+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:19.811+05:30 DEBUG 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 35ms
+2026-04-28T15:35:19.812+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 36ms
+2026-04-28T15:35:19.819+05:30  INFO 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:19.849+05:30 DEBUG 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 30ms
+2026-04-28T15:35:19.849+05:30  INFO 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 30ms
+2026-04-28T15:35:25.728+05:30  INFO 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:25.754+05:30 DEBUG 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 26ms
+2026-04-28T15:35:25.754+05:30  INFO 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 26ms
+2026-04-28T15:35:25.760+05:30  INFO 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:25.796+05:30 DEBUG 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 35ms
+2026-04-28T15:35:25.796+05:30  INFO 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 36ms
+2026-04-28T15:35:26.742+05:30  INFO 22344 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:26.767+05:30 DEBUG 22344 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 25ms
+2026-04-28T15:35:26.767+05:30  INFO 22344 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 25ms
+2026-04-28T15:35:26.773+05:30  INFO 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:26.795+05:30 DEBUG 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 21ms
+2026-04-28T15:35:26.795+05:30  INFO 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 22ms
+2026-04-28T15:35:29.777+05:30  INFO 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:29.806+05:30 DEBUG 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 28ms
+2026-04-28T15:35:29.806+05:30  INFO 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 29ms
+2026-04-28T15:35:29.811+05:30  INFO 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:29.833+05:30 DEBUG 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 22ms
+2026-04-28T15:35:29.833+05:30  INFO 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 22ms
+2026-04-28T15:35:30.738+05:30  INFO 22344 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:30.759+05:30 DEBUG 22344 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 21ms
+2026-04-28T15:35:30.760+05:30  INFO 22344 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 22ms
+2026-04-28T15:35:30.766+05:30  INFO 22344 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:30.788+05:30 DEBUG 22344 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 22ms
+2026-04-28T15:35:30.788+05:30  INFO 22344 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 22ms
+2026-04-28T15:35:31.754+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:31.778+05:30 DEBUG 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 23ms
+2026-04-28T15:35:31.778+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 24ms
+2026-04-28T15:35:31.784+05:30  INFO 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:31.810+05:30 DEBUG 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 26ms
+2026-04-28T15:35:31.810+05:30  INFO 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 26ms
+2026-04-28T15:35:32.734+05:30  INFO 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:32.766+05:30 DEBUG 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 31ms
+2026-04-28T15:35:32.767+05:30  INFO 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 33ms
+2026-04-28T15:35:32.772+05:30  INFO 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:32.792+05:30 DEBUG 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 19ms
+2026-04-28T15:35:32.792+05:30  INFO 22344 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 20ms
+2026-04-28T15:35:39.654+05:30  INFO 22344 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:39.678+05:30 DEBUG 22344 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 23ms
+2026-04-28T15:35:39.679+05:30  INFO 22344 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 25ms
+2026-04-28T15:35:39.685+05:30  INFO 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:39.713+05:30 DEBUG 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 27ms
+2026-04-28T15:35:39.713+05:30  INFO 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 28ms
+2026-04-28T15:35:39.843+05:30  INFO 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:39.869+05:30 DEBUG 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 26ms
+2026-04-28T15:35:39.869+05:30  INFO 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 26ms
+2026-04-28T15:35:39.874+05:30  INFO 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:39.894+05:30 DEBUG 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 20ms
+2026-04-28T15:35:39.894+05:30  INFO 22344 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 20ms
+2026-04-28T15:35:42.904+05:30  INFO 22344 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:42.913+05:30 DEBUG 22344 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 9ms
+2026-04-28T15:35:42.914+05:30  INFO 22344 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 10ms
+2026-04-28T15:35:45.257+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:45.275+05:30 DEBUG 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 18ms
+2026-04-28T15:35:45.275+05:30  INFO 22344 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 18ms
+2026-04-28T15:35:48.768+05:30  INFO 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:48.789+05:30 DEBUG 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 20ms
+2026-04-28T15:35:48.789+05:30  INFO 22344 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 21ms
+2026-04-28T15:35:48.794+05:30  INFO 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getAllEmployees(..)
+2026-04-28T15:35:48.815+05:30 DEBUG 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getAllEmployees(..) in 20ms
+2026-04-28T15:35:48.815+05:30  INFO 22344 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getAllEmployees(..) completed in 21ms
+2026-04-28T15:35:51.100+05:30  INFO 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getEmployeeById(..)
+2026-04-28T15:35:51.104+05:30 DEBUG 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getEmployeeById(..) in 4ms
+2026-04-28T15:35:51.104+05:30  INFO 22344 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getEmployeeById(..) completed in 4ms
+2026-04-28T15:35:51.112+05:30  INFO 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] → EmployeeController.getEmployeeById(..)
+2026-04-28T15:35:51.116+05:30 DEBUG 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [SERVICE] EmployeeServiceImpl.getEmployeeById(..) in 3ms
+2026-04-28T15:35:51.116+05:30  INFO 22344 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] ← EmployeeController.getEmployeeById(..) completed in 4ms

@@ -178,4 +178,43 @@ https://docs.google.com/document/d/1hySRGdGKbsf9iSwmCHXJ-jpefWzh65CVWV2bAFeZWDw/
 
 
 
+const usernameRef = useRef();
+    const passwordRef = useRef();
+
+
+ const input = {
+            username: usernameRef.current.value,
+            password: passwordRef.current.value
+        };
+
+<input type="text" name="username" ref={usernameRef} />
+<input type="password" name="password" ref={passwordRef} />
+
+const usernameRef = useRef<HTMLInputElement>(null);
+const passwordRef = useRef<HTMLInputElement>(null);
+
+
+
+
+
+
+
+
+	using redux 
+	use RTK 
+	create store 
+	configure store 
+	create slice 
+	use store in components 
+
+
+
+
+
+
+
+
+
+
+
 
