@@ -1,10 +1,10 @@
-import { CurrencyPipe, UpperCasePipe, } from '@angular/common';
+import { CommonModule, CurrencyPipe, UpperCasePipe, } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
-  imports: [UpperCasePipe, CurrencyPipe, FormsModule],
+  imports: [UpperCasePipe, CurrencyPipe, FormsModule, CommonModule],
   templateUrl: './employee.html',
   styleUrl: './employee.css',
 })
@@ -21,8 +21,11 @@ export class Employee {
   username = "";
   password = "";
 
-  login = () => { 
-    // code here 
+  isLoggedIn = false;
+
+  login = () => {
+    console.log(this.username, this.password);
+    this.isLoggedIn = true;
   };
 
 }
