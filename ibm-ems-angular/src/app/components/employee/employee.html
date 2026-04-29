@@ -15,7 +15,27 @@
             <p> {{username}} </p>
             <p> {{password}} </p>
         </div>
-        <div *ngFor ></div>
+        <div>
+            <p *ngFor="let emp of employeeList">
+                {{ `${emp.firstName} ${emp.lastName}`}} {{ emp.salary }}
+            </p>
+        </div>
+
+        <div>
+            <h3>*ngSwitch</h3>
+            <div>
+                <div>
+                    <h3>Enter your role:</h3>
+                    <input type="text" [(ngModel)]="role" placeholder="admin / user / anything" />
+                </div>
+                <div [ngSwitch]="role">
+                    <p *ngSwitchCase="'admin'">Admin Panel</p>
+                    <p *ngSwitchCase="'user'">User Dashboard</p>
+                    <p *ngSwitchDefault>Guest</p>
+                </div>
+                <p><b>You entered:</b> {{ role }}</p>
+            </div>
+        </div>
     </div>
 </div>
 

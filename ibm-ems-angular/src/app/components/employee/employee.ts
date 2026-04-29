@@ -35,5 +35,7 @@ export class Employee {
     console.log(this.username, this.password);
   };
 
+  role = "";
+
 }
 
