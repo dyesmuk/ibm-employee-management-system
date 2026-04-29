@@ -19,6 +19,11 @@ export class Employee {
   isDisabled = false;
 
   username = "";
+  password = "";
+
+  login = () => { 
+    // code here 
+  };
 
 }
 
