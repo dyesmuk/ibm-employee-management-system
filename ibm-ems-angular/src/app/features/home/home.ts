@@ -13,6 +13,8 @@ export class Home {
 
   constructor(private userService: UserService) { }
 
+  // here 
+
   ngOnInit() {
     this.userService.getUserById().subscribe((data) => {
       this.user = data;
@@ -21,4 +23,5 @@ export class Home {
   }
 
 }
+
 
