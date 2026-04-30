@@ -1,7 +1,21 @@
 <div>
-    <p>home works!</p>
-    <p>{{user?.username}}</p>
-    <p>{{user?.email}}</p>
-    // here 
+    <h1>Home Component</h1>
+    <h3>User data appears on component load</h3>
+    <div *ngIf="userData">
+        <p>{{userData?.username}}</p>
+        <p>{{userData?.email}}</p>
+    </div>
+    <div>
+        <h3>User data as per search</h3>
+        <div *ngIf="user">
+            <p>{{user?.username}}</p>
+            <p>{{user?.email}}</p>
+        </div>
+
+        <div>
+            <input type="number" [(ngModel)]="id" />
+            <button (click)="getById()">Search</button>
+        </div>
+    </div>
 
 </div>
