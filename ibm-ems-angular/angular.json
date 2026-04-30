@@ -9,15 +9,7 @@
   "projects": {
     "ibm-ems-angular": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "css",
-          "type": "component"
-        },
-        "@schematics/angular:service": {
-          "type": "service"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
