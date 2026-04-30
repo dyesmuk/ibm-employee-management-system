@@ -3,5 +3,7 @@
   <p>Parent data: {{parentData}}</p>
   <p>Child data in parent: {{childDataInParent}}</p>
   <hr />
-  <app-child [dataFromParent]="parentData" (notify)="receiveDataFromChild($event)"></app-child>
+  <app-child [dataFromParent]="parentData" 
+  (notify)="receiveDataFromChild($event)"
+  ></app-child>
 </div>
