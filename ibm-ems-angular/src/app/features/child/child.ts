@@ -10,10 +10,10 @@ export class Child {
 
   // parent to  child
   @Input()
-  dataFromParent = "";
+  dataFromParent: string = "";
 
   // child to parent 
-  childData = "Monu";
+  childData: string = "Monu";
 
   @Output()
   notify = new EventEmitter<string>();
@@ -22,8 +22,4 @@ export class Child {
     console.log("sendDataToParent", this.childData);
     this.notify.emit(this.childData);
   }
-
 }
-
-
-

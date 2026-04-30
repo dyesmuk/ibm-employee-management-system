@@ -20,6 +20,6 @@ export class Parent {
     this.childDataInParent = message;
   }
 
-
 }
+
 
