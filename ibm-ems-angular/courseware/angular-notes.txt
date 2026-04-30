@@ -48,26 +48,143 @@
 	Pipe in Angular 
 	- transform data in template 
 
-
 	Directives 
 
 	*ngIf, *ngFor, *ngSwitch 	
 
 
+File and Folder structure for our ems project  - 
 
 
+src/
+│
+├── app/
+│   │
+│   ├── core/
+│   │   ├── services/
+│   │   │   └── auth.service.ts
+│   │   ├── interceptors/
+│   │   │   └── token.interceptor.ts
+│   │   ├── guards/
+│   │   │   └── auth.guard.ts
+│   │   └── models/
+│   │       ├── user.model.ts
+│   │       ├── employee.model.ts
+│   │       ├── department.model.ts
+│   │       └── project.model.ts
+│   │
+│   ├── features/
+│   │   ├── auth/
+│   │   │   └── login/
+│   │   │       ├── login.ts             
+│   │   │       ├── login.html
+│   │   │       ├── login.css
+│   │   │       ├── login.spec.ts
+│   │   │       └── login.routes.ts
+│   │   │
+│   │   ├── home/
+│   │   │   ├── home.ts                  
+│   │   │   ├── home.html
+│   │   │   ├── home.css
+│   │   │   └── home.spec.ts
+│   │   │
+│   │   ├── employee/
+│   │   │   ├── services/
+│   │   │   │   └── employee.service.ts
+│   │   │   ├── employee-list/
+│   │   │   │   ├── employee-list.ts
+│   │   │   │   ├── employee-list.html
+│   │   │   │   ├── employee-list.css
+│   │   │   │   └── employee-list.spec.ts
+│   │   │   ├── employee-form/
+│   │   │   │   ├── employee-form.ts
+│   │   │   │   ├── employee-form.html
+│   │   │   │   ├── employee-form.css
+│   │   │   │   └── employee-form.spec.ts
+│   │   │   └── employee.routes.ts
+│   │   │
+│   │   ├── department/
+│   │   │   ├── services/
+│   │   │   │   └── department.service.ts
+│   │   │   ├── department-list/
+│   │   │   │   ├── department-list.ts
+│   │   │   │   ├── department-list.html
+│   │   │   │   ├── department-list.css
+│   │   │   │   └── department-list.spec.ts
+│   │   │   ├── department-form/
+│   │   │   │   ├── department-form.ts
+│   │   │   │   ├── department-form.html
+│   │   │   │   ├── department-form.css
+│   │   │   │   └── department-form.spec.ts
+│   │   │   └── department.routes.ts
+│   │   │
+│   │   └── project/
+│   │       ├── services/
+│   │       │   └── project.service.ts
+│   │       ├── project-list/
+│   │       │   ├── project-list.ts
+│   │       │   ├── project-list.html
+│   │       │   ├── project-list.css
+│   │       │   └── project-list.spec.ts
+│   │       ├── project-form/
+│   │       │   ├── project-form.ts
+│   │       │   ├── project-form.html
+│   │       │   ├── project-form.css
+│   │       │   └── project-form.spec.ts
+│   │       └── project.routes.ts
+│   │
+│   ├── shared/
+│   │   ├── components/
+│   │   │   ├── navbar/
+│   │   │   │   ├── navbar.ts
+│   │   │   │   ├── navbar.html
+│   │   │   │   └── navbar.css
+│   │   │   └── footer/
+│   │   │       ├── footer.ts
+│   │   │       ├── footer.html
+│   │   │       └── footer.css
+│   │   ├── pipes/
+│   │   └── directives/
+│   │
+│   ├── app.ts                           
+│   ├── app.html                         
+│   ├── app.css                          
+│   ├── app.spec.ts                      
+│   ├── app.routes.ts                    
+│   ├── app.config.ts                    
+│   ├── app.config.server.ts             
+│   └── app.routes.server.ts             
+│
+├── assets/
+│   └── .gitkeep
+│
+├── environments/
+│   ├── environment.ts
+│   └── environment.prod.ts
+│
+├── index.html                           
+├── main.ts                              
+├── main.server.ts                       
+├── server.ts                            
+└── styles.css                           
 
+commands to run - 
 
+# Components
+ng g c features/home 
+ng g c shared/components/navbar 
+ng g c shared/components/footer 
+ng g c features/auth/login 
+ng g c features/department/department-list 
 
+# Services
+ng g s core/services/auth
+ng g s features/department/services/department.service
+ng g s features/department/services/login.service
 
-
-
-
-
-
-
-
-
+# Guard & Interceptor (for JWT)
+ng g guard core/guards/auth
+ng g interceptor core/interceptors/token
 
 
 
