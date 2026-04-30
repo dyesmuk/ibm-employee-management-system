@@ -9,7 +9,5 @@ import { Child } from '../child/child';
 })
 export class Parent {
   parentData = "Sonu";
-
-  // childDataInParent = "";
 }
 
