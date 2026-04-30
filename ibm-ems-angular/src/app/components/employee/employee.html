@@ -17,7 +17,7 @@
         </div>
         <div>
             <p *ngFor="let emp of employeeList">
-                {{ `${emp.firstName} ${emp.lastName}`}} {{ emp.salary }}
+                {{ `${emp.firstName} ${emp.lastName}` | uppercase}} {{ emp.salary | currency : 'INR' }}
             </p>
         </div>
 
