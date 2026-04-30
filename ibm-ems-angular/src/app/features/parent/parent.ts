@@ -8,6 +8,18 @@ import { Child } from '../child/child';
   styleUrl: './parent.css',
 })
 export class Parent {
+
+  // parent to  child
   parentData = "Sonu";
+
+  // child to parent 
+  childDataInParent = "";
+
+  receiveDataFromChild(message: string) {
+    console.log("receiveDataFromChild", message);
+    this.childDataInParent = message;
+  }
+
+
 }
 
