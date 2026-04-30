@@ -1,5 +1,7 @@
 <div>
   <h1>Parent Component</h1>
+  <p>Parent data: {{parentData}}</p>
+  <!-- <p>Child data in parent: {{childDataInParent}} </p> -->
   <hr />
-  <app-child></app-child>
+  <app-child [dataFromParent]="parentData"></app-child>
 </div>

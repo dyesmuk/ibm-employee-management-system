@@ -8,5 +8,8 @@ import { Child } from '../child/child';
   styleUrl: './parent.css',
 })
 export class Parent {
+  parentData = "Sonu";
 
+  // childDataInParent = "";
 }
+
