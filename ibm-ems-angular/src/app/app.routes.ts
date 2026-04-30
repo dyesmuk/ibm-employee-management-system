@@ -4,6 +4,8 @@ import { Parent } from './features/parent/parent';
 
 export const routes: Routes = [
     { path: 'home', component: Home },
-    { path: 'parent', component: Parent }
+    { path: 'parent', component: Parent },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    // { path: '**', component: Page404 }
 ];
 
