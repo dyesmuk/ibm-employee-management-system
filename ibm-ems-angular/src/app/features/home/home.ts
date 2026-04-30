@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../core/services/user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -8,4 +9,16 @@ import { Component } from '@angular/core';
 })
 export class Home {
 
+  user: any;
+
+  constructor(private userService: UserService) { }
+
+  ngOnInit() {
+    this.userService.getUserById().subscribe((data) => {
+      this.user = data;
+      console.log(this.user);
+    });
+  }
+
 }
+
