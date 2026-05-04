@@ -21,6 +21,7 @@ export class Login {
       next: (res: any) => {
         console.log(res);
 
+        // not so secure way 
         localStorage.setItem('token', res.token);
 
       },
@@ -30,3 +31,4 @@ export class Login {
     });
   }
 }
+

@@ -19,19 +19,17 @@ export class Home implements OnInit {
 
   ngOnInit() {
     this.userService.getUserById().subscribe((data) => {
-      this.userData = data;                    // ← on load data ✅
+      this.userData = data;
       console.log(this.userData?.username);
     });
   }
 
   getById() {
     if (!this.id) return;
-
     this.userService.getUserById(this.id).subscribe((data) => {
-      this.user = data;                        // ← search data ✅
+      this.user = data;
       console.log(this.user?.username);
     });
-
     this.id = undefined;
   }
 }

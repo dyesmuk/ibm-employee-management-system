@@ -1,0 +1,26 @@
+<div>
+    <h1>Create New Department</h1>
+    <div>
+        <h2>Create Department</h2>
+
+        <div>
+            <label>Name:</label>
+            <input type="text" [(ngModel)]="department.name" />
+        </div>
+
+        <div>
+            <label>Description:</label>
+            <input type="text" [(ngModel)]="department.description" />
+        </div>
+
+        <br />
+
+        <button (click)="createDepartment()">Create</button>
+
+        <hr />
+
+        <p *ngIf="message">{{ message }}</p>
+
+        <p *ngIf="error" style="color: red;">{{ error }}</p>
+    </div>
+</div>

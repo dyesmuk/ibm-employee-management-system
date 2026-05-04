@@ -1,1 +1,13 @@
-<p>department-details works!</p>
+<div>
+    <p>Department Details Component</p>
+    <input type="text" [(ngModel)]="id" />
+
+    <button (click)="searchDepartment()"> Search </button>
+
+    <div *ngIf="department">
+        <p>{{ department?.id }}</p>
+        <p>{{ department?.name }}</p>
+        <p>{{ department?.description }}</p>
+    </div>
+
+</div>
