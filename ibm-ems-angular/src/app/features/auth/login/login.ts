@@ -10,14 +10,14 @@ import { CommonModule } from '@angular/common';
 })
 export class Login {
 
-  email = '';
+  username = '';
   password = '';
   error = '';
 
   constructor(private authService: AuthService) { }
 
   login() {
-    this.authService.login(this.email, this.password).subscribe({
+    this.authService.login(this.username, this.password).subscribe({
       next: (res: any) => {
         console.log(res);
 
