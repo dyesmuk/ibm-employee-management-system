@@ -1,0 +1,82 @@
+Angular 21 Discussion
+
+Fundas
+
+1. What is Angular? Is it a framework or library?
+2. What is a component in Angular?
+3. What is a module (NgModule / standalone component concept)?
+4. Difference between component and service?
+5. What is data binding?
+6. Types of data binding in Angular?
+7. What is interpolation?
+8. What is property binding?
+9. What is event binding?
+10. What is two-way binding?
+
+Concepts
+
+11. What is a directive?
+12. Difference between structural and attribute directives?
+13. Explain *ngIf, *ngFor, *ngSwitch?
+14. What is a pipe?
+15. Built-in vs custom pipes?
+16. What is dependency injection?
+17. What is a service?
+18. What is HttpClient?
+19. Observable vs Promise?
+20. What is RxJS?
+21. What is subscribe()?
+22. What is async pipe?
+
+Depth
+
+23. What is change detection?
+24. Default vs OnPush change detection?
+25. What is zone.js role in Angular?
+26. What is lifecycle hook?
+27. Explain ngOnInit, ngOnChanges, ngOnDestroy?
+28. What happens when input changes?
+29. What is ViewChild?
+30. What is content projection?
+31. What is standalone component (Angular 21)?
+32. Difference between module-based and standalone architecture?
+
+Routing
+
+33. What is Angular routing?
+34. How to configure routes?
+35. What is router-outlet?
+36. What is route parameter?
+37. How to pass data between routes?
+38. What are route guards?
+39. What is lazy loading?
+40. Why lazy loading?
+
+Forms
+
+41. Template-driven vs reactive forms?
+42. What is FormControl, FormGroup?
+43. What is validation in Angular forms?
+44. Custom validators?
+45. When to use reactive forms?
+
+Real Time
+
+46. API call not showing data in UI – why?
+47. Observable data but UI not updating?
+48. Too many API calls happening – fix?
+49. Parent to child communication?
+50. Child to parent communication?
+51. Sibling communication?
+52. When to use service for state sharing?
+53. Form with 20 fields – which approach?
+54. Performance optimization in Angular?
+55. When to split components?
+
+More
+
+56. Can we use Angular without modules?
+57. What is AOT vs JIT?
+58. What is tree shaking?
+59. What is Angular CLI?
+60. What is environment.ts?

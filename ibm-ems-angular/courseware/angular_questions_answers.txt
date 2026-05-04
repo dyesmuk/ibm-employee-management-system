@@ -1,0 +1,195 @@
+Angular 21 Discussion
+
+Fundas
+
+1. What is Angular? Is it a framework or library?
+Answer: Angular is a full-fledged front-end framework that provides structure, tools, and features for building web applications.
+
+2. What is a component in Angular?
+Answer: A component is a class with a template and metadata that controls a part of the UI.
+
+3. What is a module (NgModule / standalone component concept)?
+Answer: A module groups related components/services. In Angular 21, standalone components remove the need for NgModules.
+
+4. Difference between component and service?
+Answer: Component handles UI; service contains reusable business logic.
+
+5. What is data binding?
+Answer: It is the mechanism to synchronize data between component and template.
+
+6. Types of data binding in Angular?
+Answer: Interpolation, property binding, event binding, and two-way binding.
+
+7. What is interpolation?
+Answer: Using {{}} to display data from component in template.
+
+8. What is property binding?
+Answer: Binding component data to HTML element properties using [].
+
+9. What is event binding?
+Answer: Binding events like click using ().
+
+10. What is two-way binding?
+Answer: Combines property and event binding using [(ngModel)].
+
+Concepts
+
+11. What is a directive?
+Answer: A class that modifies DOM behavior or structure.
+
+12. Difference between structural and attribute directives?
+Answer: Structural changes DOM layout (*ngIf); attribute changes appearance (ngClass).
+
+13. Explain *ngIf, *ngFor, *ngSwitch?
+Answer: *ngIf conditionally renders, *ngFor loops, *ngSwitch handles multiple conditions.
+
+14. What is a pipe?
+Answer: Transforms data in templates.
+
+15. Built-in vs custom pipes?
+Answer: Built-in are provided by Angular; custom are user-defined.
+
+16. What is dependency injection?
+Answer: Mechanism to provide dependencies automatically.
+
+17. What is a service?
+Answer: A class used to share logic/data across components.
+
+18. What is HttpClient?
+Answer: Angular service for making HTTP requests.
+
+19. Observable vs Promise?
+Answer: Observable handles streams and multiple values; Promise handles single async value.
+
+20. What is RxJS?
+Answer: Library for reactive programming using Observables.
+
+21. What is subscribe()?
+Answer: Method to execute Observable and receive data.
+
+22. What is async pipe?
+Answer: Automatically subscribes/unsubscribes to Observables in template.
+
+Depth
+
+23. What is change detection?
+Answer: Mechanism to update DOM when data changes.
+
+24. Default vs OnPush change detection?
+Answer: Default checks always; OnPush checks only on input/reference change.
+
+25. What is zone.js role in Angular?
+Answer: Tracks async operations and triggers change detection.
+
+26. What is lifecycle hook?
+Answer: Methods called at different stages of component life.
+
+27. Explain ngOnInit, ngOnChanges, ngOnDestroy?
+Answer: ngOnInit runs on init, ngOnChanges on input change, ngOnDestroy on cleanup.
+
+28. What happens when input changes?
+Answer: ngOnChanges is triggered and view updates.
+
+29. What is ViewChild?
+Answer: Access child component or DOM element.
+
+30. What is content projection?
+Answer: Passing content into component using <ng-content>.
+
+31. What is standalone component (Angular 21)?
+Answer: Component that does not require NgModule and imports dependencies directly.
+
+32. Difference between module-based and standalone architecture?
+Answer: Module-based uses NgModules; standalone simplifies structure and reduces boilerplate.
+
+Routing
+
+33. What is Angular routing?
+Answer: Navigation between views using Router.
+
+34. How to configure routes?
+Answer: Define routes array and use RouterModule.
+
+35. What is router-outlet?
+Answer: Placeholder where routed components load.
+
+36. What is route parameter?
+Answer: Dynamic value passed in URL.
+
+37. How to pass data between routes?
+Answer: Using params, queryParams, or state.
+
+38. What are route guards?
+Answer: Control access to routes (AuthGuard etc.).
+
+39. What is lazy loading?
+Answer: Loading modules only when needed.
+
+40. Why lazy loading?
+Answer: Improves performance and reduces initial load time.
+
+Forms
+
+41. Template-driven vs reactive forms?
+Answer: Template-driven is simple; reactive is scalable and model-driven.
+
+42. What is FormControl, FormGroup?
+Answer: FormControl handles single input; FormGroup groups controls.
+
+43. What is validation in Angular forms?
+Answer: Ensuring correct input using validators.
+
+44. Custom validators?
+Answer: User-defined validation logic.
+
+45. When to use reactive forms?
+Answer: Complex forms, dynamic validations.
+
+Real Time
+
+46. API call not showing data in UI – why?
+Answer: Missing subscription, change detection issue, or async timing.
+
+47. Observable data but UI not updating?
+Answer: Not subscribed or using wrong binding.
+
+48. Too many API calls happening – fix?
+Answer: Fix subscriptions or use proper lifecycle/hooks.
+
+49. Parent to child communication?
+Answer: Using @Input().
+
+50. Child to parent communication?
+Answer: Using @Output() and EventEmitter.
+
+51. Sibling communication?
+Answer: Use shared service.
+
+52. When to use service for state sharing?
+Answer: When multiple components need same data.
+
+53. Form with 20 fields – which approach?
+Answer: Reactive forms.
+
+54. Performance optimization in Angular?
+Answer: OnPush, lazy loading, trackBy, memoization.
+
+55. When to split components?
+Answer: When UI or logic becomes large or reusable.
+
+More
+
+56. Can we use Angular without modules?
+Answer: Yes, using standalone components.
+
+57. What is AOT vs JIT?
+Answer: AOT compiles at build time; JIT at runtime.
+
+58. What is tree shaking?
+Answer: Removing unused code from bundle.
+
+59. What is Angular CLI?
+Answer: Tool for creating and managing Angular apps.
+
+60. What is environment.ts?
+Answer: File for environment-specific configuration.
