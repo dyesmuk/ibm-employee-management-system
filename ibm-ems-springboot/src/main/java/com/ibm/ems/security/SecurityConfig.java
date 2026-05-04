@@ -92,7 +92,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         // Training: localhost only. Production: replace with actual front-end domain.
-        config.setAllowedOrigins(List.of("http://localhost:5172/", "http://localhost:5173/", "http://localhost:8080"));
+        config.setAllowedOrigins(List.of("http://localhost:4200/", "http://localhost:5172/", "http://localhost:5173/", "http://localhost:8080"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
         config.setExposedHeaders(List.of("Authorization"));
