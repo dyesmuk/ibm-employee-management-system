@@ -1,4 +1,5 @@
 <h2>Login</h2>
+<p>Credentials - username - hr.admin, password - Admin@IBM123</p>
 
 <input [(ngModel)]="username" placeholder="Username">
 <br><br>
@@ -7,5 +8,4 @@
 <br><br>
 
 <button (click)="login()">Login</button>
-
 <p *ngIf="error" style="color:red">{{ error }}</p>
