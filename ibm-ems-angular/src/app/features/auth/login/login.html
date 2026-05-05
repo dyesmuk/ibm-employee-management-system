@@ -5,14 +5,13 @@
         <h2>Login using Template-driven Form</h2>
 
         <form (ngSubmit)="templateDrivenLogin()" #tForm="ngForm">
-            <input id="username" name="username" [(ngModel)]="templateDrivenUser.username" required placeholder="Username">
-
+            <input id="username" name="username" [(ngModel)]="templateDrivenUser.username" required
+                placeholder="Username">
+            <br />
             <input id="password" name="password" [(ngModel)]="templateDrivenUser.password" type="password" required
                 placeholder="Password">
-
-            <button type="submit" [disabled]="tForm.invalid">
-                Login
-            </button>
+            <br />
+            <button type="submit" [disabled]="tForm.invalid">Login</button>
         </form>
 
         <p *ngIf="templateDrivenError">{{ templateDrivenError }}</p>
@@ -25,13 +24,11 @@
         <h2>Login using Reactive Form</h2>
 
         <form [formGroup]="reactiveLoginForm" (ngSubmit)="reactiveLogin()">
-
             <input formControlName="username" placeholder="Username">
+            <br />
             <input formControlName="password" type="password" placeholder="Password">
-
-            <button type="submit" [disabled]="reactiveLoginForm.invalid">
-                Login
-            </button>
+            <br />
+            <button type="submit" [disabled]="reactiveLoginForm.invalid">Login</button>
 
         </form>
 
@@ -39,4 +36,3 @@
         <p *ngIf="reactiveMessage">{{ reactiveMessage }}</p>
     </div>
 </div>
-
