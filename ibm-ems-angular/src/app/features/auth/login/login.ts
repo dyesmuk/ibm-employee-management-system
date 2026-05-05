@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { CommonModule } from '@angular/common';
-
 import {
   FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators
 } from '@angular/forms';
 
+// see the guide - 
+
+// https://angular.dev/guide/forms/template-driven-forms 
+
 @Component({
   selector: 'app-login',
-  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './login.html',
 })
