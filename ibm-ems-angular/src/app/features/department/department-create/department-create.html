@@ -1,4 +1,20 @@
-<div>
+template driven form 
+
+<form (ngSubmit)="createDepartment(deptForm)" #deptForm="ngForm">
+
+    <h2>Create Department</h2>
+
+    <div>
+        <input type="text" name="name" [(ngModel)]="department.name" required #name="ngModel" />
+        <br />
+        <input type="text" name="description" [(ngModel)]="department.description" required #desc="ngModel" />
+        <br />
+        <button type="submit">Create</button>
+        <p> {{message}} </p>
+    </div>
+</form>
+
+<!-- <div>
     <h1>Create New Department</h1>
     <div>
         <h2>Create Department</h2>
@@ -23,4 +39,4 @@
 
         <p *ngIf="error">{{ error }}</p>
     </div>
-</div>
+</div> -->

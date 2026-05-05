@@ -242,6 +242,41 @@ ng g interceptor core/interceptors/token
 
 
 
+	describe("", () => {
+		it("", () => {});
+
+		it("", () => {});
+
+		describe("", () => {
+			it("", () => {});
+
+			it("", () => {});
+
+	});
+
+
+
+	Forms in Angular - 
+	------------------ 
+
+	1. Template-driven forms =~ uncontrolled forms in react 
+	2. Reactive forms =~ controlled forms in react 
+
+
+
+
+	1. Template-driven forms 
+
+	uses [(ngModel)]
+		
+
+	2. Reactive forms =~ controlled forms in react 
+
+
+
+
+
+
 
 
 
