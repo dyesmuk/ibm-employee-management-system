@@ -1,11 +1,11 @@
+// see this 
+// https://angular.dev/guide/forms
+
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Department } from '../../../core/models/department.model';
 import { DepartmentService } from '../../../core/services/department/department.service';
-
-// see this 
-// https://angular.dev/guide/forms
 
 @Component({
   selector: 'app-department-create',

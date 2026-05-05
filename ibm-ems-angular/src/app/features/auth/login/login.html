@@ -1,8 +1,67 @@
-<h2>Login</h2>
-<p>Credentials - username - hr.admin password - Admin@IBM123</p>
+<div>
+    <p>Credentials - username - hr.admin password - Admin@IBM123</p>
 
-<input id="username" name="username" [(ngModel)]="username" placeholder="Username">
-<input id="password" name="password" [(ngModel)]="password" type="password" placeholder="Password">
+    <div>
+        <h2>Login using Template-driven Form</h2>
 
-<button (click)="login()">Login</button>
-<p *ngIf="error">{{ error }}</p>
+        <form (ngSubmit)="templateDrivenLogin()" #tForm="ngForm">
+            <input id="username" name="username" [(ngModel)]="templateDrivenUser.username" required placeholder="Username">
+
+            <input id="password" name="password" [(ngModel)]="templateDrivenUser.password" type="password" required
+                placeholder="Password">
+
+            <button type="submit" [disabled]="tForm.invalid">
+                Login
+            </button>
+        </form>
+
+        <p *ngIf="templateDrivenError">{{ templateDrivenError }}</p>
+        <p *ngIf="templateDrivenMessage">{{ templateDrivenMessage }}</p>
+    </div>
+
+    <hr />
+
+    <div>
+        <h2>Login using Reactive Form</h2>
+
+        <form [formGroup]="reactiveLoginForm" (ngSubmit)="reactiveLogin()">
+
+            <input formControlName="username" placeholder="Username">
+            <input formControlName="password" type="password" placeholder="Password">
+
+            <button type="submit" [disabled]="reactiveLoginForm.invalid">
+                Login
+            </button>
+
+        </form>
+
+        <p *ngIf="reactiveError">{{ reactiveError }}</p>
+        <p *ngIf="reactiveMessage">{{ reactiveMessage }}</p>
+    </div>
+</div>
+
+
+
+
+<!-- <div>
+    <p>Credentials - username - hr.admin password - Admin@IBM123</p>
+    <div>
+        <h2>Login using Template-driven Form</h2>
+        <form>
+            <input id="username" name="username" [(ngModel)]="username" placeholder="Username">
+            <input id="password" name="password" [(ngModel)]="password" type="password" placeholder="Password">
+            <button (click)="login()">Login</button>
+        </form>
+        <p *ngIf="error">{{ error }}</p>
+        <p *ngIf="message">{{ message }}</p>
+    </div>
+
+    <div>
+        <h2>Login using Reactive Form</h2>
+        <form>
+
+        </form>
+        <p *ngIf="error">{{ error }}</p>
+        <p *ngIf="message">{{ message }}</p>
+    </div>
+</div> -->
