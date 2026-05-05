@@ -5,7 +5,7 @@ import { Login } from './features/auth/login/login';
 import { DepartmentList } from './features/department/department-list/department-list';
 import { DepartmentDetails } from './features/department/department-details/department-details';
 import { DepartmentCreate } from './features/department/department-create/department-create';
-import { Page404 } from './features/page404/page404';
+import { Page404 } from './shared/components/page404/page404';
 
 export const routes: Routes = [
     { path: 'home', component: Home },

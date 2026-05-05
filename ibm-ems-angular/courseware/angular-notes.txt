@@ -188,3 +188,63 @@ ng g interceptor core/interceptors/token
 
 
 
+	earlier versions 
+
+	model - 
+	employee.model.ts
+
+	component 
+	employee.component.ts
+	employee.component.html
+	employee.component.spec.ts
+	employee.component.css
+
+	service 
+	employee.service.ts
+	employee.service.spec.ts
+
+
+
+
+	ng g s core/services/user/user.service
+
+
+
+
+
+
+
+
+	describe();
+
+	describe(arg1, arg2);
+
+	describe("", () => {});
+
+	describe("description in plain English", () => {
+
+		it("description in plain English", () => {
+			expect().toBe();
+		});
+
+		it("", () => {});
+
+		it("", () => {});
+
+		it("", () => {});
+
+		it("", () => {});
+
+
+
+
+	});
+
+
+
+
+
+
+
+
+

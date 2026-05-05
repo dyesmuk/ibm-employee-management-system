@@ -11,7 +11,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './department-details.css'
 })
 export class DepartmentDetails {
-  department?: Department;
+  department: Department = {
+    name: '',
+    description: ''
+  };
+
   error = '';
   id = '';
 
