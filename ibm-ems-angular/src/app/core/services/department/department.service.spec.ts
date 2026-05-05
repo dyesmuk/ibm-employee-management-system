@@ -20,8 +20,14 @@ const mockDepartments: Department[] = [
 ];
 
 describe('DepartmentService', () => {
+
   let service: DepartmentService;
   let httpMock: HttpTestingController;
+
+  // beforeAll(() => { });
+  // afterAll(() => { });
+  // beforeEach(() => { });
+  // afterEach(() => { });
 
   beforeEach(() => {
     TestBed.configureTestingModule({

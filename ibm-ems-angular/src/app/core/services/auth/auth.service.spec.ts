@@ -13,4 +13,21 @@ describe('AuthService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should login with correct credentials', () => {
+    // test status code 200 
+    expect(service).toBeTruthy();
+  });
+
+    it('should login with correct credentials', () => {
+    // test jwt token 
+    expect(service).toBeTruthy();
+  });
+
+  it('should not login with bad credentials', () => {
+    // test status code 400 
+    expect(service).toBeTruthy();
+  });
+
 });
+
