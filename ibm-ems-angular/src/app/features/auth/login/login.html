@@ -1,11 +1,8 @@
 <h2>Login</h2>
-<p>Credentials - username - hr.admin, password - Admin@IBM123</p>
+<p>Credentials - username - hr.admin password - Admin@IBM123</p>
 
-<input [(ngModel)]="username" placeholder="Username">
-<br><br>
-
-<input [(ngModel)]="password" type="password" placeholder="Password">
-<br><br>
+<input id="username" name="username" [(ngModel)]="username" placeholder="Username">
+<input id="password" name="password" [(ngModel)]="password" type="password" placeholder="Password">
 
 <button (click)="login()">Login</button>
-<p *ngIf="error" style="color:red">{{ error }}</p>
+<p *ngIf="error">{{ error }}</p>

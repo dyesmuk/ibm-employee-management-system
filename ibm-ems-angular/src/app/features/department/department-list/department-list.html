@@ -1,4 +1,9 @@
 <div>
     <h1>Department List Component</h1>
     <button (click)="getAll()">Get Departments</button>
+    <div *ngFor="let dept of departments">
+        <p>{{ dept.id }} — {{ dept.name }}: {{ dept.description }}</p>
+    </div>
+    <p *ngIf="error">{{ error }}</p>
+
 </div>

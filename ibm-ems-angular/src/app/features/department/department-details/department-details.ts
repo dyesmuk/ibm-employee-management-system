@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Department } from '../../../core/models/department.model';
 import { DepartmentService } from '../../../core/services/department/department.service';
 import { FormsModule } from '@angular/forms';
@@ -11,21 +11,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './department-details.css'
 })
 export class DepartmentDetails {
-  department: Department = {
-    name: '',
-    description: ''
-  };
+  department: Department | null = null;
 
   error = '';
   id = '';
 
-  constructor(private departmentService: DepartmentService) { }
+  constructor(private departmentService: DepartmentService, private cdr: ChangeDetectorRef) { }
 
   searchDepartment() {
     console.log(this.id);
     this.departmentService.getDepartmentById(this.id.trim()).subscribe({
       next: (res) => {
         this.department = res;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.error = 'Department not found';
