@@ -53,7 +53,6 @@ export class Login {
   reactiveMessage = '';
   reactiveError = '';
 
-
   ngOnInit() {
     this.reactiveLoginForm = this.fb.group({
       username: ['', Validators.required],
@@ -63,9 +62,7 @@ export class Login {
 
   reactiveLogin() {
     if (this.reactiveLoginForm.invalid) return;
-
     const { username, password } = this.reactiveLoginForm.value;
-
     this.authService.login(username, password).subscribe({
       next: (res: any) => {
         localStorage.setItem('token', res.token);
@@ -79,84 +76,4 @@ export class Login {
     });
   }
 }
-
-
-
-// import { Component } from '@angular/core';
-// import { AuthService } from '../../../core/services/auth/auth.service';
-
-// import { FormsModule } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
-
-// import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.html',
-//   imports: [FormsModule, CommonModule, ReactiveFormsModule]
-// })
-// export class Login {
-
-
-//   constructor(private authService: AuthService, private fb: FormBuilder) { }
-
-
-//   //   // 1. Template-driven form
-
-//   templateUser = {
-//     username: '',
-//     password: '',
-//   };
-
-//   error = '';
-//   message = '';
-
-
-//   ngOnInit() {
-//     this.reactiveLoginForm = this.fb.group({
-//       username: ['', Validators.required],
-//       password: ['', Validators.required]
-//     });
-//   }
-
-//   //   // 1. Template-driven form
-//   templateDrivenLogin() {
-//     this.authService.login(this.templateUser.username, this.templateUser.password).subscribe({
-//       next: (res: any) => {
-//         localStorage.setItem('token', res.token);
-//         console.log(res.token);
-//         this.message = "Success!";
-//         this.error = "";
-//       },
-//       error: () => {
-//         this.error = "Invalid credentials";
-//         this.message = "";
-//       }
-//     });
-//   }
-
-
-//   //   // 2. Reactive form
-//   reactiveLoginForm!: FormGroup;
-//   rError = '';
-//   rMessage = '';
-
-//   reactiveLogin() {
-//     // if (this.reactiveLoginForm.invalid) return;
-//     const { username, password } = this.reactiveLoginForm.value;
-//     console.log(username, password);
-//     this.authService.login(username, password).subscribe({
-//       next: (res: any) => {
-//         localStorage.setItem('token', res.token);
-//         console.log(res.token);
-//         this.rMessage = "Success!";
-//         this.rError = "";
-//       },
-//       error: () => {
-//         this.rError = "Invalid credentials";
-//         this.rMessage = "";
-//       }
-//     });
-//   }
-// }
 
