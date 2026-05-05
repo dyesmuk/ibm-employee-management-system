@@ -21,7 +21,7 @@ export class Login {
     private fb: FormBuilder
   ) { }
 
-
+  // 1. Template-driven Form 
   templateDrivenUser = {
     username: '',
     password: '',
@@ -47,6 +47,7 @@ export class Login {
     });
   }
 
+  // 2. Reactive Form 
 
   reactiveLoginForm!: FormGroup;
   reactiveMessage = '';
