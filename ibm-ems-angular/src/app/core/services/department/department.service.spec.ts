@@ -33,16 +33,12 @@ describe('DepartmentService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Ensures no outstanding HTTP requests
+    httpMock.verify();
   });
-
-  // ─── Instantiation ────────────────────────────────────────────────────────
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  // ─── getAllDepartments ─────────────────────────────────────────────────────
 
   describe('getAllDepartments()', () => {
     it('should GET all departments from the correct URL', () => {
@@ -66,7 +62,7 @@ describe('DepartmentService', () => {
     });
 
     it('should return an empty array when the API returns no departments', () => {
-      let result: Department[] = [mockDepartment]; // pre-populated to confirm it gets replaced
+      let result: Department[] = [mockDepartment];
 
       service.getAllDepartments().subscribe((data) => (result = data));
 
@@ -102,8 +98,6 @@ describe('DepartmentService', () => {
       expect(errorStatus).toBe(404);
     });
   });
-
-  // ─── getDepartmentById ────────────────────────────────────────────────────
 
   describe('getDepartmentById()', () => {
     it('should GET a department at the correct URL', () => {
@@ -160,16 +154,11 @@ describe('DepartmentService', () => {
     });
 
     it('should trim whitespace from id in the URL (if caller does trimming)', () => {
-      // Caller is responsible for trimming — service passes id as-is
       service.getDepartmentById('  1  ').subscribe();
-
-      // Confirms the service appends exactly what it receives
       const req = httpMock.expectOne(`${BASE_URL}/  1  `);
       req.flush(mockDepartment);
     });
   });
-
-  // ─── addDepartment ────────────────────────────────────────────────────────
 
   describe('addDepartment()', () => {
     const newDept: Department = { name: 'Design', description: 'UI/UX team' };
