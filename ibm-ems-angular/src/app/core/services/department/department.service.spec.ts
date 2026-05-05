@@ -10,6 +10,7 @@ const BASE_URL = 'http://localhost:8080/api/v1/departments';
 // const mockDepartments: Department[] = [];
 
 describe('DepartmentService', () => {
+
   let service: DepartmentService;
   let httpMock: HttpTestingController;
 
@@ -26,14 +27,10 @@ describe('DepartmentService', () => {
     expect(service).toBeTruthy();
   });
 
-
-  describe('getAllDepartments()', () => {
-    it('should GET all departments', () => {
-      service.getAllDepartments().subscribe();
-      const req = httpMock.expectOne(BASE_URL);
-      expect(req.request.method).toBe('GET');
-    });
-
+  it('should GET all departments', () => {
+    service.getAllDepartments().subscribe();
+    const req = httpMock.expectOne(BASE_URL);
+    expect(req.request.method).toBe('GET');
   });
 
 });
