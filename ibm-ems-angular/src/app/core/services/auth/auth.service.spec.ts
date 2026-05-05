@@ -29,3 +29,21 @@ describe('Auth Integration', () => {
   });
 
 });
+
+
+/**
+ *  test case ideas for login - 
+ * 
+ * A. postive test cases - with correct creds  
+ * 1. status code - 200 
+ *  response body - 
+ * 2. token is jwt?
+ * 3. jwt exipiry 
+ * 4. username same as given username  - with bad creds 
+ * 
+ * A. postive test cases 
+ *  5. status code
+ * 6. error 
+ * 7. message 
+ * 
+ */
