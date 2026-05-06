@@ -277,6 +277,49 @@ ng g interceptor core/interceptors/token
 
 
 
+	DevOps 
+
+	Git - VCS 
+	GitHub 
+	Docker 
+	Kubernetes 
+	Ansible 
+	Jenkins
+	CI/CD 
+	
+	
+	git init git add git commit --- git push git pull checkout clone branch stash ... 
+
+
+
+	gh 
+
+
+
+
+	Git GitHub Demo 
+	--------------- 
+
+	team of five members 
+	one leader == repo owner 
+	others == contributors 
+	
+	one js project - teamX-ibm-ems 
+	
+	each member - branch with their own name 
+	e.g. sonu 
+	branch should have controlled access 
+	
+	each member - 	
+	a few pushes, a few pulls 
+	
+	a few conflicts on the team and their resolution 
+
+	
+	
+	
+
+
 
 
 
