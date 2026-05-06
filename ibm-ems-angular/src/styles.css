@@ -1,1 +1,179 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #121212;
+    --text: #e0e0e0;
+    --nav-bg: #1e1e1e;
+    --border: #333;
+    --link: #90caf9;
+    --input-bg: #1e1e1e;
+    --input-border: #444;
+
+    font-family: Calibri, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    padding-bottom: 40px;
+}
+
+nav {
+    background-color: var(--nav-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+nav div {
+    color: var(--border);
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+    margin: 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: -5px;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--text);
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--link);
+}
+
+button {
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--text);
+    font-size: 16px;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2a2a2a;
+}
+
+table {
+    width: 95%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid var(--border);
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #1f1f1f;
+}
+
+section {
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+main {
+    text-align: center;
+    margin-top: 50px;
+    padding: 10px;
+}
+
+p {
+    margin-top: 10px;
+}
+
+footer,
+small {
+    display: block;
+    border-top: 1px solid var(--border);
+    padding: 15px 20px;
+    margin-top: 40px;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    form {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    section {
+        width: 90%;
+    }
+}
