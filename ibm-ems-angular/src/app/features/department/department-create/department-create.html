@@ -1,18 +1,16 @@
-template driven form 
-
-<form (ngSubmit)="createDepartment(deptForm)" #deptForm="ngForm">
-
+<div>
     <h2>Create Department</h2>
-
-    <div>
-        <input type="text" name="name" [(ngModel)]="department.name" required #name="ngModel" />
-        <br />
-        <input type="text" name="description" [(ngModel)]="department.description" required #desc="ngModel" />
-        <br />
-        <button type="submit">Create</button>
-        <p> {{message}} </p>
-    </div>
-</form>
+    <form (ngSubmit)="createDepartment(deptForm)" #deptForm="ngForm">
+        <div>
+            <input type="text" name="name" [(ngModel)]="department.name" required #name="ngModel" />
+            <br />
+            <input type="text" name="description" [(ngModel)]="department.description" required #desc="ngModel" />
+            <br />
+            <button type="submit">Create</button>
+            <p> {{message}} </p>
+        </div>
+    </form>
+</div>
 
 <!-- <div>
     <h1>Create New Department</h1>

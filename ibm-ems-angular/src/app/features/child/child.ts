@@ -23,3 +23,4 @@ export class Child {
     this.notify.emit(this.childData);
   }
 }
+

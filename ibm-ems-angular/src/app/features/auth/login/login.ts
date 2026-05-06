@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 // see the guide - 
 
@@ -18,7 +19,8 @@ export class Login {
 
   constructor(
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   // 1. Template-driven Form 
@@ -39,6 +41,7 @@ export class Login {
         localStorage.setItem('token', res.token);
         this.templateDrivenMessage = "Success!";
         this.templateDrivenError = "";
+        this.router.navigate(['/department-list']);
       },
       error: () => {
         this.templateDrivenError = "Invalid credentials";
@@ -68,6 +71,7 @@ export class Login {
         localStorage.setItem('token', res.token);
         this.reactiveMessage = "Success!";
         this.reactiveError = "";
+        this.router.navigate(['/department-list']);
       },
       error: () => {
         this.reactiveError = "Invalid credentials";

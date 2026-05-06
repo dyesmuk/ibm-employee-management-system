@@ -1,8 +1,243 @@
-2026-05-05T09:40:50.192+05:30  INFO 12376 --- [restartedMain] com.ibm.ems.App                          : Starting App using Java 21.0.7 with PID 12376 (D:\Projects\ibm-26-mar-2026\ibm-ems\ibm-ems-springboot\target\classes started by DELL in D:\Projects\ibm-26-mar-2026\ibm-ems\ibm-ems-springboot)
-2026-05-05T09:40:50.210+05:30 DEBUG 12376 --- [restartedMain] com.ibm.ems.App                          : Running with Spring Boot v3.2.5, Spring v6.1.6
-2026-05-05T09:40:50.211+05:30  INFO 12376 --- [restartedMain] com.ibm.ems.App                          : The following 1 profile is active: "dev"
-2026-05-05T09:40:54.645+05:30  INFO 12376 --- [restartedMain] com.ibm.ems.security.JwtUtil             : JwtUtil initialised. Token expiry: 3600000 ms
-2026-05-05T09:40:54.750+05:30 DEBUG 12376 --- [restartedMain] com.ibm.ems.security.JwtFilter           : Filter 'jwtFilter' configured for use
-2026-05-05T09:40:58.857+05:30  INFO 12376 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@379ff252, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@14bee440, org.springframework.security.web.context.SecurityContextHolderFilter@43a03d19, org.springframework.security.web.header.HeaderWriterFilter@7a961ad1, org.springframework.web.filter.CorsFilter@680972d9, org.springframework.security.web.authentication.logout.LogoutFilter@bc940ca, com.ibm.ems.security.JwtFilter@6a63c5db, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@e8a2106, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@a5ec131, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@57231178, org.springframework.security.web.session.SessionManagementFilter@6314d922, org.springframework.security.web.access.ExceptionTranslationFilter@7a511720, org.springframework.security.web.access.intercept.AuthorizationFilter@60222870]
-2026-05-05T09:40:59.679+05:30  INFO 12376 --- [restartedMain] com.ibm.ems.App                          : Started App in 10.117 seconds (process running for 16.95)
-2026-05-05T09:40:59.837+05:30  INFO 12376 --- [restartedMain] com.ibm.ems.App                          : IBM EMS started. Navigate to /swagger-ui.html
+2026-05-06T09:21:45.601+05:30  WARN 9456 --- [http-nio-8080-exec-5] com.ibm.ems.security.JwtUtil             : JWT validation failed: ExpiredJwtException
+2026-05-06T09:21:45.700+05:30  INFO 9456 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:21:46.092+05:30  INFO 9456 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 392ms
+2026-05-06T09:21:52.436+05:30  INFO 9456 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] → DepartmentController.getAllDepartments()
+2026-05-06T09:21:52.463+05:30 DEBUG 9456 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [SERVICE] DepartmentServiceImpl.getAllDepartments() in 27ms
+2026-05-06T09:21:52.463+05:30  INFO 9456 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] ← DepartmentController.getAllDepartments() completed in 27ms
+2026-05-06T09:22:03.258+05:30  INFO 9456 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] → DepartmentController.getDepartmentById(..)
+2026-05-06T09:22:03.265+05:30 DEBUG 9456 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [SERVICE] DepartmentServiceImpl.getDepartmentById(..) in 7ms
+2026-05-06T09:22:03.265+05:30  INFO 9456 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] ← DepartmentController.getDepartmentById(..) completed in 7ms
+2026-05-06T09:54:29.482+05:30  INFO 6312 --- [restartedMain] com.ibm.ems.App                          : Starting App using Java 21.0.7 with PID 6312 (D:\Projects\ibm-26-mar-2026\ibm-ems\ibm-ems-springboot\target\classes started by DELL in D:\Projects\ibm-26-mar-2026\ibm-ems\ibm-ems-springboot)
+2026-05-06T09:54:29.483+05:30 DEBUG 6312 --- [restartedMain] com.ibm.ems.App                          : Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-06T09:54:29.484+05:30  INFO 6312 --- [restartedMain] com.ibm.ems.App                          : The following 1 profile is active: "dev"
+2026-05-06T09:54:35.229+05:30  INFO 6312 --- [restartedMain] com.ibm.ems.security.JwtUtil             : JwtUtil initialised. Token expiry: 3600000 ms
+2026-05-06T09:54:35.416+05:30 DEBUG 6312 --- [restartedMain] com.ibm.ems.security.JwtFilter           : Filter 'jwtFilter' configured for use
+2026-05-06T09:54:41.628+05:30  INFO 6312 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3925258d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3ead2daa, org.springframework.security.web.context.SecurityContextHolderFilter@25eb7819, org.springframework.security.web.header.HeaderWriterFilter@51d697c8, org.springframework.web.filter.CorsFilter@b9a935a, org.springframework.security.web.authentication.logout.LogoutFilter@3761793a, com.ibm.ems.security.JwtFilter@1799f87b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a4230f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@279a5b85, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@632a7b67, org.springframework.security.web.session.SessionManagementFilter@3dc8e6be, org.springframework.security.web.access.ExceptionTranslationFilter@39339fdb, org.springframework.security.web.access.intercept.AuthorizationFilter@6161470f]
+2026-05-06T09:54:43.134+05:30  INFO 6312 --- [restartedMain] com.ibm.ems.App                          : Started App in 14.283 seconds (process running for 21.615)
+2026-05-06T09:54:43.339+05:30  INFO 6312 --- [restartedMain] com.ibm.ems.App                          : IBM EMS started. Navigate to /swagger-ui.html
+2026-05-06T09:56:21.450+05:30  INFO 6312 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:56:22.002+05:30  WARN 6312 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [EXCEPTION] BadCredentialsException: Bad credentials
+2026-05-06T09:56:22.002+05:30 DEBUG 6312 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [EXCEPTION] Full stack trace:
+
+org.springframework.security.authentication.BadCredentialsException: Bad credentials
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:141) ~[spring-security-core-6.2.4.jar:6.2.4]
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182) ~[spring-security-core-6.2.4.jar:6.2.4]
+	at com.ibm.ems.controller.AuthController.login(AuthController.java:49) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:64) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89) ~[spring-aop-6.1.6.jar:6.1.6]
+	at com.ibm.ems.aop.AuditAspect.logController(AuditAspect.java:30) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:637) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:627) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:71) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.6.jar:6.1.6]
+	at com.ibm.ems.controller.AuthController$$SpringCGLIB$$0.login(<generated>) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at com.ibm.ems.security.JwtFilter.doFilterInternal(JwtFilter.java:54) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.4.jar:6.2.4]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.2.4.jar:6.2.4]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:109) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-06T09:56:22.020+05:30  WARN 6312 --- [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authentication.BadCredentialsException: Bad credentials]
+2026-05-06T09:56:44.927+05:30  INFO 6312 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:56:45.286+05:30  INFO 6312 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 359ms
+2026-05-06T09:57:20.515+05:30  INFO 6312 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:57:20.785+05:30  INFO 6312 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 270ms
+2026-05-06T09:57:25.448+05:30  INFO 6312 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:57:25.724+05:30  INFO 6312 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 276ms
+2026-05-06T09:57:36.160+05:30  INFO 6312 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:57:36.414+05:30  INFO 6312 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 254ms
+2026-05-06T09:57:36.785+05:30  INFO 6312 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:57:37.067+05:30  INFO 6312 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 282ms
+2026-05-06T09:57:43.915+05:30  INFO 6312 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:57:44.198+05:30  INFO 6312 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 283ms
+2026-05-06T09:58:06.096+05:30  INFO 6312 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:58:06.361+05:30  INFO 6312 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 265ms
+2026-05-06T09:58:33.947+05:30  INFO 6312 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:58:34.227+05:30  INFO 6312 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 280ms
+2026-05-06T09:58:43.524+05:30  INFO 6312 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T09:58:43.800+05:30  INFO 6312 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 276ms
+2026-05-06T10:01:48.465+05:30  INFO 6312 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T10:01:48.745+05:30  INFO 6312 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 280ms
+2026-05-06T10:02:23.465+05:30  INFO 6312 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T10:02:23.751+05:30  INFO 6312 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 286ms
+2026-05-06T10:02:51.170+05:30  INFO 6312 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T10:02:51.449+05:30  INFO 6312 --- [http-nio-8080-exec-9] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 279ms
+2026-05-06T10:06:18.357+05:30  INFO 6312 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T10:06:18.637+05:30  INFO 6312 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 280ms
+2026-05-06T10:06:29.250+05:30  INFO 6312 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] → DepartmentController.getAllDepartments()
+2026-05-06T10:06:29.380+05:30 DEBUG 6312 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [SERVICE] DepartmentServiceImpl.getAllDepartments() in 129ms
+2026-05-06T10:06:29.382+05:30  INFO 6312 --- [http-nio-8080-exec-3] com.ibm.ems.aop.AuditAspect              : [API] ← DepartmentController.getAllDepartments() completed in 132ms
+2026-05-06T10:06:35.941+05:30  INFO 6312 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] → DepartmentController.getDepartmentById(..)
+2026-05-06T10:06:35.958+05:30 DEBUG 6312 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [SERVICE] DepartmentServiceImpl.getDepartmentById(..) in 17ms
+2026-05-06T10:06:35.959+05:30  INFO 6312 --- [http-nio-8080-exec-4] com.ibm.ems.aop.AuditAspect              : [API] ← DepartmentController.getDepartmentById(..) completed in 18ms
+2026-05-06T10:06:49.933+05:30  INFO 6312 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] → DepartmentController.createDepartment(..)
+2026-05-06T10:06:50.002+05:30 DEBUG 6312 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [SERVICE] DepartmentServiceImpl.createDepartment(..) in 68ms
+2026-05-06T10:06:50.002+05:30  INFO 6312 --- [http-nio-8080-exec-7] com.ibm.ems.aop.AuditAspect              : [API] ← DepartmentController.createDepartment(..) completed in 69ms
+2026-05-06T10:06:54.786+05:30  INFO 6312 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] → DepartmentController.getAllDepartments()
+2026-05-06T10:06:54.794+05:30 DEBUG 6312 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [SERVICE] DepartmentServiceImpl.getAllDepartments() in 8ms
+2026-05-06T10:06:54.794+05:30  INFO 6312 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] ← DepartmentController.getAllDepartments() completed in 8ms
+2026-05-06T10:07:47.320+05:30  WARN 6312 --- [http-nio-8080-exec-9] c.i.e.exception.GlobalExceptionHandler   : Validation failed: password: Password must be 8–100 characters
+2026-05-06T10:07:47.322+05:30  WARN 6312 --- [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.ibm.ems.dto.auth.TokenResponse> com.ibm.ems.controller.AuthController.login(com.ibm.ems.dto.auth.LoginRequest): [Field error in object 'loginRequest' on field 'password': rejected value [aa]; codes [Size.loginRequest.password,Size.password,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.password,password]; arguments []; default message [password],100,8]; default message [Password must be 8–100 characters]] ]
+2026-05-06T10:12:41.357+05:30  INFO 6312 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T10:12:41.632+05:30  INFO 6312 --- [http-nio-8080-exec-10] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 275ms
+2026-05-06T10:12:55.897+05:30  INFO 6312 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] → DepartmentController.getAllDepartments()
+2026-05-06T10:12:55.905+05:30 DEBUG 6312 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [SERVICE] DepartmentServiceImpl.getAllDepartments() in 8ms
+2026-05-06T10:12:55.905+05:30  INFO 6312 --- [http-nio-8080-exec-2] com.ibm.ems.aop.AuditAspect              : [API] ← DepartmentController.getAllDepartments() completed in 8ms
+2026-05-06T10:13:03.039+05:30  INFO 6312 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] → DepartmentController.getDepartmentById(..)
+2026-05-06T10:13:03.041+05:30 DEBUG 6312 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [SERVICE] DepartmentServiceImpl.getDepartmentById(..) in 2ms
+2026-05-06T10:13:03.041+05:30  INFO 6312 --- [http-nio-8080-exec-1] com.ibm.ems.aop.AuditAspect              : [API] ← DepartmentController.getDepartmentById(..) completed in 2ms
+2026-05-06T10:14:09.168+05:30  INFO 6312 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T10:14:09.443+05:30  INFO 6312 --- [http-nio-8080-exec-5] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 275ms
+2026-05-06T10:23:20.787+05:30  INFO 6312 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T10:23:21.077+05:30  INFO 6312 --- [http-nio-8080-exec-6] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 290ms
+2026-05-06T10:37:01.437+05:30  INFO 6312 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] → AuthController.login(..)
+2026-05-06T10:37:01.713+05:30  INFO 6312 --- [http-nio-8080-exec-8] com.ibm.ems.aop.AuditAspect              : [API] ← AuthController.login(..) completed in 276ms
+2026-05-06T11:42:12.658+05:30  INFO 6312 --- [restartedMain] com.ibm.ems.App                          : Starting IBM Employee Management System...
+2026-05-06T11:42:12.722+05:30  INFO 6312 --- [restartedMain] com.ibm.ems.App                          : Starting App using Java 21.0.7 with PID 6312 (D:\Projects\ibm-26-mar-2026\ibm-ems\ibm-ems-springboot\target\classes started by DELL in D:\Projects\ibm-26-mar-2026\ibm-ems\ibm-ems-springboot)
+2026-05-06T11:42:12.722+05:30 DEBUG 6312 --- [restartedMain] com.ibm.ems.App                          : Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-06T11:42:12.722+05:30  INFO 6312 --- [restartedMain] com.ibm.ems.App                          : The following 1 profile is active: "dev"

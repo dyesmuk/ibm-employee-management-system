@@ -1,8 +1,32 @@
 <nav>
-    <a routerLink="/home">Home</a> |
-    <a routerLink="/parent">Parent</a> |
-    <a routerLink="/department-list">DepartmentList</a> |
-    <a routerLink="/department-details">DepartmentDetails</a> |
-    <a routerLink="/department-create">DepartmentCreate</a> |
-    <a routerLink="/login">Login</a>
+    <a routerLink="/home">
+        <img src="ibm-logo.png" height="16px" alt="ibm-logo" />
+    </a>
+    <div>
+        <ng-container *ngIf="!authService.isLoggedIn()">
+            <a routerLink="/demo">Demo</a> |
+            <a routerLink="/parent">Parent</a> |
+            <a routerLink="/login">Login</a>
+        </ng-container>
+
+        <ng-container *ngIf="authService.isLoggedIn()">
+            <a routerLink="/department-list">Department List</a> |
+            <a routerLink="/department-details">Department Details</a> |
+            <a routerLink="/department-create">Department Create</a> |
+            <a href="#" (click)="$event.preventDefault(); logout()">Logout</a>
+        </ng-container>
+    </div>
 </nav>
+
+<!-- <nav>
+    <a routerLink="/home">
+        <img src="ibm-logo.png" height="16px" alt="ibm-logo" />
+    </a>
+    <div>
+        <a routerLink="/parent">Parent</a> |
+        <a routerLink="/department-list">DepartmentList</a> |
+        <a routerLink="/department-details">DepartmentDetails</a> |
+        <a routerLink="/department-create">DepartmentCreate</a> |
+        <a routerLink="/login">Login</a>
+    </div>
+</nav> -->
