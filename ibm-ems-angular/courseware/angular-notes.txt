@@ -313,11 +313,12 @@ ng g interceptor core/interceptors/token
 	each member - 	
 	a few pushes, a few pulls 
 	
-	a few conflicts on the team and their resolution 
+	a few conflicts in the team and their resolution 
 
 	
 	
 	
+
 
 
 
