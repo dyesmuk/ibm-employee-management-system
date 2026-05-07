@@ -32,7 +32,7 @@ public class OpenApiConfig {
                         .version(appVersion)
                         .description(
                             "**IBM Employee Management System** REST API\n\n" +
-                            "State Bank of India\n\n" +
+                            "IBM\n\n" +
                             "### Authentication\n" +
                             "1. Call `POST /api/v1/auth/login` with `hr.admin` / `Admin@IBM123`\n" +
                             "2. Copy the `token` from the response\n" +

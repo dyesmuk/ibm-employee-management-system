@@ -21,7 +21,7 @@ FROM eclipse-temurin:17-jre-alpine
 
 LABEL org.opencontainers.image.title="IBM EMS API" \
       org.opencontainers.image.description="IBM Employee Management System" \
-      org.opencontainers.image.vendor="State Bank of India" \
+      org.opencontainers.image.vendor="IBM" \
       org.opencontainers.image.version="1.0.0"
 
 # Run as a dedicated non-root user
