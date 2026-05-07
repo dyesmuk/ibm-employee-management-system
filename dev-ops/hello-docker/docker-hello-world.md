@@ -84,6 +84,7 @@ Dockerfile)         your app, frozen)         isolated, alive)
 
 ---
 
+
 ## Starting a Stopped Container
 
 A stopped container still exists — it's just paused, not deleted.

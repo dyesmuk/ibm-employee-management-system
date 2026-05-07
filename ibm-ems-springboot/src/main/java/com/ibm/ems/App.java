@@ -14,5 +14,24 @@ public class App {
         log.info("Starting IBM Employee Management System...");
         SpringApplication.run(App.class, args);
         log.info("IBM EMS started. Navigate to /swagger-ui.html");
+        
+        
+        
+        
+        
+        Demo obj = new Demo();
+        obj.toString();
     }
 }
+
+
+
+
+class Demo {
+	
+}
+
+
+
+
+
