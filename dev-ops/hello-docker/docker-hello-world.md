@@ -84,19 +84,6 @@ Dockerfile)         your app, frozen)         isolated, alive)
 
 ---
 
-## Three Questions to Ask Trainees
-
-**1. "What happens if you run `docker run -p 3000:3000 hello-docker` again in another terminal?"**
-→ A second container starts. Same image, two independent running containers. This is how scaling works.
-
-**2. "Can you change `app.js` and refresh the browser?"**
-→ No. The change doesn't reflect. You have to `docker build` again. This teaches that an image is **immutable** — a snapshot, not a live folder.
-
-**3. "Where is Node.js installed on your laptop?"**
-→ It isn't (or it doesn't matter). Node lives *inside* the container. This is the isolation point — the whole runtime is bundled.
-
----
-
 ## Starting a Stopped Container
 
 A stopped container still exists — it's just paused, not deleted.
