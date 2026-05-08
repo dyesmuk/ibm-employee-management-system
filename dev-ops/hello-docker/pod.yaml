@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels:
+    app: hello-app
+spec:
+  containers:
+    - name: hello-container
+      image: vamandeshmukh/hello-express:1.0
+      ports:
+        - containerPort: 3000

@@ -1,0 +1,28 @@
+Team 1 - Angular 
+Reddy, Dhoddi Mallikarjuna
+Govardhan, Majjiga
+B M, Poorvika
+Prasad M T, Saketh
+Kottam, Gnaneswar
+
+Team 2 - React 
+SAIBHARATH, K
+Kumar, MuppalaMuppalaAnil
+Vamsikrishna, Valluri
+PERAM, TARUN KUMAR REDDY
+Bala, sandesh
+
+Team 3 - Angular 
+Mogaveera, Nayan
+VP, Rahees Ahammed
+S N, Akul
+Darshan, B S
+Saji, Amal
+
+Team 4 - React 
+S, Mohith
+C D, Nisha
+Dama, Pavan
+Raju, vishnu
+krishnamanikanta
+
