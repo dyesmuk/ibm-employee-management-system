@@ -62,7 +62,7 @@ Avoid tabs.
 # Key-Value Example
 
 ```yaml
-name: Vaman
+name: Sonu
 age: 47
 city: Hyderabad
 ```
