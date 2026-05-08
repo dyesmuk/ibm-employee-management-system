@@ -1,6 +1,45 @@
 # Ansible — Hands-On Guide (DevOps Automation)
 
-> **Prerequisites:** You have completed the Docker and Kubernetes modules. You are comfortable with YAML. A Linux environment is available — either WSL2 on Windows 11, or the lab VMs provided.
+> **Prerequisites:** You have completed the Docker and Kubernetes modules. You are comfortable with YAML.
+>
+> **Environment:** Ansible **cannot run natively on Windows**. On Windows 11, Ansible runs inside **WSL2** (Windows Subsystem for Linux). All Ansible commands in this guide run inside a WSL2 terminal, not in PowerShell or CMD. Docker Desktop must be running on Windows for the lab nodes.
+
+---
+
+## WSL2 Setup (One-Time, Before Starting)
+
+WSL2 gives you a full Linux environment running inside Windows 11. This is where Ansible lives.
+
+### Install WSL2
+
+Open **PowerShell as Administrator** and run:
+
+```powershell
+wsl --install
+```
+
+This installs WSL2 with Ubuntu 22.04 by default. Restart your laptop when prompted.
+
+After restart, Ubuntu opens automatically and asks you to create a Linux username and password. Set these — you'll need them for `sudo` commands.
+
+### Verify WSL2
+
+```powershell
+# In PowerShell — confirm WSL2 is running
+wsl --list --verbose
+```
+
+Expected output:
+```
+  NAME      STATE           VERSION
+* Ubuntu    Running         2
+```
+
+### Open a WSL2 terminal
+
+In Windows Terminal, click the dropdown arrow next to the `+` tab button → select **Ubuntu**. This opens a Linux bash shell. All Ansible work happens here.
+
+> **Quick access:** Pin the Ubuntu profile in Windows Terminal. You can also open WSL2 from any PowerShell/CMD window by typing `wsl`.
 
 ---
 
@@ -34,9 +73,9 @@ Ansible is **agentless** — unlike other tools, nothing is installed on the tar
 
 ---
 
-## Step 1 — Installing Ansible and Understanding the Architecture
+## Step 1 — Installing Ansible in WSL2
 
-### Install Ansible (on your control machine — WSL2 or Linux VM)
+All commands below run inside the **WSL2 / Ubuntu terminal**, not PowerShell.
 
 ```bash
 sudo apt update
@@ -57,7 +96,7 @@ ansible [core 2.16.x]
 
 ```
 Control Node                    Managed Nodes
-(your machine —                 (target servers —
+(WSL2 on your Windows 11 PC —  (target servers —
  Ansible installed here)         nothing installed)
 
    ansible / ansible-playbook
@@ -71,7 +110,7 @@ Control Node                    Managed Nodes
 
 | Component | What it is |
 |---|---|
-| **Control Node** | The machine where Ansible is installed and commands are run from |
+| **Control Node** | WSL2 Ubuntu — where Ansible is installed and all commands run |
 | **Managed Node** | Any server Ansible manages. Only needs Python and SSH. |
 | **Inventory** | A list of managed nodes — the "who to run against" |
 | **Playbook** | A YAML file describing automation tasks — the "what to do" |
@@ -79,11 +118,17 @@ Control Node                    Managed Nodes
 | **Module** | The built-in tool that executes a task (`apt`, `copy`, `service`, `docker_container`, etc.) |
 | **Role** | A reusable, structured bundle of tasks for a specific purpose (e.g. "install Java") |
 
-### Set up a local lab with Docker (two managed nodes as containers)
+### Set up a local lab — two managed nodes as Docker containers
 
-For the hands-on lab on your Windows 11 laptop, use Docker containers as fake servers — they behave exactly like real Linux servers for Ansible's purposes.
+For the hands-on lab, use Docker containers as simulated servers. Docker Desktop on Windows exposes containers to WSL2 automatically.
 
-**`docker-compose.yml` for the lab:**
+**From your WSL2 terminal**, create a project folder:
+
+```bash
+mkdir ~/ansible-lab && cd ~/ansible-lab
+```
+
+Create `docker-compose.yml`:
 
 ```yaml
 version: '3'
@@ -92,14 +137,30 @@ services:
   node1:
     image: ubuntu:22.04
     container_name: ansible-node1
-    command: /bin/bash -c "apt-get update && apt-get install -y openssh-server python3 && mkdir /run/sshd && echo 'root:password' | chpasswd && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && /usr/sbin/sshd -D"
+    command: >
+      /bin/bash -c "
+        apt-get update &&
+        apt-get install -y openssh-server python3 &&
+        mkdir /run/sshd &&
+        echo 'root:password' | chpasswd &&
+        sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+        /usr/sbin/sshd -D
+      "
     ports:
       - "2221:22"
 
   node2:
     image: ubuntu:22.04
     container_name: ansible-node2
-    command: /bin/bash -c "apt-get update && apt-get install -y openssh-server python3 && mkdir /run/sshd && echo 'root:password' | chpasswd && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && /usr/sbin/sshd -D"
+    command: >
+      /bin/bash -c "
+        apt-get update &&
+        apt-get install -y openssh-server python3 &&
+        mkdir /run/sshd &&
+        echo 'root:password' | chpasswd &&
+        sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+        /usr/sbin/sshd -D
+      "
     ports:
       - "2222:22"
 ```
@@ -108,15 +169,22 @@ services:
 docker compose up -d
 ```
 
-You now have two "servers" to manage.
+> **Note:** `docker` works inside WSL2 because Docker Desktop automatically integrates with WSL2. You do not need a separate Docker install inside Ubuntu.
+
+You now have two "servers" (containers) that Ansible will manage.
 
 ---
 
 ## Step 2 — Inventory: Telling Ansible What to Manage
 
-The **inventory** is a file listing the servers Ansible will work on. It is the first thing Ansible reads before doing anything.
+The **inventory** is a file listing the servers Ansible will work on.
 
 ### Create `inventory.ini`
+
+```bash
+# Inside WSL2, in your ~/ansible-lab folder
+nano inventory.ini
+```
 
 ```ini
 [webservers]
@@ -131,19 +199,23 @@ ansible_python_interpreter=/usr/bin/python3
 
 | Field | Meaning |
 |---|---|
-| `[webservers]` | A group name. You can run playbooks against groups, not just individual hosts. |
-| `ansible_host` | The actual IP or hostname to connect to |
+| `[webservers]` | A group name — run playbooks against groups, not just individual hosts |
+| `ansible_host` | The actual IP to connect to |
 | `ansible_port` | SSH port |
 | `ansible_user` | SSH user |
 | `ansible_password` | SSH password (use SSH keys in production) |
 | `[all:vars]` | Variables that apply to every host |
 
-### Test connectivity with an ad-hoc command
-
-An **ad-hoc command** runs a single task instantly — no playbook needed. Good for quick checks.
+### Install `sshpass` (required for password-based SSH in Ansible)
 
 ```bash
-# Ping all hosts (not ICMP ping — Ansible's connectivity check)
+sudo apt install sshpass -y
+```
+
+### Test connectivity with an ad-hoc command
+
+```bash
+# Ping all hosts (Ansible's SSH connectivity check — not ICMP)
 ansible all -i inventory.ini -m ping
 ```
 
@@ -159,7 +231,11 @@ node2 | SUCCESS => {
 }
 ```
 
-`SUCCESS` means Ansible can reach both nodes over SSH and Python is available.
+If you get an SSH host key error, add this to `inventory.ini` under `[all:vars]`:
+
+```ini
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+```
 
 ```bash
 # Run a shell command on all servers at once
@@ -175,23 +251,25 @@ ansible dbservers -i inventory.ini -m shell -a "df -h"
 ### Three Questions to Ask Trainees
 
 **1. "If you want to manage 50 web servers and 10 database servers, how does grouping help?"**
-→ Run one command against `[webservers]` or `[dbservers]` without listing every host individually. Groups let you target a class of servers.
+→ Run one command against `[webservers]` or `[dbservers]` without listing every host individually.
 
 **2. "The `-m ping` module — is this the same as the `ping` command in your terminal?"**
-→ No. Ansible's `ping` module SSHes into the host, runs a small Python check, and returns `pong`. It confirms that Ansible can connect and that Python works. Network ICMP ping is a different thing.
+→ No. Ansible's `ping` module SSHes into the host, runs a small Python check, and returns `pong`. Network ICMP ping is a different thing.
 
 **3. "Why is Ansible agentless? What's the practical benefit?"**
-→ Nothing needs to be pre-installed on managed nodes. Standard SSH + Python (which every Linux server has) is enough. This means you can start managing an existing server immediately without any setup on it.
+→ Nothing needs to be pre-installed on managed nodes. Standard SSH + Python is enough. You can start managing an existing server immediately.
 
 ---
 
 ## Step 3 — Your First Playbook
 
-An ad-hoc command runs one task. A **Playbook** runs many tasks in sequence — and it's repeatable, version-controlled, and readable.
+An ad-hoc command runs one task. A **Playbook** runs many tasks in sequence — repeatable, version-controlled, readable.
 
 ### Create `install-node.yaml`
 
-This playbook installs Node.js on the web servers.
+```bash
+nano install-node.yaml
+```
 
 ```yaml
 ---
@@ -272,44 +350,37 @@ Run the playbook a **second time** without modifying anything:
 ansible-playbook -i inventory.ini install-node.yaml
 ```
 
-```
-TASK [Install Node.js] ********************************************
-ok: [node1]   ← not "changed" this time
-```
-
-Node.js is already installed — Ansible detects this and skips the actual work. This is **idempotency**: running the same playbook 10 times produces the same result as running it once. No side effects, no duplicates.
+All tasks show `ok` — not `changed`. Node.js is already installed, Ansible detects this and skips the work. This is **idempotency**: running the same playbook 10 times produces the same result as running it once.
 
 ### Anatomy of a Playbook
 
 ```yaml
----                          # YAML document start marker
+---                          # YAML document start
 - name: Human-readable title  # The "play" — targets a group of hosts
   hosts: webservers           # Which group from inventory to run against
   become: yes                 # Use sudo (privilege escalation)
 
-  tasks:                      # List of tasks to run in order
-    - name: Task description  # Human-readable label (shows in output)
+  tasks:
+    - name: Task description  # Human-readable label (shown in output)
       apt:                    # The MODULE to use
-        name: nodejs          # Module ARGUMENTS — what it should do
+        name: nodejs          # Module ARGUMENTS
         state: present        # "present" = install, "absent" = uninstall
 ```
 
 ### Three Questions to Ask Trainees
 
 **1. "Run the playbook twice. What's different the second time?"**
-→ All tasks show `ok` instead of `changed`. Nothing was modified because the system was already in the desired state. This is idempotency — the core reliability guarantee of Ansible.
+→ All tasks show `ok` instead of `changed`. This is idempotency — the core reliability guarantee.
 
 **2. "What does `become: yes` do? When would you leave it out?"**
-→ It uses `sudo` to escalate privileges. You need it for system-level tasks (installing packages, modifying system files). You'd leave it out for tasks a regular user can do (creating files in their own home directory).
+→ It uses `sudo` to escalate privileges. Needed for system-level tasks. Leave it out for tasks a regular user can do.
 
 **3. "What's the difference between `state: present` and `state: latest`?"**
-→ `present` installs the package if missing, but doesn't upgrade it if a newer version exists. `latest` always upgrades to the newest version. Use `present` for reproducibility; use `latest` cautiously in production.
+→ `present` installs if missing but doesn't upgrade. `latest` always upgrades. Use `present` for reproducibility.
 
 ---
 
 ## Step 4 — Variables, Templates, and Handlers
-
-Real playbooks are parameterized — the same playbook deploys different configurations to different environments.
 
 ### Variables
 
@@ -329,9 +400,9 @@ Real playbooks are parameterized — the same playbook deploys different configu
         msg: "Deploying {{ app_name }} on port {{ app_port }} in {{ node_env }} mode"
 ```
 
-`{{ variable_name }}` is Ansible's template syntax — Jinja2. Variables can be defined in:
+`{{ variable_name }}` is Ansible's template syntax — Jinja2.
 
-| Location | Use case |
+| Variable location | Use case |
 |---|---|
 | `vars:` in the play | Quick inline variables |
 | `vars_files:` | Separate YAML file for many variables |
@@ -341,9 +412,7 @@ Real playbooks are parameterized — the same playbook deploys different configu
 
 ### Handlers
 
-A **handler** is a task that runs only when notified — and only once, at the end of the play, even if notified multiple times.
-
-The most common use: restart a service only when its config file actually changed.
+A **handler** is a task that runs only when notified — and only once at the end of the play.
 
 ```yaml
 ---
@@ -361,7 +430,7 @@ The most common use: restart a service only when its config file actually change
       copy:
         src: nginx.conf
         dest: /etc/nginx/nginx.conf
-      notify: Restart Nginx          # ← triggers the handler IF this task changed
+      notify: Restart Nginx
 
   handlers:
     - name: Restart Nginx
@@ -370,15 +439,11 @@ The most common use: restart a service only when its config file actually change
         state: restarted
 ```
 
-If `nginx.conf` hasn't changed, the `copy` task is `ok` — the handler is never triggered. If you push a new config, `copy` is `changed` — and Nginx restarts once at the end of the play.
-
-Without handlers you'd restart Nginx unconditionally every run. With handlers, restarts only happen when needed.
+If `nginx.conf` hasn't changed, `copy` is `ok` — handler never fires. If you push a new config, `copy` is `changed` — Nginx restarts once at the end.
 
 ### Templates (Jinja2)
 
-A **template** is a config file with variables in it. Ansible fills in the values and copies it to the server.
-
-**`templates/app.env.j2`** (note the `.j2` extension):
+**`templates/app.env.j2`:**
 
 ```
 NODE_ENV={{ node_env }}
@@ -397,18 +462,18 @@ DB_HOST={{ db_host }}
       notify: Restart app
 ```
 
-Ansible fills in the variables and writes the final file to the server. Same template, different values per environment — one playbook deploys correctly to dev, staging, and production.
+Same template, different values per environment — one playbook deploys to dev, staging, and production.
 
 ---
 
 ## Step 5 — Deploying Docker with Ansible
 
-Now connect what you know. Use Ansible to install Docker on the managed nodes and run your Express container — automating what you did manually in the Docker module.
+Use Ansible to install Docker on the managed nodes and run your Express container.
 
 ### Folder structure
 
 ```
-ansible-docker/
+ansible-lab/
   ├── inventory.ini
   ├── deploy-docker.yaml
   └── templates/
@@ -473,49 +538,38 @@ ansible-docker/
           - "{{ app_port }}:3000"
 ```
 
-### Run it
-
 ```bash
 ansible-playbook -i inventory.ini deploy-docker.yaml
 ```
-
-After it completes, the Express app is running on both web servers — pulled from Docker Hub, started automatically, configured to restart on reboot — without ever manually SSHing in.
-
-### The Key Insight
-
-> "This playbook is the bridge between your two previous modules. The Docker module taught you to build and push images. The Kubernetes module taught you to declare how they should run. Ansible automates the step before all of that — provisioning the machine itself. In a real CI/CD pipeline: Ansible sets up the server → Docker delivers the app → Kubernetes keeps it running."
 
 ---
 
 ## Step 6 — Roles: Reusable Automation
 
-A playbook with 50 tasks becomes hard to read and impossible to share. **Roles** are Ansible's way of packaging related tasks into a reusable, structured module.
+### Create a role
 
-### Role Directory Structure
+```bash
+# Run inside WSL2
+ansible-galaxy init roles/install-docker
+ansible-galaxy init roles/deploy-app
+```
+
+### Role directory structure
 
 ```
 roles/
   install-docker/
     ├── tasks/
-    │     └── main.yaml       ← tasks go here
+    │     └── main.yaml
     ├── handlers/
-    │     └── main.yaml       ← handlers go here
+    │     └── main.yaml
     ├── templates/
-    │     └── daemon.json.j2  ← templates go here
+    │     └── daemon.json.j2
     ├── vars/
-    │     └── main.yaml       ← role-specific variables
+    │     └── main.yaml
     └── defaults/
-          └── main.yaml       ← default values (overridable)
+          └── main.yaml
 ```
-
-### Create a role with `ansible-galaxy`
-
-```bash
-ansible-galaxy init roles/install-docker
-ansible-galaxy init roles/deploy-app
-```
-
-This generates the full directory skeleton automatically.
 
 ### `roles/install-docker/tasks/main.yaml`
 
@@ -560,42 +614,20 @@ This generates the full directory skeleton automatically.
     - deploy-app
 ```
 
-Clean. The playbook reads like a list of intentions. The details live inside the roles. The `install-docker` role can be shared across every playbook in every project.
-
 ### Ansible Galaxy — Community Roles
 
-`ansible-galaxy` is also a registry of pre-built community roles — like npm for Node.js.
-
 ```bash
-# Search for a role
 ansible-galaxy search docker
-
-# Install a well-known Docker role
 ansible-galaxy install geerlingguy.docker
 
-# Use it in your playbook
+# Use in playbook
 roles:
   - geerlingguy.docker
 ```
 
-`geerlingguy.docker` handles Docker installation on Ubuntu, CentOS, Debian, and more — tested, maintained, and used by thousands of teams. Don't write from scratch what the community has already built.
-
-### Three Questions to Ask Trainees
-
-**1. "How is a Role similar to a function in programming?"**
-→ Both encapsulate a reusable piece of logic with a clear name. `install-docker` is called like a function — you don't repeat the 10 tasks every time you need Docker installed.
-
-**2. "What's the difference between `vars/main.yaml` and `defaults/main.yaml` in a role?"**
-→ `defaults` has the lowest priority — any playbook, group_var, or command-line variable overrides it. `vars` has higher priority. Use `defaults` for values you expect users to override; use `vars` for internal role constants.
-
-**3. "When would you publish a role to Ansible Galaxy?"**
-→ When it solves a common problem (install Nginx, configure Java, set up monitoring) and is generic enough for others to use. Your organization can also run a private Galaxy for internal reuse.
-
 ---
 
 ## Step 7 — CI/CD Integration: Ansible in the Pipeline
-
-Ansible's real power is as the **provisioning and deployment stage** in a CI/CD pipeline. Here is how it fits with the tools coming in the next modules.
 
 ### The Full DevOps Pipeline
 
@@ -604,12 +636,12 @@ Developer pushes code
         ↓
      GitHub
         ↓
-    Jenkins (CI)
+    Jenkins (CI) — runs on Windows via Docker
      - Run tests
      - docker build
      - docker push → Docker Hub
         ↓
-    Ansible (CD)
+    Ansible (CD) — runs inside WSL2
      - ansible-playbook deploy.yaml
      - SSH into production servers
      - docker pull (new image)
@@ -619,9 +651,7 @@ Developer pushes code
   (running updated app)
 ```
 
-### `deploy-update.yaml` — the CD playbook
-
-This is the playbook Jenkins calls after a successful build:
+### `deploy-update.yaml`
 
 ```yaml
 ---
@@ -629,7 +659,7 @@ This is the playbook Jenkins calls after a successful build:
   hosts: webservers
   become: yes
   vars:
-    image_tag: "{{ lookup('env', 'IMAGE_TAG') }}"   # passed in by Jenkins
+    image_tag: "{{ lookup('env', 'IMAGE_TAG') }}"
 
   tasks:
     - name: Pull the new image
@@ -662,18 +692,21 @@ This is the playbook Jenkins calls after a successful build:
 
 ### Calling Ansible from Jenkins (Jenkinsfile snippet)
 
+Jenkins runs on Windows via Docker. To call Ansible (which lives in WSL2), use the `wsl` command:
+
 ```groovy
 stage('Deploy') {
     steps {
+        // Call Ansible inside WSL2 from Jenkins running on Windows
         sh """
-          ansible-playbook -i inventory.ini deploy-update.yaml \
+          wsl ansible-playbook -i inventory.ini deploy-update.yaml \
             -e IMAGE_TAG=${BUILD_NUMBER}
         """
     }
 }
 ```
 
-Jenkins passes the build number as the image tag. Ansible pulls that exact image version and deploys it to production. Every deployment is traceable to a specific build.
+> **Alternative for production:** Run Jenkins agents as Linux VMs or containers where Ansible is installed natively — this is cleaner than calling WSL2 from Jenkins.
 
 ---
 
@@ -681,44 +714,27 @@ Jenkins passes the build number as the image tag. Ansible pulls that exact image
 
 ### The Big Picture
 
-Ansible solves one problem: **automating repetitive operations on many servers.** It replaces manual SSH + bash scripting with readable, version-controlled, idempotent YAML playbooks. In a DevOps pipeline it occupies the provisioning and deployment layer — below your application but above raw infrastructure.
+Ansible solves one problem: **automating repetitive operations on many servers.** On Windows 11, Ansible runs inside WSL2 — the control node is your Ubuntu environment inside Windows. Target servers are Linux machines (or Docker containers) reachable over SSH.
 
 ---
 
 ### Core Concepts
 
-**Inventory**
-The list of servers Ansible manages. Can be a static `.ini` file or dynamically generated (from AWS, Azure, GCP). Groups hosts so you can target a class of server with one command.
+**Inventory** — The list of servers Ansible manages. Groups hosts so you can target a class of server with one command.
 
-**Playbook**
-A YAML file containing one or more plays. A play maps a group of hosts to a list of tasks. Playbooks are the main unit of Ansible automation.
+**Playbook** — A YAML file containing one or more plays. A play maps a group of hosts to a list of tasks.
 
-**Play**
-A block within a playbook. Specifies `hosts` (which servers), `become` (privilege escalation), `vars` (variables), and `tasks` (what to do).
+**Task** — A single call to a module with arguments. Each task has a name (shown in output) and a module.
 
-**Task**
-A single call to a module with arguments. The basic unit of work. Each task has a name (shown in output) and a module.
+**Module** — A built-in or community tool that does one specific job: `apt`, `copy`, `service`, `template`, `docker_container`, etc. Ansible ships with 3,000+ modules.
 
-**Module**
-A built-in or community-provided tool that does one specific job. Examples: `apt` (install packages), `copy` (copy files), `service` (manage services), `template` (render Jinja2 files), `docker_container` (manage containers). Ansible ships with 3,000+ modules.
+**Handler** — A task that only runs when explicitly notified by another task — and only once per play. Used for service restarts.
 
-**Handler**
-A task that only runs when explicitly notified by another task — and only once per play, regardless of how many times it was notified. Used for service restarts.
+**Idempotency** — Running the same playbook multiple times produces the same result. Safe to re-run repeatedly.
 
-**Variable / `{{ }}`**
-Named values injected into tasks and templates using Jinja2 `{{ variable }}` syntax. Can come from `vars:`, `group_vars/`, `host_vars/`, command line, or registered task output.
+**Role** — A structured, reusable bundle of tasks, handlers, templates, and variables. Shared via Ansible Galaxy.
 
-**Register**
-Captures a task's output into a variable for use in later tasks. Example: capture the output of `node --version` and print it with `debug`.
-
-**Idempotency**
-Running the same playbook multiple times produces the same result. Ansible modules check current state before acting — if the desired state already exists, the task is `ok` (no change). This makes Ansible safe to run repeatedly.
-
-**Role**
-A structured, reusable bundle of tasks, handlers, templates, and variables for a specific purpose. Roles are composable — a playbook applies a list of roles. Shared via Ansible Galaxy.
-
-**Ansible Galaxy**
-A public registry of community roles. `ansible-galaxy install <role>` downloads a pre-built role. The equivalent of npm for Ansible automation.
+**Ansible Galaxy** — A public registry of community roles. `ansible-galaxy install <role>` downloads a pre-built role.
 
 ---
 
@@ -731,7 +747,7 @@ A public registry of community roles. `ansible-galaxy install <role>` downloads 
 | `copy` | Copy a file to the remote server | `src: app.conf dest: /etc/app.conf` |
 | `template` | Render a Jinja2 template and copy | `src: app.env.j2 dest: /opt/app/.env` |
 | `service` | Start, stop, restart, enable services | `name: nginx state: restarted` |
-| `command` | Run a command (not through a shell) | `command: node --version` |
+| `command` | Run a command (no shell features) | `command: node --version` |
 | `shell` | Run a shell command (pipes, redirects) | `shell: cat /etc/os-release` |
 | `file` | Create/delete files, directories, symlinks | `path: /opt/app state: directory` |
 | `user` | Manage OS user accounts | `name: deploy state: present` |
@@ -743,6 +759,8 @@ A public registry of community roles. `ansible-galaxy install <role>` downloads 
 ---
 
 ### Commands at a Glance
+
+> All commands run inside **WSL2 Ubuntu terminal**, not PowerShell.
 
 | What you want to do | Command |
 |---|---|
@@ -766,81 +784,14 @@ A public registry of community roles. `ansible-galaxy install <role>` downloads 
 
 | These seem similar... | But... |
 |---|---|
-| `command` vs `shell` | `command` runs executables directly — no shell features. `shell` passes through `/bin/sh` — allows pipes, redirects, `&&`. Prefer `command` when you don't need shell features. |
-| `copy` vs `template` | `copy` transfers a file as-is. `template` processes Jinja2 `{{ }}` expressions first. Use `template` whenever the file contains variables. |
-| `vars:` vs `defaults:` in a role | `defaults` has the lowest precedence — easy to override. `vars` has high precedence — hard to override. Put user-tunable values in `defaults`. |
-| `state: present` vs `state: latest` | `present` installs if missing, leaves the version alone. `latest` always upgrades. Use `present` for reproducibility. |
-| Handler vs Task | A task always runs when reached. A handler only runs when `notify`ed, and only once per play. |
-| Playbook vs Role | A Playbook is the executable entry point. A Role is a reusable module called from a playbook. |
-| `ansible` vs `ansible-playbook` | `ansible` runs a single ad-hoc task against hosts. `ansible-playbook` runs a full YAML playbook file. |
-| Ansible vs Terraform | Ansible = configuration management (what runs on servers). Terraform = infrastructure provisioning (what servers exist). They are complementary, not competing. |
-
----
-
-### How Everything Connects
-
-```
-inventory.ini          playbook.yaml              roles/
-(WHO to manage)   +   (WHAT to do)          +   (reusable tasks)
-       ↓                    ↓                          ↓
-                   ansible-playbook
-                          ↓
-              SSH into each managed node
-                          ↓
-              Run tasks using modules
-                          ↓
-              ┌──────────────────────────────┐
-              │  Managed Node                │
-              │  - Packages installed        │
-              │  - Config files templated    │
-              │  - Services started          │
-              │  - Docker containers running │
-              └──────────────────────────────┘
-                          ↑
-              Idempotent — safe to re-run
-              Version-controlled — tracked in Git
-              Auditable — every change logged
-```
-
----
-
-## Ansible Commands Reference
-
-```bash
-# Ad-hoc commands
-ansible all -i inventory.ini -m ping
-ansible webservers -i inventory.ini -m shell -a "uptime"
-ansible dbservers -i inventory.ini -m apt -a "name=curl state=present" --become
-
-# Playbook execution
-ansible-playbook -i inventory.ini playbook.yaml
-ansible-playbook -i inventory.ini playbook.yaml --check          # dry run
-ansible-playbook -i inventory.ini playbook.yaml --diff           # show file diffs
-ansible-playbook -i inventory.ini playbook.yaml -v               # verbose
-ansible-playbook -i inventory.ini playbook.yaml --limit node1    # single host
-ansible-playbook -i inventory.ini playbook.yaml -e "port=8080"   # extra vars
-ansible-playbook -i inventory.ini playbook.yaml --tags install    # run tagged tasks only
-ansible-playbook -i inventory.ini playbook.yaml --skip-tags test  # skip tagged tasks
-
-# Inventory inspection
-ansible all -i inventory.ini --list-hosts
-ansible webservers -i inventory.ini --list-hosts
-ansible all -i inventory.ini -m setup                            # gather all facts about hosts
-
-# Roles
-ansible-galaxy init roles/my-role
-ansible-galaxy install geerlingguy.docker
-ansible-galaxy list
-
-# Vault (secrets management)
-ansible-vault create vars/secrets.yaml
-ansible-vault encrypt vars/secrets.yaml
-ansible-vault decrypt vars/secrets.yaml
-ansible-vault edit vars/secrets.yaml
-ansible-vault view vars/secrets.yaml
-ansible-playbook ... --ask-vault-pass
-ansible-playbook ... --vault-password-file .vault_pass
-```
+| `command` vs `shell` | `command` runs executables directly. `shell` passes through `/bin/sh` — allows pipes, redirects. |
+| `copy` vs `template` | `copy` transfers a file as-is. `template` processes Jinja2 `{{ }}` first. |
+| `vars:` vs `defaults:` in a role | `defaults` is easiest to override. `vars` has high priority. |
+| `state: present` vs `state: latest` | `present` installs if missing. `latest` always upgrades. |
+| Handler vs Task | A task always runs. A handler only runs when notified, once per play. |
+| Playbook vs Role | Playbook is the entry point. Role is a reusable module called from a playbook. |
+| `ansible` vs `ansible-playbook` | `ansible` runs a single ad-hoc task. `ansible-playbook` runs a full YAML file. |
+| WSL2 vs native Linux | WSL2 is a Linux VM inside Windows. Ansible runs inside WSL2. Commands look identical to native Linux. |
 
 ---
 
@@ -849,16 +800,16 @@ ansible-playbook ... --vault-password-file .vault_pass
 | Ansible Topic | Covered in |
 |---|---|
 | DevOps Principles and the Role of Ansible | Bridge section — where Ansible sits in the stack, agentless architecture |
+| Windows 11 Setup | WSL2 install section — `wsl --install`, Ubuntu terminal, Docker Desktop integration |
 | Ansible Components | Step 1 — architecture diagram; Step 2 — inventory; Step 3 — playbook anatomy |
-| Inventory | Step 2 — `inventory.ini`, groups, host variables, ad-hoc ping |
+| Inventory | Step 2 — `inventory.ini`, groups, `sshpass`, SSH host key fix |
 | Ad-hoc Commands | Step 2 — `ansible all -m ping`, `-m shell`, `-m apt` |
 | Playbooks | Step 3 — full playbook, `ok` vs `changed`, idempotency demo |
 | Variables and Templates | Step 4 — `vars:`, Jinja2 `{{ }}`, `template` module, `group_vars` |
 | Handlers | Step 4 — notify / handler pattern, conditional service restarts |
-| Modules Reference | Core Modules Reference table — apt, copy, template, service, docker_container, etc. |
+| Modules Reference | Core Modules Reference table |
 | Roles | Step 6 — role structure, `ansible-galaxy init`, `defaults` vs `vars`, Ansible Galaxy |
-| CI/CD with Ansible | Step 7 — deploy playbook called from Jenkins, `IMAGE_TAG` variable injection |
+| CI/CD with Ansible | Step 7 — deploy playbook, `wsl ansible-playbook` from Jenkins on Windows |
 | Ansible + Docker | Step 5 — install Docker via Ansible, pull image, run container |
-| Ansible + Kubernetes | CI/CD section — Ansible provisions nodes; Kubernetes manages pods on top |
 
 > **Next:** Jenkins — build the CI/CD pipeline that ties Git, Docker, Ansible, and Kubernetes together into an automated delivery workflow.

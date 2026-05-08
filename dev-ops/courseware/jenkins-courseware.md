@@ -1,252 +1,208 @@
 # Jenkins — Hands-On Guide (CI/CD Pipelines)
 
-> **Prerequisites:** You have completed the Docker, Kubernetes, and Ansible modules. Your `hello-express` image is on Docker Hub. Git and GitHub basics are assumed.
+> **Prerequisites:** Docker, Kubernetes, Ansible modules completed. Your `hello-express` image is on Docker Hub.
+>
+> **Environment:** Windows 11, Docker Desktop. All `docker` commands in **PowerShell**. Pipeline `sh` steps run inside the Jenkins Linux container — Linux commands work regardless of Windows host.
 
 ---
 
 ## The Bridge from Ansible to Jenkins
 
-In Ansible you wrote a deployment playbook. But someone still had to *trigger* it manually — and before that, someone had to manually run tests, manually build the Docker image, and manually push it to Docker Hub.
+In Ansible you wrote a deployment playbook. But someone still had to *trigger* it manually — and before that, manually run tests, build the Docker image, and push it.
 
-Jenkins automates the trigger. It watches your Git repository, and the moment you push code, it kicks off the entire chain automatically.
+Jenkins automates the trigger. The moment you push code, the entire chain fires automatically.
 
 | What you did manually | What Jenkins automates |
 |---|---|
-| `git push` → remember to run tests | Push → tests run automatically |
+| `git push` → remember to test | Push → tests run automatically |
 | `docker build` → `docker push` | Tests pass → image built and pushed |
 | `ansible-playbook deploy.yaml` | Image pushed → deployment triggered |
 | Hope nobody forgot a step | Every step runs in order, every time |
 
-The mental model shift:
-
 ```
-Manual:   Developer pushes code.
-          Developer remembers to test.
-          Developer builds the image.
-          Developer deploys.
+Manual:   Developer pushes → remembers to test → builds → deploys
           (Steps get skipped. Environments drift. Fridays are scary.)
 
-Jenkins:  Developer pushes code.
+Jenkins:  Developer pushes.
           Everything else happens automatically.
           (Pipeline is the process. Process is in Git.)
 ```
 
-This is **Continuous Integration / Continuous Delivery**. The pipeline is version-controlled, repeatable, and visible to the whole team.
-
 ---
 
-## Step 1 — Installing Jenkins
+## Step 1 — Installing Jenkins on Windows 11
 
-### Run Jenkins in Docker (recommended for the lab)
+### Run Jenkins in Docker
 
-Jenkins itself runs as a Docker container. No system install needed.
-
-```bash
-docker run -d \
-  --name jenkins \
-  -p 8080:8080 \
-  -p 50000:50000 \
-  -v jenkins_home:/var/jenkins_home \
-  -v /var/run/docker.sock:/var/run/docker.sock \
+```powershell
+docker run -d `
+  --name jenkins `
+  -p 8080:8080 `
+  -p 50000:50000 `
+  -v jenkins_home:/var/jenkins_home `
+  -v /var/run/docker.sock:/var/run/docker.sock `
   jenkins/jenkins:lts
 ```
+
+> **PowerShell:** Backtick `` ` `` is PowerShell's line-continuation (equivalent to `\` in bash).
 
 | Flag | Purpose |
 |---|---|
 | `-p 8080:8080` | Jenkins web UI |
-| `-p 50000:50000` | Jenkins agent communication port |
-| `-v jenkins_home:/var/jenkins_home` | Persist Jenkins data (jobs, plugins, config) across restarts |
-| `-v /var/run/docker.sock:/var/run/docker.sock` | Let Jenkins run Docker commands on the host |
+| `-p 50000:50000` | Agent communication port |
+| `-v jenkins_home:/var/jenkins_home` | Persist all Jenkins data |
+| `-v /var/run/docker.sock:/var/run/docker.sock` | Let Jenkins run `docker` commands |
 
-### Initial Setup
-
-```bash
-# Get the initial admin password
+```powershell
+# Get initial admin password
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-1. Browser → `http://localhost:8080`
-2. Paste the admin password
-3. Click **Install suggested plugins** — wait for the install
-4. Create your admin user
-5. Jenkins is ready
+Browser → `http://localhost:8080` → paste password → Install suggested plugins → create admin user.
 
-### Install additional plugins
+### Plugins to install
 
-Go to **Manage Jenkins → Plugins → Available plugins** and install:
+**Manage Jenkins → Plugins → Available:**
 
-- **Docker Pipeline** — build and push Docker images in pipelines
-- **Git** — clone repositories (usually pre-installed)
-- **Pipeline** — declarative pipeline support (usually pre-installed)
+| Plugin | Required for |
+|---|---|
+| Pipeline | Declarative pipelines |
+| Git | Cloning repos |
+| Docker Pipeline | `docker.build`, `docker.push` in pipelines |
+| Maven Integration | `mvn` builds |
+| Deploy to container | WAR → Tomcat |
+| Kubernetes | `kubectl` in pipelines |
+| Blue Ocean | Visual pipeline view |
 
-### The Architecture
+### Architecture
 
 ```
-Developer
+Developer (Windows 11)
     ↓  git push
   GitHub
     ↓  webhook / poll
-  Jenkins Controller (port 8080)
-    ↓  dispatches jobs to
-  Jenkins Agent(s)
-    ↓  runs
-  Pipeline Stages (test → build → push → deploy)
+  Jenkins Controller (Docker container :8080)
+    ↓
+  Pipeline Stages (sh runs inside Jenkins Linux container)
 ```
 
-The **Controller** manages the UI, config, and job scheduling. **Agents** (also called nodes) do the actual work. In our lab, the controller also acts as the agent.
+> `sh` in pipeline steps runs inside the Jenkins Linux container — not on Windows. `mvn`, `docker`, `kubectl`, bash all work normally.
 
 ---
 
-## Step 2 — Your First Pipeline (Hello World)
-
-Jenkins pipelines are defined in a file called `Jenkinsfile` — stored in your repository alongside your code. The pipeline lives in Git, not in Jenkins' UI.
-
-### Create a `Jenkinsfile` in your project root
+## Step 2 — Declarative Pipeline Fundamentals
 
 ```groovy
 pipeline {
     agent any
 
+    tools {
+        maven 'maven-3.9'
+        jdk   'jdk-17'
+    }
+
+    environment {
+        APP_NAME = 'hello-jenkins'
+    }
+
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello from Jenkins Pipeline!'
-                sh 'date'
-                sh 'whoami'
-            }
-        }
-    }
-}
-```
-
-### Create a Pipeline Job in Jenkins
-
-1. **New Item** → name it `hello-pipeline` → select **Pipeline** → OK
-2. Scroll to **Pipeline** section
-3. Set **Definition** to `Pipeline script`
-4. Paste the Jenkinsfile content
-5. **Save** → **Build Now**
-
-Watch the **Console Output**:
-```
-Started by user admin
-[Pipeline] Start of Pipeline
-[Pipeline] agent
-[Pipeline] stage
-[Pipeline] { (Hello)
-[Pipeline] echo
-Hello from Jenkins Pipeline!
-[Pipeline] sh
-+ date
-Thu May  7 10:22:31 UTC 2026
-[Pipeline] sh
-+ whoami
-jenkins
-[Pipeline] End of Pipeline
-Finished: SUCCESS
-```
-
-### Anatomy of a Declarative Pipeline
-
-```groovy
-pipeline {                    // Root block — always present
-    agent any                 // Run on any available agent
-
-    environment {             // Environment variables available to all stages
-        APP_NAME = 'hello-express'
-    }
-
-    stages {                  // The ordered list of stages
-        stage('Test') {       // A stage — shown as a box in the UI
-            steps {           // What to do in this stage
-                sh 'npm test'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'docker build -t myapp .'
+                echo "Building ${APP_NAME}"
+                sh 'date && whoami'
             }
         }
     }
 
-    post {                    // Runs after all stages, regardless of outcome
-        success {
-            echo 'Pipeline succeeded!'
-        }
-        failure {
-            echo 'Pipeline failed!'
-        }
-        always {
-            echo 'This always runs — good for cleanup'
-        }
+    post {
+        success { echo 'SUCCESS' }
+        failure { echo 'FAILED'  }
+        always  { echo 'Always runs — good for cleanup' }
     }
 }
 ```
 
 | Block | Purpose |
 |---|---|
-| `pipeline` | Root wrapper — every declarative pipeline starts here |
-| `agent` | Where to run — `any`, a specific node, or a Docker container |
-| `environment` | Key-value pairs available as env vars throughout the pipeline |
-| `stages` | Container for all stages |
-| `stage('Name')` | A logical phase of the pipeline — visible in the UI |
-| `steps` | The actual commands inside a stage |
-| `post` | Actions after the pipeline finishes — cleanup, notifications |
-
-### Three Questions to Ask Trainees
-
-**1. "Why is the Jenkinsfile stored in the Git repository and not in Jenkins itself?"**
-→ Because the pipeline *is* part of the codebase. It gets code-reviewed, versioned, and rolled back alongside the application. If Jenkins dies, you haven't lost your pipeline.
-
-**2. "What does `agent any` mean? When would you change it?"**
-→ Run on any available agent. You'd change it to target a specific agent with tools installed (e.g., a Java agent for Maven builds, or a Docker-capable agent).
-
-**3. "What's the difference between `stage` and `step`?"**
-→ A `stage` is a named phase visible in the Jenkins UI (e.g., "Test", "Build"). A `step` is an individual command inside a stage. Multiple steps can exist in one stage.
+| `pipeline` | Root wrapper |
+| `agent` | Where to run — `any`, label, or Docker image |
+| `tools` | Pre-configured JDK/Maven/Node from Global Tool Config |
+| `environment` | Key-value env vars for all stages |
+| `stages` | Ordered list of stages |
+| `stage` | Named phase — shown as a box in Blue Ocean |
+| `steps` | Commands inside a stage |
+| `post` | After all stages — always / success / failure |
 
 ---
 
-## Step 3 — CI Pipeline: Test, Build, Push
+## Step 3 — CI Pipeline: Git + Jenkins + Maven
 
-Now build a real CI pipeline for the Express + MongoDB app. This pipeline runs on every push to GitHub.
+Core syllabus pipeline: a **Spring Boot Java app** built with Maven, triggered by GitHub push.
 
-### Project structure
+### Configure JDK and Maven in Jenkins
 
+**Manage Jenkins → Tools:**
+1. **JDK** → Add → Name: `jdk-17` → Install automatically → OpenJDK 17
+2. **Maven** → Add → Name: `maven-3.9` → Install automatically → 3.9.x
+3. Save
+
+### Minimal Spring Boot project
+
+`pom.xml`:
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>hello-jenkins</artifactId>
+  <version>1.0.${BUILD_NUMBER}</version>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.2.0</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
 ```
-hello-express/
-  ├── app.js
-  ├── package.json
-  ├── Dockerfile
-  └── Jenkinsfile
-```
 
-### `package.json` — add a test script
+`src/main/java/com/example/HelloController.java`:
 
-```json
-{
-  "name": "hello-express",
-  "version": "1.0.0",
-  "scripts": {
-    "test": "node -e \"console.log('Tests passed'); process.exit(0)\""
-  },
-  "dependencies": {
-    "express": "4.18.2",
-    "mongoose": "7.6.3"
-  }
+```java
+@RestController
+public class HelloController {
+    @GetMapping("/")
+    public String hello() {
+        return "Hello from Jenkins CI/CD!";
+    }
 }
 ```
 
-### `Jenkinsfile` — full CI pipeline
+### `Jenkinsfile` — Git + Jenkins + Maven
 
 ```groovy
 pipeline {
     agent any
 
+    tools {
+        maven 'maven-3.9'
+        jdk   'jdk-17'
+    }
+
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
-        IMAGE_NAME = "yourname/hello-express"
-        IMAGE_TAG  = "${BUILD_NUMBER}"
+        APP_NAME = 'hello-jenkins'
     }
 
     stages {
@@ -254,208 +210,330 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-                echo "Building commit: ${GIT_COMMIT}"
+                echo "Branch: ${GIT_BRANCH} | Commit: ${GIT_COMMIT[0..7]}"
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'mvn clean package -DskipTests'
             }
         }
 
-        stage('Run Tests') {
+        stage('Test') {
             steps {
-                sh 'npm test'
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Archive Artifact') {
             steps {
-                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
-                sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest"
-            }
-        }
-
-        stage('Push to Docker Hub') {
-            steps {
-                sh "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
-                sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
-                sh "docker push ${IMAGE_NAME}:latest"
-            }
-        }
-
-        stage('Cleanup') {
-            steps {
-                sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true"
-                sh "docker rmi ${IMAGE_NAME}:latest || true"
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
         }
 
     }
 
     post {
-        success {
-            echo "Image ${IMAGE_NAME}:${IMAGE_TAG} built and pushed successfully."
-        }
-        failure {
-            echo "Pipeline failed. Image was NOT pushed."
-        }
+        success { echo "Build ${BUILD_NUMBER} succeeded." }
+        failure { echo "Build ${BUILD_NUMBER} failed."   }
     }
 }
 ```
 
-### Store Docker Hub credentials in Jenkins
+### Connect to GitHub — Pipeline from SCM
 
-1. **Manage Jenkins → Credentials → System → Global credentials → Add Credentials**
-2. Kind: **Username with password**
-3. Username: your Docker Hub username
-4. Password: your Docker Hub password or access token
-5. ID: `dockerhub-creds` ← this must match `credentials('dockerhub-creds')` in the Jenkinsfile
+**Job → Configure → Pipeline → Pipeline script from SCM:**
+- SCM: Git
+- Repository URL: `https://github.com/yourname/hello-jenkins`
+- Branch: `*/main`
+- Script Path: `Jenkinsfile`
 
-`credentials()` injects the username as `_USR` and password as `_PSW` automatically. The password is never printed in logs.
+### Triggers
 
-### Built-in Environment Variables
+**Option A — GitHub Webhook (instant):**
 
-Jenkins provides these automatically in every build:
+Jenkins: **Build Triggers → GitHub hook trigger for GITScm polling**
 
-| Variable | Value |
+GitHub: **Settings → Webhooks → Add webhook**
+- Payload URL: `http://YOUR_IP:8080/github-webhook/`
+- Content type: `application/json`
+
+> **Windows 11 lab:** Use ngrok to expose localhost:
+> ```powershell
+> winget install ngrok
+> ngrok http 8080
+> ```
+> Use the `https://xxxx.ngrok.io` URL as the webhook payload URL.
+
+**Option B — SCM polling:**
+```groovy
+triggers { pollSCM('H/5 * * * *') }
+```
+
+### Maven commands reference
+
+| Command | What it does |
 |---|---|
-| `BUILD_NUMBER` | Auto-incrementing build number (1, 2, 3...) |
-| `BUILD_URL` | URL to this build's console output |
-| `GIT_COMMIT` | Full SHA of the commit being built |
-| `GIT_BRANCH` | Branch name |
-| `WORKSPACE` | Path to the build workspace on disk |
-| `JOB_NAME` | Name of the Jenkins job |
-
-### Three Questions to Ask Trainees
-
-**1. "Why use `BUILD_NUMBER` as the image tag instead of `latest` only?"**
-→ `latest` is overwritten every build — you can't roll back to a specific version. `BUILD_NUMBER` gives every image a unique, traceable tag. `docker pull yourname/hello-express:42` always gives you exactly what build 42 produced.
-
-**2. "What happens if `Run Tests` fails?"**
-→ Jenkins marks the stage as failed, stops the pipeline immediately, and never reaches the Build or Push stages. A broken test prevents a broken image from reaching Docker Hub.
-
-**3. "Where does `${DOCKERHUB_CREDENTIALS_PSW}` come from?"**
-→ Jenkins injects it from the credential store. It never appears in the Jenkinsfile or in build logs — Jenkins masks it. This is how you keep secrets out of source code.
+| `mvn clean` | Delete `target/` |
+| `mvn compile` | Compile Java source |
+| `mvn test` | Run unit tests |
+| `mvn package` | Compile + test + JAR/WAR |
+| `mvn clean package` | Clean then package |
+| `mvn clean package -DskipTests` | Package without tests |
+| `mvn install` | Package + install to local repo |
+| `mvn verify` | Run integration tests |
 
 ---
 
-## Step 4 — Connecting GitHub: Webhooks and Automatic Triggers
+## Step 4 — Integrating Tomcat in the CI/CD Pipeline
 
-Right now you click **Build Now** manually. The goal is: push to GitHub → pipeline runs automatically.
+### What is Tomcat?
 
-### Option A — GitHub Webhook (recommended)
+Apache Tomcat is a Java application server. It hosts WAR (Web Application Archive) files. The classic enterprise Java deployment model:
 
-A webhook tells GitHub: "When someone pushes, call this URL."
+```
+Maven builds → hello-jenkins.war
+                    ↓
+          Deploy to Tomcat
+                    ↓
+    http://server:8090/hello-jenkins/
+```
 
-**In Jenkins:**
+### Change packaging to WAR
 
-1. Open your pipeline job → **Configure**
-2. Under **Build Triggers**, check **GitHub hook trigger for GITScm polling**
-3. Save
+In `pom.xml`, change `<packaging>jar</packaging>` to `<packaging>war</packaging>` and add the Tomcat dependency:
 
-**In GitHub:**
+```xml
+<packaging>war</packaging>
 
-1. Your repository → **Settings → Webhooks → Add webhook**
-2. Payload URL: `http://YOUR_JENKINS_IP:8080/github-webhook/`
-3. Content type: `application/json`
-4. Trigger: **Just the push event**
-5. Add webhook
+<dependencies>
+  ...
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <scope>provided</scope>
+  </dependency>
+</dependencies>
+```
 
-Now every `git push` to the repository triggers the Jenkins pipeline automatically.
+Make `HelloApplication` extend `SpringBootServletInitializer`:
 
-> **Lab note:** For local Jenkins, use [ngrok](https://ngrok.com) to expose `localhost:8080` to a public URL that GitHub can reach: `ngrok http 8080`
-
-### Option B — SCM Polling (no public IP needed)
-
-Jenkins polls GitHub every N minutes and triggers a build if new commits are detected.
-
-```groovy
-triggers {
-    pollSCM('H/5 * * * *')    // Check every 5 minutes
+```java
+@SpringBootApplication
+public class HelloApplication extends SpringBootServletInitializer {
+    public static void main(String[] args) {
+        SpringApplication.run(HelloApplication.class, args);
+    }
 }
 ```
 
-Add this inside the `pipeline` block. Less instant than a webhook but works without a public IP.
+### Run Tomcat in Docker
 
-### Pipeline from SCM (the proper way)
+```powershell
+docker run -d `
+  --name tomcat `
+  -p 8090:8080 `
+  tomcat:10-jdk17
+```
 
-Instead of pasting the Jenkinsfile into the UI, point Jenkins at your repository:
+### Enable Tomcat Manager (required for remote deploy)
 
-1. Job → **Configure → Pipeline**
-2. Definition: **Pipeline script from SCM**
-3. SCM: **Git**
-4. Repository URL: `https://github.com/yourname/hello-express`
-5. Branch: `*/main`
-6. Script Path: `Jenkinsfile`
-7. Save
+```powershell
+docker exec -it tomcat bash
+```
 
-Now Jenkins reads the Jenkinsfile from GitHub on every build. Change the pipeline by editing the file and pushing — no Jenkins UI change needed.
+Inside the container:
 
----
+```bash
+# Create manager user
+cat > /usr/local/tomcat/conf/tomcat-users.xml << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcat-users>
+  <role rolename="manager-script"/>
+  <user username="deployer" password="deployer123" roles="manager-script"/>
+</tomcat-users>
+EOF
 
-## Step 5 — Full CI/CD Pipeline: Test → Build → Push → Deploy
+# Allow remote access (Tomcat 10 restricts manager by default)
+sed -i 's/allow="127/allow=".*/' \
+  /usr/local/tomcat/webapps/manager/META-INF/context.xml
 
-Add the deployment stage. After the image is pushed to Docker Hub, Ansible deploys it to the production server.
+exit
+```
 
-### Updated `Jenkinsfile`
+```powershell
+docker restart tomcat
+```
+
+Verify: `http://localhost:8090/manager/html` → login: `deployer` / `deployer123`
+
+### Add Tomcat credentials to Jenkins
+
+**Manage Jenkins → Credentials → Add:**
+- Kind: Username with password
+- Username: `deployer`
+- Password: `deployer123`
+- ID: `tomcat-creds`
+
+### `Jenkinsfile` — with Tomcat deploy
 
 ```groovy
 pipeline {
     agent any
 
+    tools {
+        maven 'maven-3.9'
+        jdk   'jdk-17'
+    }
+
+    environment {
+        APP_NAME     = 'hello-jenkins'
+        TOMCAT_URL   = 'http://host.docker.internal:8090'
+        TOMCAT_CREDS = credentials('tomcat-creds')
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps { checkout scm }
+        }
+
+        stage('Build') {
+            steps { sh 'mvn clean package -DskipTests' }
+        }
+
+        stage('Test') {
+            steps { sh 'mvn test' }
+            post {
+                always { junit 'target/surefire-reports/*.xml' }
+            }
+        }
+
+        stage('Deploy to Tomcat') {
+            steps {
+                deploy adapters: [
+                    tomcat9(
+                        credentialsId: 'tomcat-creds',
+                        path: "/${APP_NAME}",
+                        url: "${TOMCAT_URL}"
+                    )
+                ],
+                contextPath: "/${APP_NAME}",
+                war: "target/*.war"
+            }
+        }
+
+    }
+
+    post {
+        success { echo "Deployed to ${TOMCAT_URL}/${APP_NAME}" }
+        failure { echo "Build ${BUILD_NUMBER} failed." }
+    }
+}
+```
+
+> **`host.docker.internal`** resolves to your Windows machine's IP inside any Docker container. This is how the Jenkins container reaches the Tomcat container on Docker Desktop.
+
+### Verify
+
+Browser → `http://localhost:8090/hello-jenkins/` → **Hello from Jenkins CI/CD!**
+
+### Three Questions to Ask Trainees
+
+**1. "Why deploy a WAR to Tomcat instead of just `java -jar`?"**
+→ Traditional enterprise Java — banking, government, telecom — uses WAR + application servers. Trainees will encounter Tomcat, JBoss, and WebLogic in real organisations. Spring Boot supports both models.
+
+**2. "What does `host.docker.internal` resolve to?"**
+→ On Docker Desktop (Windows/Mac) it resolves to the host machine's IP. It's how a container (Jenkins) reaches another service running on the same host (Tomcat container). On Linux Docker, use `172.17.0.1`.
+
+**3. "What happens to live traffic when you deploy a new WAR to Tomcat?"**
+→ Tomcat undeploys the old version and deploys the new one — there's a brief outage. This is why Docker rolling updates and Kubernetes are preferred for zero-downtime deployments.
+
+---
+
+## Step 5 — Integrating Docker in the CI/CD Pipeline
+
+Package the Spring Boot app as a Docker image instead of deploying WAR to Tomcat.
+
+### Dockerfile for Spring Boot
+
+Switch `pom.xml` back to `<packaging>jar</packaging>`. Then create `Dockerfile`:
+
+```dockerfile
+FROM eclipse-temurin:17-jre-alpine
+
+WORKDIR /app
+
+COPY target/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+```
+
+### `Jenkinsfile` — Maven + Docker
+
+```groovy
+pipeline {
+    agent any
+
+    tools {
+        maven 'maven-3.9'
+        jdk   'jdk-17'
+    }
+
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
-        IMAGE_NAME = "yourname/hello-express"
+        IMAGE_NAME = "yourname/hello-jenkins"
         IMAGE_TAG  = "${BUILD_NUMBER}"
     }
 
     stages {
 
         stage('Checkout') {
-            steps {
-                checkout scm
-            }
+            steps { checkout scm }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                sh 'npm test'
+        stage('Build & Test') {
+            steps { sh 'mvn clean package' }
+            post {
+                always { junit 'target/surefire-reports/*.xml' }
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
-                sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest"
+                sh "docker tag  ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest"
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
-                sh "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
-                sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
-                sh "docker push ${IMAGE_NAME}:latest"
-            }
-        }
-
-        stage('Deploy with Ansible') {
-            steps {
                 sh """
-                    ansible-playbook -i ansible/inventory.ini \
-                        ansible/deploy-update.yaml \
-                        -e IMAGE_TAG=${IMAGE_TAG}
+                    echo ${DOCKERHUB_CREDENTIALS_PSW} | \
+                    docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin
+                    docker push ${IMAGE_NAME}:${IMAGE_TAG}
+                    docker push ${IMAGE_NAME}:latest
                 """
             }
         }
 
+        stage('Smoke Test') {
+            steps {
+                sh "docker rm -f smoke-test || true"
+                sh "docker run -d --name smoke-test -p 8081:8080 ${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "sleep 8 && curl -f http://localhost:8081/ || (docker logs smoke-test && exit 1)"
+                sh "docker rm -f smoke-test"
+            }
+        }
+
         stage('Cleanup') {
             steps {
                 sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true"
@@ -465,137 +543,252 @@ pipeline {
     }
 
     post {
-        success {
-            echo "Build ${BUILD_NUMBER} deployed successfully."
-        }
-        failure {
-            echo "Build ${BUILD_NUMBER} failed. Check the console output."
-        }
+        success { echo "Image ${IMAGE_NAME}:${IMAGE_TAG} pushed." }
+        failure { echo "Pipeline failed at build ${BUILD_NUMBER}." }
     }
 }
 ```
 
-### The complete flow, end to end
+### Add Docker Hub credentials
+
+**Manage Jenkins → Credentials → Add:**
+- Kind: Username with password
+- Username: Docker Hub username
+- Password: Docker Hub password or access token
+- ID: `dockerhub-creds`
+
+### The Docker CI/CD flow
 
 ```
-git push origin main
-        ↓
-  GitHub Webhook fires
-        ↓
-  Jenkins Pipeline starts
-        ↓
-  ┌─────────────────────────────────────────┐
-  │  Stage 1: Checkout                      │  ← git clone
-  │  Stage 2: Install Dependencies          │  ← npm install
-  │  Stage 3: Run Tests                     │  ← npm test ✅ / ❌ stop
-  │  Stage 4: Build Docker Image            │  ← docker build :42
-  │  Stage 5: Push to Docker Hub            │  ← docker push :42
-  │  Stage 6: Deploy with Ansible           │  ← ansible-playbook -e IMAGE_TAG=42
-  │  Stage 7: Cleanup                       │  ← docker rmi local image
-  └─────────────────────────────────────────┘
-        ↓
-  Production server pulls :42, restarts container
-        ↓
-  App is live — traceable to commit SHA
+git push → Jenkins
+    ↓
+mvn clean package     (build JAR + run unit tests)
+    ↓
+docker build :42      (package JAR into image)
+    ↓
+docker push :42       → Docker Hub
+    ↓
+Smoke test            (run container, curl endpoint, verify response)
+    ↓
+docker rmi            (clean local image from Jenkins agent)
 ```
-
-### Blue Ocean (visual pipeline view)
-
-Jenkins has a modern UI plugin called **Blue Ocean** that visualises pipelines as a flowchart.
-
-**Manage Jenkins → Plugins → Available → Blue Ocean → Install**
-
-After install: `http://localhost:8080/blue` — pipelines display as a horizontal flow with pass/fail per stage, making it easy to see exactly where a build failed.
 
 ---
 
-## Step 6 — Parallel Stages and Conditional Logic
+## Step 6 — Integrating Kubernetes in the CI/CD Pipeline
 
-Real pipelines need branching logic — run some stages in parallel, skip deployment on feature branches.
+After the Docker image is on Docker Hub, deploy it to Kubernetes with zero downtime.
 
-### Parallel stages
+### Configure kubectl inside Jenkins
 
-Run unit tests and linting simultaneously to save time:
+```powershell
+# Recreate Jenkins with kubeconfig mounted
+docker stop jenkins && docker rm jenkins
 
-```groovy
-stage('Validate') {
-    parallel {
-        stage('Unit Tests') {
-            steps {
-                sh 'npm test'
-            }
-        }
-        stage('Lint') {
-            steps {
-                sh 'npm run lint || true'
-            }
-        }
-    }
-}
+docker run -d `
+  --name jenkins `
+  -p 8080:8080 -p 50000:50000 `
+  -v jenkins_home:/var/jenkins_home `
+  -v /var/run/docker.sock:/var/run/docker.sock `
+  -v ${env:USERPROFILE}\.kube:/root/.kube:ro `
+  jenkins/jenkins:lts
+
+# Install kubectl inside Jenkins container
+docker exec -it --user root jenkins bash -c `
+  "curl -LO https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl && `
+   chmod +x kubectl && mv kubectl /usr/local/bin/"
+
+# Verify
+docker exec jenkins kubectl get nodes
 ```
 
-Both stages run at the same time. The pipeline moves to the next stage only when both complete.
+### Create the initial K8s Deployment (run once)
 
-### Conditional deployment (only deploy from `main`)
+```powershell
+kubectl create deployment hello-jenkins `
+  --image=yourname/hello-jenkins:latest `
+  --replicas=3
 
-```groovy
-stage('Deploy with Ansible') {
-    when {
-        branch 'main'
-    }
-    steps {
-        sh "ansible-playbook -i ansible/inventory.ini ansible/deploy-update.yaml -e IMAGE_TAG=${IMAGE_TAG}"
-    }
-}
+kubectl expose deployment hello-jenkins `
+  --type=NodePort `
+  --port=80 --target-port=8080 `
+  --name=hello-jenkins-svc
 ```
 
-Feature branch pushes run tests and build the image — but never deploy. Only `main` deploys to production. This is the standard **branch strategy** for CI/CD.
-
-### Common `when` conditions
-
-```groovy
-when { branch 'main' }                    // Only on main branch
-when { not { branch 'main' } }            // Any branch except main
-when { changeset '**/Dockerfile' }        // Only if Dockerfile changed
-when { environment name: 'ENV', value: 'prod' }   // Only in prod environment
-when { expression { return params.DEPLOY == 'true' } }  // Based on a parameter
-```
-
-### Parameterised Builds
-
-Add runtime parameters — useful for manual re-deploys of a specific version:
+### `Jenkinsfile` — Full pipeline: Maven → Docker → Kubernetes
 
 ```groovy
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'IMAGE_TAG', defaultValue: 'latest', description: 'Image tag to deploy')
-        booleanParam(name: 'SKIP_TESTS', defaultValue: false, description: 'Skip test stage')
-        choice(name: 'ENVIRONMENT', choices: ['staging', 'production'], description: 'Target environment')
+    tools {
+        maven 'maven-3.9'
+        jdk   'jdk-17'
+    }
+
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
+        IMAGE_NAME      = "yourname/hello-jenkins"
+        IMAGE_TAG       = "${BUILD_NUMBER}"
+        DEPLOYMENT_NAME = "hello-jenkins"
+        CONTAINER_NAME  = "hello-jenkins"
+        K8S_NAMESPACE   = "default"
     }
 
     stages {
-        stage('Run Tests') {
-            when {
-                expression { return !params.SKIP_TESTS }
-            }
+
+        stage('Checkout') {
             steps {
-                sh 'npm test'
+                checkout scm
+                echo "Building ${GIT_BRANCH} @ ${GIT_COMMIT[0..7]}"
             }
         }
 
-        stage('Deploy') {
-            steps {
-                echo "Deploying tag ${params.IMAGE_TAG} to ${params.ENVIRONMENT}"
-                sh "ansible-playbook -i ansible/inventory.ini ansible/deploy-update.yaml -e IMAGE_TAG=${params.IMAGE_TAG}"
+        stage('Build & Test') {
+            steps { sh 'mvn clean package' }
+            post {
+                always { junit 'target/surefire-reports/*.xml' }
             }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                sh "docker tag  ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest"
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                sh """
+                    echo ${DOCKERHUB_CREDENTIALS_PSW} | \
+                    docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin
+                    docker push ${IMAGE_NAME}:${IMAGE_TAG}
+                    docker push ${IMAGE_NAME}:latest
+                """
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            when { branch 'main' }
+            steps {
+                sh """
+                    kubectl set image deployment/${DEPLOYMENT_NAME} \
+                        ${CONTAINER_NAME}=${IMAGE_NAME}:${IMAGE_TAG} \
+                        -n ${K8S_NAMESPACE}
+
+                    kubectl rollout status deployment/${DEPLOYMENT_NAME} \
+                        -n ${K8S_NAMESPACE} \
+                        --timeout=120s
+                """
+            }
+        }
+
+        stage('Verify') {
+            when { branch 'main' }
+            steps {
+                sh "kubectl get pods -n ${K8S_NAMESPACE} -l app=${DEPLOYMENT_NAME}"
+                sh "kubectl get svc hello-jenkins-svc -n ${K8S_NAMESPACE}"
+            }
+        }
+
+        stage('Cleanup') {
+            steps { sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true" }
+        }
+
+    }
+
+    post {
+        success {
+            echo "Build ${BUILD_NUMBER}: image :${IMAGE_TAG} deployed to Kubernetes."
+        }
+        failure {
+            sh """
+                echo 'Pipeline failed — rolling back Kubernetes deployment'
+                kubectl rollout undo deployment/${DEPLOYMENT_NAME} \
+                    -n ${K8S_NAMESPACE} || true
+            """
         }
     }
 }
 ```
 
-When you click **Build with Parameters**, Jenkins shows a form before starting — choose the environment, toggle test skipping, specify the tag.
+### The complete end-to-end flow
+
+```
+Developer: git push origin main
+                ↓
+        GitHub Webhook → Jenkins
+                ↓
+┌──────────────────────────────────────────────────────────────┐
+│  Checkout      → git clone                                   │
+│  Build & Test  → mvn clean package + junit results          │
+│  Docker Build  → docker build :42                            │
+│  Docker Push   → docker push :42 → Docker Hub               │
+│  K8s Deploy    → kubectl set image :42                       │
+│                  kubectl rollout status (waits for healthy)  │
+│  Verify        → kubectl get pods + svc                      │
+│  Cleanup       → docker rmi local image                      │
+└──────────────────────────────────────────────────────────────┘
+                ↓
+  Kubernetes pulls :42 from Docker Hub
+  Rolling update — Pods replaced one at a time
+  Zero downtime
+                ↓
+  Pipeline failed? → post { failure } → kubectl rollout undo
+```
+
+### Three Questions to Ask Trainees
+
+**1. "Why does the K8s deploy stage have `when { branch 'main' }`?"**
+→ Feature branches build and test but never deploy to production. Only `main` — code-reviewed and approved — reaches the cluster.
+
+**2. "What happens to live traffic during `kubectl set image`?"**
+→ Kubernetes replaces Pods one at a time (rolling update). Some run old, some new, all behind the Service. Zero downtime — unlike a Tomcat redeploy.
+
+**3. "Why is `kubectl rollout status --timeout=120s` important?"**
+→ Without it, the pipeline finishes immediately after issuing the update, before knowing if it worked. `rollout status` blocks until all Pods are healthy — or fails the pipeline if they aren't within 120 seconds, triggering the auto-rollback.
+
+---
+
+## Step 7 — Advanced Pipeline Patterns
+
+### Parallel stages
+
+```groovy
+stage('Validate') {
+    parallel {
+        stage('Unit Tests')    { steps { sh 'mvn test'              } }
+        stage('Code Style')    { steps { sh 'mvn checkstyle:check'  } }
+        stage('Dependency')    { steps { sh 'mvn dependency:resolve'} }
+    }
+}
+```
+
+### Conditional logic
+
+```groovy
+when { branch 'main' }
+when { not { branch 'main' } }
+when { changeset '**/Dockerfile' }
+when { expression { return params.DEPLOY == 'true' } }
+```
+
+### Parameterised builds
+
+```groovy
+parameters {
+    string(name: 'IMAGE_TAG',   defaultValue: 'latest', description: 'Tag to deploy')
+    booleanParam(name: 'SKIP_TESTS', defaultValue: false)
+    choice(name: 'ENVIRONMENT', choices: ['dev','staging','prod'])
+}
+```
+
+### Blue Ocean
+
+**Manage Jenkins → Plugins → Available → Blue Ocean → Install**
+
+`http://localhost:8080/blue` — horizontal flow diagram, pass/fail per stage, PR integration.
 
 ---
 
@@ -603,61 +796,33 @@ When you click **Build with Parameters**, Jenkins shows a form before starting �
 
 ### The Big Picture
 
-Jenkins solves one problem: **automating the software delivery process.** It watches repositories, runs pipelines on every change, and ensures that code is tested, built, and deployed in a consistent, repeatable way — removing humans from the manual steps that introduce errors.
+Jenkins automates software delivery: watches Git, triggers pipelines on push, ensures code is tested, built, and deployed — consistently, without human intervention.
 
 ---
 
 ### Core Concepts
 
-**Pipeline**
-The full automated workflow from code commit to deployment. Defined in a `Jenkinsfile` stored in the repository. The pipeline is code — versioned, reviewed, and auditable.
+**Pipeline** — Full workflow from commit to deployment. Lives in a `Jenkinsfile` in the repo.
 
-**Jenkinsfile**
-A Groovy DSL file that defines the pipeline. Two syntaxes exist: Declarative (structured, recommended) and Scripted (more flexible, older). This guide uses Declarative throughout.
+**Jenkinsfile** — Groovy DSL. Declarative syntax recommended.
 
-**Stage**
-A named phase of the pipeline — Checkout, Test, Build, Push, Deploy. Stages appear as boxes in the Jenkins UI and Blue Ocean. A failed stage stops the pipeline.
+**Stage** — Named phase. Failed stage stops the pipeline.
 
-**Step**
-A single command inside a stage. `sh` runs shell commands. `echo` prints messages. `checkout scm` clones the repository.
+**Step** — Single command inside a stage. `sh` = shell. `junit` = publish test results. `archiveArtifacts` = save files.
 
-**Agent**
-Where the pipeline runs. `agent any` uses any available agent. You can target specific agents by label, or run each stage in a different Docker container.
+**tools** — Pre-installed runtimes (JDK, Maven) from Global Tool Config. Available in pipelines by name.
 
-**Controller**
-The Jenkins server — manages jobs, UI, plugins, scheduling, and credential storage. Does not run build workloads directly in production setups.
+**Credential Store** — Secure vault. Referenced by ID. Never shown in logs.
 
-**Agent / Node**
-A machine that executes pipeline stages on behalf of the controller. Can be another VM, a container, or a cloud instance.
+**Build Number** — Auto-incrementing per run. Used as Docker image tag for traceability.
 
-**Credential Store**
-Jenkins' secure vault for secrets — Docker Hub passwords, SSH keys, API tokens. Credentials are referenced by ID and never exposed in logs or Jenkinsfiles.
+**Webhook** — GitHub calls Jenkins on push. Instant trigger.
 
-**Build Number**
-An auto-incrementing integer for each run of a job. Used as the Docker image tag so every build is uniquely traceable.
+**`host.docker.internal`** — Docker Desktop hostname → Windows host IP. How Jenkins container reaches Tomcat container.
 
-**Webhook**
-An HTTP callback registered in GitHub (or GitLab, Bitbucket). When code is pushed, GitHub calls Jenkins' webhook URL — triggering the pipeline instantly.
+**Rolling update** — Kubernetes replaces Pods one at a time. Zero downtime.
 
-**Blue Ocean**
-A modern Jenkins UI plugin. Visualises pipelines as a horizontal flowchart with per-stage pass/fail indicators.
-
-**Shared Library**
-Reusable Groovy functions stored in a separate Git repository — called from any Jenkinsfile. The equivalent of Ansible Roles for pipelines.
-
----
-
-### Commands at a Glance
-
-| What you want to do | How |
-|---|---|
-| Start Jenkins in Docker | `docker run -d -p 8080:8080 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts` |
-| Get initial admin password | `docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword` |
-| Trigger a build manually | Jenkins UI → Job → Build Now |
-| See console output | Jenkins UI → Job → Build #N → Console Output |
-| Trigger via API | `curl -X POST http://localhost:8080/job/JOBNAME/build --user user:token` |
-| Restart Jenkins | `http://localhost:8080/restart` |
-| Reload config | `http://localhost:8080/reload` |
+**Auto-rollback** — `post { failure { kubectl rollout undo } }` — reverts K8s deployment if pipeline fails.
 
 ---
 
@@ -665,104 +830,109 @@ Reusable Groovy functions stored in a separate Git repository — called from an
 
 | These seem similar... | But... |
 |---|---|
-| CI vs CD | CI = Continuous Integration (test and build on every push). CD = Continuous Delivery/Deployment (automatically deliver to staging or production). CI always comes first. |
-| Declarative vs Scripted pipeline | Declarative is structured, validated, easier to read — use this. Scripted is full Groovy — more powerful but harder to maintain. |
-| `stage` vs `step` | Stage is a named phase visible in the UI. Step is an individual command inside a stage. |
-| Webhook vs SCM polling | Webhook = GitHub pushes to Jenkins (instant, requires public IP). Polling = Jenkins checks GitHub every N minutes (slight delay, no public IP needed). |
-| `agent any` vs `agent none` | `agent any` assigns a global agent for the whole pipeline. `agent none` means each stage declares its own agent — useful for multi-platform builds. |
-| `environment {}` vs `parameters {}` | `environment` sets fixed variables baked into the pipeline. `parameters` creates runtime inputs — the user fills them in before a build starts. |
-| Credentials in `environment` vs `withCredentials` | `environment { X = credentials('id') }` makes creds available as env vars. `withCredentials([...]) { }` scopes them to a single step block — slightly more restrictive. |
+| CI vs CD | CI = test + build on push. CD = deliver to environment automatically. CI is the prerequisite for CD. |
+| Declarative vs Scripted pipeline | Declarative = structured, validated. Scripted = full Groovy. Always use Declarative. |
+| `stage` vs `step` | Stage = named UI phase. Step = single command inside a stage. |
+| WAR vs JAR (Spring Boot) | WAR deploys to Tomcat (traditional). JAR = self-contained, runs with `java -jar` (Docker-friendly). |
+| Tomcat deploy vs Docker | Tomcat = WAR file, brief downtime on redeploy. Docker = image, rolling updates, no downtime. |
+| `kubectl set image` vs `kubectl apply` | `set image` updates one field. `apply` replaces the full spec from a YAML file. |
+| Webhook vs SCM polling | Webhook = GitHub calls Jenkins (instant, needs ngrok in lab). Polling = Jenkins checks GitHub periodically. |
+| `host.docker.internal` vs `localhost` | Inside a container, `localhost` is the container itself. `host.docker.internal` is your Windows machine. |
 
 ---
 
 ### How Everything Connects
 
 ```
-Developer
-    ↓ git push
-  GitHub
-    ↓ webhook
-  Jenkins
+Developer (Windows 11)
+    ↓  git push
+  GitHub → webhook (ngrok in lab) → Jenkins
     ↓
-  Jenkinsfile (from repo)
+  Jenkinsfile
     ↓
-  ┌──────────────────────────────────────────────────────┐
-  │ stage: Checkout   → git clone                        │
-  │ stage: Test       → npm test                         │
-  │ stage: Build      → docker build → image:42          │
-  │ stage: Push       → docker push  → Docker Hub        │
-  │ stage: Deploy     → ansible-playbook -e IMAGE_TAG=42 │
-  └──────────────────────────────────────────────────────┘
-                              ↓
-                    Production server
-                    pulls image:42
-                    restarts container
-                              ↓
-                    App live — tested, versioned, traceable
+  ┌──────────────────────────────────────────────────────────┐
+  │  Checkout      → git clone                               │
+  │  Build & Test  → mvn clean package + junit               │
+  │  Docker Build  → docker build :42                        │
+  │  Docker Push   → Docker Hub (:42)                        │
+  │  K8s Deploy    → kubectl set image :42                   │
+  │                  rollout status (wait for healthy)       │
+  │  Verify        → kubectl get pods                        │
+  │  Cleanup       → docker rmi                              │
+  └──────────────────────────────────────────────────────────┘
+    ↓
+  Kubernetes: rolling update, zero downtime
+    ↓
+  App live — traceable to git commit SHA
+    ↓
+  Failed? → kubectl rollout undo (auto-rollback)
 ```
 
 ---
 
 ## Jenkins Commands & URL Reference
 
-```bash
+```powershell
 # Start Jenkins
-docker run -d --name jenkins \
-  -p 8080:8080 -p 50000:50000 \
-  -v jenkins_home:/var/jenkins_home \
-  -v /var/run/docker.sock:/var/run/docker.sock \
+docker run -d --name jenkins `
+  -p 8080:8080 -p 50000:50000 `
+  -v jenkins_home:/var/jenkins_home `
+  -v /var/run/docker.sock:/var/run/docker.sock `
+  -v ${env:USERPROFILE}\.kube:/root/.kube:ro `
   jenkins/jenkins:lts
 
-# Get initial password
+# Admin password
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
-# Restart Jenkins container
+# Restart / logs / stop
 docker restart jenkins
-
-# View Jenkins logs
 docker logs -f jenkins
+docker stop jenkins
 
-# Trigger a build via REST API
-curl -X POST http://localhost:8080/job/JOBNAME/build \
-  --user USERNAME:API_TOKEN
+# Install kubectl in Jenkins
+docker exec -it --user root jenkins bash -c `
+  "curl -LO https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl && `
+   chmod +x kubectl && mv kubectl /usr/local/bin/"
 
-# Trigger a parameterised build via REST API
-curl -X POST "http://localhost:8080/job/JOBNAME/buildWithParameters?IMAGE_TAG=42" \
-  --user USERNAME:API_TOKEN
+# Verify cluster access
+docker exec jenkins kubectl get nodes
+
+# Public webhook tunnel
+ngrok http 8080
 ```
 
-**Useful Jenkins URLs:**
+**Jenkins URLs:**
 
 | URL | Purpose |
 |---|---|
-| `http://localhost:8080` | Jenkins dashboard |
-| `http://localhost:8080/blue` | Blue Ocean visual pipeline UI |
-| `http://localhost:8080/manage` | Manage Jenkins (plugins, credentials, nodes) |
+| `http://localhost:8080` | Dashboard |
+| `http://localhost:8080/blue` | Blue Ocean visual UI |
+| `http://localhost:8080/manage` | Manage Jenkins |
 | `http://localhost:8080/credentials` | Credential store |
+| `http://localhost:8080/manage/configureTools/` | JDK + Maven tool config |
 | `http://localhost:8080/restart` | Restart Jenkins |
-| `http://localhost:8080/github-webhook/` | Webhook endpoint for GitHub |
+| `http://localhost:8080/github-webhook/` | GitHub webhook endpoint |
 
 ---
 
 ## ToC Coverage Map
 
-| Jenkins / CI-CD Topic | Covered in |
+| CI/CD Syllabus Topic | Covered in |
 |---|---|
-| CI/CD Concepts | Bridge section — CI vs CD, why automation, what Jenkins replaces |
-| Jenkins Architecture | Step 1 — Controller, Agent, Docker socket, plugin install |
-| Jenkinsfile & Declarative Pipeline | Step 2 — pipeline, agent, stages, steps, post blocks |
-| Pipeline from SCM | Step 4 — Pipeline script from SCM, branch specifier |
-| CI Pipeline (Test → Build → Push) | Step 3 — full Jenkinsfile with npm test, docker build, docker push |
-| GitHub Webhooks & Triggers | Step 4 — webhook setup, SCM polling, `pollSCM` cron syntax |
-| Full CI/CD with Ansible Deploy | Step 5 — Deploy stage calling ansible-playbook, end-to-end flow diagram |
-| Parallel Stages | Step 6 — `parallel {}` block, simultaneous test and lint |
-| Conditional Logic & Branch Strategy | Step 6 — `when { branch 'main' }`, feature branch vs main |
-| Parameterised Builds | Step 6 — `parameters {}`, string / boolean / choice types |
-| Credentials Management | Step 3 — credential store, `credentials()`, masked secrets |
-| Blue Ocean | Step 5 — install, visual pipeline view |
-| CI/CD Pipeline using Git, Jenkins and Maven | Covered structurally — swap `npm` for `mvn` in the same pipeline pattern |
-| Integrating Docker in CI/CD | Step 3 & 5 — docker build/push stages, Docker Hub credentials |
-| Integrating Ansible in CI/CD | Step 5 — Deploy stage, IMAGE_TAG variable injection |
-| Integrating Kubernetes in CI/CD | Natural extension — replace Ansible deploy stage with `kubectl set image` |
+| Introduction — CI vs CD | Bridge section + Step 1 architecture |
+| Jenkins architecture, plugins | Step 1 — Controller, Docker socket, plugin table |
+| Declarative pipeline fundamentals | Step 2 — pipeline, agent, tools, stages, steps, post |
+| CI/CD pipeline using Git, Jenkins and Maven | Step 3 — full Jenkinsfile, JDK/Maven config, JUnit, `archiveArtifacts`, webhook/ngrok |
+| Maven commands | Step 3 — `mvn` commands reference table |
+| Integrating Tomcat in CI/CD pipeline | Step 4 — Tomcat in Docker, Manager setup, `host.docker.internal`, Deploy to container plugin |
+| Integrating Docker in CI/CD pipeline | Step 5 — Dockerfile for Spring Boot, docker build/push, smoke test stage |
+| Integrating Kubernetes in CI/CD pipeline | Step 6 — kubeconfig mount, `kubectl set image`, rollout status, auto-rollback |
+| Parallel stages | Step 7 — `parallel {}` |
+| Conditional logic / branch strategy | Steps 6–7 — `when { branch 'main' }` |
+| Parameterised builds | Step 7 — `parameters {}` |
+| Credentials management | Step 5 — dockerhub-creds, masked secrets |
+| Blue Ocean | Step 7 — install + visual view |
+| GitHub webhook + ngrok | Step 3 — Windows 11 webhook setup |
+| Auto-rollback | Step 6 — `post { failure { kubectl rollout undo } }` |
 
-> **Next:** Git & GitHub — the foundation everything else depends on: branching strategies, pull requests, and how source control integrates with every stage of the pipeline you just built.
+> **Putting it all together:** Git branching strategy feeds GitHub webhooks → Jenkins triggers Maven build → Docker image pushed to Docker Hub → Kubernetes rolls out zero-downtime update → Ansible provisions the servers the cluster runs on.

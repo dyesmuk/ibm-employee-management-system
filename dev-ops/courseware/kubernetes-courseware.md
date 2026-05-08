@@ -1,6 +1,8 @@
 # Kubernetes — Hands-On Guide (Node.js + Express)
 
-> **Prerequisites:** You have completed the Docker module. You have the image `yourname/hello-express:1.0` pushed to Docker Hub. Docker Desktop is installed and running on your Windows 11 laptop.
+> **Prerequisites:** You have completed the Docker module. You have the image `yourname/hello-express:1.0` pushed to Docker Hub. Docker Desktop v4.x is installed and running on your Windows 11 laptop.
+>
+> **Environment:** All `kubectl` commands run in **Windows Terminal** (PowerShell or Command Prompt). `kubectl` is installed automatically by Docker Desktop when Kubernetes is enabled.
 
 ---
 
@@ -31,20 +33,34 @@ This is called **declarative** infrastructure. You describe the desired state. K
 
 ---
 
-## Step 1 — Setting Up Kubernetes Locally
+## Step 1 — Setting Up Kubernetes on Windows 11
 
 ### Enable Kubernetes in Docker Desktop
 
-Docker Desktop ships with a single-node Kubernetes cluster built in. No separate install needed.
+Docker Desktop includes a built-in Kubernetes cluster. No separate install needed.
 
-1. Open Docker Desktop → **Settings** → **Kubernetes**
-2. Check **Enable Kubernetes**
-3. Click **Apply & Restart**
-4. Wait for the green Kubernetes indicator (bottom-left of Docker Desktop)
+1. Open **Docker Desktop**
+2. Click the **Kubernetes** icon in the left sidebar (or go to **Settings → Kubernetes**)
+3. Click **Create a Kubernetes cluster**
+4. A dialog appears with two options:
+
+| Option | Description | Choose? |
+|---|---|---|
+| **kind** | Multi-node cluster using Docker containers as nodes. Requires containerd image store. | ❌ Not for this lab |
+| **Kubeadm** | Single-node cluster. Standard setup. | ✅ **Select this** |
+
+5. Select **Kubeadm** (it may already be selected by default)
+6. Leave **Show system containers** unchecked — checking it clutters `docker ps` with ~10 internal K8s containers
+7. Click **Create**
+8. Wait for the green Kubernetes indicator at the bottom-left of Docker Desktop
+
+> **Note:** Docker Desktop v4.x replaced the old "Enable Kubernetes" checkbox with this cluster creation dialog. Kubeadm is the correct choice for this training — it creates a single-node cluster identical to what the courseware uses throughout.
 
 ### Verify the install
 
-```bash
+Open **Windows Terminal** (PowerShell or CMD):
+
+```powershell
 # Check kubectl is available
 kubectl version --client
 
@@ -58,7 +74,7 @@ kubectl get nodes
 Expected output:
 ```
 NAME             STATUS   ROLES           AGE   VERSION
-docker-desktop   Ready    control-plane   1m    v1.29.x
+docker-desktop   Ready    control-plane   1m    v1.34.x
 ```
 
 `STATUS: Ready` means Kubernetes is running and your node is healthy.
@@ -71,6 +87,8 @@ docker-desktop   Ready    control-plane   1m    v1.29.x
 docker build / run / ps / stop
 kubectl apply / get / describe / delete
 ```
+
+Docker Desktop automatically adds `kubectl` to your Windows PATH when Kubernetes is enabled. You do not need to install it separately.
 
 ---
 
@@ -100,6 +118,8 @@ YAML rules to remember:
 - `-` for list items
 - Colons and spacing are significant
 
+> **Windows editor tip:** Use VS Code to edit YAML files — it highlights indentation errors automatically. Install the **YAML** extension by Red Hat for inline validation.
+
 ---
 
 ## Step 2 — Your First Pod
@@ -125,9 +145,11 @@ spec:
 
 Replace `yourname` with your Docker Hub username.
 
+> **Important:** Kubernetes pulls this image from Docker Hub at runtime. Your local Docker images are **not** visible to Kubernetes directly. The image must be pushed to Docker Hub first — `docker push yourname/hello-express:1.0`.
+
 ### Apply it
 
-```bash
+```powershell
 # Create the Pod from the YAML file
 kubectl apply -f pod.yaml
 
@@ -149,11 +171,17 @@ hello-pod   1/1     Running   0          30s
 
 `1/1` means 1 container is running out of 1 total. `STATUS: Running` means the container is alive.
 
+**If you see `ErrImagePull` or `ImagePullBackOff`:** The image name in `pod.yaml` doesn't match what's on Docker Hub. Check `docker images` to confirm the exact name and tag, then push it:
+
+```powershell
+docker push yourname/hello-express:1.0
+```
+
 ### Access the app (temporary)
 
 Pods are not directly accessible from outside the cluster. Use `port-forward` for testing:
 
-```bash
+```powershell
 kubectl port-forward pod/hello-pod 3000:3000
 ```
 
@@ -163,7 +191,7 @@ Press `Ctrl+C` to stop port-forwarding. The Pod keeps running.
 
 ### Clean up
 
-```bash
+```powershell
 kubectl delete pod hello-pod
 
 # Or delete using the same file you used to create it
@@ -189,7 +217,7 @@ A Pod by itself is not resilient — if it crashes, it stays dead. That's what D
 → It's gone and stays gone. A Pod on its own has no self-healing. This motivates the next step — Deployments.
 
 **2. "The image is `yourname/hello-express:1.0`. Where does Kubernetes pull it from?"**
-→ Docker Hub. Kubernetes uses the same registry you pushed to in the Docker module. The image name is identical.
+→ Docker Hub. Kubernetes uses the same registry you pushed to in the Docker module. The image name is identical. Local images on your laptop are not visible to Kubernetes.
 
 **3. "What does `labels: app: hello-app` do right now?"**
 → Nothing visible yet. Labels are just metadata — but they become critical in the next steps when Services use them to find Pods.
@@ -229,7 +257,7 @@ spec:
 
 ### Apply it
 
-```bash
+```powershell
 kubectl apply -f deployment.yaml
 
 # See the Deployment
@@ -266,31 +294,27 @@ The `selector` tells the Deployment which Pods to manage. The `template` tells i
 
 ### Demo: Self-healing
 
-```bash
+```powershell
 # Get the Pod names
 kubectl get pods
 
-# Delete one Pod by name
+# Delete one Pod by name (copy a name from the output above)
 kubectl delete pod hello-deployment-7d9f5c8b6-4xk2p
 
 # Immediately watch what happens
 kubectl get pods
 ```
 
-Within seconds, a new Pod appears. The Deployment noticed one Pod was missing and created a replacement automatically. This is Kubernetes' core promise.
+Within seconds, a new Pod appears. The Deployment noticed one Pod was missing and created a replacement automatically.
 
 ### Scaling
 
-Change one number:
-
-```bash
+```powershell
 # Scale up to 5 replicas
 kubectl scale deployment hello-deployment --replicas=5
 
 kubectl get pods
-```
 
-```bash
 # Scale back down
 kubectl scale deployment hello-deployment --replicas=2
 
@@ -299,7 +323,7 @@ kubectl get pods
 
 Or edit the YAML, change `replicas: 3` to `replicas: 5`, and apply:
 
-```bash
+```powershell
 kubectl apply -f deployment.yaml
 ```
 
@@ -359,7 +383,7 @@ spec:
 
 ### Apply it
 
-```bash
+```powershell
 kubectl apply -f service.yaml
 
 kubectl get services
@@ -386,7 +410,7 @@ hello-service.default                  (service.namespace)
 hello-service.default.svc.cluster.local  (fully qualified)
 ```
 
-Any Pod in the cluster can reach your app at `http://hello-service` — without knowing any IP address. This replaces Docker Compose's service-name DNS with something that works across an entire cluster.
+Any Pod in the cluster can reach your app at `http://hello-service` — without knowing any IP address.
 
 ### Three Questions to Ask Trainees
 
@@ -394,7 +418,7 @@ Any Pod in the cluster can reach your app at `http://hello-service` — without 
 → The Service routes to the remaining healthy Pods. It constantly knows which Pods match the selector and are ready.
 
 **2. "How does the Service know which Pods to send traffic to?"**
-→ The `selector: app: hello-app` matches the labels on the Pods. If you change the label on a Pod (or a Pod crashes and a new one starts), the Service updates automatically.
+→ The `selector: app: hello-app` matches the labels on the Pods. If a Pod crashes and a new one starts, the Service updates automatically.
 
 **3. "In Docker Compose you used `depends_on: mongo`. How does that translate in Kubernetes?"**
 → In Kubernetes, services connect by DNS name, not `depends_on`. You connect to `mongo-service` and Kubernetes resolves it to whatever Pods are currently behind that service.
@@ -408,7 +432,7 @@ Now deploy a two-service application — the Express app and MongoDB — just li
 ### Folder Structure
 
 ```
-k8s-app/
+k8s-app\
   ├── mongo-deployment.yaml
   ├── mongo-service.yaml
   ├── app-deployment.yaml
@@ -445,8 +469,6 @@ spec:
           emptyDir: {}
 ```
 
-> `emptyDir` is temporary storage tied to the Pod's lifetime. For persistence across Pod restarts, use a `PersistentVolumeClaim` — covered in the concepts section below.
-
 ### `mongo-service.yaml`
 
 ```yaml
@@ -463,8 +485,6 @@ spec:
       targetPort: 27017
 ```
 
-`ClusterIP` — MongoDB should only be reachable from inside the cluster, not from the internet.
-
 ### Update your `app.js` connection string
 
 ```js
@@ -473,7 +493,7 @@ mongoose.connect('mongodb://mongo-service:27017/hellodb')
 
 The hostname is `mongo-service` — the Kubernetes Service name. Rebuild and push:
 
-```bash
+```powershell
 docker build -t yourname/hello-express:2.0 .
 docker push yourname/hello-express:2.0
 ```
@@ -521,7 +541,7 @@ spec:
 
 ### Deploy everything
 
-```bash
+```powershell
 kubectl apply -f mongo-deployment.yaml
 kubectl apply -f mongo-service.yaml
 kubectl apply -f app-deployment.yaml
@@ -530,32 +550,18 @@ kubectl apply -f app-service.yaml
 
 Or apply the whole folder at once:
 
-```bash
+```powershell
+# Windows PowerShell
+kubectl apply -f k8s-app\
+
+# Or with forward slashes (both work in PowerShell)
 kubectl apply -f k8s-app/
 ```
 
 ### Verify
 
-```bash
+```powershell
 kubectl get all
-```
-
-Expected output:
-```
-NAME                                    READY   STATUS    RESTARTS   AGE
-pod/app-deployment-xxx-aaa              1/1     Running   0          30s
-pod/app-deployment-xxx-bbb              1/1     Running   0          30s
-pod/app-deployment-xxx-ccc              1/1     Running   0          30s
-pod/mongo-deployment-yyy-zzz            1/1     Running   0          30s
-
-NAME                  TYPE        CLUSTER-IP      PORT(S)
-service/app-service   NodePort    10.100.1.10     80:30080/TCP
-service/mongo-service ClusterIP   10.100.1.20     27017/TCP
-service/kubernetes    ClusterIP   10.96.0.1       443/TCP
-
-NAME                               READY   UP-TO-DATE   AVAILABLE
-deployment.apps/app-deployment     3/3     3            3
-deployment.apps/mongo-deployment   1/1     1            1
 ```
 
 Browser → `http://localhost:30080` → **Hello from Express! MongoDB: Connected ✅**
@@ -577,39 +583,30 @@ Browser → `http://localhost:30080` → **Hello from Express! MongoDB: Connecte
 
 ## Step 6 — Rolling Updates and Rollbacks
 
-One of Kubernetes' most valuable features: update a running app **with zero downtime**.
-
 ### Push a new version
 
-Update `app.js` to return a different message:
+Update `app.js` to return a different message, then:
 
-```js
-app.get('/', (req, res) => {
-  res.send('Hello from Express v3 — updated with zero downtime!');
-});
-```
-
-```bash
+```powershell
 docker build -t yourname/hello-express:3.0 .
 docker push yourname/hello-express:3.0
 ```
 
 ### Update the Deployment
 
-```bash
-kubectl set image deployment/app-deployment \
-  hello-container=yourname/hello-express:3.0
+```powershell
+kubectl set image deployment/app-deployment hello-container=yourname/hello-express:3.0
 ```
 
-Or edit `app-deployment.yaml`, change `image: yourname/hello-express:2.0` to `3.0`, and run:
+Or edit `app-deployment.yaml`, change the image tag, and run:
 
-```bash
+```powershell
 kubectl apply -f app-deployment.yaml
 ```
 
 ### Watch it happen
 
-```bash
+```powershell
 kubectl rollout status deployment/app-deployment
 ```
 
@@ -619,27 +616,17 @@ Waiting for deployment "app-deployment" rollout to finish: 2 out of 3 new replic
 deployment "app-deployment" successfully rolled out
 ```
 
-Kubernetes replaces Pods one at a time, ensuring a minimum number stay available throughout. During the update, some Pods run v2 and some run v3 — the Service routes to whichever Pods are `Ready`.
-
 ### Rollback
 
-Something went wrong with v3? Roll back instantly:
-
-```bash
+```powershell
 kubectl rollout undo deployment/app-deployment
-```
 
-```bash
 # See rollout history
 kubectl rollout history deployment/app-deployment
 
 # Roll back to a specific revision
 kubectl rollout undo deployment/app-deployment --to-revision=1
 ```
-
-### The Teaching Moment
-
-> "In Docker, updating an app means stopping the old container and starting a new one — there is a gap. In Kubernetes, the Deployment's rolling update strategy ensures the app is always serving traffic. This is how Netflix, Amazon, and every modern platform deploys without maintenance windows."
 
 ---
 
@@ -653,42 +640,28 @@ Kubernetes solves one problem: **running containers reliably at scale.** It is a
 
 ### Core Objects
 
-**Pod**
-The smallest unit in Kubernetes. Wraps one or more containers that share network and storage. You almost never create Pods directly — Deployments create them for you.
+**Pod** — The smallest unit in Kubernetes. Wraps one or more containers that share network and storage. You almost never create Pods directly — Deployments create them for you.
 
-**Deployment**
-The standard way to run a stateless application. It maintains a ReplicaSet (a specified number of Pod copies) and handles rolling updates and rollbacks. If a Pod dies, the Deployment replaces it.
+**Deployment** — The standard way to run a stateless application. It maintains a ReplicaSet and handles rolling updates and rollbacks. If a Pod dies, the Deployment replaces it.
 
-**ReplicaSet**
-Ensures a specified number of identical Pods are running at any time. Managed automatically by a Deployment — you rarely interact with it directly.
+**ReplicaSet** — Ensures a specified number of identical Pods are running at any time. Managed automatically by a Deployment.
 
-**Service**
-A stable network endpoint in front of a group of Pods. Finds its Pods via label selectors. Provides DNS-based service discovery and load balancing. Types: `ClusterIP` (internal), `NodePort` (external via node port), `LoadBalancer` (external via cloud LB).
+**Service** — A stable network endpoint in front of a group of Pods. Provides DNS-based service discovery and load balancing. Types: `ClusterIP` (internal), `NodePort` (external via node port), `LoadBalancer` (cloud).
 
-**Namespace**
-A virtual cluster inside a cluster — used to separate environments (dev, staging, prod) on the same physical cluster. The default namespace is called `default`.
+**Namespace** — A virtual cluster inside a cluster — used to separate environments (dev, staging, prod). The default namespace is called `default`.
 
-**Node**
-A physical or virtual machine in the cluster. Pods run on nodes. In Docker Desktop, there is one node.
+**ConfigMap** — Stores non-sensitive configuration outside the container image. Inject into Pods at runtime.
 
-**Control Plane**
-The brain of Kubernetes. Includes the API server (kubectl talks to this), scheduler (decides which node a Pod runs on), and controller manager (enforces desired state).
+**Secret** — Like ConfigMap but for sensitive data (passwords, API keys). Base64-encoded, access-controlled.
 
-**ConfigMap**
-Stores non-sensitive configuration (environment variables, config files) outside the container image. Inject it into Pods at runtime so the same image works in dev, staging, and prod.
-
-**Secret**
-Like ConfigMap but for sensitive data (passwords, API keys). Values are base64-encoded and can be mounted into Pods as environment variables or files. Use with a secrets manager in production.
-
-**PersistentVolume (PV) / PersistentVolumeClaim (PVC)**
-Persistent storage that survives Pod restarts and replacements. A PV is the actual storage. A PVC is a Pod's request for storage. This is how you replace Docker volumes in Kubernetes.
+**PersistentVolume / PersistentVolumeClaim** — Persistent storage that survives Pod restarts. Replaces Docker volumes in Kubernetes.
 
 ---
 
 ### Architecture
 
 ```
-                       kubectl
+                       kubectl (Windows Terminal)
                           ↓
               ┌─────────────────────┐
               │    Control Plane    │
@@ -711,6 +684,8 @@ Persistent storage that survives Pod restarts and replacements. A PV is the actu
     ┌──────────┐
     │ Service  │ (load balances across nodes)
     └──────────┘
+
+In Docker Desktop: both control plane and node run on docker-desktop (single node)
 ```
 
 ---
@@ -720,7 +695,7 @@ Persistent storage that survives Pod restarts and replacements. A PV is the actu
 | What you want to do | Command |
 |---|---|
 | Apply a YAML file | `kubectl apply -f file.yaml` |
-| Apply all YAMLs in a folder | `kubectl apply -f ./folder/` |
+| Apply all YAMLs in a folder | `kubectl apply -f .\folder\` |
 | See Pods | `kubectl get pods` |
 | See Deployments | `kubectl get deployments` |
 | See Services | `kubectl get services` |
@@ -747,37 +722,14 @@ Persistent storage that survives Pod restarts and replacements. A PV is the actu
 | Deployment vs StatefulSet | Deployment = stateless apps. StatefulSet = stateful apps needing stable identity (databases). |
 | ConfigMap vs Secret | ConfigMap = plain config. Secret = sensitive data (base64-encoded, access-controlled). |
 | `emptyDir` vs PVC | `emptyDir` is deleted when the Pod is replaced. PVC persists across Pod replacements. |
-| Docker Compose `depends_on` vs Kubernetes Services | `depends_on` controls start order. Kubernetes uses DNS — services connect by name, and apps must handle retry/reconnect logic themselves. |
-
----
-
-### How Everything Connects
-
-```
-Dockerfile  →  docker build  →  Image  →  docker push  →  Docker Hub
-                                                                ↓
-                                                    kubectl apply -f deployment.yaml
-                                                                ↓
-                                                    Kubernetes pulls image
-                                                                ↓
-                                                    ReplicaSet creates Pods
-                                                    (runs containers from image)
-                                                                ↓
-                                               ┌────────────────────────────┐
-                                               │   Pod   Pod   Pod          │
-                                               │    ↑     ↑     ↑           │
-                                               │       Service              │
-                                               │   (stable endpoint,        │
-                                               │    load balancing,         │
-                                               │    DNS discovery)          │
-                                               └────────────────────────────┘
-```
+| Docker Compose `depends_on` vs Kubernetes Services | `depends_on` controls start order. Kubernetes uses DNS — apps must handle retry/reconnect logic themselves. |
+| kind vs Kubeadm (Docker Desktop) | kind = multi-node simulation, requires containerd image store. Kubeadm = standard single-node cluster. Use Kubeadm for this training. |
 
 ---
 
 ## Kubernetes Commands Reference
 
-```bash
+```powershell
 # Cluster information
 kubectl cluster-info
 kubectl get nodes
@@ -785,15 +737,15 @@ kubectl get namespaces
 
 # Creating and updating resources
 kubectl apply -f file.yaml           # create or update
-kubectl apply -f ./directory/        # apply all YAMLs in folder
+kubectl apply -f .\directory\        # apply all YAMLs in folder
 kubectl delete -f file.yaml          # delete resources defined in file
 
 # Pods
-kubectl get pods                     # list running pods
+kubectl get pods
 kubectl get pods -o wide             # include node and IP info
-kubectl get pods --watch             # live updates
-kubectl describe pod <name>          # full details and events
-kubectl logs <pod-name>              # container stdout
+kubectl get pods --watch             # live updates (Ctrl+C to stop)
+kubectl describe pod <name>
+kubectl logs <pod-name>
 kubectl logs <pod-name> -f           # stream logs live
 kubectl exec -it <pod-name> -- sh    # open shell inside pod
 
@@ -809,18 +761,13 @@ kubectl rollout undo deployment/<name>
 # Services
 kubectl get services
 kubectl describe service <name>
-kubectl port-forward pod/<name> 3000:3000   # temporary local access
-
-# ConfigMaps and Secrets
-kubectl get configmaps
-kubectl get secrets
-kubectl describe configmap <name>
+kubectl port-forward pod/<name> 3000:3000
 
 # Cleanup
 kubectl delete pod <name>
 kubectl delete deployment <name>
 kubectl delete service <name>
-kubectl delete -f ./directory/      # delete everything applied from folder
+kubectl delete -f .\directory\
 ```
 
 ---
@@ -831,12 +778,12 @@ kubectl delete -f ./directory/      # delete everything applied from folder
 |---|---|
 | Introduction | Bridge from Docker section — declarative vs imperative, the mental model shift |
 | Kubernetes Overview | Architecture diagram, control plane, nodes, how kubectl works |
-| Setup Kubernetes | Step 1 — Docker Desktop Kubernetes, `kubectl get nodes`, cluster-info |
-| YAML Introduction | YAML section — apiVersion, kind, metadata, spec; indentation rules |
-| Kubernetes Concepts — PODs | Step 2 — Pod YAML, `kubectl apply`, `kubectl get pods`, `kubectl logs`, self-healing demo |
-| Kubernetes Concepts — ReplicaSets | Step 3 — shown as the mechanism behind Deployments, `kubectl get replicasets` |
+| Setup Kubernetes | Step 1 — Docker Desktop Kubeadm cluster, Windows 11 setup dialog, `kubectl get nodes` |
+| YAML Introduction | YAML section — apiVersion, kind, metadata, spec; indentation rules; VS Code tip |
+| Kubernetes Concepts — PODs | Step 2 — Pod YAML, `kubectl apply`, `kubectl get pods`, ErrImagePull explained |
+| Kubernetes Concepts — ReplicaSets | Step 3 — mechanism behind Deployments, `kubectl get replicasets` |
 | Kubernetes Concepts — Deployments | Step 3 — Deployment YAML, replicas, rolling update, scale, self-healing demo |
-| Networking in Kubernetes | Step 4 — Service types, ClusterIP vs NodePort, label selectors, DNS-based service discovery |
+| Networking in Kubernetes | Step 4 — Service types, ClusterIP vs NodePort, label selectors, DNS-based discovery |
 | Services | Step 4 and Step 5 — NodePort for app-service, ClusterIP for mongo-service |
 | Rolling Updates & Rollbacks | Step 6 — `kubectl set image`, `kubectl rollout status`, `kubectl rollout undo` |
 | Full Multi-Service App | Step 5 — Express + MongoDB on Kubernetes, Docker Compose vs Kubernetes side-by-side |
