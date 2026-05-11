@@ -534,7 +534,7 @@ Use Ansible to install Docker on the managed nodes and run your Express containe
   hosts: webservers
   become: yes
   vars:
-    app_image: yourname/hello-express:1.0
+    app_image: vamandeshmukh/hello-express:1.0
     app_port: 3000
 
   tasks:
@@ -711,7 +711,7 @@ Developer pushes code
   tasks:
     - name: Pull the new image
       community.docker.docker_image:
-        name: "yourname/hello-express:{{ image_tag }}"
+        name: "vamandeshmukh/hello-express:{{ image_tag }}"
         source: pull
         force_source: yes
 
@@ -730,7 +730,7 @@ Developer pushes code
     - name: Start the new container
       community.docker.docker_container:
         name: hello-express
-        image: "yourname/hello-express:{{ image_tag }}"
+        image: "vamandeshmukh/hello-express:{{ image_tag }}"
         state: started
         restart_policy: always
         ports:
