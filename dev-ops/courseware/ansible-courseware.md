@@ -125,7 +125,7 @@ For the hands-on lab, use Docker containers as simulated servers. Docker Desktop
 **From your WSL2 terminal**, create a project folder:
 
 ```bash
-mkdir ~/ansible-lab && cd ~/ansible-lab
+mkdir ansible-lab && cd ansible-lab
 ```
 
 Create `docker-compose.yml`:
@@ -219,6 +219,24 @@ sudo apt install sshpass -y
 ansible all -i inventory.ini -m ping
 ```
 
+If that fails - 
+
+### Create file `ansible.cfg`
+```bash
+[defaults]
+host_key_checking = False
+
+[ssh_connection]
+ssh_args = -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+```
+Then run - 
+
+```bash
+# Ping all hosts (Ansible's SSH connectivity check — not ICMP)
+ ANSIBLE_CONFIG=/mnt/d/Projects/ansible-lab/ansible.cfg ansible all -i inventory.ini -m ping
+```
+
+
 Expected output:
 ```
 node1 | SUCCESS => {
@@ -305,6 +323,12 @@ nano install-node.yaml
 
 ```bash
 ansible-playbook -i inventory.ini install-node.yaml
+```
+
+If that fails - 
+
+```bash
+ANSIBLE_CONFIG=/mnt/d/Projects/ansible-lab/ansible.cfg ansible-playbook -i inventory.ini install-node.yaml
 ```
 
 Expected output:
