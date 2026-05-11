@@ -152,6 +152,7 @@ nano docker-compose.yml
 
 **Note:** `nano` opens the file in editor. Write or paste stuff here. To save ctrl + O , enter, Ctrl + X.  
 
+
 ```yaml
 services:
   node1:
@@ -190,6 +191,14 @@ services:
 ```bash
 docker compose up -d
 ```
+
+**Note:** Docker Desktop is not available in WSL by default; it needs to be enabled. 
+
+Go to Docker Desktop -> Settings -> Resources -> WSL Integration. 
+
+Check box **Enable integration with my default WSL distro** 
+Toggle **Ubuntu** to select. 
+
 
 You now have two "servers" (containers) that Ansible will manage.
 
