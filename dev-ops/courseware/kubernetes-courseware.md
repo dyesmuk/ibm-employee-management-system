@@ -552,13 +552,20 @@ Or apply the whole folder at once:
 
 ```powershell
 # Windows PowerShell
-kubectl apply -f k8s-app\
+kubectl apply -f k8s\
 
 # Or with forward slashes (both work in PowerShell)
-kubectl apply -f k8s-app/
+kubectl apply -f k8s/
 ```
 
-### Verify
+If it says, "The Service "app-service" is invalid: spec.ports[0].nodePort: Invalid value: 30080: provided port is already allocated:"
+then, find the old service and depete it. 
+
+```powershell
+# Windows PowerShell
+kubectl delete service hello-service
+
+
 
 ```powershell
 kubectl get all
