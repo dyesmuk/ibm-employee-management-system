@@ -1,0 +1,31 @@
+
+services:
+  node1:
+    image: ubuntu:22.04
+    container_name: ansible-node1
+    command: >
+      /bin/bash -c "
+        apt-get update &&
+        apt-get install -y openssh-server python3 &&
+        mkdir /run/sshd &&
+        echo 'root:password' | chpasswd &&
+        sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+        /usr/sbin/sshd -D
+      "
+    ports:
+      - "2221:22"
+
+  node2:
+    image: ubuntu:22.04
+    container_name: ansible-node2
+    command: >
+      /bin/bash -c "
+        apt-get update &&
+        apt-get install -y openssh-server python3 &&
+        mkdir /run/sshd &&
+        echo 'root:password' | chpasswd &&
+        sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&
+        /usr/sbin/sshd -D
+      "
+    ports:
+      - "2222:22"

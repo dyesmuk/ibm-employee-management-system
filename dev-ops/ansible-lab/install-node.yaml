@@ -1,0 +1,26 @@
+- name: Install Node.js on web servers
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Node.js
+      apt:
+        name: nodejs
+        state: present
+
+    - name: Install npm
+      apt:
+        name: npm
+        state: present
+
+    - name: Verify Node.js installation
+      command: node --version
+      register: node_version
+
+    - name: Print Node.js version
+      debug:
+        msg: "Node.js version installed: {{ node_version.stdout }}"
