@@ -141,7 +141,7 @@ For the hands-on lab, use Docker containers as simulated servers. Docker Desktop
 **From your WSL2 terminal**, create the lab folder inside your Linux home:
 
 ```bash
-mkdir ~/ansible-lab && cd ~/ansible-lab
+mkdir ansible-lab && cd ansible-lab
 ```
 
 ### Create `docker-compose.yml`
