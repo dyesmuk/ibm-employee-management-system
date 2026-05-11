@@ -150,6 +150,8 @@ mkdir ansible-lab && cd ansible-lab
 nano docker-compose.yml
 ```
 
+**Note:** `nano` opens the file in editor. Write or paste stuff here. To save ctrl + O , enter, Ctrl + X.  
+
 ```yaml
 services:
   node1:
