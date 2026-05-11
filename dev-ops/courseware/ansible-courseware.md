@@ -35,6 +35,8 @@ Expected output:
 * Ubuntu    Running         2
 ```
 
+> **Note:** `wsl --list --verbose` is a PowerShell command. Once you are inside a WSL2 terminal (a Bash shell), this command will not work — you will see "command not found". That is normal. Run it only from PowerShell or CMD.
+
 ### Open a WSL2 terminal
 
 In Windows Terminal, click the dropdown arrow next to the `+` tab button → select **Ubuntu**. This opens a Linux bash shell. All Ansible work happens here.
@@ -79,7 +81,7 @@ All commands below run inside the **WSL2 / Ubuntu terminal**, not PowerShell.
 
 ```bash
 sudo apt update
-sudo apt install ansible -y
+sudo apt install ansible sshpass -y
 
 # Verify
 ansible --version
@@ -91,6 +93,8 @@ ansible [core 2.16.x]
   python version = 3.12.x
   ...
 ```
+
+> **`sshpass` is installed here** alongside Ansible. It is required for password-based SSH and saves a separate step later.
 
 ### The Three-Part Architecture
 
@@ -118,21 +122,35 @@ Control Node                    Managed Nodes
 | **Module** | The built-in tool that executes a task (`apt`, `copy`, `service`, `docker_container`, etc.) |
 | **Role** | A reusable, structured bundle of tasks for a specific purpose (e.g. "install Java") |
 
-### Set up a local lab — two managed nodes as Docker containers
+---
+
+## Step 2 — Lab Setup: Two Managed Nodes as Docker Containers
 
 For the hands-on lab, use Docker containers as simulated servers. Docker Desktop on Windows exposes containers to WSL2 automatically.
 
-**From your WSL2 terminal**, create a project folder:
+### Important: Where to create your lab folder
+
+> **WSL2 lab files must live inside the WSL2 filesystem, not on a Windows drive.**
+>
+> Creating the lab folder under `/mnt/d/` or `/mnt/c/` (Windows NTFS drives) causes a known Ansible error:
+> ```
+> [WARNING]: Ansible is being run in a world writable directory, ignoring it as an ansible.cfg source.
+> ```
+> NTFS mounts are world-writable by design, and Ansible refuses to load `ansible.cfg` from them as a security measure. Avoid this entirely by working inside your WSL2 home directory.
+
+**From your WSL2 terminal**, create the lab folder inside your Linux home:
 
 ```bash
-mkdir ansible-lab && cd ansible-lab
+mkdir ~/ansible-lab && cd ~/ansible-lab
 ```
 
-Create `docker-compose.yml`:
+### Create `docker-compose.yml`
+
+```bash
+nano docker-compose.yml
+```
 
 ```yaml
-version: '3'
-
 services:
   node1:
     image: ubuntu:22.04
@@ -165,24 +183,49 @@ services:
       - "2222:22"
 ```
 
+> **Note:** The `version:` key at the top of `docker-compose.yml` is obsolete in current Docker Compose versions. It is intentionally omitted here to avoid a warning.
+
 ```bash
 docker compose up -d
 ```
 
-> **Note:** `docker` works inside WSL2 because Docker Desktop automatically integrates with WSL2. You do not need a separate Docker install inside Ubuntu.
-
 You now have two "servers" (containers) that Ansible will manage.
+
+### Create `ansible.cfg`
+
+> **Create this file before doing anything else with Ansible.** It disables SSH host key checking, which is required for a Docker-based lab where containers regenerate their SSH keys on every restart.
+
+```bash
+nano ansible.cfg
+```
+
+```ini
+[defaults]
+host_key_checking = False
+
+[ssh_connection]
+ssh_args = -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+```
+
+**Why both settings?**
+
+| Setting | What it does |
+|---|---|
+| `host_key_checking = False` | Tells Ansible not to check SSH host keys |
+| `StrictHostKeyChecking=no` | Tells the underlying SSH client not to block on unknown hosts |
+| `UserKnownHostsFile=/dev/null` | Stops SSH from writing or reading `~/.ssh/known_hosts` — prevents stale key conflicts when containers are recreated |
+
+> **Trainer note:** In production, host key checking should be enabled. For this lab, disabling it avoids repeated SSH fingerprint errors as containers restart.
 
 ---
 
-## Step 2 — Inventory: Telling Ansible What to Manage
+## Step 3 — Inventory: Telling Ansible What to Manage
 
 The **inventory** is a file listing the servers Ansible will work on.
 
 ### Create `inventory.ini`
 
 ```bash
-# Inside WSL2, in your ~/ansible-lab folder
 nano inventory.ini
 ```
 
@@ -206,36 +249,22 @@ ansible_python_interpreter=/usr/bin/python3
 | `ansible_password` | SSH password (use SSH keys in production) |
 | `[all:vars]` | Variables that apply to every host |
 
-### Install `sshpass` (required for password-based SSH in Ansible)
+> **Important:** Keep `ansible.cfg` and `inventory.ini` as separate files. Ansible configuration directives like `[defaults]` and `host_key_checking` belong only in `ansible.cfg`. Placing them in `inventory.ini` causes a parse error.
 
-```bash
-sudo apt install sshpass -y
+### Your lab folder should now look like this
+
+```
+~/ansible-lab/
+  ├── ansible.cfg
+  ├── docker-compose.yml
+  └── inventory.ini
 ```
 
 ### Test connectivity with an ad-hoc command
 
 ```bash
-# Ping all hosts (Ansible's SSH connectivity check — not ICMP)
 ansible all -i inventory.ini -m ping
 ```
-
-If that fails - 
-
-### Create file `ansible.cfg`
-```bash
-[defaults]
-host_key_checking = False
-
-[ssh_connection]
-ssh_args = -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-```
-Then run - 
-
-```bash
-# Ping all hosts (Ansible's SSH connectivity check — not ICMP)
- ANSIBLE_CONFIG=/mnt/d/Projects/ansible-lab/ansible.cfg ansible all -i inventory.ini -m ping
-```
-
 
 Expected output:
 ```
@@ -249,11 +278,9 @@ node2 | SUCCESS => {
 }
 ```
 
-If you get an SSH host key error, add this to `inventory.ini` under `[all:vars]`:
+> **Ansible's `ping` module is not ICMP ping.** It SSHes into the host, runs a small Python check, and returns `pong`. It is Ansible's SSH connectivity test.
 
-```ini
-ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-```
+### More ad-hoc commands
 
 ```bash
 # Run a shell command on all servers at once
@@ -279,7 +306,7 @@ ansible dbservers -i inventory.ini -m shell -a "df -h"
 
 ---
 
-## Step 3 — Your First Playbook
+## Step 4 — Your First Playbook
 
 An ad-hoc command runs one task. A **Playbook** runs many tasks in sequence — repeatable, version-controlled, readable.
 
@@ -325,12 +352,6 @@ nano install-node.yaml
 ansible-playbook -i inventory.ini install-node.yaml
 ```
 
-If that fails - 
-
-```bash
-ANSIBLE_CONFIG=/mnt/d/Projects/ansible-lab/ansible.cfg ansible-playbook -i inventory.ini install-node.yaml
-```
-
 Expected output:
 ```
 PLAY [Install Node.js on web servers] ******************************
@@ -352,7 +373,7 @@ changed: [node1]
 
 TASK [Print Node.js version] ***************************************
 ok: [node1] => {
-    "msg": "Node.js version installed: v18.x.x"
+    "msg": "Node.js version installed: v12.x.x"
 }
 
 PLAY RECAP ************************************
@@ -404,7 +425,7 @@ All tasks show `ok` — not `changed`. Node.js is already installed, Ansible det
 
 ---
 
-## Step 4 — Variables, Templates, and Handlers
+## Step 5 — Variables, Templates, and Handlers
 
 ### Variables
 
@@ -490,14 +511,15 @@ Same template, different values per environment — one playbook deploys to dev,
 
 ---
 
-## Step 5 — Deploying Docker with Ansible
+## Step 6 — Deploying Docker with Ansible
 
 Use Ansible to install Docker on the managed nodes and run your Express container.
 
 ### Folder structure
 
 ```
-ansible-lab/
+~/ansible-lab/
+  ├── ansible.cfg
   ├── inventory.ini
   ├── deploy-docker.yaml
   └── templates/
@@ -533,7 +555,7 @@ ansible-lab/
 
     - name: Add Docker repository
       apt_repository:
-        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_facts['lsb']['codename'] }} stable"
         state: present
 
     - name: Install Docker CE
@@ -562,18 +584,19 @@ ansible-lab/
           - "{{ app_port }}:3000"
 ```
 
+> **Note on `ansible_facts` syntax:** The playbook above uses `ansible_facts['lsb']['codename']` — the recommended syntax in current Ansible versions. The older shorthand `ansible_lsb.codename` produces a deprecation warning in Ansible 2.17+ and will be removed in a future release. Always use the `ansible_facts` dictionary form.
+
 ```bash
 ansible-playbook -i inventory.ini deploy-docker.yaml
 ```
 
 ---
 
-## Step 6 — Roles: Reusable Automation
+## Step 7 — Roles: Reusable Automation
 
 ### Create a role
 
 ```bash
-# Run inside WSL2
 ansible-galaxy init roles/install-docker
 ansible-galaxy init roles/deploy-app
 ```
@@ -651,7 +674,7 @@ roles:
 
 ---
 
-## Step 7 — CI/CD Integration: Ansible in the Pipeline
+## Step 8 — CI/CD Integration: Ansible in the Pipeline
 
 ### The Full DevOps Pipeline
 
@@ -816,6 +839,22 @@ Ansible solves one problem: **automating repetitive operations on many servers.*
 | Playbook vs Role | Playbook is the entry point. Role is a reusable module called from a playbook. |
 | `ansible` vs `ansible-playbook` | `ansible` runs a single ad-hoc task. `ansible-playbook` runs a full YAML file. |
 | WSL2 vs native Linux | WSL2 is a Linux VM inside Windows. Ansible runs inside WSL2. Commands look identical to native Linux. |
+| `ansible.cfg` vs `inventory.ini` | `ansible.cfg` controls how Ansible behaves. `inventory.ini` lists the hosts to manage. Never mix them. |
+
+---
+
+## Common Errors and Fixes (WSL2 Lab Reference)
+
+This table captures errors specific to running Ansible on WSL2 with Docker containers. Share it with trainees at the start of the lab session.
+
+| Error message | Root cause | Fix |
+|---|---|---|
+| `Host Key checking is enabled` | `ansible.cfg` is missing or not being loaded | Create `ansible.cfg` in `~/ansible-lab/` with `host_key_checking = False` |
+| `Expected key=value host variable assignment, got: False` | `[defaults]` block was placed inside `inventory.ini` | Move `[defaults]` to `ansible.cfg` — it is not valid INI inventory syntax |
+| `REMOTE HOST IDENTIFICATION HAS CHANGED` | Old SSH fingerprints in `~/.ssh/known_hosts` from a previous container run | Run `ssh-keygen -R '[127.0.0.1]:2221'` and `ssh-keygen -R '[127.0.0.1]:2222'`, or set `UserKnownHostsFile=/dev/null` in `ansible.cfg` |
+| `world writable directory, ignoring ansible.cfg` | Lab folder is on `/mnt/d/` or `/mnt/c/` (Windows NTFS drive, world-writable) | Create the lab folder inside WSL2 home: `~/ansible-lab/` |
+| `INJECT_FACTS_AS_VARS default to True is deprecated` | Playbook uses `ansible_lsb.codename` shorthand | Replace with `ansible_facts['lsb']['codename']` |
+| `version is obsolete` warning in `docker compose up` | `docker-compose.yml` has a top-level `version:` key | Remove the `version:` line — it is not needed in current Docker Compose |
 
 ---
 
@@ -825,15 +864,16 @@ Ansible solves one problem: **automating repetitive operations on many servers.*
 |---|---|
 | DevOps Principles and the Role of Ansible | Bridge section — where Ansible sits in the stack, agentless architecture |
 | Windows 11 Setup | WSL2 install section — `wsl --install`, Ubuntu terminal, Docker Desktop integration |
-| Ansible Components | Step 1 — architecture diagram; Step 2 — inventory; Step 3 — playbook anatomy |
-| Inventory | Step 2 — `inventory.ini`, groups, `sshpass`, SSH host key fix |
-| Ad-hoc Commands | Step 2 — `ansible all -m ping`, `-m shell`, `-m apt` |
-| Playbooks | Step 3 — full playbook, `ok` vs `changed`, idempotency demo |
-| Variables and Templates | Step 4 — `vars:`, Jinja2 `{{ }}`, `template` module, `group_vars` |
-| Handlers | Step 4 — notify / handler pattern, conditional service restarts |
+| Ansible Components | Step 1 — architecture diagram; Step 3 — inventory; Step 4 — playbook anatomy |
+| Inventory | Step 3 — `inventory.ini`, groups, `sshpass`, SSH host key fix |
+| Ad-hoc Commands | Step 3 — `ansible all -m ping`, `-m shell`, `-m apt` |
+| Playbooks | Step 4 — full playbook, `ok` vs `changed`, idempotency demo |
+| Variables and Templates | Step 5 — `vars:`, Jinja2 `{{ }}`, `template` module, `group_vars` |
+| Handlers | Step 5 — notify / handler pattern, conditional service restarts |
 | Modules Reference | Core Modules Reference table |
-| Roles | Step 6 — role structure, `ansible-galaxy init`, `defaults` vs `vars`, Ansible Galaxy |
-| CI/CD with Ansible | Step 7 — deploy playbook, `wsl ansible-playbook` from Jenkins on Windows |
-| Ansible + Docker | Step 5 — install Docker via Ansible, pull image, run container |
+| Roles | Step 7 — role structure, `ansible-galaxy init`, `defaults` vs `vars`, Ansible Galaxy |
+| CI/CD with Ansible | Step 8 — deploy playbook, `wsl ansible-playbook` from Jenkins on Windows |
+| Ansible + Docker | Step 6 — install Docker via Ansible, pull image, run container |
+| Common Errors | Common Errors and Fixes table — WSL2 + Docker lab specific |
 
 > **Next:** Jenkins — build the CI/CD pipeline that ties Git, Docker, Ansible, and Kubernetes together into an automated delivery workflow.
