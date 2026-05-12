@@ -1,8 +1,37 @@
-# Git and GitHub — Hands-On Guide
+# 01 — Git and GitHub
+
+> **Series:** DevOps Hands-On | **Module:** 1 of 6 | **Project:** Node.js Express app
 
 > **Environment:** Windows 11. All commands run in **Windows Terminal (PowerShell or Git Bash)**. Git Bash ships with Git for Windows and is recommended — it gives you Unix-style commands that match every Git tutorial on the internet.
 >
 > **Project used throughout:** A simple Node.js Express app — the same one carried forward into Docker, Kubernetes, Ansible, and Jenkins.
+
+---
+
+## About This Guide
+
+This is the first module in a six-part DevOps series. Before any container is built, any server is automated, or any pipeline is triggered — code needs to be tracked and shared. That is what this module covers.
+
+**What you will learn:**
+- Track changes to your project using Git
+- Understand what `.gitignore` does and why `node_modules` is never committed
+- Undo mistakes safely at any stage
+- Push code to GitHub and collaborate using Pull Requests
+- Use branches to work on features without breaking the main codebase
+
+**How this fits into the series:**
+```
+01 Git & GitHub  ← YOU ARE HERE
+02 Docker        — containerise the app you version-control here
+03 YAML          — configuration language used by Docker, Kubernetes, Ansible
+04 Kubernetes    — orchestrate the containers you build in Docker
+05 Ansible       — automate provisioning of the servers your cluster runs on
+06 Jenkins       — automate the entire pipeline end to end
+```
+
+**Project thread:** You will build a simple Node.js Express app in this module. The same project — same codebase, same GitHub repository — is carried forward into every subsequent module. By the end of the series it will be containerised, orchestrated, provisioned, and fully CI/CD automated.
+
+**Tools needed for this module:** Git for Windows ([git-scm.com](https://git-scm.com)), VS Code, Node.js, a GitHub account.
 
 ---
 
@@ -896,4 +925,4 @@ git push origin --tags
 | Forking and Contributing | Step 5 — fork, upstream remote, PR workflow, keeping fork in sync |
 | Collaboration | Step 6 — PRs, protected branches, GitHub Issues, GitHub Flow, conflict resolution in PRs |
 
-> **Next:** Docker — the `hello-git` project is already version-controlled. Now containerise it so it runs identically everywhere, and push the image to Docker Hub the same way you pushed code to GitHub.
+> **Next → 02 Docker** — the `hello-git` project is now version-controlled. The next module containerises it using Docker, so it runs identically on any machine. You will push the Docker image to Docker Hub the same way you pushed code to GitHub.

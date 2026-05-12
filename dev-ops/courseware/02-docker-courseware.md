@@ -1,8 +1,39 @@
-# Docker — Hands-On Guide (Node.js + Express)
+# 02 — Docker
+
+> **Series:** DevOps Hands-On | **Module:** 2 of 6 | **Project:** Node.js Express app
 
 > **Prerequisites:** You have completed the Git and GitHub module. Your `hello-git` project is version-controlled and pushed to GitHub.
 >
 > **Environment:** Windows 11, Docker Desktop installed. All commands run in **Windows Terminal (PowerShell)**.
+
+---
+
+## About This Guide
+
+This is the second module in the DevOps series. You have source code in a Git repository. This module answers the next question: how do you make that code run the same way on every machine?
+
+**What you will learn:**
+- Build Docker images from a Dockerfile
+- Understand image layers and build caching
+- Run and manage containers
+- Use Docker Compose to run a multi-container app (Node.js + MongoDB)
+- Understand Docker Engine, storage (volumes, bind mounts), and networking
+- Push images to Docker Hub
+- Understand Docker Swarm as an introduction to container orchestration
+
+**How this fits into the series:**
+```
+01 Git & GitHub  — version-controlled the app
+02 Docker        ← YOU ARE HERE — containerise and ship it
+03 YAML          — configuration language used by everything below
+04 Kubernetes    — orchestrate containers at production scale
+05 Ansible       — provision the servers the cluster runs on
+06 Jenkins       — automate the full pipeline end to end
+```
+
+**Project thread:** The `hello-git` Node.js project from Module 01 is containerised here. By the end of this module, the image `yourname/hello-express:1.0` will be on Docker Hub — ready to be deployed by Kubernetes in Module 04.
+
+**Tools needed for this module:** Docker Desktop for Windows, Windows Terminal (PowerShell), a Docker Hub account.
 
 ---
 
@@ -826,4 +857,4 @@ docker volume prune
 | Container Orchestration — Docker Swarm & Kubernetes | Step 7 — Swarm commands, concepts, Swarm vs Kubernetes comparison, progression diagram |
 | Conclusion | Key Concepts Summary — all definitions, distinctions table, full connection diagram |
 
-> **Next:** Kubernetes — take `yourname/hello-express:1.0` from Docker Hub and deploy it to a Kubernetes cluster with self-healing Deployments, Services, and zero-downtime rolling updates.
+> **Next → 03 YAML** — before moving into Kubernetes, which is almost entirely YAML-based, the next module covers the YAML language in depth: syntax, data types, common mistakes, and examples from Docker Compose, Kubernetes, and Ansible.

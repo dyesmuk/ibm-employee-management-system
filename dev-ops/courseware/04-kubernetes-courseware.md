@@ -1,8 +1,38 @@
-# Kubernetes — Hands-On Guide (Node.js + Express)
+# 04 — Kubernetes
 
-> **Prerequisites:** You have completed the Docker module. You have the image `yourname/hello-express:1.0` pushed to Docker Hub. Docker Desktop v4.x is installed and running on your Windows 11 laptop.
+> **Series:** DevOps Hands-On | **Module:** 4 of 6 | **Project:** Node.js Express app
+
+> **Prerequisites:** Modules 01–03 completed. You have `yourname/hello-express:1.0` on Docker Hub. You are comfortable reading and writing YAML.
 >
-> **Environment:** All `kubectl` commands run in **Windows Terminal** (PowerShell or Command Prompt). `kubectl` is installed automatically by Docker Desktop when Kubernetes is enabled.
+> **Environment:** Windows 11, Docker Desktop (Kubernetes enabled). All `kubectl` commands run in **Windows Terminal (PowerShell)**. `kubectl` is installed automatically by Docker Desktop.
+
+---
+
+## About This Guide
+
+This is the fourth module in the DevOps series. You have a Docker image on Docker Hub. You know YAML. Now you need something that runs that image reliably — across multiple machines, with self-healing, scaling, and zero-downtime updates built in. That is Kubernetes.
+
+**What you will learn:**
+- Set up a single-node Kubernetes cluster using Docker Desktop (Kubeadm)
+- Understand Pods, Deployments, and ReplicaSets
+- Expose applications using Services (ClusterIP and NodePort)
+- Deploy a full two-tier app (Express + MongoDB) on Kubernetes
+- Perform rolling updates and rollbacks with zero downtime
+- Understand the Kubernetes architecture: control plane, nodes, kubelet
+
+**How this fits into the series:**
+```
+01 Git & GitHub  — version-controlled the source code
+02 Docker        — packaged the app into an image, pushed to Docker Hub
+03 YAML          — learned the configuration language Kubernetes uses exclusively
+04 Kubernetes    ← YOU ARE HERE — orchestrate containers at production scale
+05 Ansible       — automate provisioning of the servers the cluster runs on
+06 Jenkins       — automate the full pipeline: code → image → cluster
+```
+
+**Project thread:** The image `yourname/hello-express:1.0` pushed to Docker Hub in Module 02 is deployed here. By the end of this module it will be running as a 3-replica Deployment, fronted by a Service, alongside a MongoDB Deployment — all managed by Kubernetes.
+
+**Tools needed for this module:** Docker Desktop (Kubernetes enabled — Kubeadm), Windows Terminal (PowerShell), `kubectl` (installed automatically by Docker Desktop).
 
 ---
 
@@ -796,4 +826,4 @@ kubectl delete -f .\directory\
 | Full Multi-Service App | Step 5 — Express + MongoDB on Kubernetes, Docker Compose vs Kubernetes side-by-side |
 | Conclusion | Key Concepts Summary — definitions, distinctions, architecture, how everything connects |
 
-> **Next:** Ansible — automate the provisioning and configuration of the machines your Kubernetes cluster runs on, and integrate everything into a CI/CD pipeline with Jenkins.
+> **Next → 05 Ansible** — Kubernetes manages your containers, but something must provision and configure the Linux servers those containers run on. Ansible automates that layer: installing Docker, configuring OS settings, and deploying apps — across any number of servers simultaneously.

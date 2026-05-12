@@ -1,4 +1,6 @@
-# Ansible — Hands-On Guide (DevOps Automation)
+# 05 — Ansible
+
+> **Series:** DevOps Hands-On | **Module:** 5 of 6 | **Project:** Server provisioning + app deployment
 
 > **Prerequisites:** You have completed the Docker and Kubernetes modules. You are comfortable with YAML.
 >
@@ -37,11 +39,74 @@ Expected output:
 
 > **Note:** `wsl --list --verbose` is a PowerShell command. Once you are inside a WSL2 terminal (a Bash shell), this command will not work — you will see "command not found". That is normal. Run it only from PowerShell or CMD.
 
+### Enable Docker Desktop WSL Integration
+
+> **This step is required.** Without it, running `docker` inside WSL2 gives `docker: command not found` or `Cannot connect to the Docker daemon`.
+
+1. Open **Docker Desktop** on Windows
+2. Go to **Settings → Resources → WSL Integration**
+3. Enable **"Enable integration with my default WSL distro"**
+4. Also toggle **on** your Ubuntu distro (it appears in the list below)
+5. Click **Apply & Restart**
+
+```
+Docker Desktop
+  └── Settings
+        └── Resources
+              └── WSL Integration
+                    ☑ Enable integration with my default WSL distro
+                    ☑ Ubuntu                   ← toggle this on
+```
+
+After this, `docker` and `docker compose` commands work inside your WSL2 Ubuntu terminal — they talk to the Docker Desktop engine running on Windows.
+
+### Verify Docker works inside WSL2
+
+Open your WSL2 Ubuntu terminal and run:
+
+```bash
+docker --version
+docker compose version
+docker ps
+```
+
+Expected — no errors, Docker responds normally:
+```
+Docker version 27.x.x, build xxxxxxx
+Docker Compose version v2.x.x
+CONTAINER ID   IMAGE   COMMAND   CREATED   STATUS   PORTS   NAMES
+```
+
+> **If `docker: command not found`:** The WSL integration step above was not done, or Docker Desktop needs a restart.
+> **If `permission denied on /var/run/docker.sock`:** Log out of WSL2 and back in — group permissions need a fresh session.
+
 ### Open a WSL2 terminal
 
 In Windows Terminal, click the dropdown arrow next to the `+` tab button → select **Ubuntu**. This opens a Linux bash shell. All Ansible work happens here.
 
 > **Quick access:** Pin the Ubuntu profile in Windows Terminal. You can also open WSL2 from any PowerShell/CMD window by typing `wsl`.
+
+### Editing files in WSL2 — two options
+
+Freshers coming from a Windows background: you have two good options for editing files inside WSL2.
+
+**Option A — nano (terminal editor, simplest):**
+```bash
+nano filename.yaml
+```
+- Type your content
+- Save: `Ctrl+X` → press `Y` → press `Enter`
+- Cancel without saving: `Ctrl+X` → press `N`
+
+**Option B — VS Code (recommended for larger files):**
+```bash
+# Install the VS Code WSL extension in VS Code first, then:
+code filename.yaml        # opens the file in VS Code on Windows
+code .                    # opens the entire folder in VS Code
+```
+VS Code detects it is editing a WSL2 file and handles saving back to the Linux filesystem automatically.
+
+> **Never edit WSL2 files using Windows Explorer or Notepad** — they can corrupt line endings (CRLF vs LF), which breaks YAML parsing in Ansible.
 
 ---
 
@@ -150,9 +215,6 @@ mkdir ansible-lab && cd ansible-lab
 nano docker-compose.yml
 ```
 
-**Note:** `nano` opens the file in editor. Write or paste stuff here. To save ctrl + O , enter, Ctrl + X.  
-
-
 ```yaml
 services:
   node1:
@@ -191,14 +253,6 @@ services:
 ```bash
 docker compose up -d
 ```
-
-**Note:** Docker Desktop is not available in WSL by default; it needs to be enabled. 
-
-Go to Docker Desktop -> Settings -> Resources -> WSL Integration. 
-
-Check box **Enable integration with my default WSL distro** 
-Toggle **Ubuntu** to select. 
-
 
 You now have two "servers" (containers) that Ansible will manage.
 
@@ -384,7 +438,8 @@ changed: [node1]
 
 TASK [Print Node.js version] ***************************************
 ok: [node1] => {
-    "msg": "Node.js version installed: v12.x.x"
+    "msg": "Node.js version installed: v12.x.x"   ← Ubuntu 22.04 apt default is v12 (EOL)
+                                                       See Note below about installing a current version
 }
 
 PLAY RECAP ************************************
@@ -399,6 +454,27 @@ node1 : ok=6  changed=4  unreachable=0  failed=0
 | `changed` | Task ran — something was actually modified on the server |
 | `failed` | Task ran — it failed |
 | `unreachable` | Ansible couldn't SSH in |
+
+> **Important — Node.js version from `apt`:** Ubuntu 22.04's default `apt` repository installs Node.js v12, which is end-of-life. For a current version (v18 or v20), replace the Install Node.js and Install npm tasks with the NodeSource setup:
+>
+> ```yaml
+>     - name: Install curl (needed for NodeSource script)
+>       apt:
+>         name: curl
+>         state: present
+>
+>     - name: Add NodeSource repository for Node.js 18
+>       shell: curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+>       args:
+>         creates: /etc/apt/sources.list.d/nodesource.list
+>
+>     - name: Install Node.js 18
+>       apt:
+>         name: nodejs
+>         state: present
+>         update_cache: yes
+> ```
+> This gives `node -v` → `v18.x.x` inside the container.
 
 Run the playbook a **second time** without modifying anything:
 
@@ -866,6 +942,11 @@ This table captures errors specific to running Ansible on WSL2 with Docker conta
 | `world writable directory, ignoring ansible.cfg` | Lab folder is on `/mnt/d/` or `/mnt/c/` (Windows NTFS drive, world-writable) | Create the lab folder inside WSL2 home: `~/ansible-lab/` |
 | `INJECT_FACTS_AS_VARS default to True is deprecated` | Playbook uses `ansible_lsb.codename` shorthand | Replace with `ansible_facts['lsb']['codename']` |
 | `version is obsolete` warning in `docker compose up` | `docker-compose.yml` has a top-level `version:` key | Remove the `version:` line — it is not needed in current Docker Compose |
+| `docker: command not found` inside WSL2 | Docker Desktop WSL integration not enabled | Docker Desktop → Settings → Resources → WSL Integration → enable Ubuntu → Apply & Restart |
+| `Cannot connect to the Docker daemon` inside WSL2 | Same as above, or Docker Desktop is not running | Enable WSL integration AND ensure Docker Desktop is running on Windows |
+| `permission denied while trying to connect to Docker` | WSL2 session started before Docker group was applied | Close and reopen the WSL2 terminal (log out and back in) |
+| `Bad substitution` or `syntax error` in Jinja2 template | Template file has Windows line endings (CRLF) | Run `dos2unix filename.j2` inside WSL2, or always edit WSL2 files in VS Code/nano, never Notepad |
+| `node -v` shows v12 after Node.js install | Ubuntu 22.04 apt default is EOL Node.js v12 | Use NodeSource setup script (see Step 4 note) to install Node.js 18 or 20 |
 
 ---
 
@@ -874,7 +955,7 @@ This table captures errors specific to running Ansible on WSL2 with Docker conta
 | Ansible Topic | Covered in |
 |---|---|
 | DevOps Principles and the Role of Ansible | Bridge section — where Ansible sits in the stack, agentless architecture |
-| Windows 11 Setup | WSL2 install section — `wsl --install`, Ubuntu terminal, Docker Desktop integration |
+| Windows 11 Setup | WSL2 install section — `wsl --install`, Docker Desktop WSL Integration (Settings → Resources → WSL Integration), Ubuntu terminal, nano vs VS Code |
 | Ansible Components | Step 1 — architecture diagram; Step 3 — inventory; Step 4 — playbook anatomy |
 | Inventory | Step 3 — `inventory.ini`, groups, `sshpass`, SSH host key fix |
 | Ad-hoc Commands | Step 3 — `ansible all -m ping`, `-m shell`, `-m apt` |

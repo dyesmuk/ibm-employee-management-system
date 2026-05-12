@@ -1,8 +1,40 @@
-# Jenkins — Hands-On Guide (CI/CD Pipelines)
+# 06 — Jenkins (CI/CD Pipelines)
 
-> **Prerequisites:** Docker, Kubernetes, Ansible modules completed. Your `hello-express` image is on Docker Hub.
+> **Series:** DevOps Hands-On | **Module:** 6 of 6 | **Project:** Full CI/CD pipeline
+
+> **Prerequisites:** Modules 01–05 completed. Docker Hub account with `yourname/hello-express:1.0` pushed. GitHub repository set up.
 >
-> **Environment:** Windows 11, Docker Desktop. All `docker` commands in **PowerShell**. Pipeline `sh` steps run inside the Jenkins Linux container — Linux commands work regardless of Windows host.
+> **Environment:** Windows 11, Docker Desktop. All `docker` commands in **PowerShell**. Pipeline `sh` steps run inside the Jenkins Linux container — Linux commands work regardless of Windows host OS.
+
+---
+
+## About This Guide
+
+This is the sixth and final module in the DevOps series. Every previous module built one piece of the delivery system. This module connects all of them into a single automated pipeline — a push to GitHub triggers everything else without any manual intervention.
+
+**What you will learn:**
+- Install and configure Jenkins in Docker on Windows 11
+- Write declarative Jenkinsfile pipelines stored in Git
+- Connect Jenkins to GitHub using webhooks (with ngrok for the local lab)
+- Build a Spring Boot app with Maven inside Jenkins
+- Integrate Tomcat as a deployment target for WAR files
+- Integrate Docker: build images and push to Docker Hub from the pipeline
+- Integrate Kubernetes: deploy to the cluster with rolling updates and auto-rollback
+- Use parallel stages, conditional logic, and parameterised builds
+
+**How this fits into the series:**
+```
+01 Git & GitHub  — source of truth; webhook triggers the pipeline
+02 Docker        — `docker build` and `docker push` happen in the pipeline
+03 YAML          — Kubernetes YAMLs are applied by the pipeline
+04 Kubernetes    — the deployment target; rolling updates happen here
+05 Ansible       — provisions the servers; called from the deploy stage
+06 Jenkins       ← YOU ARE HERE — automates everything above, end to end
+```
+
+**Project thread:** The pipeline built in this module takes the Spring Boot app from a `git push` all the way to a running Kubernetes Deployment — with Maven building it, Docker packaging it, Docker Hub storing it, and Kubernetes deploying it. A failed deployment triggers an automatic `kubectl rollout undo`.
+
+**Tools needed for this module:** Docker Desktop (with Kubernetes enabled), Windows Terminal (PowerShell), a GitHub account, a Docker Hub account, ngrok (for local webhook testing).
 
 ---
 
@@ -935,4 +967,38 @@ ngrok http 8080
 | GitHub webhook + ngrok | Step 3 — Windows 11 webhook setup |
 | Auto-rollback | Step 6 — `post { failure { kubectl rollout undo } }` |
 
-> **Putting it all together:** Git branching strategy feeds GitHub webhooks → Jenkins triggers Maven build → Docker image pushed to Docker Hub → Kubernetes rolls out zero-downtime update → Ansible provisions the servers the cluster runs on.
+---
+
+## Series Complete
+
+You have now built the full DevOps pipeline from first principles:
+
+```
+Module 01 — Git & GitHub    Code is version-controlled and team-shareable
+Module 02 — Docker          App is containerised and image is on Docker Hub
+Module 03 — YAML            Configuration language for everything below
+Module 04 — Kubernetes      Container is orchestrated with self-healing and scaling
+Module 05 — Ansible         Servers are provisioned and configured automatically
+Module 06 — Jenkins         The full pipeline runs on every git push, end to end
+```
+
+Every tool connects to the one before it. A single `git push` now triggers:
+
+```
+GitHub webhook
+      ↓
+Jenkins pipeline
+      ↓
+mvn clean package  (build + test)
+      ↓
+docker build :42   (package)
+      ↓
+docker push :42    → Docker Hub
+      ↓
+kubectl set image  → Kubernetes rolling update
+      ↓
+App live — zero downtime — traceable to the exact commit that triggered it
+```
+
+The infrastructure (the servers Kubernetes runs on) is provisioned by Ansible, version-controlled in Git, and can itself be re-run at any time to reproduce the environment exactly.
+
