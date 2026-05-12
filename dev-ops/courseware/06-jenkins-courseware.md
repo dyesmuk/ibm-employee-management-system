@@ -976,3 +976,6 @@ App live — zero downtime — traceable to the exact commit that triggered it
 ```
 
 The infrastructure (the servers Kubernetes runs on) is provisioned by Ansible, version-controlled in Git, and can itself be re-run at any time to reproduce the environment exactly.
+
+--- 
+Sample push 
