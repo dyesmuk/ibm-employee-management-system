@@ -118,6 +118,37 @@ docker exec jenkins docker --version
 
 > You only need to do this once. The `jenkins_home` volume persists everything — this survives container restarts.
 
+### Install missing Node.js system library
+
+The `jenkins/jenkins:lts` image is a minimal Debian install. When the NodeJS plugin downloads Node 18, it needs a system library called `libatomic1` that is not included by default. Without it, every pipeline run fails immediately with:
+
+```
+node: error while loading shared libraries: libatomic.so.1: cannot open shared object file: No such file or directory
+```
+
+Install it now before running any pipeline:
+
+```powershell
+docker exec -it --user root jenkins bash -c "apt-get update && apt-get install -y libatomic1"
+```
+
+You will see some harmless warnings during install — these are safe to ignore:
+
+```
+debconf: unable to initialize frontend: Dialog
+readline() on closed filehandle HENV at /usr/sbin/needrestart line 79.
+```
+
+These appear because the install runs in a non-interactive terminal with no display frontend. The package installs correctly regardless.
+
+Verify Node works inside Jenkins after install:
+
+```powershell
+docker exec jenkins node --version
+```
+
+> Like `docker.io`, this is a one-time fix per container. If you ever recreate the Jenkins container, run both `apt-get install -y docker.io` and `apt-get install -y libatomic1` again before running pipelines.
+
 ### Configure Node.js in Jenkins
 
 Do this now — before writing any pipeline — so the `tools { nodejs 'nodejs-18' }` block works when you reach Step 2.
@@ -1165,8 +1196,8 @@ docker restart jenkins
 docker logs -f jenkins
 docker stop jenkins
 
-# Install Docker CLI in Jenkins (run once after first docker run)
-docker exec -it --user root jenkins bash -c "apt-get update && apt-get install -y docker.io"
+# Install Docker CLI + missing Node.js library in Jenkins (run once after first docker run)
+docker exec -it --user root jenkins bash -c "apt-get update && apt-get install -y docker.io libatomic1"
 
 # Install kubectl in Jenkins (run once after Step 6 container recreation)
 docker exec -it --user root jenkins bash -c `
