@@ -438,11 +438,17 @@ GitHub: **Settings → Webhooks → Add webhook**
 >   --add-host=host.docker.internal:host-gateway \
 >   -e NGROK_AUTHTOKEN=YOUR_TOKEN \
 >   ngrok/ngrok http host.docker.internal:8080
+>
 > e.g.
+>
 > docker run --rm -it \
 >   --add-host=host.docker.internal:host-gateway \
 >   -e NGROK_AUTHTOKEN=3Dc4UYAUIXzxDsDLjPd6gnNDnyI_3FAxKBzB2pQv214RrbLPo \
 >   ngrok/ngrok http host.docker.internal:8080
+>
+> Or in one line - 
+>
+> docker run --rm -it --add-host=host.docker.internal:host-gateway -e NGROK_AUTHTOKEN=3Dc4UYAUIXzxDsDLjPd6gnNDnyI_3FAxKBzB2pQv214RrbLPo ngrok/ngrok http host.docker.internal:8080
 > ```
 
 > - `host.docker.internal` resolves to your Windows host — the same machine Jenkins is running on
