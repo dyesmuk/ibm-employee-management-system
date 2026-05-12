@@ -445,7 +445,9 @@ GitHub: **Settings → Webhooks → Add webhook**
 >   --add-host=host.docker.internal:host-gateway \
 >   -e NGROK_AUTHTOKEN=3Dc4UYAUIXzxDsDLjPd6gnNDnyI_3FAxKBzB2pQv214RrbLPo \
 >   ngrok/ngrok http host.docker.internal:8080
->
+>```
+
+> ```bash
 > Or in one line - 
 >
 > docker run --rm -it --add-host=host.docker.internal:host-gateway -e NGROK_AUTHTOKEN=3Dc4UYAUIXzxDsDLjPd6gnNDnyI_3FAxKBzB2pQv214RrbLPo ngrok/ngrok http host.docker.internal:8080
