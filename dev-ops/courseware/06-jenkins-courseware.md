@@ -249,6 +249,9 @@ mkdir hello-jenkins
 cd hello-jenkins
 git init
 git remote add origin https://github.com/yourname/hello-jenkins.git
+
+e.g. 
+git remote add origin https://github.com/dyesmuk/hello-jenkins.git
 ```
 
 > Create the GitHub repository first at `github.com/new` (name: `hello-jenkins`, public, no README). Then the remote add above will work.
