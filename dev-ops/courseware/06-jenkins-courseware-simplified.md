@@ -478,3 +478,56 @@ Module 06 — Jenkins        → automates all of the above on every git push
 Local → GitHub → Jenkins → Test → Build → Build Image → 
 Push to Docker Hub → Pull to Docker → Deploy 
 ```
+
+
+````markdown
+## The Complete CI/CD Flow
+
+```
+Developer (Windows 11)
+        │
+        │  git push
+        ▼
+    ┌────────┐
+    │ GitHub │  source code stored here
+    └────────┘
+        │
+        │  webhook (ngrok tunnel)
+        │  triggers automatically on every push
+        ▼
+  ┌─────────┐
+  │ Jenkins │
+  └─────────┘
+        │
+        ├─── Stage 1: Checkout ──────────────────── pulls latest code from GitHub
+        │
+        ├─── Stage 2: Install & Test ────────────── npm install + npm test (Jest)
+        │                                           ✗ tests fail → pipeline stops here
+        │                                           ✓ tests pass → continue
+        │
+        ├─── Stage 3: Build Docker Image ────────── docker build
+        │                                           packages app + dependencies
+        │                                           into a portable image
+        │
+        ├─── Stage 4: Push to Docker Hub ────────── docker push
+        │                                           image stored in the cloud
+        │              ┌──────────────┐             available to any server
+        │              │  Docker Hub  │
+        │              │  (registry)  │
+        │              └──────────────┘
+        │                     │
+        │                     │  docker pull (automatic)
+        │                     ▼
+        └─── Stage 5: Deploy ────────────────────── docker run
+                                                    old container stopped
+                                                    new container started
+                                                         │
+                                                         ▼
+                                               http://localhost:3000
+                                               app is live ✓
+```
+
+### Note: 
+
+Every `git push` triggers this entire chain automatically — no manual steps.
+````
