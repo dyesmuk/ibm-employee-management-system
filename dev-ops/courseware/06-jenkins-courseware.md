@@ -34,7 +34,7 @@ This is the sixth and final module in the DevOps series. Every previous module b
 
 **Project thread:** The pipeline built in this module takes the Node.js Express app from a `git push` all the way to a running Kubernetes Deployment — with npm installing dependencies and running tests, Docker packaging it, Docker Hub storing it, and Kubernetes deploying it. A failed deployment triggers an automatic `kubectl rollout undo`.
 
-**Tools needed for this module:** Docker Desktop (with Kubernetes enabled), Windows Terminal (PowerShell), a GitHub account, a Docker Hub account, ngrok (for local webhook testing).
+**Tools needed for this module:** Docker Desktop (with Kubernetes enabled), Windows Terminal (PowerShell), a GitHub account, a Docker Hub account, ngrok (for local webhook testing — explained in Step 3).
 
 ---
 
@@ -76,8 +76,7 @@ docker run -d `
   jenkins/jenkins:lts
 ```
 
-Or 
-
+Or as a single line:
 
 ```powershell
 docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:lts
@@ -87,37 +86,29 @@ docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/je
 
 | Flag | Purpose |
 |---|---|
-| `-p 8080:8080` | Jenkins web UI |
-| `-p 50000:50000` | Agent communication port |
-| `-v jenkins_home:/var/jenkins_home` | Persist all Jenkins data |
-| `-v /var/run/docker.sock:/var/run/docker.sock` | Let Jenkins run `docker` commands |
+| `-p 8080:8080` | Jenkins web UI — access at `http://localhost:8080` |
+| `-p 50000:50000` | Agent communication port — used when Jenkins connects to external build agents |
+| `-v jenkins_home:/var/jenkins_home` | Persist all Jenkins data (jobs, credentials, plugins) in a named Docker volume so nothing is lost if the container restarts |
+| `-v /var/run/docker.sock:/var/run/docker.sock` | Share the Docker socket from your Windows host into the Jenkins container, letting Jenkins run `docker` commands against Docker Desktop |
 
 ```powershell
 # Get initial admin password
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
+> **If the above command shows nothing:** The container might still be starting. Wait 30 seconds and try again, or run `docker logs jenkins` to check for errors.
+
 Browser → `http://localhost:8080` → paste password → Install suggested plugins → create admin user.
+
+> **"Install suggested plugins"** installs a standard set including Git, Pipeline, and credentials management. This takes a few minutes. Some plugins needed for this module (NodeJS, Docker Pipeline) are not in the suggested set — you will add them in the next section.
 
 ### Install Docker CLI inside Jenkins
 
-The Jenkins image includes the Docker *socket* mount but not the Docker *CLI*. Without this, every `docker` command in the pipeline will fail with `docker: command not found`.
+The Jenkins image includes the Docker *socket* mount but not the Docker *CLI*. The socket mount alone means Jenkins can communicate with Docker Desktop — but only if the `docker` command-line tool is also present inside the container. Without this, every `docker` command in the pipeline will fail with `docker: command not found`.
 
 ```powershell
-docker exec -it --user root jenkins bash -c "
-  apt-get update &&
-  apt-get install -y docker.io
-"
+docker exec -it --user root jenkins bash -c "apt-get update && apt-get install -y docker.io"
 ```
-
-
-Or 
-
-
-```powershell
-docker exec -it --user root jenkins bash -c " apt-get update && apt-get install -y docker.io " 
-```
-
 
 Verify:
 
@@ -139,7 +130,7 @@ Do this now — before writing any pipeline — so the `tools { nodejs 'nodejs-1
 
 ### Plugins to install
 
-**Manage Jenkins → Plugins → Available:**
+**Manage Jenkins → Plugins → Available plugins** (search by name and tick the checkbox):
 
 | Plugin | Required for |
 |---|---|
@@ -150,7 +141,7 @@ Do this now — before writing any pipeline — so the `tools { nodejs 'nodejs-1
 | Kubernetes | `kubectl` in pipelines |
 | Blue Ocean | Visual pipeline view |
 
-> **NodeJS Plugin replaces Maven Integration** — instead of configuring JDK + Maven, you configure a Node.js installation. The plugin automatically adds `node` and `npm` to the pipeline's `PATH`.
+> **Some plugins may already be installed.** If you don't find a plugin under "Available," check the "Installed" tab — it is likely already present from the suggested plugins install. Only install what is missing.
 
 ### Architecture
 
@@ -219,20 +210,36 @@ Jenkins runs it immediately. Click the build number → **Console Output** to se
 > - **Pipeline script from SCM** — Jenkins reads the `Jenkinsfile` from your Git repository. This is what you use from Step 3 onwards — it's the real-world approach where the pipeline lives with the code.
 
 ```
-Step 2  →  Pipeline script      (paste in UI, no project folder needed)
-Step 3+ →  Pipeline script from SCM  (Jenkinsfile in your Git repo)
+Step 2  →  Pipeline script          (paste in UI, no project folder needed)
+Step 3+ →  Pipeline script from SCM (Jenkinsfile in your Git repo)
 ```
+
+### Pipeline syntax explained
 
 | Block | Purpose |
 |---|---|
-| `pipeline` | Root wrapper |
-| `agent` | Where to run — `any`, label, or Docker image |
-| `tools` | Pre-configured Node.js from Global Tool Config |
-| `environment` | Key-value env vars for all stages |
-| `stages` | Ordered list of stages |
-| `stage` | Named phase — shown as a box in Blue Ocean |
-| `steps` | Commands inside a stage |
-| `post` | After all stages — always / success / failure |
+| `pipeline` | Root wrapper — every Jenkinsfile starts with this |
+| `agent any` | Run the pipeline on any available Jenkins executor (the Jenkins container itself in our setup) |
+| `tools` | Pre-configured Node.js from Global Tool Config — puts `node` and `npm` on the `PATH` for all stages |
+| `environment` | Key-value env vars available to all stages — avoids repeating values in multiple places |
+| `stages` | Ordered list of stages — they run top to bottom; if one fails, the rest are skipped |
+| `stage` | Named phase — shown as a coloured box in Blue Ocean. Use descriptive names |
+| `steps` | The actual commands inside a stage |
+| `post` | Runs after all stages regardless of outcome. `always` runs unconditionally; `success`/`failure` run based on result |
+
+### Built-in environment variables
+
+Jenkins automatically provides these variables to every pipeline run. You do not need to declare them:
+
+| Variable | Value | Example |
+|---|---|---|
+| `BUILD_NUMBER` | Auto-incrementing number for each run | `42` |
+| `GIT_BRANCH` | The branch that triggered the build | `main` |
+| `GIT_COMMIT` | Full SHA of the commit | `a3f9c1d2...` |
+| `WORKSPACE` | Directory where the repo is checked out | `/var/jenkins_home/workspace/hello-jenkins` |
+| `JOB_NAME` | Name of the Jenkins job | `hello-jenkins` |
+
+> `BUILD_NUMBER` is particularly useful — from Step 4 onwards you will use it as the Docker image tag (e.g. `yourname/hello-jenkins:42`), so every image is traceable to the exact pipeline run that built it.
 
 ---
 
@@ -249,8 +256,10 @@ mkdir hello-jenkins
 cd hello-jenkins
 git init
 git remote add origin https://github.com/yourname/hello-jenkins.git
+```
 
-e.g. 
+Example:
+```powershell
 git remote add origin https://github.com/dyesmuk/hello-jenkins.git
 ```
 
@@ -404,6 +413,8 @@ pipeline {
 }
 ```
 
+> **`checkout scm`** — tells Jenkins to check out the source code from the repository configured in the job (the "SCM" — Source Control Management). When you use "Pipeline script from SCM", Jenkins already knows the repo URL and branch; `checkout scm` is the step that actually clones or updates the workspace with the latest code.
+
 > **`npm ci` vs `npm install`** — `npm ci` always deletes `node_modules` and installs from `package-lock.json` exactly. Faster, reproducible, no surprises from floating versions. Always use `npm ci` in CI pipelines.
 
 ### Create a Pipeline job and connect to GitHub
@@ -420,61 +431,118 @@ Create a new job for the real app — separate from the `hello-pipeline` you use
    - Script Path: `Jenkinsfile`
 5. **Save** → **Build Now**
 
-### Triggers
+### Triggers — How Jenkins Knows When to Build
 
-**Option A — GitHub Webhook (instant):**
+By default, Jenkins builds only when you click **Build Now** manually. To make it build automatically on every `git push`, you have two options:
 
-Jenkins: **Build Triggers → GitHub hook trigger for GITScm polling**
+**The core problem with webhooks in a local lab:**
+GitHub needs to call Jenkins at a public URL to deliver the webhook. But Jenkins is running locally on your laptop — it has no public URL. This is why we need **ngrok**: it creates a secure tunnel from a public internet address to your local port 8080, so GitHub can reach your Jenkins.
 
-GitHub: **Settings → Webhooks → Add webhook**
-- Payload URL: `http://YOUR_IP:8080/github-webhook/`
-- Content type: `application/json`
-
-> **Windows 11 lab:** You're already in WSL — stay there. Two options:
->
-> **Option 1 — Run ngrok as a Docker container (recommended — no install needed):**
-> ```bash
-> docker run --rm -it \
->   --add-host=host.docker.internal:host-gateway \
->   -e NGROK_AUTHTOKEN=YOUR_TOKEN \
->   ngrok/ngrok http host.docker.internal:8080
->
-> e.g.
->
-> docker run --rm -it \
->   --add-host=host.docker.internal:host-gateway \
->   -e NGROK_AUTHTOKEN=3Dc4UYAUIXzxDsDLjPd6gnNDnyI_3FAxKBzB2pQv214RrbLPo \
->   ngrok/ngrok http host.docker.internal:8080
->```
-
- Or in one line - 
-
-> ```bash
-> docker run --rm -it --add-host=host.docker.internal:host-gateway -e NGROK_AUTHTOKEN=3Dc4UYAUIXzxDsDLjPd6gnNDnyI_3FAxKBzB2pQv214RrbLPo ngrok/ngrok http host.docker.internal:8080
-> ```
-
-> - `host.docker.internal` resolves to your Windows host — the same machine Jenkins is running on
-> - `--add-host=host.docker.internal:host-gateway` teaches the ngrok container how to reach it
-> - Get your free authtoken at `https://dashboard.ngrok.com/get-started/your-authtoken`
->
-> **Option 2 — Install ngrok directly in WSL:**
-> ```bash
-> curl -Lo ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip
-> unzip ngrok.zip && sudo mv ngrok /usr/local/bin/
-> ngrok config add-authtoken YOUR_TOKEN
-> ngrok http 8080
-> ```
->
-> Either way, ngrok will display a public URL like `https://a1b2c3d4.ngrok-free.app`. Use it as the webhook Payload URL:
-> ```
-> https://a1b2c3d4.ngrok-free.app/github-webhook/
-> ```
-> Keep the terminal running — closing it stops the tunnel.
-
-**Option B — SCM polling:**
-```groovy
-triggers { pollSCM('H/5 * * * *') }
 ```
+Without ngrok:           With ngrok:
+GitHub → ??? (no route   GitHub → https://a1b2c3d4.ngrok-free.app
+to your laptop)                          ↓
+                                  ngrok tunnel
+                                         ↓
+                                  your laptop :8080
+                                         ↓
+                                  Jenkins container
+```
+
+> In a real production environment, Jenkins runs on a server with a fixed public IP or domain name, so ngrok is not needed. The ngrok step is only for this local lab setup.
+
+---
+
+**Option A — GitHub Webhook (instant trigger — recommended):**
+
+A webhook is GitHub calling Jenkins the moment you push. Jenkins reacts in under a second.
+
+**Step 1 — Enable the trigger in Jenkins:**
+
+In your `hello-jenkins` job → **Configure** → **Build Triggers** → tick **GitHub hook trigger for GITScm polling** → Save.
+
+**Step 2 — Expose Jenkins publicly with ngrok:**
+
+Open a **new PowerShell window** and keep it open throughout your lab session. Pick one of the two options below:
+
+**Option 1 — Run ngrok as a Docker container (no install needed):**
+
+```powershell
+docker run --rm -it `
+  --add-host=host.docker.internal:host-gateway `
+  -e NGROK_AUTHTOKEN=YOUR_TOKEN_HERE `
+  ngrok/ngrok http host.docker.internal:8080
+```
+
+> - Replace `YOUR_TOKEN_HERE` with your own token from `https://dashboard.ngrok.com/get-started/your-authtoken` (free account).
+> - `host.docker.internal` is a special Docker Desktop hostname that resolves to your Windows host machine — the machine Jenkins is running on. The `--add-host` flag teaches the ngrok container how to reach it.
+> - **Do not use someone else's token** — each token is personal and has usage limits.
+
+**Option 2 — Install ngrok directly in WSL (Windows Subsystem for Linux):**
+
+```bash
+curl -Lo ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip
+unzip ngrok.zip && sudo mv ngrok /usr/local/bin/
+ngrok config add-authtoken YOUR_TOKEN_HERE
+ngrok http 8080
+```
+
+Either way, ngrok will display a public URL like:
+
+```
+Forwarding  https://a1b2c3d4.ngrok-free.app -> http://localhost:8080
+```
+
+**Step 3 — Add the webhook to GitHub:**
+
+Go to your `hello-jenkins` GitHub repository → **Settings → Webhooks → Add webhook**:
+- **Payload URL:** `https://a1b2c3d4.ngrok-free.app/github-webhook/`
+  (replace with your actual ngrok URL — note the trailing `/`)
+- **Content type:** `application/json`
+- **Which events:** Just the push event (default)
+- Click **Add webhook**
+
+GitHub will send a test ping. If it shows a green tick, the connection works.
+
+**Step 4 — Test it:**
+
+Make any small change to your repo and push:
+
+```powershell
+git commit --allow-empty -m "trigger test"
+git push
+```
+
+Jenkins should start a build within a few seconds, without you clicking anything.
+
+> **Important:** The ngrok URL changes every time you restart ngrok (on the free plan). If you restart the tunnel, you must update the webhook URL in GitHub Settings again.
+
+---
+
+**Option B — SCM Polling (no ngrok needed, but not instant):**
+
+Add a `triggers` block to your `Jenkinsfile`:
+
+```groovy
+pipeline {
+    agent any
+    triggers {
+        pollSCM('H/5 * * * *')
+    }
+    // ... rest of pipeline
+}
+```
+
+> This tells Jenkins to check GitHub every 5 minutes. If it finds a new commit, it starts a build. The `H` (hash) in the cron expression spreads load across Jenkins jobs so they don't all poll at exactly the same second. Polling is simpler to set up than webhooks in a local lab, but builds start with up to a 5-minute delay.
+
+**Which trigger to use in this lab?**
+
+| | Webhook (Option A) | SCM Polling (Option B) |
+|---|---|---|
+| Trigger speed | Instant | Up to 5 minutes |
+| Requires ngrok | Yes | No |
+| Used in production | Always | Rarely |
+| Best for learning | Webhook is the real-world pattern | Polling works if ngrok setup is blocked |
 
 ### npm commands reference
 
@@ -569,14 +637,21 @@ pipeline {
 
         stage('Build Image') {
             steps {
+                // BUILD_NUMBER is Jenkins' auto-incrementing run counter.
+                // Using it as the image tag means every image is traceable
+                // to the exact pipeline run that built it.
                 sh "docker build -t ${APP_NAME}:${BUILD_NUMBER} ."
             }
         }
 
         stage('Run Container') {
             steps {
+                // Remove any container from a previous run (|| true = don't
+                // fail if no container exists yet)
                 sh "docker rm -f ${APP_NAME} || true"
+                // Run the new container, mapping host port 3001 → container port 3000
                 sh "docker run -d --name ${APP_NAME} -p 3001:3000 ${APP_NAME}:${BUILD_NUMBER}"
+                // Wait for Node.js to finish starting, then verify the endpoint responds
                 sh "sleep 3 && curl -f http://localhost:3001/ || (docker logs ${APP_NAME} && exit 1)"
             }
         }
@@ -622,7 +697,9 @@ The pipeline references `credentials('dockerhub-creds')`. Jenkins must have this
 - ID: `dockerhub-creds`
 - Save
 
-> The credential ID `dockerhub-creds` is what the pipeline references. The actual username and password are never shown in logs — Jenkins masks them.
+> **What is `credentials('dockerhub-creds')`?** — This is Jenkins' secure vault feature. You store sensitive values (usernames, passwords, tokens) in Jenkins once, referenced by a short ID. The pipeline calls `credentials('dockerhub-creds')` to retrieve them at runtime. Jenkins automatically masks these values in console output so they are never exposed in logs. The actual username and password are never written in the Jenkinsfile itself.
+
+> When you write `DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')`, Jenkins creates two derived variables automatically: `DOCKERHUB_CREDENTIALS_USR` (the username) and `DOCKERHUB_CREDENTIALS_PSW` (the password). You use these in the `docker login` command below.
 
 ### `Jenkinsfile` — Node.js + Docker
 
@@ -636,7 +713,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
-        IMAGE_NAME = "yourname/hello-jenkins"
+        IMAGE_NAME = "yourname/hello-jenkins"   // Replace 'yourname' with your Docker Hub username
         IMAGE_TAG  = "${BUILD_NUMBER}"
         JEST_JUNIT_OUTPUT_DIR  = 'test-results'
         JEST_JUNIT_OUTPUT_NAME = 'junit.xml'
@@ -658,6 +735,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                // Also tag as 'latest' so it's easy to pull without knowing the build number
                 sh "docker tag  ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest"
             }
         }
@@ -684,6 +762,8 @@ pipeline {
 
         stage('Cleanup') {
             steps {
+                // Remove the local image from the Jenkins machine to save disk space.
+                // The image is safely stored on Docker Hub — removing it locally is fine.
                 sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true"
             }
         }
@@ -721,14 +801,18 @@ After the Docker image is on Docker Hub, deploy it to Kubernetes with zero downt
 
 ### Configure kubectl inside Jenkins
 
-Jenkins needs access to your kubeconfig file to run `kubectl` commands. This requires recreating the container with an extra volume mount.
+Jenkins needs access to your kubeconfig file to run `kubectl` commands. The kubeconfig is the file that tells `kubectl` how to connect to your Kubernetes cluster — it lives at `~/.kube/config` on your Windows machine (i.e., `C:\Users\YourName\.kube\config`).
+
+This requires recreating the container with an extra volume mount so the Jenkins container can read that file.
 
 > **Your Jenkins config is safe** — all jobs, credentials, and plugins live in the `jenkins_home` named volume. Stopping and removing the *container* does not touch the volume. When you re-run with the new flags, everything is exactly as you left it.
 
 ```powershell
-# Recreate Jenkins with kubeconfig mounted
+# Stop and remove the existing Jenkins container
 docker stop jenkins && docker rm jenkins
 
+# Recreate Jenkins with kubeconfig mounted (read-only — Jenkins only reads it, never writes)
+# ${env:USERPROFILE} is PowerShell for your Windows home directory (e.g. C:\Users\YourName)
 docker run -d `
   --name jenkins `
   -p 8080:8080 -p 50000:50000 `
@@ -736,17 +820,25 @@ docker run -d `
   -v /var/run/docker.sock:/var/run/docker.sock `
   -v ${env:USERPROFILE}\.kube:/root/.kube:ro `
   jenkins/jenkins:lts
+```
 
-# Install kubectl inside Jenkins container
+> **Why `:ro`?** — Read-only mount. Jenkins only needs to read the kubeconfig, not modify it. This is a security best practice.
+
+```powershell
+# Install kubectl inside the Jenkins container
 docker exec -it --user root jenkins bash -c `
   "curl -LO https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl && `
    chmod +x kubectl && mv kubectl /usr/local/bin/"
 
-# Verify
+# Verify kubectl can reach your cluster
 docker exec jenkins kubectl get nodes
 ```
 
+> If `kubectl get nodes` returns your node(s), Jenkins can now communicate with Kubernetes. If it errors, check that Docker Desktop Kubernetes is enabled (Docker Desktop → Settings → Kubernetes → Enable Kubernetes).
+
 ### Create the initial K8s Deployment (run once)
+
+This is a one-time setup step that creates the Kubernetes Deployment and Service. The pipeline's `kubectl set image` command (in the Jenkinsfile below) updates this existing Deployment on every subsequent run — it does not create a new one each time.
 
 ```powershell
 kubectl create deployment hello-jenkins `
@@ -773,7 +865,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
-        IMAGE_NAME      = "yourname/hello-jenkins"
+        IMAGE_NAME      = "yourname/hello-jenkins"   // Replace with your Docker Hub username
         IMAGE_TAG       = "${BUILD_NUMBER}"
         DEPLOYMENT_NAME = "hello-jenkins"
         CONTAINER_NAME  = "hello-jenkins"
@@ -817,6 +909,9 @@ pipeline {
         }
 
         stage('Deploy to Kubernetes') {
+            // 'when' condition: this stage only runs when the branch is 'main'.
+            // Feature branches build and test but never deploy to production.
+            // Only code that has been reviewed and merged to main reaches the cluster.
             when { branch 'main' }
             steps {
                 sh """
@@ -850,6 +945,9 @@ pipeline {
             echo "Build ${BUILD_NUMBER}: image :${IMAGE_TAG} deployed to Kubernetes."
         }
         failure {
+            // If anything in the pipeline fails, automatically roll Kubernetes
+            // back to the previous working version. The '|| true' prevents
+            // the rollback command itself from causing a secondary failure.
             sh """
                 echo 'Pipeline failed — rolling back Kubernetes deployment'
                 kubectl rollout undo deployment/${DEPLOYMENT_NAME} \
@@ -859,6 +957,8 @@ pipeline {
     }
 }
 ```
+
+> **`kubectl set image` vs `kubectl rollout status`** — `kubectl set image` issues the update instruction to Kubernetes (like pressing "deploy"). `kubectl rollout status` then waits and watches until all Pods have successfully restarted with the new image. Without `rollout status`, the pipeline would finish immediately after issuing the command — before knowing whether the new Pods actually started correctly. The `--timeout=120s` means: if all Pods aren't healthy within 2 minutes, treat the deployment as failed and trigger the auto-rollback.
 
 ### The complete end-to-end flow
 
@@ -902,6 +1002,8 @@ Developer: git push origin main
 
 ### Parallel stages
 
+Instead of running lint, tests, and security audit one after another, run them at the same time to save time:
+
 ```groovy
 stage('Validate') {
     parallel {
@@ -911,6 +1013,8 @@ stage('Validate') {
     }
 }
 ```
+
+> **Why parallel?** If each of these takes 1 minute, running them sequentially takes 3 minutes. Running in parallel takes 1 minute. Parallel stages are independent — they don't share data. If any one of them fails, the overall stage fails.
 
 > Add a `lint` script to `package.json` to enable the Lint stage:
 > ```json
@@ -923,14 +1027,18 @@ stage('Validate') {
 
 ### Conditional logic
 
+Use `when` blocks to control which stages run under which conditions:
+
 ```groovy
-when { branch 'main' }
-when { not { branch 'main' } }
-when { changeset '**/Dockerfile' }
-when { expression { return params.DEPLOY == 'true' } }
+when { branch 'main' }                            // Only on main branch
+when { not { branch 'main' } }                    // On all branches except main
+when { changeset '**/Dockerfile' }                // Only when Dockerfile changed
+when { expression { return params.DEPLOY == 'true' } }  // Only if parameter set
 ```
 
 ### Parameterised builds
+
+Allow the person triggering the build to pass in values — useful for deploying a specific version, skipping tests in emergencies, or targeting a specific environment:
 
 ```groovy
 parameters {
@@ -940,11 +1048,15 @@ parameters {
 }
 ```
 
+> After adding `parameters {}`, click **Build with Parameters** instead of **Build Now** in the Jenkins UI. Jenkins will show a form where you fill in the values before the build starts.
+
 ### Blue Ocean
 
 **Manage Jenkins → Plugins → Available → Blue Ocean → Install**
 
 `http://localhost:8080/blue` — horizontal flow diagram, pass/fail per stage, PR integration.
+
+> Blue Ocean is a visual UI layered on top of Jenkins. It shows the same pipelines as the classic UI but as a horizontal flow diagram — easier to read at a glance which stage failed and why. Both UIs are always available; you can switch between them anytime.
 
 ---
 
@@ -974,7 +1086,9 @@ Jenkins automates software delivery: watches Git, triggers pipelines on push, en
 
 **Webhook** — GitHub calls Jenkins on push. Instant trigger.
 
-**`host.docker.internal`** — Docker Desktop hostname → Windows host IP. How Jenkins container reaches other containers.
+**ngrok** — A tunnelling tool that gives your local Jenkins a public URL so GitHub webhooks can reach it. Only needed in local lab environments; production Jenkins runs on a public server.
+
+**`host.docker.internal`** — Docker Desktop hostname that resolves to your Windows host IP. Used when one container needs to reach a service running on the host or another container.
 
 **Rolling update** — Kubernetes replaces Pods one at a time. Zero downtime.
 
@@ -984,7 +1098,7 @@ Jenkins automates software delivery: watches Git, triggers pipelines on push, en
 
 **`jest-junit`** — Jest reporter that outputs JUnit-compatible XML. Required for Jenkins to publish and track test results over time.
 
-**`|| true`** — Shell pattern used in pipeline steps to make a command non-fatal. `docker rm -f app || true` means: remove the container if it exists, and if it doesn't, don't fail the build.
+**`|| true`** — Shell pattern used in pipeline steps to make a command non-fatal. `docker rm -f app || true` means: remove the container if it exists, and if it doesn't, that's fine — don't fail the build.
 
 ---
 
@@ -998,9 +1112,8 @@ Jenkins automates software delivery: watches Git, triggers pipelines on push, en
 | `npm install` vs `npm ci` | `npm install` can update `package-lock.json`. `npm ci` installs exactly what's locked — use in CI. |
 | `docker run` local vs Docker Hub | Local image only exists on the Jenkins machine. Docker Hub lets any server pull and run it. |
 | `kubectl set image` vs `kubectl apply` | `set image` updates one field. `apply` replaces the full spec from a YAML file. |
-| Webhook vs SCM polling | Webhook = GitHub calls Jenkins (instant, needs ngrok in lab). Polling = Jenkins checks GitHub periodically. |
+| Webhook vs SCM polling | Webhook = GitHub calls Jenkins (instant, needs ngrok in lab). Polling = Jenkins checks GitHub periodically (up to 5-minute delay, no ngrok needed). |
 | `host.docker.internal` vs `localhost` | Inside a container, `localhost` is the container itself. `host.docker.internal` is your Windows machine. |
-
 
 ---
 
@@ -1009,7 +1122,7 @@ Jenkins automates software delivery: watches Git, triggers pipelines on push, en
 ```
 Developer (Windows 11)
     ↓  git push
-  GitHub → webhook (ngrok in lab) → Jenkins
+  GitHub → webhook (ngrok tunnel in lab) → Jenkins
     ↓
   Jenkinsfile
     ↓
@@ -1036,7 +1149,7 @@ Developer (Windows 11)
 ## Jenkins Commands & URL Reference
 
 ```powershell
-# Start Jenkins
+# Start Jenkins (full command with kubeconfig — use this after Step 6 setup)
 docker run -d --name jenkins `
   -p 8080:8080 -p 50000:50000 `
   -v jenkins_home:/var/jenkins_home `
@@ -1044,7 +1157,7 @@ docker run -d --name jenkins `
   -v ${env:USERPROFILE}\.kube:/root/.kube:ro `
   jenkins/jenkins:lts
 
-# Admin password
+# Get initial admin password
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 # Restart / logs / stop
@@ -1052,25 +1165,28 @@ docker restart jenkins
 docker logs -f jenkins
 docker stop jenkins
 
-# Install kubectl in Jenkins
+# Install Docker CLI in Jenkins (run once after first docker run)
+docker exec -it --user root jenkins bash -c "apt-get update && apt-get install -y docker.io"
+
+# Install kubectl in Jenkins (run once after Step 6 container recreation)
 docker exec -it --user root jenkins bash -c `
   "curl -LO https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl && `
    chmod +x kubectl && mv kubectl /usr/local/bin/"
 
-# Verify cluster access
+# Verify cluster access from inside Jenkins
 docker exec jenkins kubectl get nodes
 
-# Public webhook tunnel (run inside WSL)
-# Option 1 — Docker (no install needed)
-docker run --rm -it \
-  --add-host=host.docker.internal:host-gateway \
-  -e NGROK_AUTHTOKEN=YOUR_TOKEN \
+# Start ngrok tunnel (keep this window open during your lab session)
+# Option 1 — Docker (no install needed, run in PowerShell)
+docker run --rm -it `
+  --add-host=host.docker.internal:host-gateway `
+  -e NGROK_AUTHTOKEN=YOUR_TOKEN_HERE `
   ngrok/ngrok http host.docker.internal:8080
 
-# Option 2 — Install in WSL directly
+# Option 2 — Install in WSL, then run
 curl -Lo ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip
 unzip ngrok.zip && sudo mv ngrok /usr/local/bin/
-ngrok config add-authtoken YOUR_TOKEN
+ngrok config add-authtoken YOUR_TOKEN_HERE
 ngrok http 8080
 ```
 
@@ -1084,7 +1200,7 @@ ngrok http 8080
 | `http://localhost:8080/credentials` | Credential store |
 | `http://localhost:8080/manage/configureTools/` | Node.js tool config |
 | `http://localhost:8080/restart` | Restart Jenkins |
-| `http://localhost:8080/github-webhook/` | GitHub webhook endpoint |
+| `http://localhost:8080/github-webhook/` | GitHub webhook endpoint (used in Payload URL) |
 
 ---
 
@@ -1094,18 +1210,18 @@ ngrok http 8080
 |---|---|
 | Introduction — CI vs CD | Bridge section + Step 1 architecture |
 | Jenkins architecture, plugins | Step 1 — Controller, Docker socket, plugin table |
-| Declarative pipeline fundamentals | Step 2 — pipeline, agent, tools, stages, steps, post |
+| Declarative pipeline fundamentals | Step 2 — pipeline, agent, tools, stages, steps, post, built-in variables |
 | CI/CD pipeline using Git, Jenkins and Node.js | Step 3 — full Jenkinsfile, Node.js config, Jest/junit, `archiveArtifacts`, webhook/ngrok |
 | npm commands | Step 3 — `npm` commands reference table |
 | First deployment — local Docker container | Step 4 — `docker build`, `docker run`, `curl` smoke check, `\|\| true` pattern |
-| Integrating Docker in CI/CD pipeline | Step 5 — Dockerfile for Node.js, docker build/push, smoke test stage |
+| Integrating Docker in CI/CD pipeline | Step 5 — Dockerfile for Node.js, docker build/push, credentials, smoke test stage |
 | Integrating Kubernetes in CI/CD pipeline | Step 6 — kubeconfig mount, `kubectl set image`, rollout status, auto-rollback |
 | Parallel stages | Step 7 — `parallel {}` |
 | Conditional logic / branch strategy | Steps 6–7 — `when { branch 'main' }` |
 | Parameterised builds | Step 7 — `parameters {}` |
-| Credentials management | Step 5 — dockerhub-creds, masked secrets |
+| Credentials management | Step 5 — dockerhub-creds, masked secrets, `_USR`/`_PSW` variables |
 | Blue Ocean | Step 7 — install + visual view |
-| GitHub webhook + ngrok | Step 3 — Windows 11 webhook setup |
+| GitHub webhook + ngrok | Step 3 — full webhook setup walkthrough with ngrok explained |
 | Auto-rollback | Step 6 — `post { failure { kubectl rollout undo } }` |
 
 ---
