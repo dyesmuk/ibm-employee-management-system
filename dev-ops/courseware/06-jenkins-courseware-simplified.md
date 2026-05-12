@@ -471,3 +471,9 @@ Module 04 — Kubernetes     → runs the app, does rolling updates
 Module 05 — Ansible        → provisions the servers
 Module 06 — Jenkins        → automates all of the above on every git push
 ```
+
+## The complete flow  
+
+```bash 
+GitHub → Jenkins → Test → Build Image → Push to Docker Hub → Deploy 
+```
