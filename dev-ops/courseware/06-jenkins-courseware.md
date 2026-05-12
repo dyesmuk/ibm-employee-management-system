@@ -125,6 +125,19 @@ Developer (Windows 11)
 
 ## Step 2 — Declarative Pipeline Fundamentals
 
+**No project folder needed yet.** For this step only, you paste the pipeline directly into the Jenkins UI. The goal is to learn the syntax and see a pipeline run — without worrying about Git or a real app.
+
+From Step 3 onwards, the pipeline moves into a `Jenkinsfile` that lives inside your project folder.
+
+### Create a Pipeline job in Jenkins
+
+1. Browser → `http://localhost:8080`
+2. **New Item** → enter name `hello-pipeline` → select **Pipeline** → OK
+3. Scroll down to the **Pipeline** section
+4. **Definition** → select **Pipeline script** *(not "Pipeline script from SCM")*
+5. Paste the pipeline below into the text box
+6. **Save** → **Build Now**
+
 ```groovy
 pipeline {
     agent any
@@ -152,6 +165,17 @@ pipeline {
         always  { echo 'Always runs — good for cleanup' }
     }
 }
+```
+
+Jenkins runs it immediately. Click the build number → **Console Output** to see each line execute.
+
+> **"Pipeline script" vs "Pipeline script from SCM"**
+> - **Pipeline script** — you paste the pipeline directly in the Jenkins UI. Good for learning and quick tests.
+> - **Pipeline script from SCM** — Jenkins reads the `Jenkinsfile` from your Git repository. This is what you use from Step 3 onwards — it's the real-world approach where the pipeline lives with the code.
+
+```
+Step 2  →  Pipeline script      (paste in UI, no project folder needed)
+Step 3+ →  Pipeline script from SCM  (Jenkinsfile in your Git repo)
 ```
 
 | Block | Purpose |
@@ -976,6 +1000,3 @@ App live — zero downtime — traceable to the exact commit that triggered it
 ```
 
 The infrastructure (the servers Kubernetes runs on) is provisioned by Ansible, version-controlled in Git, and can itself be re-run at any time to reproduce the environment exactly.
-
---- 
-Sample push 
