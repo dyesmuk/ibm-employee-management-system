@@ -430,12 +430,32 @@ GitHub: **Settings → Webhooks → Add webhook**
 - Payload URL: `http://YOUR_IP:8080/github-webhook/`
 - Content type: `application/json`
 
-> **Windows 11 lab:** Use ngrok to expose localhost:
-> ```powershell
-> winget install ngrok
+> **Windows 11 lab:** You're already in WSL — stay there. Two options:
+>
+> **Option 1 — Run ngrok as a Docker container (recommended — no install needed):**
+> ```bash
+> docker run --rm -it \
+>   --add-host=host.docker.internal:host-gateway \
+>   -e NGROK_AUTHTOKEN=YOUR_TOKEN \
+>   ngrok/ngrok http host.docker.internal:8080
+> ```
+> - `host.docker.internal` resolves to your Windows host — the same machine Jenkins is running on
+> - `--add-host=host.docker.internal:host-gateway` teaches the ngrok container how to reach it
+> - Get your free authtoken at `https://dashboard.ngrok.com/get-started/your-authtoken`
+>
+> **Option 2 — Install ngrok directly in WSL:**
+> ```bash
+> curl -Lo ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip
+> unzip ngrok.zip && sudo mv ngrok /usr/local/bin/
+> ngrok config add-authtoken YOUR_TOKEN
 > ngrok http 8080
 > ```
-> Use the `https://xxxx.ngrok.io` URL as the webhook payload URL.
+>
+> Either way, ngrok will display a public URL like `https://a1b2c3d4.ngrok-free.app`. Use it as the webhook Payload URL:
+> ```
+> https://a1b2c3d4.ngrok-free.app/github-webhook/
+> ```
+> Keep the terminal running — closing it stops the tunnel.
 
 **Option B — SCM polling:**
 ```groovy
@@ -1026,7 +1046,17 @@ docker exec -it --user root jenkins bash -c `
 # Verify cluster access
 docker exec jenkins kubectl get nodes
 
-# Public webhook tunnel
+# Public webhook tunnel (run inside WSL)
+# Option 1 — Docker (no install needed)
+docker run --rm -it \
+  --add-host=host.docker.internal:host-gateway \
+  -e NGROK_AUTHTOKEN=YOUR_TOKEN \
+  ngrok/ngrok http host.docker.internal:8080
+
+# Option 2 — Install in WSL directly
+curl -Lo ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip
+unzip ngrok.zip && sudo mv ngrok /usr/local/bin/
+ngrok config add-authtoken YOUR_TOKEN
 ngrok http 8080
 ```
 
