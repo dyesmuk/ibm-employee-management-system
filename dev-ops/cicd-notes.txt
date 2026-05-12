@@ -1,0 +1,9 @@
+	CI/CD using Jenkins 
+
+	Development Lifecyle 
+
+	Code Test Build Deploy Run -> Repeat 
+
+	Write code -> push it to GitHub 
+
+
