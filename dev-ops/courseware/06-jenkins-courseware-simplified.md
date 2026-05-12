@@ -474,15 +474,6 @@ Module 06 — Jenkins        → automates all of the above on every git push
 
 ## The complete flow  
 
-```bash 
-Local → GitHub → Jenkins → Test → Build → Build Image → 
-Push to Docker Hub → Pull to Docker → Deploy 
-```
-
-
-````markdown
-## The Complete CI/CD Flow
-
 ```
 Developer (Windows 11)
         │
@@ -526,8 +517,3 @@ Developer (Windows 11)
                                                http://localhost:3000
                                                app is live ✓
 ```
-
-### Note: 
-
-Every `git push` triggers this entire chain automatically — no manual steps.
-````
