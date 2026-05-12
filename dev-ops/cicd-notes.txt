@@ -25,7 +25,4 @@ docker exec -it --user root jenkins bash -c "
 "
 
 
-docker exec -it --user root jenkins bash -c "
-  apt-get update &&
-  apt-get install -y docker.io
-"
+docker exec -it --user root jenkins bash -c " apt-get update && apt-get install -y docker.io "
