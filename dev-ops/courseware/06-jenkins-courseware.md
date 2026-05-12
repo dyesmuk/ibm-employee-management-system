@@ -16,8 +16,8 @@ This is the sixth and final module in the DevOps series. Every previous module b
 - Install and configure Jenkins in Docker on Windows 11
 - Write declarative Jenkinsfile pipelines stored in Git
 - Connect Jenkins to GitHub using webhooks (with ngrok for the local lab)
-- Build a Spring Boot app with Maven inside Jenkins
-- Integrate Tomcat as a deployment target for WAR files
+- Build a Node.js Express app with npm inside Jenkins
+- Run the app as a local Docker container as a first deploy step
 - Integrate Docker: build images and push to Docker Hub from the pipeline
 - Integrate Kubernetes: deploy to the cluster with rolling updates and auto-rollback
 - Use parallel stages, conditional logic, and parameterised builds
@@ -32,7 +32,7 @@ This is the sixth and final module in the DevOps series. Every previous module b
 06 Jenkins       ← YOU ARE HERE — automates everything above, end to end
 ```
 
-**Project thread:** The pipeline built in this module takes the Spring Boot app from a `git push` all the way to a running Kubernetes Deployment — with Maven building it, Docker packaging it, Docker Hub storing it, and Kubernetes deploying it. A failed deployment triggers an automatic `kubectl rollout undo`.
+**Project thread:** The pipeline built in this module takes the Node.js Express app from a `git push` all the way to a running Kubernetes Deployment — with npm installing dependencies and running tests, Docker packaging it, Docker Hub storing it, and Kubernetes deploying it. A failed deployment triggers an automatic `kubectl rollout undo`.
 
 **Tools needed for this module:** Docker Desktop (with Kubernetes enabled), Windows Terminal (PowerShell), a GitHub account, a Docker Hub account, ngrok (for local webhook testing).
 
@@ -101,10 +101,11 @@ Browser → `http://localhost:8080` → paste password → Install suggested plu
 | Pipeline | Declarative pipelines |
 | Git | Cloning repos |
 | Docker Pipeline | `docker.build`, `docker.push` in pipelines |
-| Maven Integration | `mvn` builds |
-| Deploy to container | WAR → Tomcat |
+| NodeJS | `node` and `npm` builds |
 | Kubernetes | `kubectl` in pipelines |
 | Blue Ocean | Visual pipeline view |
+
+> **NodeJS Plugin replaces Maven Integration** — instead of configuring JDK + Maven, you configure a Node.js installation. The plugin automatically adds `node` and `npm` to the pipeline's `PATH`.
 
 ### Architecture
 
@@ -118,7 +119,7 @@ Developer (Windows 11)
   Pipeline Stages (sh runs inside Jenkins Linux container)
 ```
 
-> `sh` in pipeline steps runs inside the Jenkins Linux container — not on Windows. `mvn`, `docker`, `kubectl`, bash all work normally.
+> `sh` in pipeline steps runs inside the Jenkins Linux container — not on Windows. `node`, `npm`, `docker`, `kubectl`, bash all work normally.
 
 ---
 
@@ -129,8 +130,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven-3.9'
-        jdk   'jdk-17'
+        nodejs 'nodejs-18'
     }
 
     environment {
@@ -141,7 +141,7 @@ pipeline {
         stage('Hello') {
             steps {
                 echo "Building ${APP_NAME}"
-                sh 'date && whoami'
+                sh 'node --version && npm --version'
             }
         }
     }
@@ -158,7 +158,7 @@ pipeline {
 |---|---|
 | `pipeline` | Root wrapper |
 | `agent` | Where to run — `any`, label, or Docker image |
-| `tools` | Pre-configured JDK/Maven/Node from Global Tool Config |
+| `tools` | Pre-configured Node.js from Global Tool Config |
 | `environment` | Key-value env vars for all stages |
 | `stages` | Ordered list of stages |
 | `stage` | Named phase — shown as a box in Blue Ocean |
@@ -167,74 +167,99 @@ pipeline {
 
 ---
 
-## Step 3 — CI Pipeline: Git + Jenkins + Maven
+## Step 3 — CI Pipeline: Git + Jenkins + Node.js
 
-Core syllabus pipeline: a **Spring Boot Java app** built with Maven, triggered by GitHub push.
+Core syllabus pipeline: a **Node.js Express app** built with npm, triggered by GitHub push.
 
-### Configure JDK and Maven in Jenkins
+### Configure Node.js in Jenkins
 
 **Manage Jenkins → Tools:**
-1. **JDK** → Add → Name: `jdk-17` → Install automatically → OpenJDK 17
-2. **Maven** → Add → Name: `maven-3.9` → Install automatically → 3.9.x
-3. Save
+1. **NodeJS** → Add → Name: `nodejs-18` → Install automatically → NodeJS 18.x
+2. Save
 
-### Minimal Spring Boot project
+> The NodeJS plugin installs the specified Node.js version automatically inside the Jenkins container on first use. No manual `apt install` required.
 
-`pom.xml`:
+### Minimal Node.js project
 
-```xml
-<project xmlns="http://maven.apache.org/POM/4.0.0">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.example</groupId>
-  <artifactId>hello-jenkins</artifactId>
-  <version>1.0.${BUILD_NUMBER}</version>
-  <packaging>jar</packaging>
+`package.json`:
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.2.0</version>
-  </parent>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-</project>
-```
-
-`src/main/java/com/example/HelloController.java`:
-
-```java
-@RestController
-public class HelloController {
-    @GetMapping("/")
-    public String hello() {
-        return "Hello from Jenkins CI/CD!";
-    }
+```json
+{
+  "name": "hello-jenkins",
+  "version": "1.0.0",
+  "description": "Jenkins CI/CD demo app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest --ci --reporters=default --reporters=jest-junit"
+  },
+  "dependencies": {
+    "express": "4.18.2"
+  },
+  "devDependencies": {
+    "jest": "29.7.0",
+    "jest-junit": "16.0.0",
+    "supertest": "6.3.4"
+  }
 }
 ```
 
-### `Jenkinsfile` — Git + Jenkins + Maven
+`app.js`:
+
+```js
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello from Jenkins CI/CD!');
+});
+
+module.exports = app;
+
+if (require.main === module) {
+  app.listen(3000, () => console.log('Server running on port 3000'));
+}
+```
+
+`app.test.js`:
+
+```js
+const request = require('supertest');
+const app = require('./app');
+
+test('GET / returns greeting', async () => {
+  const res = await request(app).get('/');
+  expect(res.statusCode).toBe(200);
+  expect(res.text).toContain('Hello from Jenkins CI/CD!');
+});
+```
+
+`.gitignore` / `.dockerignore`:
+
+```
+node_modules/
+.env
+*.log
+junit.xml
+test-results/
+```
+
+> **Why `module.exports = app` and the `require.main` guard?** — Separating the Express app from the `listen()` call means the test file can import `app` without starting a real server. The guard `if (require.main === module)` runs `listen` only when `node app.js` is invoked directly.
+
+### `Jenkinsfile` — Git + Jenkins + Node.js
 
 ```groovy
 pipeline {
     agent any
 
     tools {
-        maven 'maven-3.9'
-        jdk   'jdk-17'
+        nodejs 'nodejs-18'
     }
 
     environment {
         APP_NAME = 'hello-jenkins'
+        JEST_JUNIT_OUTPUT_DIR = 'test-results'
+        JEST_JUNIT_OUTPUT_NAME = 'junit.xml'
     }
 
     stages {
@@ -246,26 +271,26 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Install') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'npm ci'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'npm test'
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    junit 'test-results/junit.xml'
                 }
             }
         }
 
         stage('Archive Artifact') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'app.js,package.json', fingerprint: true
             }
         }
 
@@ -277,6 +302,8 @@ pipeline {
     }
 }
 ```
+
+> **`npm ci` vs `npm install`** — `npm ci` always deletes `node_modules` and installs from `package-lock.json` exactly. Faster, reproducible, no surprises from floating versions. Always use `npm ci` in CI pipelines.
 
 ### Connect to GitHub — Pipeline from SCM
 
@@ -308,126 +335,50 @@ GitHub: **Settings → Webhooks → Add webhook**
 triggers { pollSCM('H/5 * * * *') }
 ```
 
-### Maven commands reference
+### npm commands reference
 
 | Command | What it does |
 |---|---|
-| `mvn clean` | Delete `target/` |
-| `mvn compile` | Compile Java source |
-| `mvn test` | Run unit tests |
-| `mvn package` | Compile + test + JAR/WAR |
-| `mvn clean package` | Clean then package |
-| `mvn clean package -DskipTests` | Package without tests |
-| `mvn install` | Package + install to local repo |
-| `mvn verify` | Run integration tests |
+| `npm install` | Install dependencies (updates `package-lock.json`) |
+| `npm ci` | Clean install from `package-lock.json` exactly — use in CI |
+| `npm test` | Run the `test` script from `package.json` |
+| `npm start` | Run the `start` script (`node app.js`) |
+| `npm run <script>` | Run any custom script defined in `package.json` |
+| `npm run lint` | Run linter (if configured) |
+| `npm audit` | Check for known vulnerabilities in dependencies |
+| `npm audit --audit-level=high` | Fail only on high/critical vulnerabilities |
+| `npm prune --production` | Remove devDependencies (before packaging) |
 
 ---
 
-## Step 4 — Integrating Tomcat in the CI/CD Pipeline
+## Step 4 — First Deployment: Run the App as a Docker Container
 
-### What is Tomcat?
-
-Apache Tomcat is a Java application server. It hosts WAR (Web Application Archive) files. The classic enterprise Java deployment model:
+Before pushing to Docker Hub or Kubernetes, the simplest possible deployment is: build the image, run it locally as a container, and verify it responds. One pipeline, one `docker run`.
 
 ```
-Maven builds → hello-jenkins.war
-                    ↓
-          Deploy to Tomcat
-                    ↓
-    http://server:8090/hello-jenkins/
+npm test passes
+      ↓
+docker build → local image
+      ↓
+docker run   → container on port 3001
+      ↓
+curl localhost:3001 → Hello from Jenkins CI/CD!
 ```
 
-### Change packaging to WAR
-
-In `pom.xml`, change `<packaging>jar</packaging>` to `<packaging>war</packaging>` and add the Tomcat dependency:
-
-```xml
-<packaging>war</packaging>
-
-<dependencies>
-  ...
-  <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-tomcat</artifactId>
-    <scope>provided</scope>
-  </dependency>
-</dependencies>
-```
-
-Make `HelloApplication` extend `SpringBootServletInitializer`:
-
-```java
-@SpringBootApplication
-public class HelloApplication extends SpringBootServletInitializer {
-    public static void main(String[] args) {
-        SpringApplication.run(HelloApplication.class, args);
-    }
-}
-```
-
-### Run Tomcat in Docker
-
-```powershell
-docker run -d `
-  --name tomcat `
-  -p 8090:8080 `
-  tomcat:10-jdk17
-```
-
-### Enable Tomcat Manager (required for remote deploy)
-
-```powershell
-docker exec -it tomcat bash
-```
-
-Inside the container:
-
-```bash
-# Create manager user
-cat > /usr/local/tomcat/conf/tomcat-users.xml << 'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<tomcat-users>
-  <role rolename="manager-script"/>
-  <user username="deployer" password="deployer123" roles="manager-script"/>
-</tomcat-users>
-EOF
-
-# Allow remote access (Tomcat 10 restricts manager by default)
-sed -i 's/allow="127/allow=".*/' \
-  /usr/local/tomcat/webapps/manager/META-INF/context.xml
-
-exit
-```
-
-```powershell
-docker restart tomcat
-```
-
-Verify: `http://localhost:8090/manager/html` → login: `deployer` / `deployer123`
-
-### Add Tomcat credentials to Jenkins
-
-**Manage Jenkins → Credentials → Add:**
-- Kind: Username with password
-- Username: `deployer`
-- Password: `deployer123`
-- ID: `tomcat-creds`
-
-### `Jenkinsfile` — with Tomcat deploy
+### `Jenkinsfile` — build, run, verify
 
 ```groovy
 pipeline {
     agent any
 
     tools {
-        maven 'maven-3.9'
-        jdk   'jdk-17'
+        nodejs 'nodejs-18'
     }
 
     environment {
-        APP_NAME     = 'hello-jenkins'
-        TOMCAT_URL   = 'http://host.docker.internal:8090'
-        TOMCAT_CREDS = credentials('tomcat-creds')
+        APP_NAME = 'hello-jenkins'
+        JEST_JUNIT_OUTPUT_DIR  = 'test-results'
+        JEST_JUNIT_OUTPUT_NAME = 'junit.xml'
     }
 
     stages {
@@ -436,94 +387,99 @@ pipeline {
             steps { checkout scm }
         }
 
-        stage('Build') {
-            steps { sh 'mvn clean package -DskipTests' }
+        stage('Install') {
+            steps { sh 'npm ci' }
         }
 
         stage('Test') {
-            steps { sh 'mvn test' }
+            steps { sh 'npm test' }
             post {
-                always { junit 'target/surefire-reports/*.xml' }
+                always { junit 'test-results/junit.xml' }
             }
         }
 
-        stage('Deploy to Tomcat') {
+        stage('Build Image') {
             steps {
-                deploy adapters: [
-                    tomcat9(
-                        credentialsId: 'tomcat-creds',
-                        path: "/${APP_NAME}",
-                        url: "${TOMCAT_URL}"
-                    )
-                ],
-                contextPath: "/${APP_NAME}",
-                war: "target/*.war"
+                sh "docker build -t ${APP_NAME}:${BUILD_NUMBER} ."
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                sh "docker rm -f ${APP_NAME} || true"
+                sh "docker run -d --name ${APP_NAME} -p 3001:3000 ${APP_NAME}:${BUILD_NUMBER}"
+                sh "sleep 3 && curl -f http://localhost:3001/ || (docker logs ${APP_NAME} && exit 1)"
             }
         }
 
     }
 
     post {
-        success { echo "Deployed to ${TOMCAT_URL}/${APP_NAME}" }
+        success { echo "App running at http://localhost:3001/" }
         failure { echo "Build ${BUILD_NUMBER} failed." }
     }
 }
 ```
 
-> **`host.docker.internal`** resolves to your Windows machine's IP inside any Docker container. This is how the Jenkins container reaches the Tomcat container on Docker Desktop.
-
 ### Verify
 
-Browser → `http://localhost:8090/hello-jenkins/` → **Hello from Jenkins CI/CD!**
+Browser → `http://localhost:3001/` → **Hello from Jenkins CI/CD!**
 
 ### Three Questions to Ask Trainees
 
-**1. "Why deploy a WAR to Tomcat instead of just `java -jar`?"**
-→ Traditional enterprise Java — banking, government, telecom — uses WAR + application servers. Trainees will encounter Tomcat, JBoss, and WebLogic in real organisations. Spring Boot supports both models.
+**1. "Why `docker rm -f hello-jenkins || true` before `docker run`?"**
+→ `docker run` fails if a container with the same name already exists. The `|| true` means: try to remove it, and if there's nothing to remove, that's fine — don't fail the pipeline.
 
-**2. "What does `host.docker.internal` resolve to?"**
-→ On Docker Desktop (Windows/Mac) it resolves to the host machine's IP. It's how a container (Jenkins) reaches another service running on the same host (Tomcat container). On Linux Docker, use `172.17.0.1`.
+**2. "Why `sleep 3` before `curl`?"**
+→ The container starts instantly but Node.js takes a moment to bind to the port. Without the sleep, `curl` hits the port before Express is ready and the pipeline fails a perfectly good build.
 
-**3. "What happens to live traffic when you deploy a new WAR to Tomcat?"**
-→ Tomcat undeploys the old version and deploys the new one — there's a brief outage. This is why Docker rolling updates and Kubernetes are preferred for zero-downtime deployments.
+**3. "This works — so why do we need Docker Hub and Kubernetes at all?"**
+→ This container only runs on the Jenkins machine. No one else can reach it, it doesn't survive a restart, and there's only one copy. Docker Hub lets any server pull the image. Kubernetes runs multiple copies, restarts failed ones, and updates them with zero downtime. The next two steps build toward that.
 
 ---
 
 ## Step 5 — Integrating Docker in the CI/CD Pipeline
 
-Package the Spring Boot app as a Docker image instead of deploying WAR to Tomcat.
+Package the Node.js Express app as a Docker image.
 
-### Dockerfile for Spring Boot
-
-Switch `pom.xml` back to `<packaging>jar</packaging>`. Then create `Dockerfile`:
+### Dockerfile for Node.js Express
 
 ```dockerfile
-FROM eclipse-temurin:17-jre-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
-COPY target/*.jar app.jar
+# Copy package files first (layer caching — dependencies change less than code)
+COPY package*.json ./
 
-EXPOSE 8080
+RUN npm ci --production
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Copy application code
+COPY app.js .
+
+EXPOSE 3000
+
+CMD ["node", "app.js"]
 ```
 
-### `Jenkinsfile` — Maven + Docker
+> **Layer order matters** — `COPY package*.json` + `RUN npm ci` are cached as long as `package.json` and `package-lock.json` don't change. Only when you add a new dependency does the install re-run. This matches the pattern taught in Module 02 — Docker.
+
+### `Jenkinsfile` — Node.js + Docker
 
 ```groovy
 pipeline {
     agent any
 
     tools {
-        maven 'maven-3.9'
-        jdk   'jdk-17'
+        nodejs 'nodejs-18'
     }
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
         IMAGE_NAME = "yourname/hello-jenkins"
         IMAGE_TAG  = "${BUILD_NUMBER}"
+        JEST_JUNIT_OUTPUT_DIR  = 'test-results'
+        JEST_JUNIT_OUTPUT_NAME = 'junit.xml'
     }
 
     stages {
@@ -532,10 +488,10 @@ pipeline {
             steps { checkout scm }
         }
 
-        stage('Build & Test') {
-            steps { sh 'mvn clean package' }
+        stage('Install & Test') {
+            steps { sh 'npm ci && npm test' }
             post {
-                always { junit 'target/surefire-reports/*.xml' }
+                always { junit 'test-results/junit.xml' }
             }
         }
 
@@ -560,8 +516,8 @@ pipeline {
         stage('Smoke Test') {
             steps {
                 sh "docker rm -f smoke-test || true"
-                sh "docker run -d --name smoke-test -p 8081:8080 ${IMAGE_NAME}:${IMAGE_TAG}"
-                sh "sleep 8 && curl -f http://localhost:8081/ || (docker logs smoke-test && exit 1)"
+                sh "docker run -d --name smoke-test -p 3002:3000 ${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "sleep 5 && curl -f http://localhost:3002/ || (docker logs smoke-test && exit 1)"
                 sh "docker rm -f smoke-test"
             }
         }
@@ -594,15 +550,15 @@ pipeline {
 ```
 git push → Jenkins
     ↓
-mvn clean package     (build JAR + run unit tests)
+npm ci && npm test   (install dependencies + run Jest tests)
     ↓
-docker build :42      (package JAR into image)
+docker build :42     (package app + node_modules into image)
     ↓
-docker push :42       → Docker Hub
+docker push :42      → Docker Hub
     ↓
-Smoke test            (run container, curl endpoint, verify response)
+Smoke test           (run container, curl endpoint, verify response)
     ↓
-docker rmi            (clean local image from Jenkins agent)
+docker rmi           (clean local image from Jenkins agent)
 ```
 
 ---
@@ -643,19 +599,20 @@ kubectl create deployment hello-jenkins `
 
 kubectl expose deployment hello-jenkins `
   --type=NodePort `
-  --port=80 --target-port=8080 `
+  --port=80 --target-port=3000 `
   --name=hello-jenkins-svc
 ```
 
-### `Jenkinsfile` — Full pipeline: Maven → Docker → Kubernetes
+> **`--target-port=3000`** — Node.js Express listens on port 3000 inside the container (set in `app.js`). The Service maps external port 80 to the container's port 3000.
+
+### `Jenkinsfile` — Full pipeline: Node.js → Docker → Kubernetes
 
 ```groovy
 pipeline {
     agent any
 
     tools {
-        maven 'maven-3.9'
-        jdk   'jdk-17'
+        nodejs 'nodejs-18'
     }
 
     environment {
@@ -665,6 +622,8 @@ pipeline {
         DEPLOYMENT_NAME = "hello-jenkins"
         CONTAINER_NAME  = "hello-jenkins"
         K8S_NAMESPACE   = "default"
+        JEST_JUNIT_OUTPUT_DIR  = 'test-results'
+        JEST_JUNIT_OUTPUT_NAME = 'junit.xml'
     }
 
     stages {
@@ -676,10 +635,10 @@ pipeline {
             }
         }
 
-        stage('Build & Test') {
-            steps { sh 'mvn clean package' }
+        stage('Install & Test') {
+            steps { sh 'npm ci && npm test' }
             post {
-                always { junit 'target/surefire-reports/*.xml' }
+                always { junit 'test-results/junit.xml' }
             }
         }
 
@@ -754,7 +713,7 @@ Developer: git push origin main
                 ↓
 ┌──────────────────────────────────────────────────────────────┐
 │  Checkout      → git clone                                   │
-│  Build & Test  → mvn clean package + junit results          │
+│  Install&Test  → npm ci + jest + junit results               │
 │  Docker Build  → docker build :42                            │
 │  Docker Push   → docker push :42 → Docker Hub               │
 │  K8s Deploy    → kubectl set image :42                       │
@@ -776,7 +735,7 @@ Developer: git push origin main
 → Feature branches build and test but never deploy to production. Only `main` — code-reviewed and approved — reaches the cluster.
 
 **2. "What happens to live traffic during `kubectl set image`?"**
-→ Kubernetes replaces Pods one at a time (rolling update). Some run old, some new, all behind the Service. Zero downtime — unlike a Tomcat redeploy.
+→ Kubernetes replaces Pods one at a time (rolling update). Some run old, some new, all behind the Service. Zero downtime — unlike a PM2 server restart.
 
 **3. "Why is `kubectl rollout status --timeout=120s` important?"**
 → Without it, the pipeline finishes immediately after issuing the update, before knowing if it worked. `rollout status` blocks until all Pods are healthy — or fails the pipeline if they aren't within 120 seconds, triggering the auto-rollback.
@@ -790,12 +749,21 @@ Developer: git push origin main
 ```groovy
 stage('Validate') {
     parallel {
-        stage('Unit Tests')    { steps { sh 'mvn test'              } }
-        stage('Code Style')    { steps { sh 'mvn checkstyle:check'  } }
-        stage('Dependency')    { steps { sh 'mvn dependency:resolve'} }
+        stage('Unit Tests')   { steps { sh 'npm test'                    } }
+        stage('Lint')         { steps { sh 'npm run lint'                } }
+        stage('Audit')        { steps { sh 'npm audit --audit-level=high'} }
     }
 }
 ```
+
+> Add a `lint` script to `package.json` to enable the Lint stage:
+> ```json
+> "scripts": {
+>   "start": "node app.js",
+>   "test": "jest --ci --reporters=default --reporters=jest-junit",
+>   "lint": "eslint ."
+> }
+> ```
 
 ### Conditional logic
 
@@ -842,7 +810,7 @@ Jenkins automates software delivery: watches Git, triggers pipelines on push, en
 
 **Step** — Single command inside a stage. `sh` = shell. `junit` = publish test results. `archiveArtifacts` = save files.
 
-**tools** — Pre-installed runtimes (JDK, Maven) from Global Tool Config. Available in pipelines by name.
+**tools** — Pre-installed runtimes (Node.js) from Global Tool Config. Available in pipelines by name.
 
 **Credential Store** — Secure vault. Referenced by ID. Never shown in logs.
 
@@ -850,11 +818,17 @@ Jenkins automates software delivery: watches Git, triggers pipelines on push, en
 
 **Webhook** — GitHub calls Jenkins on push. Instant trigger.
 
-**`host.docker.internal`** — Docker Desktop hostname → Windows host IP. How Jenkins container reaches Tomcat container.
+**`host.docker.internal`** — Docker Desktop hostname → Windows host IP. How Jenkins container reaches other containers.
 
 **Rolling update** — Kubernetes replaces Pods one at a time. Zero downtime.
 
 **Auto-rollback** — `post { failure { kubectl rollout undo } }` — reverts K8s deployment if pipeline fails.
+
+**`npm ci`** — Reproducible install from `package-lock.json`. Always use in CI. Never `npm install` in pipelines.
+
+**`jest-junit`** — Jest reporter that outputs JUnit-compatible XML. Required for Jenkins to publish and track test results over time.
+
+**`|| true`** — Shell pattern used in pipeline steps to make a command non-fatal. `docker rm -f app || true` means: remove the container if it exists, and if it doesn't, don't fail the build.
 
 ---
 
@@ -865,11 +839,12 @@ Jenkins automates software delivery: watches Git, triggers pipelines on push, en
 | CI vs CD | CI = test + build on push. CD = deliver to environment automatically. CI is the prerequisite for CD. |
 | Declarative vs Scripted pipeline | Declarative = structured, validated. Scripted = full Groovy. Always use Declarative. |
 | `stage` vs `step` | Stage = named UI phase. Step = single command inside a stage. |
-| WAR vs JAR (Spring Boot) | WAR deploys to Tomcat (traditional). JAR = self-contained, runs with `java -jar` (Docker-friendly). |
-| Tomcat deploy vs Docker | Tomcat = WAR file, brief downtime on redeploy. Docker = image, rolling updates, no downtime. |
+| `npm install` vs `npm ci` | `npm install` can update `package-lock.json`. `npm ci` installs exactly what's locked — use in CI. |
+| `docker run` local vs Docker Hub | Local image only exists on the Jenkins machine. Docker Hub lets any server pull and run it. |
 | `kubectl set image` vs `kubectl apply` | `set image` updates one field. `apply` replaces the full spec from a YAML file. |
 | Webhook vs SCM polling | Webhook = GitHub calls Jenkins (instant, needs ngrok in lab). Polling = Jenkins checks GitHub periodically. |
 | `host.docker.internal` vs `localhost` | Inside a container, `localhost` is the container itself. `host.docker.internal` is your Windows machine. |
+
 
 ---
 
@@ -884,7 +859,7 @@ Developer (Windows 11)
     ↓
   ┌──────────────────────────────────────────────────────────┐
   │  Checkout      → git clone                               │
-  │  Build & Test  → mvn clean package + junit               │
+  │  Install&Test  → npm ci + jest + junit                   │
   │  Docker Build  → docker build :42                        │
   │  Docker Push   → Docker Hub (:42)                        │
   │  K8s Deploy    → kubectl set image :42                   │
@@ -941,7 +916,7 @@ ngrok http 8080
 | `http://localhost:8080/blue` | Blue Ocean visual UI |
 | `http://localhost:8080/manage` | Manage Jenkins |
 | `http://localhost:8080/credentials` | Credential store |
-| `http://localhost:8080/manage/configureTools/` | JDK + Maven tool config |
+| `http://localhost:8080/manage/configureTools/` | Node.js tool config |
 | `http://localhost:8080/restart` | Restart Jenkins |
 | `http://localhost:8080/github-webhook/` | GitHub webhook endpoint |
 
@@ -954,10 +929,10 @@ ngrok http 8080
 | Introduction — CI vs CD | Bridge section + Step 1 architecture |
 | Jenkins architecture, plugins | Step 1 — Controller, Docker socket, plugin table |
 | Declarative pipeline fundamentals | Step 2 — pipeline, agent, tools, stages, steps, post |
-| CI/CD pipeline using Git, Jenkins and Maven | Step 3 — full Jenkinsfile, JDK/Maven config, JUnit, `archiveArtifacts`, webhook/ngrok |
-| Maven commands | Step 3 — `mvn` commands reference table |
-| Integrating Tomcat in CI/CD pipeline | Step 4 — Tomcat in Docker, Manager setup, `host.docker.internal`, Deploy to container plugin |
-| Integrating Docker in CI/CD pipeline | Step 5 — Dockerfile for Spring Boot, docker build/push, smoke test stage |
+| CI/CD pipeline using Git, Jenkins and Node.js | Step 3 — full Jenkinsfile, Node.js config, Jest/junit, `archiveArtifacts`, webhook/ngrok |
+| npm commands | Step 3 — `npm` commands reference table |
+| First deployment — local Docker container | Step 4 — `docker build`, `docker run`, `curl` smoke check, `\|\| true` pattern |
+| Integrating Docker in CI/CD pipeline | Step 5 — Dockerfile for Node.js, docker build/push, smoke test stage |
 | Integrating Kubernetes in CI/CD pipeline | Step 6 — kubeconfig mount, `kubectl set image`, rollout status, auto-rollback |
 | Parallel stages | Step 7 — `parallel {}` |
 | Conditional logic / branch strategy | Steps 6–7 — `when { branch 'main' }` |
@@ -989,7 +964,7 @@ GitHub webhook
       ↓
 Jenkins pipeline
       ↓
-mvn clean package  (build + test)
+npm ci && npm test  (install + test)
       ↓
 docker build :42   (package)
       ↓
@@ -1001,4 +976,3 @@ App live — zero downtime — traceable to the exact commit that triggered it
 ```
 
 The infrastructure (the servers Kubernetes runs on) is provisioned by Ansible, version-controlled in Git, and can itself be re-run at any time to reproduce the environment exactly.
-
